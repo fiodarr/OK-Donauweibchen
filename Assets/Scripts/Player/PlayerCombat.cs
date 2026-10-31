@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using FMODUnity;
 
 public class PlayerCombat : MonoBehaviour
 {
     private PlayerInputHandler inputHandler;
     private PlayerController playerController;
+    private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
     [SerializeField] private Weapon equippedWeapon;
@@ -12,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
 
     public bool IsAttacking { get; private set; }
+    
 
     private bool canAttack = true;
 
@@ -59,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
         IsAttacking = true;
 
         AttackData attack = equippedWeapon.GetAttack(comboIndex);
+        attack.attackSound.Play();
 
         if (attack == null)
         {
@@ -66,25 +70,25 @@ public class PlayerCombat : MonoBehaviour
             IsAttacking = false;
             yield break;
         }
-
-        Vector2 attackDirection = inputHandler.MoveInput.normalized;;
+        if (inputHandler.MoveInput != Vector2.zero) 
+            currentDirection = inputHandler.MoveInput.normalized;
 
         // Launch player
         rb.AddForce(
-            attackDirection * attack.launchForce,
+            currentDirection * attack.launchForce,
             ForceMode2D.Impulse
         );
 
         // Rotate hitbox
         float angle = Mathf.Atan2(
-            attackDirection.y,
-            attackDirection.x
+            currentDirection.y,
+            currentDirection.x
         ) * Mathf.Rad2Deg;
 
         attack.hitbox.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         // Execute attack
-        attack.hitbox.BeginAttack(attackDirection, attack.damage);
+        attack.hitbox.BeginAttack(currentDirection, attack.damage);
 
         yield return new WaitForSeconds(attack.activeTime);
 
