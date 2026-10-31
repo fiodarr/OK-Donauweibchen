@@ -5,24 +5,24 @@ public class PlayerCombat : MonoBehaviour
 {
     private PlayerInputHandler inputHandler;
     private PlayerController playerController;
-    private Hitbox meleeHitbox;
 
-    [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private float activeAttackTime = 0.15f;
-    [SerializeField] private float recoveryTime = 0.25f;
+    [Header("Weapon")]
+    [SerializeField] private Weapon equippedWeapon;
 
-    // placeholder
-    [SerializeField] private float damage = 5f;
+    private Rigidbody2D rb;
 
     public bool IsAttacking { get; private set; }
 
     private bool canAttack = true;
 
+    private int comboIndex = 0;
+    private float lastAttackTime;
+
     private void Awake()
     {
         inputHandler = GetComponent<PlayerInputHandler>();
         playerController = GetComponent<PlayerController>();
-        meleeHitbox = GetComponentInChildren<Hitbox>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
@@ -37,8 +37,20 @@ public class PlayerCombat : MonoBehaviour
 
     private void TryAttack()
     {
-        if (canAttack)
-            StartCoroutine(PerformAttack());
+        if (!canAttack || equippedWeapon == null)
+            return;
+        if (comboIndex > 0)
+        {
+            AttackData previousAttack = equippedWeapon.GetAttack(comboIndex - 1);
+
+            if (previousAttack == null ||
+                Time.time - lastAttackTime > previousAttack.comboTime)
+            {
+                comboIndex = 0;
+            }
+        }
+
+        StartCoroutine(PerformAttack());
     }
 
     private IEnumerator PerformAttack()
@@ -46,27 +58,56 @@ public class PlayerCombat : MonoBehaviour
         canAttack = false;
         IsAttacking = true;
 
-        Vector2 attackDirection = playerController.FacingDirection;
+        AttackData attack = equippedWeapon.GetAttack(comboIndex);
 
+        if (attack == null)
+        {
+            canAttack = true;
+            IsAttacking = false;
+            yield break;
+        }
+
+        Vector2 attackDirection = inputHandler.MoveInput.normalized;;
+
+        // Launch player
+        rb.AddForce(
+            attackDirection * attack.launchForce,
+            ForceMode2D.Impulse
+        );
+
+        // Rotate hitbox
         float angle = Mathf.Atan2(
             attackDirection.y,
             attackDirection.x
         ) * Mathf.Rad2Deg;
 
-        meleeHitbox.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        attack.hitbox.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        meleeHitbox.BeginAttack(attackDirection, damage);
+        // Execute attack
+        attack.hitbox.BeginAttack(attackDirection, attack.damage);
 
-        yield return new WaitForSeconds(activeAttackTime);
+        yield return new WaitForSeconds(attack.activeTime);
 
-        meleeHitbox.EndAttack();
+        attack.hitbox.EndAttack();
 
-        yield return new WaitForSeconds(recoveryTime);
+        yield return new WaitForSeconds(attack.recoveryTime);
 
         IsAttacking = false;
 
-        float remainingCooldown =
-            Mathf.Max(0f, attackCooldown - activeAttackTime - recoveryTime);
+        lastAttackTime = Time.time;
+
+        // Advance combo
+        comboIndex++;
+
+        if (comboIndex >= equippedWeapon.attacks.Length)
+            comboIndex = 0;
+
+        float remainingCooldown = Mathf.Max(
+            0f,
+            equippedWeapon.attackCooldown -
+            attack.activeTime -
+            attack.recoveryTime
+        );
 
         yield return new WaitForSeconds(remainingCooldown);
 

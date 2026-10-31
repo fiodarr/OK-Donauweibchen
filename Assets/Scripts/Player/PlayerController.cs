@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
     {
         if (combat.IsAttacking)
         {
-            rb.linearVelocity = Vector2.zero;
             return;
         }
 
