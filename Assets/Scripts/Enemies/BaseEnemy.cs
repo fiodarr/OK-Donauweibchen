@@ -10,11 +10,12 @@ public class BaseEnemy : Hitable, IHookable
         Idle,
         Preparing,
         Attack,
-        Stunned
+        Stunned,
+        Died
     }
     
     
-    protected EnemyState CurrentState = EnemyState.Idle;
+    protected EnemyState currentState = EnemyState.Idle;
     
     EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
@@ -71,9 +72,9 @@ public class BaseEnemy : Hitable, IHookable
 
         knockbackCoroutine = null;
     }
-    private void Die()
+    protected virtual void Die()
     {
-        Destroy(gameObject);
+        currentState = EnemyState.Died;
     }
 
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
@@ -112,6 +113,6 @@ public class BaseEnemy : Hitable, IHookable
     {
         StopAllCoroutines();
         knockbackCoroutine = null;
-        CurrentState = EnemyState.Idle;
+        currentState = EnemyState.Idle;
     }
 }

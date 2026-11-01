@@ -58,6 +58,7 @@ MonoBehaviour:
     knockback: 5
     launchForce: 30
     attackSound: {fileID: 11400000, guid: 318496ed7feea45749a2a94e99bb7ca2, type: 2}
+    chargeTime: 0
     activeTime: 0.1
     recoveryTime: 0.2
     comboTime: 0.7
@@ -70,18 +71,20 @@ MonoBehaviour:
     knockback: 5
     launchForce: 30
     attackSound: {fileID: 11400000, guid: e4549ea96247647e7a10eb98f50bd40c, type: 2}
+    chargeTime: 0
     activeTime: 0.1
     recoveryTime: 0.1
     comboTime: 0.6
     hitbox: {fileID: 983458982246775955}
   - damage:
-    - amount: 1
+    - amount: 3
       type: 0
     - amount: 6
       type: 1
     knockback: 5
     launchForce: 60
     attackSound: {fileID: 11400000, guid: 57d173b6da8814686905b4341e4c1d54, type: 2}
+    chargeTime: 0
     activeTime: 0.3
     recoveryTime: 0.6
     comboTime: 0.5

@@ -39,7 +39,10 @@ public class ChargingEnemy : BaseEnemy
     }
     private void Update()
     {
-        if (CurrentState != EnemyState.Idle)
+
+        if (currentState == EnemyState.Died)
+
+        if (currentState != EnemyState.Idle)
             return;
 
         Collider2D player = Physics2D.OverlapCircle(
@@ -57,8 +60,8 @@ public class ChargingEnemy : BaseEnemy
 
     private IEnumerator Attack()
     {
-        CurrentState = EnemyState.Preparing;
-        
+        currentState = EnemyState.Preparing;
+        animator.SetTrigger("AttackStart");
         yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
         agro.PlayOnGameObject(gameObject);
 
@@ -70,17 +73,18 @@ public class ChargingEnemy : BaseEnemy
         
         EnemyAttackManager.Release(this);
         chase.End();
-        if (CurrentState != EnemyState.Stunned){
-            CurrentState = EnemyState.Idle;
+        animator.SetTrigger("AttackEnd");
+        if (currentState != EnemyState.Stunned){
+            currentState = EnemyState.Idle;
         }
         else{
             yield return new WaitForSeconds(recoverTime);
-            CurrentState = EnemyState.Idle;
+            currentState = EnemyState.Idle;
         }
     }
     private IEnumerator Plunge(Vector2 targetPosition)
     {
-        CurrentState = EnemyState.Attack;
+        currentState = EnemyState.Attack;
         hitSolid = false;
 
         Vector2 direction = (targetPosition - Rb.position).normalized;
@@ -111,13 +115,19 @@ public class ChargingEnemy : BaseEnemy
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (CurrentState != EnemyState.Attack)
+        if (currentState != EnemyState.Attack)
             return;
 
         if (((1 << other.gameObject.layer) & Layers.Walls) != 0)
         {
             hitSolid = true;
-            CurrentState = EnemyState.Stunned;
+            currentState = EnemyState.Stunned;
         }
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        animator.SetBool("Died",true);
     }
 }
