@@ -39,6 +39,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (inputActions.Player.Attack.WasPressedThisFrame())
             AttackPressed?.Invoke();
+
+        if (inputActions.Player.SecondaryAttack.WasPressedThisFrame())
+            SecondaryAttackPressed?.Invoke();            
         
         UpdateFishingRodInput();
     }

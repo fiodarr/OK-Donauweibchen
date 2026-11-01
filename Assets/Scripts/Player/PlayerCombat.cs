@@ -20,6 +20,7 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Weapon")]
     [SerializeField] private Weapon equippedWeapon;
+    [SerializeField] private Weapon equippedSecondaryWeapon;
     
     [Header("Utility")]
     [SerializeField] private UtilityItem equippedUtilityItem;
@@ -87,14 +88,32 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        StartCoroutine(PerformAttack());
+        StartCoroutine(PerformAttack(equippedWeapon));
     }
 
-    private IEnumerator PerformAttack()
+        private void TrySecondaryAttack()
+    {
+        if (!CanAttack || !equippedSecondaryWeapon)
+            return;
+        if (comboIndex > 0)
+        {
+            AttackData previousAttack = equippedSecondaryWeapon.GetAttack(comboIndex - 1);
+
+            if (previousAttack == null ||
+                Time.time - lastAttackTime > previousAttack.comboTime)
+            {
+                comboIndex = 0;
+            }
+        }
+
+        StartCoroutine(PerformAttack(equippedSecondaryWeapon));
+    }
+
+    private IEnumerator PerformAttack(Weapon weapon)
     {
         currentState = CombatState.Attacking;
 
-        AttackData attack = equippedWeapon.GetAttack(comboIndex);
+        AttackData attack = weapon.GetAttack(comboIndex);
 
 
         if (attack == null)
@@ -137,17 +156,8 @@ public class PlayerCombat : MonoBehaviour
         // Advance combo
         comboIndex++;
 
-        if (comboIndex >= equippedWeapon.attacks.Length)
+        if (comboIndex >= weapon.attacks.Length)
             comboIndex = 0;
-
-        // float remainingCooldown = Mathf.Max(
-        //     0f,
-        //     equippedWeapon.attackCooldown -
-        //     attack.activeTime -
-        //     attack.recoveryTime
-        // );
-        //
-        // yield return new WaitForSeconds(remainingCooldown);
 
         currentState = CombatState.Default;
     }
