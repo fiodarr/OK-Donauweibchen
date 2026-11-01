@@ -115,4 +115,6 @@ public class BaseEnemy : Hitable, IHookable
         knockbackCoroutine = null;
         currentState = EnemyState.Idle;
     }
+
+    
 }

@@ -41,6 +41,7 @@ public class ChargingEnemy : BaseEnemy
     {
 
         if (currentState == EnemyState.Died)
+            return;
 
         if (currentState != EnemyState.Idle)
             return;
