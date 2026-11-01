@@ -40,7 +40,6 @@ public class ChargingEnemy : BaseEnemy
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     private void Update()
     {
         if (currentState != EnemyState.Idle)

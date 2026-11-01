@@ -188,7 +188,9 @@ MonoBehaviour:
   curveAmplitude: 3
   curveFrequency: 15
   attack:
-    damage: 5
+    damage:
+    - amount: 5
+      type: 0
     knockback: 5
     launchForce: 5
     attackSound: {fileID: 0}
@@ -312,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityStatus
   maxHealth: 10
+  maxArmor: 0
 --- !u!58 &7395003938833082953
 CircleCollider2D:
   m_ObjectHideFlags: 0
