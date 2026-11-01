@@ -20,6 +20,8 @@ public class BaseEnemy : Hitable, IHookable
     EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
+
+    [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
     private Coroutine knockbackCoroutine;
 
@@ -74,7 +76,11 @@ public class BaseEnemy : Hitable, IHookable
     }
     protected virtual void Die()
     {
-        currentState = EnemyState.Died;
+        SetState(EnemyState.Died);
+        foreach(Collider2D col in hurtbox)
+        {
+            col.enabled = false;
+        }
     }
 
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
@@ -113,8 +119,14 @@ public class BaseEnemy : Hitable, IHookable
     {
         StopAllCoroutines();
         knockbackCoroutine = null;
-        currentState = EnemyState.Idle;
+        SetState(EnemyState.Idle);
     }
 
-    
+    protected void SetState(EnemyState state)
+    {
+        if (currentState != EnemyState.Died)
+        {
+            currentState = state;   
+        }
+    }
 }

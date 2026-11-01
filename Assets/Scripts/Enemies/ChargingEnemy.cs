@@ -76,16 +76,16 @@ public class ChargingEnemy : BaseEnemy
         chase.End();
         animator.SetTrigger("AttackEnd");
         if (currentState != EnemyState.Stunned){
-            currentState = EnemyState.Idle;
+            SetState(EnemyState.Idle);
         }
         else{
             yield return new WaitForSeconds(recoverTime);
-            currentState = EnemyState.Idle;
+            SetState(EnemyState.Idle);
         }
     }
     private IEnumerator Plunge(Vector2 targetPosition)
     {
-        currentState = EnemyState.Attack;
+        SetState(EnemyState.Attack);
         hitSolid = false;
 
         Vector2 direction = (targetPosition - Rb.position).normalized;
@@ -128,6 +128,8 @@ public class ChargingEnemy : BaseEnemy
 
     protected override void Die()
     {
+        attack.hitbox.EndAttack();
+        StopAllCoroutines();
         base.Die();
         animator.SetBool("Died",true);
     }

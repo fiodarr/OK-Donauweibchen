@@ -308,9 +308,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71849720a9703451d9db89ccda911c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChargingEnemy
-  iTime: 0.2
   knockbackForce: 15
   knockbackDuration: 0.15
+  hurtbox:
+  - {fileID: 2518037694342659847}
+  - {fileID: 4414743930393434617}
   detectionRange: 12
   prepareTime: 1
   agro: {fileID: 11400000, guid: 36c9e4b5bc436c04e9f43115e6d8a70c, type: 2}
