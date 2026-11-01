@@ -63,6 +63,7 @@ public class PlayerController : Hitable
         if (movement.x > 0 || movement.y > 0)
         {
             isMoving = true;
+            StartCoroutine(Footsteps());
         }
         else
         {
