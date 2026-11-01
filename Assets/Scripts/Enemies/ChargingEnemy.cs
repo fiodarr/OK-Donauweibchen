@@ -5,13 +5,7 @@ using UnityEngine;
 
 public class ChargingEnemy : BaseEnemy
 {
-    private enum EnemyState
-    {
-        Idle,
-        Preparing,
-        Plunging,
-        Stunned
-    }
+    
 
     [Header("Detection")]
     [SerializeField] private float detectionRange = 7f;
@@ -88,7 +82,7 @@ public class ChargingEnemy : BaseEnemy
     }
     private IEnumerator Plunge(Vector2 targetPosition)
     {
-        currentState = EnemyState.Plunging;
+        currentState = EnemyState.Attack;
         hitSolid = false;
 
         Vector2 direction = (targetPosition - Rb.position).normalized;
@@ -119,7 +113,7 @@ public class ChargingEnemy : BaseEnemy
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (currentState != EnemyState.Plunging)
+        if (currentState != EnemyState.Attack)
             return;
 
         if (((1 << other.gameObject.layer) & Layers.Walls) != 0)

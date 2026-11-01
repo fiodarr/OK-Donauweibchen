@@ -3,8 +3,16 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BaseEnemy : Hitable
+public class BaseEnemy : Hitable, IHookable
 {
+    protected enum EnemyState
+    {
+        Idle,
+        Preparing,
+        Attack,
+        Stunned
+    }
+    
     EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
@@ -63,5 +71,15 @@ public class BaseEnemy : Hitable
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void Hook(Vector2 origin, Vector2 direction, float offset)
+    {
+        this.transform.position = origin + direction.normalized * offset;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return Rb.position;
     }
 }
