@@ -56,7 +56,7 @@ public class PlayerController : Hitable
         );
     }
 
-    protected override void OnTakeDamage(Vector2 damageDirection, float damage, float knockback)
+    protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
         status.TakeDamage(damage);
         

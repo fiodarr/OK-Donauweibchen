@@ -7,7 +7,7 @@ public class Hitbox : MonoBehaviour
     [SerializeField] private Collider2D hitbox;
     public HashSet<Hitable> hitObjects = new HashSet<Hitable>();
     [SerializeField] private List<Hitable> hitObjectsToIgnore = new List<Hitable>();
-    private float currentDamage;
+    private DamageData[] currentDamage;
     private float currentKnockback;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class Hitbox : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    public void BeginAttack(Vector2 direction, float damage, float knockback)
+    public void BeginAttack(Vector2 direction, DamageData[] damage, float knockback)
     {
         hitObjects.Clear();
 

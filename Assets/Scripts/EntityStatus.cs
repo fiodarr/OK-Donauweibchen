@@ -4,13 +4,17 @@ using UnityEngine;
 public class EntityStatus : MonoBehaviour
 {
     [SerializeField] float maxHealth;
+    [SerializeField] float maxArmor;
     private List<Modifier> damageModifiers = new List<Modifier>();
     private List<Modifier> healModifiers = new List<Modifier>();
+    [SerializeField] float armorReduction;
     float currentHealth;
+    float currentArmor;
     
     void Start()
     {
         currentHealth = maxHealth;
+        currentArmor = maxArmor;
     }
     
     public float GetHealth()
@@ -18,19 +22,34 @@ public class EntityStatus : MonoBehaviour
         return currentHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(DamageData[] damages)
     {
-        if (damageModifiers.Count != 0)
+        foreach (DamageData originalDamage in damages)
         {
+            DamageData damage = originalDamage;
+
             foreach (Modifier m in damageModifiers)
             {
                 damage = m.Apply(damage);
             }
 
-            if (damage <= 0)
-                return;
+            damage.amount = Mathf.Max(0, damage.amount);
+
+            switch (damage.type)
+            {
+                case DamageType.Armor:
+                    currentArmor = Mathf.Max(0, currentArmor - damage.amount);
+                    break;
+
+                case DamageType.Physical:
+                    if (currentArmor > 0)
+                    {
+                        damage.amount -= damage.amount*armorReduction;
+                    }
+                    currentHealth = Mathf.Max(0, currentHealth - damage.amount);
+                    break;
+            }
         }
-        currentHealth -= damage;
     }
     
     public void Heal(float heal)
