@@ -52,12 +52,17 @@ public class PlayerController : Hitable
             if (stepsRoutine == null)
             {
                 stepsRoutine = StartCoroutine(Footsteps());
-                stepsRoutine = null;
             }
         }
         else
         {
             isMoving = false;
+
+            if (stepsRoutine != null)
+            {
+                StopCoroutine(stepsRoutine);
+                stepsRoutine = null;
+            }
         }
         
 
@@ -91,5 +96,6 @@ public class PlayerController : Hitable
         footsteps.Play();
         yield return new WaitForSeconds(0.4f);
         }
+        stepsRoutine = null;
     }
 }
