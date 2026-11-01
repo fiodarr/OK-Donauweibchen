@@ -10,6 +10,8 @@ public class PlayerController : Hitable
     private Camera mainCamera;
     private EntityStatus status;
 
+    private Coroutine stepsRoutine;
+
     [SerializeField] private SoundEvent footsteps;
 
     private bool isMoving = false;
@@ -63,7 +65,8 @@ public class PlayerController : Hitable
         if (movement.x > 0 || movement.y > 0)
         {
             isMoving = true;
-            StartCoroutine(Footsteps());
+            if (stepsRoutine == null)
+                StartCoroutine(Footsteps());
         }
         else
         {
