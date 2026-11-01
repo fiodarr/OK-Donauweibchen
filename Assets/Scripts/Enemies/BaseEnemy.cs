@@ -10,14 +10,14 @@ public class BaseEnemy : Hitable, IHookable
         Idle,
         Preparing,
         Attack,
-        Stunned,
+        Vulnerable,
         Died
     }
     
     
     protected EnemyState currentState = EnemyState.Idle;
     
-    EntityStatus status;
+    protected EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
 

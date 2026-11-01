@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using FMODUnity;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ChargingEnemy : BaseEnemy
@@ -23,6 +24,7 @@ public class ChargingEnemy : BaseEnemy
 
     [Header("Recovery")]
     [SerializeField] private float recoverTime = 3f;
+
 
     private bool hitSolid;
     private Transform target;
@@ -75,12 +77,13 @@ public class ChargingEnemy : BaseEnemy
         EnemyAttackManager.Release(this);
         chase.End();
         animator.SetTrigger("AttackEnd");
-        if (currentState != EnemyState.Stunned){
+        if (currentState != EnemyState.Vulnerable){
             SetState(EnemyState.Idle);
         }
         else{
             yield return new WaitForSeconds(recoverTime);
             SetState(EnemyState.Idle);
+            status.RemoveDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
         }
     }
     private IEnumerator Plunge(Vector2 targetPosition)
@@ -122,7 +125,8 @@ public class ChargingEnemy : BaseEnemy
         if (((1 << other.gameObject.layer) & Layers.Walls) != 0)
         {
             hitSolid = true;
-            SetState(EnemyState.Stunned);
+            SetState(EnemyState.Vulnerable);
+            status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
         }
     }
 
