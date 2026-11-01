@@ -56,6 +56,7 @@ MonoBehaviour:
     knockback: 50
     launchForce: 50
     attackSound: {fileID: 11400000, guid: a5e48a7202c684ca4b8c1516b533b82a, type: 2}
+    chargeSound: {fileID: 11400000, guid: 9ea574fb27b635d42a60d3b9946cdfec, type: 2}
     chargeTime: 0.7
     activeTime: 0.2
     recoveryTime: 0.8
