@@ -46,7 +46,21 @@ public class PlayerController : Hitable
             mouseWorldPosition - rb.position;
 
         if (direction.sqrMagnitude > 0.001f)
+        {
             FacingDirection = direction.normalized;
+                        isMoving = true;
+            if (stepsRoutine == null)
+            {
+                stepsRoutine = StartCoroutine(Footsteps());
+                stepsRoutine = null;
+            }
+        }
+        else
+        {
+            isMoving = false;
+        }
+        
+
     }
     
     private void FixedUpdate()
@@ -61,17 +75,6 @@ public class PlayerController : Hitable
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );
-
-        if (movement.x > 0 || movement.y > 0)
-        {
-            isMoving = true;
-            if (stepsRoutine == null)
-                stepsRoutine = StartCoroutine(Footsteps());
-        }
-        else
-        {
-            isMoving = false;
-        }
     }
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
