@@ -232,6 +232,8 @@ MonoBehaviour:
   maxHealth: 20
   maxArmor: 0
   armorReduction: 0
+  currentHealth: 0
+  currentArmor: 0
 --- !u!1 &7657736583750744400
 GameObject:
   m_ObjectHideFlags: 0

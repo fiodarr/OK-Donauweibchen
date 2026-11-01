@@ -35,7 +35,10 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if ((Layers.IgnoreHits & (1 << other.gameObject.layer)) != 0)
+            return;
         Hitable hitable = other.GetComponentInParent<Hitable>();
+
 
         if (hitable == null ||
             hitable.transform.root == transform.root ||

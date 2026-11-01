@@ -9,8 +9,8 @@ public class EntityStatus : MonoBehaviour
     private List<Modifier> healModifiers = new List<Modifier>();
     protected FlashController flashController;
     [SerializeField] float armorReduction;
-    float currentHealth;
-    float currentArmor;
+    [SerializeField] float currentHealth;
+    [SerializeField] float currentArmor;
     
     void Start()
     {
