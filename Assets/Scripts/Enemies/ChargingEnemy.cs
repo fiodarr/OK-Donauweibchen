@@ -61,7 +61,7 @@ public class ChargingEnemy : BaseEnemy
 
     private IEnumerator Attack()
     {
-        currentState = EnemyState.Preparing;
+        SetState(EnemyState.Preparing);
         animator.SetTrigger("AttackStart");
         yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
         agro.PlayOnGameObject(gameObject);
@@ -122,7 +122,7 @@ public class ChargingEnemy : BaseEnemy
         if (((1 << other.gameObject.layer) & Layers.Walls) != 0)
         {
             hitSolid = true;
-            currentState = EnemyState.Stunned;
+            SetState(EnemyState.Stunned);
         }
     }
 
