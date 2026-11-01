@@ -66,7 +66,7 @@ public class PlayerController : Hitable
         {
             isMoving = true;
             if (stepsRoutine == null)
-                StartCoroutine(Footsteps());
+                stepsRoutine = StartCoroutine(Footsteps());
         }
         else
         {
