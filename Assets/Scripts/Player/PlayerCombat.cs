@@ -95,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
         currentState = CombatState.Attacking;
 
         AttackData attack = equippedWeapon.GetAttack(comboIndex);
-
+        attack.attackSound.Play();
 
         if (attack == null)
         {
@@ -105,10 +105,6 @@ public class PlayerCombat : MonoBehaviour
         if (inputHandler.MoveInput != Vector2.zero) 
             currentDirection = inputHandler.MoveInput.normalized;
 
-
-        yield return new WaitForSeconds(attack.chargeTime);
-        attack.attackSound.Play();
-        
         // Launch player
         rb.AddForce(
             currentDirection * attack.launchForce,

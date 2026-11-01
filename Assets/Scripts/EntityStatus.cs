@@ -7,7 +7,6 @@ public class EntityStatus : MonoBehaviour
     [SerializeField] float maxArmor;
     private List<Modifier> damageModifiers = new List<Modifier>();
     private List<Modifier> healModifiers = new List<Modifier>();
-    protected FlashController flashController;
     [SerializeField] float armorReduction;
     float currentHealth;
     float currentArmor;
@@ -16,25 +15,15 @@ public class EntityStatus : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentArmor = maxArmor;
-        flashController = GetComponent<FlashController>();
     }
     
     public float GetHealth()
     {
         return currentHealth;
     }
-    
-    protected virtual void FlashOnTakeDamage()
-    {
-        if (flashController != null)
-        {
-            flashController.FlashOnce(0.1f,1);
-        }
-    }
 
     public void TakeDamage(DamageData[] damages)
     {
-        FlashOnTakeDamage();
         foreach (DamageData originalDamage in damages)
         {
             DamageData damage = originalDamage;

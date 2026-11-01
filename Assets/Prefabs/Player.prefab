@@ -112,12 +112,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1455144561739394349}
+  - {fileID: 7780872166197739906}
   - {fileID: 1163357928556715274}
-<<<<<<< Updated upstream
   - {fileID: 2954188702395672944}
-=======
-  - {fileID: 5707071734189834613}
->>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2631808817736072506
@@ -355,7 +352,7 @@ MonoBehaviour:
   m_ComponentVersion: 3
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.656
+  m_FalloffIntensity: 0.435
   m_Color: {r: 0.25, g: 0.9693792, b: 1, a: 1}
   m_Intensity: 5.56
   m_LightVolumeIntensity: 1
@@ -392,69 +389,30 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!1001 &2954692473779104188
-PrefabInstance:
+--- !u!1 &8647267366494284872
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 152861551690220347}
-    m_Modifications:
-    - target: {fileID: 1256440091010881911, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_Name
-      value: Kick
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.04083
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00478
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 05696ddc32fac48569427504ab37982b, type: 3}
---- !u!4 &5707071734189834613 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
-  m_PrefabInstance: {fileID: 2954692473779104188}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7780872166197739906}
+  - component: {fileID: 6241242883942249890}
+  - component: {fileID: 7833592978498691978}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7780872166197739906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8647267366494284872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -665,8 +623,6 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 1
-=======
->>>>>>> Stashed changes
 --- !u!1001 &8215424317895214564
 PrefabInstance:
   m_ObjectHideFlags: 0
