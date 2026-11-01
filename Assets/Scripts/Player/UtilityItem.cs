@@ -54,7 +54,7 @@ public class UtilityItem: MonoBehaviour
         {
             Vector2 direction =  closest.GetPosition() - (Vector2) this.transform.position;
             
-            //closest.Hook(this.transform.position,  direction, afterHookDistance);
+            closest.Hook(this.transform.position,  direction, afterHookDistance, pullSpeed);
         }
     }
 
@@ -64,7 +64,7 @@ public class UtilityItem: MonoBehaviour
         
         if (h != null)
         {
-            //h.Hook(this.transform.position,  direction, afterHookDistance);
+            h.Hook(this.transform.position,  direction, afterHookDistance, pullSpeed);
         }
         else
         {
