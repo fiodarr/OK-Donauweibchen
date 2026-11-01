@@ -123,9 +123,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""UtilityAttack"",
+                    ""name"": ""Secondary Attack"",
                     ""type"": ""Button"",
-                    ""id"": ""7d4e5451-0d88-48c7-b71d-4f57d156f99b"",
+                    ""id"": ""1a6fe725-e1a1-4a4c-862a-6aeed7f7d252"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -268,23 +268,23 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""39060a60-a8a4-4284-af32-bf39e51d1b2d"",
-                    ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""id"": ""457adf86-24d6-4a25-a1b5-c9f02fa63b24"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UtilityAttack"",
+                    ""action"": ""Secondary Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""603341ff-aaea-4155-be36-8b67378a1e11"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""79cca1a6-b5ee-44eb-949e-c528901d317b"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UtilityAttack"",
+                    ""action"": ""Secondary Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -298,7 +298,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_UtilityAttack = m_Player.FindAction("UtilityAttack", throwIfNotFound: true);
+        m_Player_SecondaryAttack = m_Player.FindAction("Secondary Attack", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -382,7 +382,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_UtilityAttack;
+    private readonly InputAction m_Player_SecondaryAttack;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -407,9 +407,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_Look;
         /// <summary>
-        /// Provides access to the underlying input action "Player/UtilityAttack".
+        /// Provides access to the underlying input action "Player/SecondaryAttack".
         /// </summary>
-        public InputAction @UtilityAttack => m_Wrapper.m_Player_UtilityAttack;
+        public InputAction @SecondaryAttack => m_Wrapper.m_Player_SecondaryAttack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -445,9 +445,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @UtilityAttack.started += instance.OnUtilityAttack;
-            @UtilityAttack.performed += instance.OnUtilityAttack;
-            @UtilityAttack.canceled += instance.OnUtilityAttack;
+            @SecondaryAttack.started += instance.OnSecondaryAttack;
+            @SecondaryAttack.performed += instance.OnSecondaryAttack;
+            @SecondaryAttack.canceled += instance.OnSecondaryAttack;
         }
 
         /// <summary>
@@ -468,9 +468,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @UtilityAttack.started -= instance.OnUtilityAttack;
-            @UtilityAttack.performed -= instance.OnUtilityAttack;
-            @UtilityAttack.canceled -= instance.OnUtilityAttack;
+            @SecondaryAttack.started -= instance.OnSecondaryAttack;
+            @SecondaryAttack.performed -= instance.OnSecondaryAttack;
+            @SecondaryAttack.canceled -= instance.OnSecondaryAttack;
         }
 
         /// <summary>
@@ -533,11 +533,11 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "UtilityAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Secondary Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnUtilityAttack(InputAction.CallbackContext context);
+        void OnSecondaryAttack(InputAction.CallbackContext context);
     }
 }
