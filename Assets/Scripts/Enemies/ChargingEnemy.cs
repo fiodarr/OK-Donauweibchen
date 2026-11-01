@@ -25,8 +25,6 @@ public class ChargingEnemy : BaseEnemy
     [SerializeField] private float recoverTime = 3f;
 
     private bool hitSolid;
-
-    private EnemyState currentState = EnemyState.Idle;
     private Transform target;
 
     private Animator animator;
@@ -41,7 +39,7 @@ public class ChargingEnemy : BaseEnemy
     }
     private void Update()
     {
-        if (currentState != EnemyState.Idle)
+        if (CurrentState != EnemyState.Idle)
             return;
 
         Collider2D player = Physics2D.OverlapCircle(
@@ -59,7 +57,7 @@ public class ChargingEnemy : BaseEnemy
 
     private IEnumerator Attack()
     {
-        currentState = EnemyState.Preparing;
+        CurrentState = EnemyState.Preparing;
         
         yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
         agro.PlayOnGameObject(gameObject);
@@ -72,17 +70,17 @@ public class ChargingEnemy : BaseEnemy
         
         EnemyAttackManager.Release(this);
         chase.End();
-        if (currentState != EnemyState.Stunned){
-            currentState = EnemyState.Idle;
+        if (CurrentState != EnemyState.Stunned){
+            CurrentState = EnemyState.Idle;
         }
         else{
             yield return new WaitForSeconds(recoverTime);
-            currentState = EnemyState.Idle;
+            CurrentState = EnemyState.Idle;
         }
     }
     private IEnumerator Plunge(Vector2 targetPosition)
     {
-        currentState = EnemyState.Attack;
+        CurrentState = EnemyState.Attack;
         hitSolid = false;
 
         Vector2 direction = (targetPosition - Rb.position).normalized;
@@ -113,13 +111,13 @@ public class ChargingEnemy : BaseEnemy
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (currentState != EnemyState.Attack)
+        if (CurrentState != EnemyState.Attack)
             return;
 
         if (((1 << other.gameObject.layer) & Layers.Walls) != 0)
         {
             hitSolid = true;
-            currentState = EnemyState.Stunned;
+            CurrentState = EnemyState.Stunned;
         }
     }
 }

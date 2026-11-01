@@ -8,6 +8,7 @@ public class UtilityItem: MonoBehaviour
 {
     [SerializeField] private Collider2D lookupTriangle;
     [SerializeField] private float afterHookDistance;
+    [SerializeField] private float pullSpeed;
     private float lookupRange;
 
     private HashSet<IHookable> hookables = new HashSet<IHookable>();
@@ -52,7 +53,8 @@ public class UtilityItem: MonoBehaviour
         if (closest != null)
         {
             Vector2 direction =  closest.GetPosition() - (Vector2) this.transform.position;
-            closest.Hook(this.transform.position,  direction, afterHookDistance);
+            
+            //closest.Hook(this.transform.position,  direction, afterHookDistance);
         }
     }
 
@@ -62,7 +64,7 @@ public class UtilityItem: MonoBehaviour
         
         if (h != null)
         {
-            h.Hook(this.transform.position,  direction, afterHookDistance);
+            //h.Hook(this.transform.position,  direction, afterHookDistance);
         }
         else
         {

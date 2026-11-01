@@ -13,6 +13,9 @@ public class BaseEnemy : Hitable, IHookable
         Stunned
     }
     
+    
+    protected EnemyState CurrentState = EnemyState.Idle;
+    
     EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
@@ -73,13 +76,42 @@ public class BaseEnemy : Hitable, IHookable
         Destroy(gameObject);
     }
 
-    public void Hook(Vector2 origin, Vector2 direction, float offset)
+    public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
-        this.transform.position = origin + direction.normalized * offset;
+        ResetConditions();
+        Vector2 destination = origin + direction.normalized * offset;
+        float distance = Vector2.Distance(transform.position, destination);
+        float pullDuration = distance / pullSpeed;
+        StartCoroutine(PullTowards(origin + direction.normalized * offset, pullDuration));
+    }
+
+    private IEnumerator PullTowards(Vector2 destination, float duration = 0.15f)
+    {
+        
+        Vector2 startPosition = transform.position;
+        float elapsed = 0f;
+        
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            this.transform.position = Vector2.Lerp(startPosition, destination, t);
+            yield return null;
+        }
+        
+        this.transform.position = destination;
     }
 
     public Vector2 GetPosition()
     {
         return Rb.position;
+    }
+
+    protected virtual void ResetConditions()
+    {
+        StopAllCoroutines();
+        knockbackCoroutine = null;
+        CurrentState = EnemyState.Idle;
     }
 }
