@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4066549400429555759}
   - component: {fileID: 8061388846171491565}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 807349638566497831}
   - component: {fileID: 5148465086974274001}
   - component: {fileID: 7395003938833082953}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 1587380187632537988}
   - component: {fileID: 3784050251759918822}
   - component: {fileID: 6040085070862654148}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 8266347453941950643}
   - component: {fileID: 2453887000609376761}
   - component: {fileID: 6275221790200445943}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: hitbox 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
