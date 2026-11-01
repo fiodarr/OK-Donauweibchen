@@ -78,7 +78,7 @@ public class ChargingEnemy : BaseEnemy
         currentState = EnemyState.Plunging;
         hitSolid = false;
 
-        Vector2 direction = (targetPosition - rb.position).normalized;
+        Vector2 direction = (targetPosition - Rb.position).normalized;
         animator.SetFloat("VerticalDirection", direction.y);
         spriteRenderer.flipX = direction.x < 0;
 
@@ -93,7 +93,7 @@ public class ChargingEnemy : BaseEnemy
             Vector2 movement = direction * plungeSpeed * Time.fixedDeltaTime;
             float curve = Mathf.Sin(time * curveFrequency) * curveAmplitude * Time.fixedDeltaTime;
 
-            rb.MovePosition(rb.position + movement + perpendicular * curve);
+            Rb.MovePosition(Rb.position + movement + perpendicular * curve);
 
             yield return new WaitForFixedUpdate();
         }

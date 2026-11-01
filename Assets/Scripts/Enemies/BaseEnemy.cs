@@ -8,12 +8,12 @@ public class BaseEnemy : Hitable
     EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
-    protected Rigidbody2D rb;
+    protected Rigidbody2D Rb;
     private Coroutine knockbackCoroutine;
 
     protected virtual void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        Rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EntityStatus>();
     }
 
@@ -47,11 +47,11 @@ public class BaseEnemy : Hitable
             float multiplier = 1f - elapsed / knockbackDuration;
             float distance = knockbackForce * multiplier * Time.fixedDeltaTime;
 
-            int hitCount = rb.Cast(direction, filter, hits, distance);
+            int hitCount = Rb.Cast(direction, filter, hits, distance);
 
             if (hitCount == 0)
             {
-                rb.MovePosition(rb.position + direction * distance);
+                Rb.MovePosition(Rb.position + direction * distance);
             }
 
             elapsed += Time.fixedDeltaTime;
