@@ -19,7 +19,8 @@ public class ChargingEnemy : BaseEnemy
     [SerializeField] private float prepareTime = 0.5f;
 
     [SerializeField] private SoundEvent agro;
-
+    [SerializeField] private SoundEvent chase;
+    
     [Header("Plunge")]
     [SerializeField] private float plungeSpeed = 12f;
     [SerializeField] private float curveAmplitude = 1f;
@@ -42,6 +43,7 @@ public class ChargingEnemy : BaseEnemy
         base.Awake();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     private void Update()
     {
@@ -64,12 +66,14 @@ public class ChargingEnemy : BaseEnemy
     private IEnumerator Attack()
     {
         currentState = EnemyState.Preparing;
-        agro.Play();
+        agro.PlayOnGameObject(gameObject);
 
         yield return new WaitForSeconds(prepareTime);
 
+        chase.PlayOnGameObject(gameObject);
         yield return StartCoroutine(Plunge(target.position));
-
+        chase.SetParameter("HitSmth",1);
+        chase.End();
         if (currentState != EnemyState.Stunned){
             currentState = EnemyState.Idle;
         }

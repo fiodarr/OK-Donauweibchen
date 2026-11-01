@@ -185,6 +185,7 @@ MonoBehaviour:
   detectionRange: 12
   prepareTime: 1
   agro: {fileID: 11400000, guid: 36c9e4b5bc436c04e9f43115e6d8a70c, type: 2}
+  chase: {fileID: 11400000, guid: 3e2b1e9120c5e4a348a6f0fc14d3282b, type: 2}
   plungeSpeed: 12
   curveAmplitude: 3
   curveFrequency: 15
@@ -316,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityStatus
   maxHealth: 10
   maxArmor: 0
+  armorReduction: 0
 --- !u!58 &7395003938833082953
 CircleCollider2D:
   m_ObjectHideFlags: 0
