@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6195888912b48ed9b2b99297cd4af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  footsteps: {fileID: 11400000, guid: b63f7798535bf9442ab3560ffb45b5d3, type: 2}
   moveSpeed: 5
 --- !u!114 &9039514880073438561
 MonoBehaviour:
