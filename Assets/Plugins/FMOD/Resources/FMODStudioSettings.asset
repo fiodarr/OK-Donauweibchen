@@ -343,6 +343,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Fih
   - Player
   BanksToLoad: []
   LiveUpdatePort: 9264
