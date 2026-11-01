@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 891215924386679053}
   - component: {fileID: 236362429090502072}
   - component: {fileID: 9039514880073438561}
+  - component: {fileID: 2739717128073220942}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -210,6 +211,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   equippedWeapon: {fileID: 2719679042586757064}
+--- !u!114 &2739717128073220942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574352863648687227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5acf92cf8a9db416697065428ac9c161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityStatus
+  maxHealth: 20
 --- !u!1 &7657736583750744400
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +452,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8788264919326412803, guid: 54a525dc9d8fd400d92e41133b03e321, type: 3}
+      propertyPath: hitbox
+      value: 
+      objectReference: {fileID: 8211659499598518224}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -459,3 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff63c7fcf3c74a3f8cf31463265d88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
+--- !u!61 &8211659499598518224 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 285591741808513588, guid: 54a525dc9d8fd400d92e41133b03e321, type: 3}
+  m_PrefabInstance: {fileID: 8215424317895214564}
+  m_PrefabAsset: {fileID: 0}

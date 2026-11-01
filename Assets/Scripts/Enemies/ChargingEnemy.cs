@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class ChargingEnemy : BaseEnemy
@@ -20,6 +21,7 @@ public class ChargingEnemy : BaseEnemy
     [SerializeField] private float plungeSpeed = 12f;
     [SerializeField] private float curveAmplitude = 1f;
     [SerializeField] private float curveFrequency = 3f;
+    [SerializeField] private AttackData attack;
 
     [Header("Recovery")]
     [SerializeField] private float recoverTime = 3f;
@@ -80,13 +82,16 @@ public class ChargingEnemy : BaseEnemy
 
         Vector2 direction = (targetPosition - Rb.position).normalized;
         animator.SetFloat("VerticalDirection", direction.y);
-        spriteRenderer.flipX = direction.x < 0;
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? -1 : 1);
+        transform.localScale = scale;
 
         Vector2 perpendicular = new Vector2(-direction.y, direction.x);
 
         float time = 0f;
 
-        while (!hitSolid)
+        attack.hitbox.BeginAttack((Vector2)transform.position - targetPosition, attack.damage, attack.knockback);
+        while (!hitSolid && !attack.hitbox.hitObjects.Any())
         {
             time += Time.fixedDeltaTime;
 
@@ -97,11 +102,11 @@ public class ChargingEnemy : BaseEnemy
 
             yield return new WaitForFixedUpdate();
         }
-
+        attack.hitbox.EndAttack();
         hitSolid = false;
     }
 
-        private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (currentState != EnemyState.Plunging)
             return;
@@ -110,12 +115,6 @@ public class ChargingEnemy : BaseEnemy
         {
             hitSolid = true;
             currentState = EnemyState.Stunned;
-        }
-
-
-        if (((1 << other.gameObject.layer) & Layers.Player) != 0)
-        {
-            hitSolid = true;
         }
     }
 }

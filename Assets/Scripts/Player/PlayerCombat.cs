@@ -88,7 +88,7 @@ public class PlayerCombat : MonoBehaviour
         attack.hitbox.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         // Execute attack
-        attack.hitbox.BeginAttack(currentDirection, attack.damage);
+        attack.hitbox.BeginAttack(currentDirection, attack.damage, attack.knockback);
 
         yield return new WaitForSeconds(attack.activeTime);
 

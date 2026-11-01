@@ -4,9 +4,11 @@ public class Hitbox : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private BoxCollider2D hitbox;
-    private HashSet<Hitable> hitObjects = new HashSet<Hitable>();
+    [SerializeField] private Collider2D hitbox;
+    public HashSet<Hitable> hitObjects = new HashSet<Hitable>();
+    [SerializeField] private List<Hitable> hitObjectsToIgnore = new List<Hitable>();
     private float currentDamage;
+    private float currentKnockback;
 
     private void Awake()
     {
@@ -15,13 +17,14 @@ public class Hitbox : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    public void BeginAttack(Vector2 direction, float damage)
+    public void BeginAttack(Vector2 direction, float damage, float knockback)
     {
         hitObjects.Clear();
 
         hitbox.enabled = true;
         spriteRenderer.enabled = true;
         currentDamage = damage;
+        currentKnockback = knockback;
     }
 
     public void EndAttack()
@@ -30,11 +33,14 @@ public class Hitbox : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         Hitable hitable = other.GetComponentInParent<Hitable>();
 
-        if (hitable == null || hitObjects.Contains(hitable))
+        if (hitable == null ||
+            hitable.transform.root == transform.root ||
+            hitObjects.Contains(hitable) ||
+            hitObjectsToIgnore.Contains(hitable))
             return;
 
         hitObjects.Add(hitable);
@@ -42,6 +48,6 @@ public class Hitbox : MonoBehaviour
         Vector2 damageDirection =
             (Vector2)(hitable.transform.position - transform.parent.position);
 
-        hitable.TakeDamage(damageDirection, currentDamage);
+        hitable.TakeDamage(damageDirection, currentDamage, currentKnockback);
     }
 }

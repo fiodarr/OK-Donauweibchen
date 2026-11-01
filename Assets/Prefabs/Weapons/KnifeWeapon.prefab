@@ -51,6 +51,7 @@ MonoBehaviour:
   attackCooldown: 0.5
   attacks:
   - damage: 1
+    knockback: 5
     launchForce: 30
     attackSound: {fileID: 11400000, guid: 318496ed7feea45749a2a94e99bb7ca2, type: 2}
     activeTime: 0.1
@@ -58,6 +59,7 @@ MonoBehaviour:
     comboTime: 0.7
     hitbox: {fileID: 8788264919326412803}
   - damage: 1
+    knockback: 5
     launchForce: 30
     attackSound: {fileID: 11400000, guid: e4549ea96247647e7a10eb98f50bd40c, type: 2}
     activeTime: 0.1
@@ -65,6 +67,7 @@ MonoBehaviour:
     comboTime: 0.6
     hitbox: {fileID: 983458982246775955}
   - damage: 3
+    knockback: 5
     launchForce: 60
     attackSound: {fileID: 11400000, guid: 57d173b6da8814686905b4341e4c1d54, type: 2}
     activeTime: 0.3
@@ -118,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   spriteRenderer: {fileID: 8032276586807920412}
-  hitbox: {fileID: 1848794876160343574}
+  hitbox: {fileID: 0}
 --- !u!50 &931635583012250125
 Rigidbody2D:
   serializedVersion: 5
@@ -369,7 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5619441780680001662}
   - component: {fileID: 8032276586807920412}
-  - component: {fileID: 1848794876160343574}
+  - component: {fileID: 285591741808513588}
   m_Layer: 0
   m_Name: hitbox
   m_TagString: Untagged
@@ -451,7 +454,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &1848794876160343574
+--- !u!61 &285591741808513588
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,7 +484,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

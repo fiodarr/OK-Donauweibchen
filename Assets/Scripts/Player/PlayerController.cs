@@ -1,11 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : Hitable
 {
     private PlayerInputHandler inputHandler;
     private PlayerCombat combat;
     private Camera mainCamera;
+    private EntityStatus status;
 
     [SerializeField] private float moveSpeed = 5f;
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         inputHandler = GetComponent<PlayerInputHandler>();
         combat = GetComponent<PlayerCombat>();
+        status = GetComponent<EntityStatus>();
 
         mainCamera = Camera.main;
     }
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         RefreshAimDirection();
+        Debug.Log(status.GetHealth());
     }
 
     public void RefreshAimDirection()
@@ -51,5 +54,13 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );
+    }
+
+    protected override void OnTakeDamage(Vector2 damageDirection, float damage, float knockback)
+    {
+        status.TakeDamage(damage);
+        
+        Vector2 knockbackDirection = damageDirection.normalized;
+        rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
     }
 }

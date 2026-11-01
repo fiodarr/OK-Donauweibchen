@@ -4,8 +4,8 @@ using UnityEngine;
 public class EntityStatus : MonoBehaviour
 {
     [SerializeField] float maxHealth;
-    List<Modifier> damageModifiers;
-    List<Modifier> healModifiers;
+    private List<Modifier> damageModifiers = new List<Modifier>();
+    private List<Modifier> healModifiers = new List<Modifier>();
     float currentHealth;
     
     void Start()
@@ -20,21 +20,39 @@ public class EntityStatus : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        foreach (Modifier m in damageModifiers)
+        if (damageModifiers.Count != 0)
         {
-            damage = m.Apply(damage);
-        }
+            foreach (Modifier m in damageModifiers)
+            {
+                damage = m.Apply(damage);
+            }
 
+            if (damage <= 0)
+                return;
+        }
         currentHealth -= damage;
     }
     
     public void Heal(float heal)
     {
-        foreach (Modifier m in healModifiers)
+        if (healModifiers.Count != 0)
         {
-            heal = m.Apply(heal);
-        }
+            foreach (Modifier m in healModifiers)
+            {
+                heal = m.Apply(heal);
+            }
 
+            if (heal <= 0)
+                return;
+        }
         currentHealth += heal;
+    }
+    public void AddDamageModifier(Modifier modifier)
+    {
+        damageModifiers.Add(modifier);
+    }
+    public void AddHealModifier(Modifier modifier)
+    {
+        healModifiers.Add(modifier);
     }
 }

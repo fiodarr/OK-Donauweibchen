@@ -17,7 +17,7 @@ public class BaseEnemy : Hitable
         status = GetComponent<EntityStatus>();
     }
 
-    public override void TakeDamage(Vector2 damageDirection, float damage)
+    protected override void OnTakeDamage(Vector2 damageDirection, float damage, float knockback)
     {
         status.TakeDamage(damage);
 

@@ -5,6 +5,7 @@ public class AttackData
 {
     [Header("Attack")]
     public float damage = 5f;
+    public float knockback = 5f;
     public float launchForce = 5f;
     
     [Header("Sound")]
