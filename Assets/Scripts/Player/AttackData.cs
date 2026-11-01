@@ -12,6 +12,7 @@ public class AttackData
     public SoundEvent attackSound;
 
     [Header("Timing")]
+    public float chargeTime = 0f;
     public float activeTime = 0.15f;
     public float recoveryTime = 0.25f;
     public float comboTime = 0.5f;
