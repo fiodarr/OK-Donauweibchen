@@ -5,23 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BaseEnemy : Hitable
 {
-    [SerializeField] private float maxHp = 3f;
+    EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
-
-    private float currentHp;
-    private Rigidbody2D rb;
+    protected Rigidbody2D Rb;
     private Coroutine knockbackCoroutine;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        currentHp = maxHp;
+        Rb = GetComponent<Rigidbody2D>();
+        status = GetComponent<EntityStatus>();
     }
 
-    public override void TakeDamage(Vector2 damageDirection, float damage)
+    protected override void OnTakeDamage(Vector2 damageDirection, float damage, float knockback)
     {
-        currentHp -= damage;
+        status.TakeDamage(damage);
 
         if (knockbackCoroutine != null)
             StopCoroutine(knockbackCoroutine);
@@ -30,7 +28,7 @@ public class BaseEnemy : Hitable
             ApplyKnockback(damageDirection.normalized)
         );
 
-        if (currentHp <= 0)
+        if (status.GetHealth() <= 0)
             Die();
     }
 
@@ -38,13 +36,23 @@ public class BaseEnemy : Hitable
     {
         float elapsed = 0f;
 
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(Layers.Walls);
+        filter.useTriggers = false;
+
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+
         while (elapsed < knockbackDuration)
         {
             float multiplier = 1f - elapsed / knockbackDuration;
+            float distance = knockbackForce * multiplier * Time.fixedDeltaTime;
 
-            rb.MovePosition(
-                rb.position + direction * knockbackForce * multiplier * Time.fixedDeltaTime
-            );
+            int hitCount = Rb.Cast(direction, filter, hits, distance);
+
+            if (hitCount == 0)
+            {
+                Rb.MovePosition(Rb.position + direction * distance);
+            }
 
             elapsed += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
