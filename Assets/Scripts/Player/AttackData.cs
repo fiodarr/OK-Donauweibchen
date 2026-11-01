@@ -10,6 +10,7 @@ public class AttackData
     
     [Header("Sound")]
     public SoundEvent attackSound;
+    public SoundEvent chargeSound;
 
     [Header("Timing")]
     public float chargeTime = 0f;
