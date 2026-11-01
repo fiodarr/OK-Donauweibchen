@@ -10,6 +10,8 @@ public class PlayerInputHandler : MonoBehaviour
     public float FishingRodTimePressed { get; private set; }
     
     public event Action AttackPressed;
+
+    public event Action SecondaryAttackPressed;
     public event Action UtilityPressed;
     public event Action UtilityReleased;
     
