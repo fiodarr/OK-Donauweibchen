@@ -4,49 +4,19 @@ using FMODUnity;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private enum CombatState
-    {
-        Default,
-        Attacking,
-        ChoosingTarget,
-        Pulling
-    }
-    
-    private CombatState currentState = CombatState.Default;
-    
     private PlayerInputHandler inputHandler;
     private PlayerController playerController;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
     [SerializeField] private Weapon equippedWeapon;
-    
-    [Header("Utility")]
-    [SerializeField] private UtilityItem equippedUtilityItem;
-    [SerializeField] private float utilityTimeThreshold = 0.1f;
 
     private Rigidbody2D rb;
 
-    public bool LockMove
-    {
-        get
-        {
-            return currentState != CombatState.Default;
-        }
-    }
+    public bool IsAttacking { get; private set; }
+    
 
-    private void Update()
-    {
-        UpdateUtility();
-    }
-
-    private bool CanAttack
-    {
-        get
-        {
-            return currentState == CombatState.Default;
-        }
-    }
+    private bool canAttack = true;
 
     private int comboIndex = 0;
     private float lastAttackTime;
@@ -61,20 +31,16 @@ public class PlayerCombat : MonoBehaviour
     private void OnEnable()
     {
         inputHandler.AttackPressed += TryAttack;
-        inputHandler.UtilityPressed += TryStartUtility;
-        inputHandler.UtilityReleased += TryFinishUtility;
     }
 
     private void OnDisable()
     {
         inputHandler.AttackPressed -= TryAttack;
-        inputHandler.UtilityPressed -= TryStartUtility;
-        inputHandler.UtilityReleased -= TryFinishUtility;
     }
 
     private void TryAttack()
     {
-        if (!CanAttack || !equippedWeapon)
+        if (!canAttack || equippedWeapon == null)
             return;
         if (comboIndex > 0)
         {
@@ -92,14 +58,16 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator PerformAttack()
     {
-        currentState = CombatState.Attacking;
+        canAttack = false;
+        IsAttacking = true;
 
         AttackData attack = equippedWeapon.GetAttack(comboIndex);
 
 
         if (attack == null)
         {
-            currentState = CombatState.Default;
+            canAttack = true;
+            IsAttacking = false;
             yield break;
         }
         if (inputHandler.MoveInput != Vector2.zero) 
@@ -132,6 +100,8 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(attack.recoveryTime);
 
+        IsAttacking = false;
+
         lastAttackTime = Time.time;
 
         // Advance combo
@@ -140,57 +110,15 @@ public class PlayerCombat : MonoBehaviour
         if (comboIndex >= equippedWeapon.attacks.Length)
             comboIndex = 0;
 
-        // float remainingCooldown = Mathf.Max(
-        //     0f,
-        //     equippedWeapon.attackCooldown -
-        //     attack.activeTime -
-        //     attack.recoveryTime
-        // );
-        //
-        // yield return new WaitForSeconds(remainingCooldown);
+        float remainingCooldown = Mathf.Max(
+            0f,
+            equippedWeapon.attackCooldown -
+            attack.activeTime -
+            attack.recoveryTime
+        );
 
-        currentState = CombatState.Default;
-    }
+        yield return new WaitForSeconds(remainingCooldown);
 
-    private void TryStartUtility()
-    {
-        if (currentState != CombatState.Default || !equippedUtilityItem)
-        {
-            
-            return;
-        }
-        Debug.Log("TryStartUtility");
-        currentState = CombatState.ChoosingTarget;
-        //Start updating rotation inside the utility
-        
+        canAttack = true;
     }
-    
-    private void TryFinishUtility()
-    {
-        if (currentState != CombatState.ChoosingTarget)
-        {
-            return;
-        }
-
-        if (inputHandler.FishingRodTimePressed >= utilityTimeThreshold)
-        {
-            equippedUtilityItem.HookSmart(inputHandler.MoveInput); //TODO: Distinguish mouse for mouse and keyboard and move direction for gamepad
-        }
-        else
-        {
-            equippedUtilityItem.HookDefault();
-        }
-        
-        currentState = CombatState.Default;
-        
-    }
-
-    private void UpdateUtility()
-    {
-        if (currentState != CombatState.ChoosingTarget) return;
-        if (inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = inputHandler.MoveInput.normalized;
-        equippedUtilityItem.UpdateLookupDirection(currentDirection);
-    }
-    
 }

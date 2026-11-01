@@ -27,6 +27,7 @@ public class PlayerController : Hitable
     private void Update()
     {
         RefreshAimDirection();
+        Debug.Log(status.GetHealth());
     }
 
     public void RefreshAimDirection()
@@ -40,10 +41,10 @@ public class PlayerController : Hitable
         if (direction.sqrMagnitude > 0.001f)
             FacingDirection = direction.normalized;
     }
-    
+
     private void FixedUpdate()
     {
-        if (combat.LockMove)
+        if (combat.IsAttacking)
         {
             return;
         }
