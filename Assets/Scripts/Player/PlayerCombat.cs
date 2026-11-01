@@ -11,7 +11,6 @@ public class PlayerCombat : MonoBehaviour
         ChoosingTarget,
         Pulling
     }
-    
     private CombatState currentState = CombatState.Default;
     
     private PlayerInputHandler inputHandler;
@@ -125,8 +124,9 @@ public class PlayerCombat : MonoBehaviour
         }
         if (inputHandler.MoveInput != Vector2.zero) 
             currentDirection = inputHandler.MoveInput.normalized;
-
-        attack.chargeSound.Play();
+        if (attack.chargeSound!=null){
+            attack.chargeSound.Play();
+        }
         yield return new WaitForSeconds(attack.chargeTime);
         attack.attackSound.Play();
         

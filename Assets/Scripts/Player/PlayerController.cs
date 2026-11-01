@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -7,6 +9,10 @@ public class PlayerController : Hitable
     private PlayerCombat combat;
     private Camera mainCamera;
     private EntityStatus status;
+
+    [SerializeField] private SoundEvent footsteps;
+
+    private bool isMoving = false;
 
     [SerializeField] private float moveSpeed = 5f;
 
@@ -53,6 +59,15 @@ public class PlayerController : Hitable
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );
+
+        if (movement.x > 0 || movement.y > 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
@@ -61,5 +76,13 @@ public class PlayerController : Hitable
         
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+    }
+
+    IEnumerator Footsteps()
+    {
+        while (isMoving){
+        footsteps.Play();
+        yield return new WaitForSeconds(0.4f);
+        }
     }
 }
