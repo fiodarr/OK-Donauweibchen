@@ -5,23 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BaseEnemy : Hitable
 {
-    [SerializeField] private float maxHp = 3f;
+    EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.15f;
-
-    private float currentHp;
     protected Rigidbody2D rb;
     private Coroutine knockbackCoroutine;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHp = maxHp;
+        status = GetComponent<EntityStatus>();
     }
 
     public override void TakeDamage(Vector2 damageDirection, float damage)
     {
-        currentHp -= damage;
+        status.TakeDamage(damage);
 
         if (knockbackCoroutine != null)
             StopCoroutine(knockbackCoroutine);
@@ -30,7 +28,7 @@ public class BaseEnemy : Hitable
             ApplyKnockback(damageDirection.normalized)
         );
 
-        if (currentHp <= 0)
+        if (status.GetHealth() <= 0)
             Die();
     }
 
