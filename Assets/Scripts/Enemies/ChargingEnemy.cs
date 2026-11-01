@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using FMODUnity;
 using UnityEngine;
 
 public class ChargingEnemy : BaseEnemy
@@ -16,6 +17,8 @@ public class ChargingEnemy : BaseEnemy
     [SerializeField] private float detectionRange = 7f;
     [Header("Prepare")]
     [SerializeField] private float prepareTime = 0.5f;
+
+    [SerializeField] private SoundEvent agro;
 
     [Header("Plunge")]
     [SerializeField] private float plungeSpeed = 12f;
@@ -62,6 +65,7 @@ public class ChargingEnemy : BaseEnemy
     private IEnumerator Attack()
     {
         currentState = EnemyState.Preparing;
+        agro.Play();
 
         yield return new WaitForSeconds(prepareTime);
 

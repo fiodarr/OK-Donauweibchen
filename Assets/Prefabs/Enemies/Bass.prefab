@@ -184,6 +184,7 @@ MonoBehaviour:
   knockbackDuration: 0.15
   detectionRange: 12
   prepareTime: 1
+  agro: {fileID: 11400000, guid: 36c9e4b5bc436c04e9f43115e6d8a70c, type: 2}
   plungeSpeed: 12
   curveAmplitude: 3
   curveFrequency: 15
