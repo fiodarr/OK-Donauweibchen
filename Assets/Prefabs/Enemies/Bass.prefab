@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityStatus
   maxHealth: 10
-  maxArmor: 0
-  armorReduction: 0
+  maxArmor: 100
+  armorReduction: 1
 --- !u!58 &7395003938833082953
 CircleCollider2D:
   m_ObjectHideFlags: 0

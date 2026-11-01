@@ -66,6 +66,8 @@ public class ChargingEnemy : BaseEnemy
     private IEnumerator Attack()
     {
         currentState = EnemyState.Preparing;
+        
+        yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
         agro.PlayOnGameObject(gameObject);
 
         yield return new WaitForSeconds(prepareTime);
@@ -73,6 +75,8 @@ public class ChargingEnemy : BaseEnemy
         chase.PlayOnGameObject(gameObject);
         yield return StartCoroutine(Plunge(target.position));
         chase.SetParameter("HitSmth",1);
+        
+        EnemyAttackManager.Release(this);
         chase.End();
         if (currentState != EnemyState.Stunned){
             currentState = EnemyState.Idle;
