@@ -62,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
     private void OnEnable()
     {
         inputHandler.AttackPressed += TryAttack;
+        inputHandler.SecondaryAttackPressed += TrySecondaryAttack;
         inputHandler.UtilityPressed += TryStartUtility;
         inputHandler.UtilityReleased += TryFinishUtility;
     }
@@ -69,6 +70,7 @@ public class PlayerCombat : MonoBehaviour
     private void OnDisable()
     {
         inputHandler.AttackPressed -= TryAttack;
+        inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
         inputHandler.UtilityPressed -= TryStartUtility;
         inputHandler.UtilityReleased -= TryFinishUtility;
     }
