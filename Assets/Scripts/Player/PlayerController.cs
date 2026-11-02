@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FMODUnity;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -48,22 +49,8 @@ public class PlayerController : Hitable
         if (direction.sqrMagnitude > 0.001f)
         {
             FacingDirection = direction.normalized;
-                        isMoving = true;
-            if (stepsRoutine == null)
-            {
-                stepsRoutine = StartCoroutine(Footsteps());
-            }
         }
-        else
-        {
-            isMoving = false;
 
-            if (stepsRoutine != null)
-            {
-                StopCoroutine(stepsRoutine);
-                stepsRoutine = null;
-            }
-        }
         
 
     }
@@ -80,6 +67,29 @@ public class PlayerController : Hitable
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );
+
+        if (movement.magnitude > 0)
+        {
+            if (stepsRoutine == null)
+            {
+                stepsRoutine = StartCoroutine(Footsteps());
+                isMoving = true;
+            }
+
+        }
+
+        else
+            {
+                isMoving = false;
+
+                if (stepsRoutine != null)
+                {
+                    StopCoroutine(stepsRoutine);
+                    stepsRoutine = null;
+                }
+            }
+
+
     }
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
@@ -93,7 +103,7 @@ public class PlayerController : Hitable
     IEnumerator Footsteps()
     {
         while (isMoving){
-        footsteps.Play();
+        RuntimeManager.PlayOneShot(footsteps.nameIndex);
         yield return new WaitForSeconds(0.4f);
         }
         stepsRoutine = null;

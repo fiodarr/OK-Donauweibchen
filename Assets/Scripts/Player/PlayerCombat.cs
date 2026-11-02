@@ -125,10 +125,10 @@ public class PlayerCombat : MonoBehaviour
         if (inputHandler.MoveInput != Vector2.zero) 
             currentDirection = inputHandler.MoveInput.normalized;
         if (attack.chargeSound!=null){
-            attack.chargeSound.Play();
+            RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
         }
         yield return new WaitForSeconds(attack.chargeTime);
-        attack.attackSound.Play();
+        RuntimeManager.PlayOneShot(attack.attackSound.nameIndex);
         
         // Launch player
         rb.AddForce(

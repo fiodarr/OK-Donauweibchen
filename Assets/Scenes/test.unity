@@ -435,7 +435,7 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!43 &374540409
+--- !u!43 &310249512
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1205,6 +1205,10 @@ PrefabInstance:
     - target: {fileID: 1058747861432690609, guid: 9d9f06028fb4c4d6a962e82b8476e86e, type: 3}
       propertyPath: m_Name
       value: Bass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058747861432690609, guid: 9d9f06028fb4c4d6a962e82b8476e86e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2074246120267423709, guid: 9d9f06028fb4c4d6a962e82b8476e86e, type: 3}
       propertyPath: m_LocalPosition.x

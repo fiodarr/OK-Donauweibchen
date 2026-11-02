@@ -66,16 +66,19 @@ public class ChargingEnemy : BaseEnemy
         SetState(EnemyState.Preparing);
         animator.SetTrigger("AttackStart");
         yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
-        agro.PlayOnGameObject(gameObject);
+        var agroInstance = RuntimeManager.CreateInstance(agro.nameIndex);
+        RuntimeManager.AttachInstanceToGameObject(agroInstance,gameObject);
 
         yield return new WaitForSeconds(prepareTime);
 
-        chase.PlayOnGameObject(gameObject);
+        var chaseInstance = RuntimeManager.CreateInstance(chase.nameIndex);
+        RuntimeManager.AttachInstanceToGameObject(chaseInstance,gameObject);
+
         yield return StartCoroutine(Plunge(target.position));
-        chase.SetParameter("HitSmth",1);
+        chaseInstance.setParameterByName("HitSmth",1);
         
         EnemyAttackManager.Release(this);
-        chase.End();
+        chaseInstance.release();
         animator.SetTrigger("AttackEnd");
         if (currentState != EnemyState.Vulnerable){
             SetState(EnemyState.Idle);
