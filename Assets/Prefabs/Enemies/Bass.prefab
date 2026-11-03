@@ -316,9 +316,13 @@ MonoBehaviour:
   - {fileID: 4414743930393434617}
   detectionRange: 12
   prepareTime: 1
+  avoidanceDuration: 0.3
+  avoidanceDistance: 2
+  avoidanceStrength: 3
   agro: {fileID: 11400000, guid: 36c9e4b5bc436c04e9f43115e6d8a70c, type: 2}
   chase: {fileID: 11400000, guid: 3e2b1e9120c5e4a348a6f0fc14d3282b, type: 2}
   plungeSpeed: 10
+  moveSpeed: 4
   curveAmplitude: 3
   curveFrequency: 15
   attack:
