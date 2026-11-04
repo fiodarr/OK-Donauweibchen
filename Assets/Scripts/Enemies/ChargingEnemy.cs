@@ -102,8 +102,7 @@ public class ChargingEnemy : BaseEnemy
         animator.SetTrigger("WindUpStart");
         yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
     
-        var agroInstance = RuntimeManager.CreateInstance(agro.nameIndex);
-        RuntimeManager.AttachInstanceToGameObject(agroInstance,gameObject);
+        RuntimeManager.PlayOneShot(agro.nameIndex, transform.position);
 
         yield return new WaitUntil(() => windUpEnded);
         
@@ -111,6 +110,7 @@ public class ChargingEnemy : BaseEnemy
 
         var chaseInstance = RuntimeManager.CreateInstance(chase.nameIndex);
         RuntimeManager.AttachInstanceToGameObject(chaseInstance,gameObject);
+        chaseInstance.start();
 
         animator.SetTrigger("AttackStart");
         yield return StartCoroutine(Plunge(target.position));

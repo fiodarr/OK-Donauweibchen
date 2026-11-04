@@ -51,9 +51,6 @@ public class PlayerController : Hitable
         {
             FacingDirection = direction.normalized;
         }
-
-        
-
     }
     
     private void FixedUpdate()
@@ -80,15 +77,14 @@ public class PlayerController : Hitable
         }
 
         else
+        {
+            isMoving = false;
+            if (stepsRoutine != null)
             {
-                isMoving = false;
-
-                if (stepsRoutine != null)
-                {
-                    StopCoroutine(stepsRoutine);
-                    stepsRoutine = null;
-                }
+                StopCoroutine(stepsRoutine);
+                stepsRoutine = null;
             }
+        }
 
 
     }
@@ -104,7 +100,7 @@ public class PlayerController : Hitable
     IEnumerator Footsteps()
     {
         while (isMoving){
-        RuntimeManager.PlayOneShot(footsteps.nameIndex);
+            RuntimeManager.PlayOneShot(footsteps.nameIndex);
         yield return new WaitForSeconds(0.4f);
         }
         stepsRoutine = null;
