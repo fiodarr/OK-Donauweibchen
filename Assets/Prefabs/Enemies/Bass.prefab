@@ -316,7 +316,7 @@ MonoBehaviour:
   - {fileID: 4414743930393434617}
   detectionRange: 12
   prepareTime: 1
-  avoidanceDuration: 0.3
+  avoidanceDuration: 0.4
   avoidanceDistance: 2
   avoidanceStrength: 3
   agro: {fileID: 11400000, guid: 36c9e4b5bc436c04e9f43115e6d8a70c, type: 2}

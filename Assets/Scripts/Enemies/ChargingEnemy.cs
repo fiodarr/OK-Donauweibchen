@@ -196,7 +196,7 @@ public class ChargingEnemy : BaseEnemy
                 return;
             SetState(EnemyState.Vulnerable);
             status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
-            flash.FlashMultiple(6,0.15f,0.25f,0.6f);
+            flash.FlashMultiple(7,0.15f,0.25f,0.6f);
             
         }
     }
