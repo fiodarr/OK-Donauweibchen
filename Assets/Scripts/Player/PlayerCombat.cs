@@ -177,8 +177,6 @@ public class PlayerCombat : MonoBehaviour
         }
         Debug.Log("TryStartUtility");
         currentState = CombatState.ChoosingTarget;
-        //Start updating rotation inside the utility
-        
     }
     
     private void TryFinishUtility()
@@ -197,8 +195,8 @@ public class PlayerCombat : MonoBehaviour
         { 
             isSmart = false;
         }
-
-        currentUtilityCoroutine = StartCoroutine(Swing(isSmart)); //make it play before the hook
+        
+        currentUtilityCoroutine = StartCoroutine(Swing(isSmart));
     }
 
     private IEnumerator Swing(bool isSmart)
@@ -208,7 +206,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (isSmart)
         {
-            equippedUtilityItem.HookSmart(inputHandler.MoveInput); //Make it distinguish mouse for mouse and keyboard and move direction for gamepad
+            equippedUtilityItem.HookSmart(inputHandler.LookDirection); 
         }
         else
         {
@@ -230,9 +228,8 @@ public class PlayerCombat : MonoBehaviour
     private void UpdateUtility()
     {
         if (currentState != CombatState.ChoosingTarget) return;
-        if (inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = inputHandler.MoveInput.normalized;
-        equippedUtilityItem.UpdateLookupDirection(currentDirection);
+        if (inputHandler.LookDirection != Vector2.zero)
+        equippedUtilityItem.UpdateLookupDirection(inputHandler.LookDirection);
         //Make it update marker above enemy that is going to get hooked in case that player tries to 
     }
     
