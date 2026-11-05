@@ -11,6 +11,9 @@ public class UtilityItem: MonoBehaviour
     [SerializeField] private float pullSpeed;
     private float lookupRange;
 
+    public float swingTime = 0.2f;
+    public float pullTime = 0.3f;
+
     private HashSet<IHookable> hookables = new HashSet<IHookable>();
     
     private void Start()

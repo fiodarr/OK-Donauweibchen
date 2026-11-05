@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
         Default,
         Attacking,
         ChoosingTarget,
+        Swinging,
         Pulling
     }
     private CombatState currentState = CombatState.Default;
@@ -26,6 +27,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float utilityTimeThreshold = 0.1f;
 
     private Rigidbody2D rb;
+    private Coroutine currentUtilityCoroutine;
 
     public bool LockMove
     {
@@ -64,6 +66,7 @@ public class PlayerCombat : MonoBehaviour
         inputHandler.SecondaryAttackPressed += TrySecondaryAttack;
         inputHandler.UtilityPressed += TryStartUtility;
         inputHandler.UtilityReleased += TryFinishUtility;
+        //Sub for the interrupt action
     }
 
     private void OnDisable()
@@ -72,6 +75,7 @@ public class PlayerCombat : MonoBehaviour
         inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
         inputHandler.UtilityPressed -= TryStartUtility;
         inputHandler.UtilityReleased -= TryFinishUtility;
+        //Unsub from the interrupt action
     }
 
     private void TryAttack()
@@ -184,23 +188,43 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
+        bool isSmart;
         if (inputHandler.FishingRodTimePressed >= utilityTimeThreshold)
         {
-            equippedUtilityItem.HookSmart(inputHandler.MoveInput); //TODO: Distinguish mouse for mouse and keyboard and move direction for gamepad
+            isSmart = true;
+        }
+        else
+        { 
+            isSmart = false;
+        }
+
+        currentUtilityCoroutine = StartCoroutine(Swing(isSmart)); //make it play before the hook
+    }
+
+    private IEnumerator Swing(bool isSmart)
+    {
+        currentState = CombatState.Swinging;
+        yield return new WaitForSeconds(equippedUtilityItem.swingTime);
+
+        if (isSmart)
+        {
+            equippedUtilityItem.HookSmart(inputHandler.MoveInput); //Make it distinguish mouse for mouse and keyboard and move direction for gamepad
         }
         else
         {
-            equippedUtilityItem.HookDefault(); //Make it return bool, and then add a check before coroutine
+            equippedUtilityItem.HookDefault();
         }
-
-        StartCoroutine(PullAnimation()); //make it play before the hook
+        
+        currentUtilityCoroutine = StartCoroutine(PullAnimation());
+        
     }
 
     private IEnumerator PullAnimation()
     {
         currentState = CombatState.Pulling;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(equippedUtilityItem.pullTime);
         currentState = CombatState.Default;
+        currentUtilityCoroutine = null;
     }
 
     private void UpdateUtility()
@@ -209,6 +233,23 @@ public class PlayerCombat : MonoBehaviour
         if (inputHandler.MoveInput != Vector2.zero) 
             currentDirection = inputHandler.MoveInput.normalized;
         equippedUtilityItem.UpdateLookupDirection(currentDirection);
+        //Make it update marker above enemy that is going to get hooked in case that player tries to 
+    }
+    
+    private void InterruptUtility()
+    {
+        if (currentUtilityCoroutine != null)
+        {
+            StopCoroutine(currentUtilityCoroutine);
+            currentUtilityCoroutine = null;
+        }
+
+        if (currentState == CombatState.Pulling
+            || currentState == CombatState.Swinging
+            || currentState == CombatState.ChoosingTarget)
+        {
+            currentState = CombatState.Default;
+        }
     }
     
 }

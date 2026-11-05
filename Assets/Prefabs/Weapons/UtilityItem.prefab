@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4041381074089897500}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -218,3 +218,5 @@ MonoBehaviour:
   lookupTriangle: {fileID: 5136597478990376351}
   afterHookDistance: 1
   pullSpeed: 10
+  swingTime: 0.2
+  pullTime: 0.3
