@@ -217,4 +217,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UtilityItem
   lookupTriangle: {fileID: 5136597478990376351}
   afterHookDistance: 1
-  pullSpeed: 5
+  pullSpeed: 10

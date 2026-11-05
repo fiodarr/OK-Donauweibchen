@@ -92,7 +92,7 @@ public class PlayerCombat : MonoBehaviour
         StartCoroutine(PerformAttack(equippedWeapon));
     }
 
-        private void TrySecondaryAttack()
+    private void TrySecondaryAttack()
     {
         if (!CanAttack || !equippedSecondaryWeapon)
             return;
@@ -190,11 +190,17 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
-            equippedUtilityItem.HookDefault();
+            equippedUtilityItem.HookDefault(); //Make it return bool, and then add a check before coroutine
         }
-        
+
+        StartCoroutine(PullAnimation()); //make it play before the hook
+    }
+
+    private IEnumerator PullAnimation()
+    {
+        currentState = CombatState.Pulling;
+        yield return new WaitForSeconds(0.5f);
         currentState = CombatState.Default;
-        
     }
 
     private void UpdateUtility()
