@@ -23,6 +23,7 @@ public class PlayerController : Hitable
     private Rigidbody2D rb;
 
     public Vector2 FacingDirection { get; private set; }
+    public Action OnDamaged;
 
     private void Awake()
     {
@@ -41,11 +42,7 @@ public class PlayerController : Hitable
 
     public void RefreshAimDirection()
     {
-        Vector2 mouseWorldPosition =
-            mainCamera.ScreenToWorldPoint(inputHandler.MousePosition);
-
-        Vector2 direction =
-            mouseWorldPosition - rb.position;
+        Vector2 direction = inputHandler.MoveInput;
 
         if (direction.sqrMagnitude > 0.001f)
         {
@@ -91,6 +88,8 @@ public class PlayerController : Hitable
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
+        OnDamaged?.Invoke();
+        
         status.TakeDamage(damage);
         
         Vector2 knockbackDirection = damageDirection.normalized;
