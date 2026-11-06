@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 891215924386679053}
   - component: {fileID: 236362429090502072}
   - component: {fileID: 9039514880073438561}
-  - component: {fileID: 2739717128073220942}
+  - component: {fileID: 6713670092330104184}
+  - component: {fileID: 4155699220070449197}
+  - component: {fileID: 4466067006108556981}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -199,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6195888912b48ed9b2b99297cd4af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  iTime: 0.1
   footsteps: {fileID: 11400000, guid: b63f7798535bf9442ab3560ffb45b5d3, type: 2}
   moveSpeed: 5
 --- !u!114 &9039514880073438561
@@ -217,7 +220,7 @@ MonoBehaviour:
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
   utilityTimeThreshold: 0.1
---- !u!114 &2739717128073220942
+--- !u!114 &6713670092330104184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,14 +229,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1574352863648687227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acf92cf8a9db416697065428ac9c161, type: 3}
+  m_Script: {fileID: 11500000, guid: 640d2407049eb496089da83e1056ec0a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityStatus
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
   maxHealth: 20
   maxArmor: 0
   armorReduction: 0
   currentHealth: 0
   currentArmor: 0
+  movementLocked: 0
+--- !u!114 &4155699220070449197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574352863648687227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f4d527bfaea4e42a5d7babb3411863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+  interactionRadius: 1.5
+--- !u!114 &4466067006108556981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574352863648687227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d40d2a0b30945847ba68c92ace93c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerComponents
+  cameraController: {fileID: 0}
 --- !u!1 &7657736583750744400
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163357928556715274}
   - component: {fileID: 699484479121545842}
+  - component: {fileID: 8887739502799854354}
   m_Layer: 0
   m_Name: lanthern
   m_TagString: Untagged
@@ -318,6 +349,24 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &8887739502799854354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657736583750744400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9daddc7675738b4e8dd653c849a104c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lantern
+  maxCharges: 3
+  healAmount: 40
+  lanternLight: {fileID: 699484479121545842}
+  globalLight: {fileID: 0}
+  fadeDuration: 1.5
+  globalFadeDuration: 2
 --- !u!1 &8647267366494284872
 GameObject:
   m_ObjectHideFlags: 0

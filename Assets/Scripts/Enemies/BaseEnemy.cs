@@ -13,8 +13,9 @@ public class BaseEnemy : Hitable, IHookable
         Vulnerable,
         Died
     }
-    
-    
+
+    private Vector3 startPosition;
+    private Quaternion startRotation;
     protected EnemyState currentState = EnemyState.Idle;
     
     protected EntityStatus status;
@@ -29,6 +30,9 @@ public class BaseEnemy : Hitable, IHookable
     {
         Rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EntityStatus>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
@@ -77,10 +81,41 @@ public class BaseEnemy : Hitable, IHookable
     protected virtual void Die()
     {
         SetState(EnemyState.Died);
-        foreach(Collider2D col in hurtbox)
+
+        StopAllCoroutines();
+        knockbackCoroutine = null;
+
+        Rb.linearVelocity = Vector2.zero;
+        Rb.angularVelocity = 0f;
+
+        foreach (Collider2D col in hurtbox)
         {
             col.enabled = false;
         }
+    }
+
+    public virtual void Respawn()
+    {
+        StopAllCoroutines();
+
+        transform.position = startPosition;
+        transform.rotation = startRotation;
+
+        Rb.linearVelocity = Vector2.zero;
+        Rb.angularVelocity = 0f;
+
+        Rb.simulated = true;
+
+        foreach (Collider2D col in hurtbox)
+        {
+            col.enabled = true;
+        }
+
+        knockbackCoroutine = null;
+
+        status.ResetStatus();
+
+        currentState = EnemyState.Idle;
     }
 
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)

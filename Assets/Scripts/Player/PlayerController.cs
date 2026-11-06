@@ -6,10 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : Hitable
 {
-    private PlayerInputHandler inputHandler;
-    private PlayerCombat combat;
+    private PlayerComponents playerComponents;
     private Camera mainCamera;
-    private EntityStatus status;
+
 
     private Coroutine stepsRoutine;
 
@@ -27,9 +26,8 @@ public class PlayerController : Hitable
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        inputHandler = GetComponent<PlayerInputHandler>();
-        combat = GetComponent<PlayerCombat>();
-        status = GetComponent<EntityStatus>();
+        playerComponents = GetComponent<PlayerComponents>();
+
 
         mainCamera = Camera.main;
     }
@@ -42,7 +40,7 @@ public class PlayerController : Hitable
     public void RefreshAimDirection()
     {
         Vector2 mouseWorldPosition =
-            mainCamera.ScreenToWorldPoint(inputHandler.MousePosition);
+            mainCamera.ScreenToWorldPoint(playerComponents.inputHandler.MousePosition);
 
         Vector2 direction =
             mouseWorldPosition - rb.position;
@@ -55,12 +53,12 @@ public class PlayerController : Hitable
     
     private void FixedUpdate()
     {
-        if (combat.LockMove)
+        if (playerComponents.combat.LockMove || playerComponents.status.movementLocked)
         {
             return;
         }
 
-        Vector2 movement = inputHandler.MoveInput.normalized;
+        Vector2 movement = playerComponents.inputHandler.MoveInput.normalized;
 
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
@@ -91,7 +89,7 @@ public class PlayerController : Hitable
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
-        status.TakeDamage(damage);
+        playerComponents.status.TakeDamage(damage);
         
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);

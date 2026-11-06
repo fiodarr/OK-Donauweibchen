@@ -13,9 +13,8 @@ public class PlayerCombat : MonoBehaviour
         Pulling
     }
     private CombatState currentState = CombatState.Default;
-    
-    private PlayerInputHandler inputHandler;
-    private PlayerController playerController;
+
+    private PlayerComponents playerComponents;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
@@ -55,32 +54,31 @@ public class PlayerCombat : MonoBehaviour
 
     private void Awake()
     {
-        inputHandler = GetComponent<PlayerInputHandler>();
-        playerController = GetComponent<PlayerController>();
+        playerComponents = GetComponent<PlayerComponents>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
-        inputHandler.AttackPressed += TryAttack;
-        inputHandler.SecondaryAttackPressed += TrySecondaryAttack;
-        inputHandler.UtilityPressed += TryStartUtility;
-        inputHandler.UtilityReleased += TryFinishUtility;
+        playerComponents.inputHandler.AttackPressed += TryAttack;
+        playerComponents.inputHandler.SecondaryAttackPressed += TrySecondaryAttack;
+        playerComponents.inputHandler.UtilityPressed += TryStartUtility;
+        playerComponents.inputHandler.UtilityReleased += TryFinishUtility;
         //Sub for the interrupt action
     }
 
     private void OnDisable()
     {
-        inputHandler.AttackPressed -= TryAttack;
-        inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
-        inputHandler.UtilityPressed -= TryStartUtility;
-        inputHandler.UtilityReleased -= TryFinishUtility;
+        playerComponents.inputHandler.AttackPressed -= TryAttack;
+        playerComponents.inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
+        playerComponents.inputHandler.UtilityPressed -= TryStartUtility;
+        playerComponents.inputHandler.UtilityReleased -= TryFinishUtility;
         //Unsub from the interrupt action
     }
 
     private void TryAttack()
     {
-        if (!CanAttack || !equippedWeapon)
+        if (!CanAttack || !equippedWeapon || playerComponents.status.isActiveAndEnabled)
             return;
         if (comboIndex > 0)
         {
@@ -126,8 +124,8 @@ public class PlayerCombat : MonoBehaviour
             currentState = CombatState.Default;
             yield break;
         }
-        if (inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = inputHandler.MoveInput.normalized;
+        if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
+            currentDirection = playerComponents.inputHandler.MoveInput.normalized;
         if (attack.chargeSound!=null){
             RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
         }
@@ -189,7 +187,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         bool isSmart;
-        if (inputHandler.FishingRodTimePressed >= utilityTimeThreshold)
+        if (playerComponents.inputHandler.FishingRodTimePressed >= utilityTimeThreshold)
         {
             isSmart = true;
         }
@@ -208,7 +206,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (isSmart)
         {
-            equippedUtilityItem.HookSmart(inputHandler.MoveInput); //Make it distinguish mouse for mouse and keyboard and move direction for gamepad
+            equippedUtilityItem.HookSmart(playerComponents.inputHandler.MoveInput); //Make it distinguish mouse for mouse and keyboard and move direction for gamepad
         }
         else
         {
@@ -230,8 +228,8 @@ public class PlayerCombat : MonoBehaviour
     private void UpdateUtility()
     {
         if (currentState != CombatState.ChoosingTarget) return;
-        if (inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = inputHandler.MoveInput.normalized;
+        if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
+            currentDirection = playerComponents.inputHandler.MoveInput.normalized;
         equippedUtilityItem.UpdateLookupDirection(currentDirection);
         //Make it update marker above enemy that is going to get hooked in case that player tries to 
     }

@@ -34,7 +34,9 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     public float FishingRodTimePressed { get; private set; }
-    
+
+    public event Action InteractPressed;
+
     public event Action AttackPressed;
 
     public event Action SecondaryAttackPressed;
@@ -77,9 +79,10 @@ public class PlayerInputHandler : MonoBehaviour
             controlScheme = ControlScheme.Controller;
             Debug.Log("Scheme Changed" + controlScheme);
         }
-        
-        
-        
+
+        if (inputActions.Player.Interact.WasPressedThisFrame())
+            InteractPressed?.Invoke();
+
         if (inputActions.Player.Attack.WasPressedThisFrame())
             AttackPressed?.Invoke();
 

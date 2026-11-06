@@ -11,7 +11,10 @@ public class EntityStatus : MonoBehaviour
     [SerializeField] float armorReduction;
     [SerializeField] float currentHealth;
     [SerializeField] float currentArmor;
-    
+    public System.Action OnDeath;
+    protected bool isDead;
+    public bool IsDead => isDead;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -23,7 +26,12 @@ public class EntityStatus : MonoBehaviour
     {
         return currentHealth;
     }
-    
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     protected virtual void FlashOnTakeDamage()
     {
         if (flashController != null)
@@ -34,6 +42,7 @@ public class EntityStatus : MonoBehaviour
 
     public void TakeDamage(DamageData[] damages)
     {
+        if (isDead) return;
         FlashOnTakeDamage();
         foreach (DamageData originalDamage in damages)
         {
@@ -62,8 +71,13 @@ public class EntityStatus : MonoBehaviour
                     break;
             }
         }
+        if (currentHealth <= 0 && !isDead)
+        {
+            isDead = true;
+            OnDeath?.Invoke();
+        }
     }
-    
+
     public void Heal(float heal)
     {
         if (healModifiers.Count != 0)
@@ -72,11 +86,12 @@ public class EntityStatus : MonoBehaviour
             {
                 heal = m.Apply(heal);
             }
-
-            if (heal <= 0)
-                return;
         }
-        currentHealth += heal;
+
+        if (heal <= 0)
+            return;
+
+        currentHealth = Mathf.Min(currentHealth + heal, maxHealth);
     }
     public void AddDamageModifier(Modifier modifier)
     {
@@ -89,5 +104,16 @@ public class EntityStatus : MonoBehaviour
     public void AddHealModifier(Modifier modifier)
     {
         healModifiers.Add(modifier);
+    }
+
+    public void ResetStatus()
+    {
+        currentHealth = maxHealth;
+        currentArmor = maxArmor;
+
+        damageModifiers.Clear();
+        healModifiers.Clear();
+
+        isDead = false;
     }
 }

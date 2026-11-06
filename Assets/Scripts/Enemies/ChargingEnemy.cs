@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Linq;
 using FMODUnity;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ChargingEnemy : BaseEnemy
@@ -220,5 +219,27 @@ public class ChargingEnemy : BaseEnemy
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? -1 : 1);
         transform.localScale = scale;
+    }
+
+    public override void Respawn()
+    {
+        StopAllCoroutines();
+
+        attack.hitbox.EndAttack();
+
+        EnemyAttackManager.Release(this);
+
+        base.Respawn();
+
+        hitSolid = false;
+        hitWallWhileMoving = false;
+        windUpEnded = false;
+        target = null;
+
+        animator.Rebind();
+        animator.Update(0f);
+
+        animator.SetBool("IsMoving", false);
+        animator.SetBool("Died", false);
     }
 }
