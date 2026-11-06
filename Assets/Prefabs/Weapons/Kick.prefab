@@ -45,33 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff63c7fcf3c74a3f8cf31463265d88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  weaponName: Knife
+  weaponName: Kick
   attackCooldown: 0.5
   attacks:
-  - damage: 1
-    knockback: 5
-    launchForce: 30
-    attackSound: {fileID: 11400000, guid: 318496ed7feea45749a2a94e99bb7ca2, type: 2}
-    activeTime: 0.1
-    recoveryTime: 0.2
-    comboTime: 0.7
+  - damage:
+    - amount: 100
+      type: 1
+    - amount: 0.1
+      type: 0
+    knockback: 50
+    launchForce: 50
+    attackSound: {fileID: 11400000, guid: a5e48a7202c684ca4b8c1516b533b82a, type: 2}
+    chargeSound: {fileID: 11400000, guid: 9ea574fb27b635d42a60d3b9946cdfec, type: 2}
+    chargeTime: 0.7
+    activeTime: 0.2
+    recoveryTime: 0.8
+    comboTime: 0
     hitbox: {fileID: 8788264919326412803}
-  - damage: 1
-    knockback: 5
-    launchForce: 30
-    attackSound: {fileID: 11400000, guid: e4549ea96247647e7a10eb98f50bd40c, type: 2}
-    activeTime: 0.1
-    recoveryTime: 0.1
-    comboTime: 0.6
-    hitbox: {fileID: 0}
-  - damage: 3
-    knockback: 5
-    launchForce: 60
-    attackSound: {fileID: 11400000, guid: 57d173b6da8814686905b4341e4c1d54, type: 2}
-    activeTime: 0.3
-    recoveryTime: 0.6
-    comboTime: 0.5
-    hitbox: {fileID: 0}
 --- !u!1 &2639458953712721554
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   spriteRenderer: {fileID: 8032276586807920412}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 285591741808513588}
   hitObjectsToIgnore: []
 --- !u!50 &931635583012250125
 Rigidbody2D:
@@ -175,8 +165,8 @@ Transform:
   m_GameObject: {fileID: 4157492493230724120}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3377, y: 0.0128, z: 0}
-  m_LocalScale: {x: 1.0254315, y: 0.83430624, z: 1}
+  m_LocalPosition: {x: 0.976, y: -0.0082, z: 0}
+  m_LocalScale: {x: 1.102544, y: 0.9184424, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2975808903223521609}
@@ -270,7 +260,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

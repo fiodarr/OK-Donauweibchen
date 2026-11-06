@@ -121,6 +121,56 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Secondary Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a6fe725-e1a1-4a4c-862a-6aeed7f7d252"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""UtilityAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""179c3dda-01f2-4277-9099-6cff25f170c0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Evade"",
+                    ""type"": ""Button"",
+                    ""id"": ""53550b1d-9fcf-4945-b28b-b814c463a6f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""985dbe32-05a9-4043-a10b-dee6e727093a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""a74b200b-0d58-4724-bdb0-daf32f01a607"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -181,7 +231,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e92f4cfa-7411-4947-9be3-7ef32d37514c"",
+                    ""id"": ""1294b681-9173-49f7-8406-e3729dd5b30c"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -214,8 +264,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""da84a1cb-a022-4e08-babd-3f67cd5d1296"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""id"": ""43a1cfc7-c660-4c18-acbe-8299bec6268a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -237,11 +287,501 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ee8f0e94-87aa-4a1d-ab3b-c7de1ad49d30"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2702d1d-bfdd-4048-8722-12f1fcbab0fc"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""457adf86-24d6-4a25-a1b5-c9f02fa63b24"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Secondary Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79cca1a6-b5ee-44eb-949e-c528901d317b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Secondary Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bed6023-2d67-4029-be5f-cab689224c46"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Secondary Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a942bd66-b736-4ee3-899a-2ac5d0e3a9e1"",
+                    ""path"": ""<DualShockGamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UtilityAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29725102-8063-43cd-a0da-74007fea3261"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UtilityAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c865476-c697-4a4e-99ef-d3b2148740bc"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UtilityAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba6f2bf8-8e49-47c6-8ce6-586faa8edd65"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Evade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e26969a4-e1fe-4eed-bac7-3ebe05a51e8f"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Evade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89ce4597-1085-415c-9a09-310db324074d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Evade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9236efca-9c1f-45f3-a133-caf2c35492d3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81534c60-e8f9-4b7f-8b91-9d7bf3d2edfb"",
+                    ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd1bb875-3e0f-462a-8116-2a6e3786002c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e543cd0-a938-4fb7-927a-05b9f3e65851"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""815d5606-d0bc-4add-8385-dab1f58afe57"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e24e93f-4234-4232-9e16-c69c4c41d338"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""InputScheme"",
+            ""id"": ""04d3a872-dc78-42bd-812e-7553f15b38c3"",
+            ""actions"": [
+                {
+                    ""name"": ""KeyboardMouseInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb127d15-c4b2-453e-a96e-9e1977308abb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""ControllerInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f92d46d-2a50-4166-a84e-235a27eb2cdc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""394aedf9-7b72-4d82-ba0d-d80467a56e26"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1a228214-e75d-4283-8417-8c124c166bd9"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d539d89e-f801-4b54-90eb-cdfb730f46b3"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""95005aa8-6233-4e68-9bc0-6b88a093da19"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a76fc410-0f09-4b56-b4e1-34619f4cc05b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0208ab1-b8ac-48e5-8629-a40796dcde5d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e5b72f3-ef0e-4fd0-99fb-95a170d3c9cf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84431e91-d2d3-4525-bed1-1e0cbdb1617f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b87c4532-bbbb-4a96-9d4c-46e711063814"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3c56c8d-5651-45b6-a499-a4d7b8f43292"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""002abbf3-cbac-409e-bc22-0c179aa697de"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardMouseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a689fa1d-5bca-4739-ba46-c2f144d5d10e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28a63032-09e5-47e3-a9be-bb9b19c80da1"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f162001-c3f4-4e01-a870-374aaa44ee02"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c47a199-d1c3-488b-91ec-114bbfcb745c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d092f7cd-5d82-462a-9fa7-9667fc1d448d"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44f142ec-a95c-43fd-acf4-80a47fce07f4"",
+                    ""path"": ""<DualShockGamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9aad16a-55e6-456d-96c0-244af76f0865"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5075025a-8547-44c1-bd36-fd6289c695a5"",
+                    ""path"": ""<DualShockGamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7601230-0674-47e8-aee5-4fdfec20552b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4782f25d-d115-4955-8aad-82844c1d5efc"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8889836-d5cc-4a4c-a033-f73f081c810f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f7697ae-24f8-4fbb-8974-24a76de07c9e"",
+                    ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5781a324-f4b4-4b83-8c9f-d437356706c6"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df48f190-e259-41fa-8507-7a3d0ad11728"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0374b70f-6f7b-42db-bd9d-40db790dc41e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -255,11 +795,21 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_SecondaryAttack = m_Player.FindAction("Secondary Attack", throwIfNotFound: true);
+        m_Player_UtilityAttack = m_Player.FindAction("UtilityAttack", throwIfNotFound: true);
+        m_Player_Evade = m_Player.FindAction("Evade", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        // InputScheme
+        m_InputScheme = asset.FindActionMap("InputScheme", throwIfNotFound: true);
+        m_InputScheme_KeyboardMouseInput = m_InputScheme.FindAction("KeyboardMouseInput", throwIfNotFound: true);
+        m_InputScheme_ControllerInput = m_InputScheme.FindAction("ControllerInput", throwIfNotFound: true);
     }
 
     ~@InputActions()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputActions.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_InputScheme.enabled, "This will cause a leak and performance issues, InputActions.InputScheme.Disable() has not been called.");
     }
 
     /// <summary>
@@ -338,6 +888,11 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_SecondaryAttack;
+    private readonly InputAction m_Player_UtilityAttack;
+    private readonly InputAction m_Player_Evade;
+    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Heal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -361,6 +916,26 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Look".
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SecondaryAttack".
+        /// </summary>
+        public InputAction @SecondaryAttack => m_Wrapper.m_Player_SecondaryAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/UtilityAttack".
+        /// </summary>
+        public InputAction @UtilityAttack => m_Wrapper.m_Player_UtilityAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Evade".
+        /// </summary>
+        public InputAction @Evade => m_Wrapper.m_Player_Evade;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Heal".
+        /// </summary>
+        public InputAction @Heal => m_Wrapper.m_Player_Heal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -396,6 +971,21 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @SecondaryAttack.started += instance.OnSecondaryAttack;
+            @SecondaryAttack.performed += instance.OnSecondaryAttack;
+            @SecondaryAttack.canceled += instance.OnSecondaryAttack;
+            @UtilityAttack.started += instance.OnUtilityAttack;
+            @UtilityAttack.performed += instance.OnUtilityAttack;
+            @UtilityAttack.canceled += instance.OnUtilityAttack;
+            @Evade.started += instance.OnEvade;
+            @Evade.performed += instance.OnEvade;
+            @Evade.canceled += instance.OnEvade;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         /// <summary>
@@ -416,6 +1006,21 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @SecondaryAttack.started -= instance.OnSecondaryAttack;
+            @SecondaryAttack.performed -= instance.OnSecondaryAttack;
+            @SecondaryAttack.canceled -= instance.OnSecondaryAttack;
+            @UtilityAttack.started -= instance.OnUtilityAttack;
+            @UtilityAttack.performed -= instance.OnUtilityAttack;
+            @UtilityAttack.canceled -= instance.OnUtilityAttack;
+            @Evade.started -= instance.OnEvade;
+            @Evade.performed -= instance.OnEvade;
+            @Evade.canceled -= instance.OnEvade;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         /// <summary>
@@ -449,6 +1054,113 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
     public PlayerActions @Player => new PlayerActions(this);
+
+    // InputScheme
+    private readonly InputActionMap m_InputScheme;
+    private List<IInputSchemeActions> m_InputSchemeActionsCallbackInterfaces = new List<IInputSchemeActions>();
+    private readonly InputAction m_InputScheme_KeyboardMouseInput;
+    private readonly InputAction m_InputScheme_ControllerInput;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "InputScheme".
+    /// </summary>
+    public struct InputSchemeActions
+    {
+        private @InputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InputSchemeActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "InputScheme/KeyboardMouseInput".
+        /// </summary>
+        public InputAction @KeyboardMouseInput => m_Wrapper.m_InputScheme_KeyboardMouseInput;
+        /// <summary>
+        /// Provides access to the underlying input action "InputScheme/ControllerInput".
+        /// </summary>
+        public InputAction @ControllerInput => m_Wrapper.m_InputScheme_ControllerInput;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_InputScheme; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InputSchemeActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InputSchemeActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InputSchemeActions" />
+        public void AddCallbacks(IInputSchemeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InputSchemeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InputSchemeActionsCallbackInterfaces.Add(instance);
+            @KeyboardMouseInput.started += instance.OnKeyboardMouseInput;
+            @KeyboardMouseInput.performed += instance.OnKeyboardMouseInput;
+            @KeyboardMouseInput.canceled += instance.OnKeyboardMouseInput;
+            @ControllerInput.started += instance.OnControllerInput;
+            @ControllerInput.performed += instance.OnControllerInput;
+            @ControllerInput.canceled += instance.OnControllerInput;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InputSchemeActions" />
+        private void UnregisterCallbacks(IInputSchemeActions instance)
+        {
+            @KeyboardMouseInput.started -= instance.OnKeyboardMouseInput;
+            @KeyboardMouseInput.performed -= instance.OnKeyboardMouseInput;
+            @KeyboardMouseInput.canceled -= instance.OnKeyboardMouseInput;
+            @ControllerInput.started -= instance.OnControllerInput;
+            @ControllerInput.performed -= instance.OnControllerInput;
+            @ControllerInput.canceled -= instance.OnControllerInput;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InputSchemeActions.UnregisterCallbacks(IInputSchemeActions)" />.
+        /// </summary>
+        /// <seealso cref="InputSchemeActions.UnregisterCallbacks(IInputSchemeActions)" />
+        public void RemoveCallbacks(IInputSchemeActions instance)
+        {
+            if (m_Wrapper.m_InputSchemeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InputSchemeActions.AddCallbacks(IInputSchemeActions)" />
+        /// <seealso cref="InputSchemeActions.RemoveCallbacks(IInputSchemeActions)" />
+        /// <seealso cref="InputSchemeActions.UnregisterCallbacks(IInputSchemeActions)" />
+        public void SetCallbacks(IInputSchemeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InputSchemeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InputSchemeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InputSchemeActions" /> instance referencing this action map.
+    /// </summary>
+    public InputSchemeActions @InputScheme => new InputSchemeActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
@@ -477,5 +1189,62 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Secondary Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSecondaryAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "UtilityAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUtilityAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Evade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEvade(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHeal(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "InputScheme" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InputSchemeActions.AddCallbacks(IInputSchemeActions)" />
+    /// <seealso cref="InputSchemeActions.RemoveCallbacks(IInputSchemeActions)" />
+    public interface IInputSchemeActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "KeyboardMouseInput" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnKeyboardMouseInput(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ControllerInput" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnControllerInput(InputAction.CallbackContext context);
     }
 }

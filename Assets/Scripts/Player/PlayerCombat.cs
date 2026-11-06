@@ -4,43 +4,81 @@ using FMODUnity;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private PlayerInputHandler inputHandler;
-    private PlayerController playerController;
+    private enum CombatState
+    {
+        Default,
+        Attacking,
+        ChoosingTarget,
+        Swinging,
+        Pulling
+    }
+    private CombatState currentState = CombatState.Default;
+
+    private PlayerComponents playerComponents;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
     [SerializeField] private Weapon equippedWeapon;
+    [SerializeField] private Weapon equippedSecondaryWeapon;
+    
+    [Header("Utility")]
+    [SerializeField] private UtilityItem equippedUtilityItem;
+    [SerializeField] private float utilityTimeThreshold = 0.1f;
 
     private Rigidbody2D rb;
+    private Coroutine currentUtilityCoroutine;
 
-    public bool IsAttacking { get; private set; }
-    
+    public bool LockMove
+    {
+        get
+        {
+            return currentState != CombatState.Default;
+        }
+    }
 
-    private bool canAttack = true;
+    private void Update()
+    {
+        UpdateUtility();
+    }
+
+    private bool CanAttack
+    {
+        get
+        {
+            return currentState == CombatState.Default;
+        }
+    }
 
     private int comboIndex = 0;
     private float lastAttackTime;
 
     private void Awake()
     {
-        inputHandler = GetComponent<PlayerInputHandler>();
-        playerController = GetComponent<PlayerController>();
+        playerComponents = GetComponent<PlayerComponents>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
-        inputHandler.AttackPressed += TryAttack;
+        playerComponents.inputHandler.AttackPressed += TryAttack;
+        playerComponents.inputHandler.SecondaryAttackPressed += TrySecondaryAttack;
+        playerComponents.inputHandler.UtilityPressed += TryStartUtility;
+        playerComponents.inputHandler.UtilityReleased += TryFinishUtility;
+        //Sub for the interrupt action
     }
 
     private void OnDisable()
     {
-        inputHandler.AttackPressed -= TryAttack;
+        playerComponents.inputHandler.AttackPressed -= TryAttack;
+        playerComponents.inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
+        playerComponents.inputHandler.UtilityPressed -= TryStartUtility;
+        playerComponents.inputHandler.UtilityReleased -= TryFinishUtility;
+        //Unsub from the interrupt action
     }
 
     private void TryAttack()
     {
-        if (!canAttack || equippedWeapon == null)
+        if (!CanAttack || !equippedWeapon || playerComponents.status.isActiveAndEnabled)
             return;
         if (comboIndex > 0)
         {
@@ -53,26 +91,47 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        StartCoroutine(PerformAttack());
+        StartCoroutine(PerformAttack(equippedWeapon));
     }
 
-    private IEnumerator PerformAttack()
+    private void TrySecondaryAttack()
     {
-        canAttack = false;
-        IsAttacking = true;
+        if (!CanAttack || !equippedSecondaryWeapon)
+            return;
+        if (comboIndex > 0)
+        {
+            AttackData previousAttack = equippedSecondaryWeapon.GetAttack(comboIndex - 1);
 
-        AttackData attack = equippedWeapon.GetAttack(comboIndex);
-        attack.attackSound.Play();
+            if (previousAttack == null ||
+                Time.time - lastAttackTime > previousAttack.comboTime)
+            {
+                comboIndex = 0;
+            }
+        }
+
+        StartCoroutine(PerformAttack(equippedSecondaryWeapon));
+    }
+
+    private IEnumerator PerformAttack(Weapon weapon)
+    {
+        currentState = CombatState.Attacking;
+
+        AttackData attack = weapon.GetAttack(comboIndex);
+
 
         if (attack == null)
         {
-            canAttack = true;
-            IsAttacking = false;
+            currentState = CombatState.Default;
             yield break;
         }
-        if (inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = inputHandler.MoveInput.normalized;
-
+        if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
+            currentDirection = playerComponents.inputHandler.MoveInput.normalized;
+        if (attack.chargeSound!=null){
+            RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
+        }
+        yield return new WaitForSeconds(attack.chargeTime);
+        RuntimeManager.PlayOneShot(attack.attackSound.nameIndex);
+        
         // Launch player
         rb.AddForce(
             currentDirection * attack.launchForce,
@@ -96,25 +155,99 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(attack.recoveryTime);
 
-        IsAttacking = false;
-
         lastAttackTime = Time.time;
 
         // Advance combo
         comboIndex++;
 
-        if (comboIndex >= equippedWeapon.attacks.Length)
+        if (comboIndex >= weapon.attacks.Length)
             comboIndex = 0;
 
-        float remainingCooldown = Mathf.Max(
-            0f,
-            equippedWeapon.attackCooldown -
-            attack.activeTime -
-            attack.recoveryTime
-        );
-
-        yield return new WaitForSeconds(remainingCooldown);
-
-        canAttack = true;
+        currentState = CombatState.Default;
     }
+
+    private void TryStartUtility()
+    {
+        if (currentState != CombatState.Default || !equippedUtilityItem)
+        {
+            
+            return;
+        }
+        Debug.Log("TryStartUtility");
+        currentState = CombatState.ChoosingTarget;
+        //Start updating rotation inside the utility
+        
+    }
+    
+    private void TryFinishUtility()
+    {
+        if (currentState != CombatState.ChoosingTarget)
+        {
+            return;
+        }
+
+        bool isSmart;
+        if (playerComponents.inputHandler.FishingRodTimePressed >= utilityTimeThreshold)
+        {
+            isSmart = true;
+        }
+        else
+        { 
+            isSmart = false;
+        }
+
+        currentUtilityCoroutine = StartCoroutine(Swing(isSmart)); //make it play before the hook
+    }
+
+    private IEnumerator Swing(bool isSmart)
+    {
+        currentState = CombatState.Swinging;
+        yield return new WaitForSeconds(equippedUtilityItem.swingTime);
+
+        if (isSmart)
+        {
+            equippedUtilityItem.HookSmart(playerComponents.inputHandler.MoveInput); //Make it distinguish mouse for mouse and keyboard and move direction for gamepad
+        }
+        else
+        {
+            equippedUtilityItem.HookDefault();
+        }
+        
+        currentUtilityCoroutine = StartCoroutine(PullAnimation());
+        
+    }
+
+    private IEnumerator PullAnimation()
+    {
+        currentState = CombatState.Pulling;
+        yield return new WaitForSeconds(equippedUtilityItem.pullTime);
+        currentState = CombatState.Default;
+        currentUtilityCoroutine = null;
+    }
+
+    private void UpdateUtility()
+    {
+        if (currentState != CombatState.ChoosingTarget) return;
+        if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
+            currentDirection = playerComponents.inputHandler.MoveInput.normalized;
+        equippedUtilityItem.UpdateLookupDirection(currentDirection);
+        //Make it update marker above enemy that is going to get hooked in case that player tries to 
+    }
+    
+    private void InterruptUtility()
+    {
+        if (currentUtilityCoroutine != null)
+        {
+            StopCoroutine(currentUtilityCoroutine);
+            currentUtilityCoroutine = null;
+        }
+
+        if (currentState == CombatState.Pulling
+            || currentState == CombatState.Swinging
+            || currentState == CombatState.ChoosingTarget)
+        {
+            currentState = CombatState.Default;
+        }
+    }
+    
 }
