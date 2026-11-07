@@ -7,7 +7,7 @@ public class RestSpotManager : MonoBehaviour
     public PlayerComponents playerComponents;
     public Transform player;
 
-    private RestSpot lastRestSpot;
+    [SerializeField] private RestSpot lastRestSpot;
     private bool isResting;
 
     private void Awake()
@@ -70,6 +70,7 @@ public class RestSpotManager : MonoBehaviour
             lastRestSpot.transform.position + Vector3.up;
 
         playerComponents.status.Rest();
+        playerComponents.status.FinishRest();
         playerComponents.lantern.RestoreLight();
     }
 }
