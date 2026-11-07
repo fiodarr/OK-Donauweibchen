@@ -65,10 +65,12 @@ public class PlayerCombat : MonoBehaviour
         playerComponents.inputHandler.UtilityPressed += TryStartUtility;
         playerComponents.inputHandler.UtilityReleased += TryFinishUtility;
         //Sub for the interrupt action
+        playerController.OnDamaged += InterruptUtility;
     }
 
     private void OnDisable()
     {
+        playerController.OnDamaged -= InterruptUtility;
         playerComponents.inputHandler.AttackPressed -= TryAttack;
         playerComponents.inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
         playerComponents.inputHandler.UtilityPressed -= TryStartUtility;
@@ -175,8 +177,7 @@ public class PlayerCombat : MonoBehaviour
         }
         Debug.Log("TryStartUtility");
         currentState = CombatState.ChoosingTarget;
-        //Start updating rotation inside the utility
-        
+        equippedUtilityItem.ShowChosenTargetSprite();
     }
     
     private void TryFinishUtility()
@@ -195,8 +196,8 @@ public class PlayerCombat : MonoBehaviour
         { 
             isSmart = false;
         }
-
-        currentUtilityCoroutine = StartCoroutine(Swing(isSmart)); //make it play before the hook
+        
+        currentUtilityCoroutine = StartCoroutine(Swing(isSmart));
     }
 
     private IEnumerator Swing(bool isSmart)
@@ -204,15 +205,8 @@ public class PlayerCombat : MonoBehaviour
         currentState = CombatState.Swinging;
         yield return new WaitForSeconds(equippedUtilityItem.swingTime);
 
-        if (isSmart)
-        {
-            equippedUtilityItem.HookSmart(playerComponents.inputHandler.MoveInput); //Make it distinguish mouse for mouse and keyboard and move direction for gamepad
-        }
-        else
-        {
-            equippedUtilityItem.HookDefault();
-        }
-        
+        equippedUtilityItem.Hook(isSmart);
+        equippedUtilityItem.HideChosenTargetSprite();
         currentUtilityCoroutine = StartCoroutine(PullAnimation());
         
     }
@@ -227,15 +221,21 @@ public class PlayerCombat : MonoBehaviour
 
     private void UpdateUtility()
     {
+        if (currentState != CombatState.ChoosingTarget && currentState != CombatState.Swinging) return;
+        bool isSmart = inputHandler.FishingRodTimePressed >= utilityTimeThreshold;
+        equippedUtilityItem.UpdateChosenTargetSpritePosition(isSmart);
+        
         if (currentState != CombatState.ChoosingTarget) return;
-        if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = playerComponents.inputHandler.MoveInput.normalized;
-        equippedUtilityItem.UpdateLookupDirection(currentDirection);
-        //Make it update marker above enemy that is going to get hooked in case that player tries to 
+        if (inputHandler.LookDirection != Vector2.zero)
+        {
+            equippedUtilityItem.UpdateLookupDirection(inputHandler.LookDirection);
+        }
     }
     
     private void InterruptUtility()
     {
+        equippedUtilityItem.HideChosenTargetSprite();
+        
         if (currentUtilityCoroutine != null)
         {
             StopCoroutine(currentUtilityCoroutine);

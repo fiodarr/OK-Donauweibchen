@@ -21,12 +21,16 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (controlScheme == ControlScheme.KeyboardMouse)
             {
-                return MousePosition;
+                Vector2 playerScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
+
+                return (MousePosition - playerScreenPosition).normalized;
             }
 
             if (controlScheme == ControlScheme.Controller)
             {
-                return MoveInput;
+                Vector2 moveInput = MoveInput;
+                moveInput.Normalize();
+                return moveInput;
             }
             
             return Vector2.zero;

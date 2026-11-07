@@ -2,42 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class UtilityItem: MonoBehaviour
 {
-    [SerializeField] private Collider2D lookupTriangle;
+    [SerializeField] private TargeChooseUtility targetChooseDefault;
+    [SerializeField] private TargeChooseUtility targetChooseSmart;
+    
+    [SerializeField] private GameObject chosenTargetSprite;
+    
     [SerializeField] private float afterHookDistance;
     [SerializeField] private float pullSpeed;
-    private float lookupRange;
-
+    
     public float swingTime = 0.2f;
     public float pullTime = 0.3f;
 
     private HashSet<IHookable> hookables = new HashSet<IHookable>();
-    
-    private void Start()
-    {
-        lookupRange = lookupTriangle.bounds.size.x;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out IHookable h))
-        {
-            hookables.Add(h);
-            Debug.Log(collision.name + " has entered hook range");
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out IHookable h))
-        {
-            hookables.Remove(h);
-            Debug.Log(collision.name + " has exited hook range");
-        }
-    }
 
     public void UpdateLookupDirection(Vector2 direction)
     {
@@ -49,69 +30,77 @@ public class UtilityItem: MonoBehaviour
         this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-    public void HookDefault()
+    public void Hook(bool isSmart)
     {
-        IHookable closest = FindClosestTarget();
-       
-        if (closest != null)
+        if (isSmart)
         {
-            Vector2 direction =  closest.GetPosition() - (Vector2) this.transform.position;
-            
-            closest.Hook(this.transform.position,  direction, afterHookDistance, pullSpeed);
-        }
-    }
-
-    public void HookSmart(Vector2 direction)
-    {
-        IHookable h = SmartLookupTarget(direction);
-        
-        if (h != null)
-        {
-            h.Hook(this.transform.position,  direction, afterHookDistance, pullSpeed);
+            HookSmart();
         }
         else
         {
             HookDefault();
         }
     }
-    
-    private IHookable FindClosestTarget()
+
+    public void HookDefault()
     {
-        if (hookables.Count == 0)
+        IHookable target = targetChooseDefault.GetTarget();
+       
+        if (target != null)
         {
-            return null;
+            Vector2 direction =  target.GetPosition() - (Vector2) this.transform.position;
+            target.Hook(this.transform.position,  direction, afterHookDistance, pullSpeed);
         }
-        IHookable closest = hookables.First();
-        float closestDistance = float.MaxValue;
-        foreach (IHookable h in hookables)
-        {
-            float distance = Vector2.Distance(h.GetPosition(), this.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closest = h;
-            }
-        }
-        return closest;
     }
 
-    private IHookable SmartLookupTarget(Vector2 direction)
+    public void HookSmart()
     {
-        RaycastHit2D hit = Physics2D.Raycast(
-            this.transform.position, 
-            direction, 
-            lookupRange,
-            Layers.Hookable
-        );
-
-        if (!hit)
+        IHookable target = targetChooseSmart.GetTarget();
+        
+        if (target != null)
         {
-            return null;
+            Vector2 direction = target.GetPosition() - (Vector2) this.transform.position;
+            target.Hook(this.transform.position,  direction, afterHookDistance, pullSpeed);
+        }
+        else
+        {
+            HookDefault();
+        }
+    }
+
+    public void ShowChosenTargetSprite()
+    {
+        chosenTargetSprite.SetActive(true);
+    }
+
+    public void UpdateChosenTargetSpritePosition(bool isSmart)
+    {
+        IHookable target = null;
+        if (isSmart)
+        {
+            target = targetChooseSmart.GetTarget();
+        }
+
+        if (target == null)
+        {
+            target = targetChooseDefault.GetTarget();
         }
         
-        hit.collider.TryGetComponent(out IHookable h);
-        return h;
+        if (target != null)
+        {
+            ShowChosenTargetSprite();
+            chosenTargetSprite.transform.position = target.GetPosition() + new Vector2(0, 1.5f);
+            //chosenTargetSprite.transform.position = target.GetPosition() + target.GetOffset();
+        }
+        else
+        {
+            HideChosenTargetSprite();
+        }
     }
-    
+
+    public void HideChosenTargetSprite()
+    {
+        chosenTargetSprite.SetActive(false);
+    }
     
 }
