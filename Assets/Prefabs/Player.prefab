@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426ca23bde8334331a1230c9b131bcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  playerComponents: {fileID: 4466067006108556981}
   equippedWeapon: {fileID: 2719679042586757064}
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f4d527bfaea4e42a5d7babb3411863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+  playerComponents: {fileID: 4466067006108556981}
   interactionRadius: 1.5
 --- !u!114 &4466067006108556981
 MonoBehaviour:
@@ -263,6 +265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d40d2a0b30945847ba68c92ace93c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerComponents
+  inputHandler: {fileID: 891215924386679053}
+  interactor: {fileID: 4155699220070449197}
+  status: {fileID: 6713670092330104184}
+  combat: {fileID: 9039514880073438561}
+  controller: {fileID: 236362429090502072}
+  lantern: {fileID: 8887739502799854354}
   cameraController: {fileID: 0}
 --- !u!1 &7657736583750744400
 GameObject:

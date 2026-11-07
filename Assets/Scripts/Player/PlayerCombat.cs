@@ -14,7 +14,7 @@ public class PlayerCombat : MonoBehaviour
     }
     private CombatState currentState = CombatState.Default;
 
-    private PlayerComponents playerComponents;
+    [SerializeField] private PlayerComponents playerComponents;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
@@ -54,7 +54,6 @@ public class PlayerCombat : MonoBehaviour
 
     private void Awake()
     {
-        playerComponents = GetComponent<PlayerComponents>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -78,7 +77,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void TryAttack()
     {
-        if (!CanAttack || !equippedWeapon || playerComponents.status.isActiveAndEnabled)
+        if (!CanAttack || !equippedWeapon || !playerComponents.status.isActiveAndEnabled)
             return;
         if (comboIndex > 0)
         {

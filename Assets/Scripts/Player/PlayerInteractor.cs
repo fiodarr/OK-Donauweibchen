@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour
 {
-    private PlayerComponents playerComponents;
+    [SerializeField] private PlayerComponents playerComponents;
     [SerializeField] private float interactionRadius = 1.5f;
 
     private IInteractable currentInteractable;
-
-    private void Awake()
-    {
-        playerComponents = GetComponent<PlayerComponents>();
-    }
 
     private void OnEnable()
     {
