@@ -310,7 +310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChargingEnemy
   iTime: 0
   knockbackForce: 15
-  knockbackDuration: 0.15
   hurtbox:
   - {fileID: 2518037694342659847}
   - {fileID: 4414743930393434617}

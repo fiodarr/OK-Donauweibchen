@@ -78,7 +78,7 @@ MonoBehaviour:
     chargeTime: 0
     activeTime: 0.1
     recoveryTime: 0.1
-    comboTime: 1.5
+    comboTime: 1
     hitbox: {fileID: 983458982246775955}
   - damage:
     - amount: 3
