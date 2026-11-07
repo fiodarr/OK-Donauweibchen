@@ -1,3 +1,4 @@
+using System.Collections;
 using FMODUnity;
 using UnityEngine;
 
@@ -93,5 +94,14 @@ public class Drowned : BaseEnemy
     {
         canMove = false;
         RuntimeManager.PlayOneShot(step.nameIndex,transform.position);
+    }
+
+    protected override void OnPullStart()
+    {
+        animator.SetBool("IsHooked",true);
+    }
+    protected override void OnPullEnd()
+    {
+        animator.SetBool("IsHooked",false);
     }
 }

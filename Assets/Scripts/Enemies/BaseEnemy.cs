@@ -102,9 +102,11 @@ public class BaseEnemy : Hitable, IHookable
         Vector2 destination = origin + direction.normalized * offset;
         float distance = Vector2.Distance(transform.position, destination);
         float pullDuration = distance / pullSpeed;
+        OnPullStart();
         yield return PullTowards(origin + direction.normalized * offset, pullDuration);
         SetState(EnemyState.Stunned);
         yield return new WaitForSeconds(2f);
+        OnPullEnd();
         SetState(EnemyState.Idle);
     }
     private IEnumerator PullTowards(Vector2 destination, float duration = 0.15f)
@@ -155,5 +157,15 @@ public class BaseEnemy : Hitable, IHookable
         {
             currentState = state;   
         }
+    }
+
+    protected virtual void OnPullStart()
+    {
+        
+    }
+
+    protected virtual void OnPullEnd()
+    {
+        
     }
 }
