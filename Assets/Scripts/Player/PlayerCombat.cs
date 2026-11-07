@@ -64,12 +64,12 @@ public class PlayerCombat : MonoBehaviour
         playerComponents.inputHandler.UtilityPressed += TryStartUtility;
         playerComponents.inputHandler.UtilityReleased += TryFinishUtility;
         //Sub for the interrupt action
-        playerController.OnDamaged += InterruptUtility;
+        playerComponents.controller.OnDamaged += InterruptUtility;
     }
 
     private void OnDisable()
     {
-        playerController.OnDamaged -= InterruptUtility;
+        playerComponents.controller.OnDamaged -= InterruptUtility;
         playerComponents.inputHandler.AttackPressed -= TryAttack;
         playerComponents.inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
         playerComponents.inputHandler.UtilityPressed -= TryStartUtility;
@@ -221,13 +221,13 @@ public class PlayerCombat : MonoBehaviour
     private void UpdateUtility()
     {
         if (currentState != CombatState.ChoosingTarget && currentState != CombatState.Swinging) return;
-        bool isSmart = inputHandler.FishingRodTimePressed >= utilityTimeThreshold;
+        bool isSmart = playerComponents.inputHandler.FishingRodTimePressed >= utilityTimeThreshold;
         equippedUtilityItem.UpdateChosenTargetSpritePosition(isSmart);
         
         if (currentState != CombatState.ChoosingTarget) return;
-        if (inputHandler.LookDirection != Vector2.zero)
+        if (playerComponents.inputHandler.LookDirection != Vector2.zero)
         {
-            equippedUtilityItem.UpdateLookupDirection(inputHandler.LookDirection);
+            equippedUtilityItem.UpdateLookupDirection(playerComponents.inputHandler.LookDirection);
         }
     }
     
