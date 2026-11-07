@@ -343,6 +343,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Drowned
   - Fih
   - Music
   - Player

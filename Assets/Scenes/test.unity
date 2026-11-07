@@ -733,6 +733,7 @@ MonoBehaviour:
   loseTargetRange: 5.5
   attackRange: 1.63
   moveSpeed: 2
+  step: {fileID: 11400000, guid: c46ce6df7c2fe4df983699ffafc0719d, type: 2}
   animator: {fileID: 631110753}
 --- !u!50 &631110748
 Rigidbody2D:
@@ -6211,7 +6212,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088315336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 

@@ -92,6 +92,6 @@ public class Drowned : BaseEnemy
     public void ForbidMove()
     {
         canMove = false;
-        RuntimeManager.PlayOneShot(step.name,transform.position);
+        RuntimeManager.PlayOneShot(step.nameIndex,transform.position);
     }
 }
