@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayerStatus : EntityStatus
 {
     public bool movementLocked;
     private PlayerComponents playerComponents;
+
 
     private void Awake()
     {

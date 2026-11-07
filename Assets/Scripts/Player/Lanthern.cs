@@ -25,6 +25,16 @@ public class Lantern : MonoBehaviour
 
     private PlayerComponents playerComponents;
 
+    private void OnEnable()
+    {
+        playerComponents.inputHandler.Heal += Use;
+    }
+
+    private void OnDisable()
+    {
+        playerComponents.inputHandler.Heal -= Use;
+    }
+
     private void Awake()
     {
         currentCharges = maxCharges;
@@ -51,6 +61,7 @@ public class Lantern : MonoBehaviour
             return;
 
         status.Heal(healAmount);
+        Debug.Log("healed");
         currentCharges--;
     }
 

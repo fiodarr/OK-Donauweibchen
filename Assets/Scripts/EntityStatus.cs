@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +16,14 @@ public class EntityStatus : MonoBehaviour
     protected bool isDead;
     public bool IsDead => isDead;
 
+    public event Action<float,float> OnHealthChanged;
+
     void Start()
     {
         currentHealth = maxHealth;
         currentArmor = maxArmor;
         flashController = GetComponent<FlashController>();
+        OnHealthChanged?.Invoke(currentHealth,maxHealth);
     }
     
     public float GetHealth()
@@ -67,7 +71,8 @@ public class EntityStatus : MonoBehaviour
                         damage.amount -= damage.amount*armorReduction;
                     }
                     currentHealth = Mathf.Max(0, currentHealth - damage.amount);
-                                            Debug.Log(damage.amount);
+                    Debug.Log(damage.amount);
+                    OnHealthChanged?.Invoke(currentHealth,maxHealth);
                     break;
             }
         }
@@ -92,6 +97,7 @@ public class EntityStatus : MonoBehaviour
             return;
 
         currentHealth = Mathf.Min(currentHealth + heal, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth,maxHealth);
     }
     public void AddDamageModifier(Modifier modifier)
     {
@@ -110,6 +116,7 @@ public class EntityStatus : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentArmor = maxArmor;
+        OnHealthChanged?.Invoke(currentHealth,maxHealth);
 
         damageModifiers.Clear();
         healModifiers.Clear();

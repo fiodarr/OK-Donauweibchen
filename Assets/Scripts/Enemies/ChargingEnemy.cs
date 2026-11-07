@@ -44,6 +44,9 @@ public class ChargingEnemy : BaseEnemy
 
     private FlashController flash;
 
+    private Coroutine attackCoroutine;
+    private bool hasAttackSlot;
+
     protected override void Awake()
     {
         base.Awake();
@@ -70,11 +73,12 @@ public class ChargingEnemy : BaseEnemy
         if (player != null)
         {
             target = player.transform;
-            if (Vector2.Distance(transform.position,target.position) > 6f || hitSolid)
+            if (Vector2.Distance(transform.position, target.position) > 6f || hitSolid)
             {
+                animator.SetBool("IsMoving", false);
 
-                animator.SetBool("IsMoving",false);
-                StartCoroutine(Attack());
+                if (attackCoroutine == null)
+                    attackCoroutine = StartCoroutine(Attack());
             }
             else
             {
@@ -92,40 +96,118 @@ public class ChargingEnemy : BaseEnemy
         }
     }
 
-    private IEnumerator Attack()
+    protected override void OnTakeDamage(
+        Vector2 damageDirection,
+        DamageData[] damage,
+        float knockback)
     {
-        
+
+        if (currentState == EnemyState.Preparing)
+        {
+            windUpEnded = false;
+
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+            animator.SetBool("IsAttacking",false);
+            ReleaseAttackSlot();
+
+            SetState(EnemyState.Idle);
+        }
+
+        if (currentState != EnemyState.Attack)
+        {
+            animator.SetTrigger("Hit");
+        }
+
+        base.OnTakeDamage(damageDirection, damage, knockback);
+    }
+
+        private IEnumerator Attack()
+    {
+        animator.SetBool("IsMoving", false);
         SetState(EnemyState.Preparing);
+
+        windUpEnded = false;
+        hasAttackSlot = false;
+
         Vector2 direction = ((Vector2)target.position - Rb.position).normalized;
         RefreshDirection(direction);
+
         animator.SetTrigger("WindUpStart");
-        yield return new WaitUntil(() => EnemyAttackManager.TryAcquire(this));
-    
+
+        yield return new WaitUntil(() =>
+        {
+            if (currentState != EnemyState.Preparing)
+                return true;
+
+            hasAttackSlot = EnemyAttackManager.TryAcquire(this);
+
+            return hasAttackSlot;
+        });
+
+        if (currentState != EnemyState.Preparing)
+        {
+            attackCoroutine = null;
+            yield break;
+        }
+
         RuntimeManager.PlayOneShot(agro.nameIndex, transform.position);
 
-        yield return new WaitUntil(() => windUpEnded);
-        
+        yield return new WaitUntil(() =>
+            windUpEnded || currentState != EnemyState.Preparing
+        );
+
+        if (currentState != EnemyState.Preparing)
+        {
+            ReleaseAttackSlot();
+            attackCoroutine = null;
+            yield break;
+        }
+
         windUpEnded = false;
 
         var chaseInstance = RuntimeManager.CreateInstance(chase.nameIndex);
-        RuntimeManager.AttachInstanceToGameObject(chaseInstance,gameObject);
+        RuntimeManager.AttachInstanceToGameObject(chaseInstance, gameObject);
         chaseInstance.start();
 
         animator.SetTrigger("AttackStart");
+
         yield return StartCoroutine(Plunge(target.position));
-        chaseInstance.setParameterByName("HitSmth",1);
-        
-        EnemyAttackManager.Release(this);
+
+        chaseInstance.setParameterByName("HitSmth", 1);
+
+        ReleaseAttackSlot();
         chaseInstance.release();
-        animator.SetTrigger("AttackEnd");
-        if (currentState != EnemyState.Vulnerable){
+
+        if (currentState != EnemyState.Vulnerable)
+        {
             SetState(EnemyState.Idle);
         }
-        else{
+        else
+        {
             yield return new WaitForSeconds(recoverTime);
+
             SetState(EnemyState.Idle);
-            status.RemoveDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
+            animator.SetBool("IsStunned", false);
+
+            status.RemoveDamageModifier(
+                GlobalModifiers.Instance.Get("Vulnerable")
+            );
         }
+
+        attackCoroutine = null;
+    }
+
+        private void ReleaseAttackSlot()
+    {
+        if (!hasAttackSlot)
+            return;
+
+        EnemyAttackManager.Release(this);
+        hasAttackSlot = false;
     }
     private IEnumerator Plunge(Vector2 targetPosition)
     {
@@ -138,7 +220,7 @@ public class ChargingEnemy : BaseEnemy
         RefreshDirection(direction);
 
         float time = 0f;
-
+        animator.SetBool("IsAttacking",true);
         attack.hitbox.BeginAttack(
             (Vector2)transform.position - targetPosition,
             attack.damage,
@@ -166,6 +248,7 @@ public class ChargingEnemy : BaseEnemy
         }
 
         attack.hitbox.EndAttack();
+        animator.SetBool("IsAttacking",false);
     }
     private Vector2 AvoidWalls(Vector2 direction)
     {
@@ -191,12 +274,16 @@ public class ChargingEnemy : BaseEnemy
         {
 
             hitSolid = true;
+
             if (currentState != EnemyState.Attack)
                 return;
+
             SetState(EnemyState.Vulnerable);
             status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
             flash.FlashMultiple(7,0.15f,0.25f,0.6f);
-            
+            animator.SetTrigger("Hit");
+            animator.SetBool("IsMoving",false);
+         
         }
     }
 
@@ -210,7 +297,8 @@ public class ChargingEnemy : BaseEnemy
 
     public void WindUpEnded()
     {
-        windUpEnded = true;
+        if (currentState == EnemyState.Preparing)
+            windUpEnded = true;
     }
 
     private void RefreshDirection(Vector2 direction)
@@ -221,6 +309,20 @@ public class ChargingEnemy : BaseEnemy
         transform.localScale = scale;
     }
 
+    public override void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
+    {
+        if (currentState == EnemyState.Attack)
+        return;
+        animator.SetTrigger("Hit");
+        animator.SetBool("IsStunned",true);
+        base.Hook(origin,direction,offset,pullSpeed);
+    }
+
+    protected override IEnumerator HookRoutine(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
+    {
+        yield return base.HookRoutine(origin,direction,offset,pullSpeed);
+        animator.SetBool("IsStunned",false);
+    }
     public override void Respawn()
     {
         StopAllCoroutines();
@@ -242,4 +344,20 @@ public class ChargingEnemy : BaseEnemy
         animator.SetBool("IsMoving", false);
         animator.SetBool("Died", false);
     }
+
+        protected override void ResetConditions()
+    {
+        animator.SetBool("IsMoving",false);
+        animator.SetTrigger("Hit");
+        base.ResetConditions();
+    }
+
+    public override void Stun()
+    {
+        animator.SetTrigger("Hit");
+        animator.SetBool("IsStunned",true);
+        ResetConditions();
+        SetState(EnemyState.Stunned);
+    }
+
 }

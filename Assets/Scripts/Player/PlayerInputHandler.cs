@@ -46,6 +46,13 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action SecondaryAttackPressed;
     public event Action UtilityPressed;
     public event Action UtilityReleased;
+
+    public event Action UtilityAttack;
+
+    public event Action Dash;
+
+    public event Action Heal;
+    
     
     private bool fishingRodPressed = false;
     
@@ -93,6 +100,15 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.Player.SecondaryAttack.WasPressedThisFrame())
             SecondaryAttackPressed?.Invoke();
 
+        if (inputActions.Player.Heal.WasPressedThisFrame())
+        {
+            Heal.Invoke();
+        }
+
+        if (inputActions.Player.Evade.WasPressedThisFrame())
+        {
+            Dash.Invoke();
+        }
         
         
         UpdateFishingRodInput();

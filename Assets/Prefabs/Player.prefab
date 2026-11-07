@@ -165,7 +165,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.15126675, y: -0.8193617}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -175,7 +175,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6974665, y: 0.7478888}
   m_EdgeRadius: 0
 --- !u!114 &891215924386679053
 MonoBehaviour:
@@ -204,6 +204,7 @@ MonoBehaviour:
   iTime: 0.1
   footsteps: {fileID: 11400000, guid: b63f7798535bf9442ab3560ffb45b5d3, type: 2}
   moveSpeed: 5
+  solidCollider: {fileID: 7770112638388470763}
 --- !u!114 &9039514880073438561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +222,8 @@ MonoBehaviour:
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
   utilityTimeThreshold: 0.1
+  dashForce: 100
+  dashCooldown: 1
 --- !u!114 &6713670092330104184
 MonoBehaviour:
   m_ObjectHideFlags: 0

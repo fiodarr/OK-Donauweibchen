@@ -5,6 +5,7 @@ public abstract class Hitable : MonoBehaviour
     [SerializeField] float iTime = 0.1f;
 
     private float lastHitTime = -Mathf.Infinity;
+    
 
     public void TakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {

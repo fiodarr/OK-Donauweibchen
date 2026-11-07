@@ -1,5 +1,7 @@
 
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,6 +13,9 @@ public class BaseEnemy : Hitable, IHookable
         Preparing,
         Attack,
         Vulnerable,
+
+        Hooked,
+        Stunned,
         Died
     }
 
@@ -20,11 +25,9 @@ public class BaseEnemy : Hitable, IHookable
     
     protected EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
-    [SerializeField] private float knockbackDuration = 0.15f;
 
     [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
-    private Coroutine knockbackCoroutine;
 
     protected virtual void Awake()
     {
@@ -39,51 +42,23 @@ public class BaseEnemy : Hitable, IHookable
     {
         status.TakeDamage(damage);
 
-        if (knockbackCoroutine != null)
-            StopCoroutine(knockbackCoroutine);
-
-        knockbackCoroutine = StartCoroutine(
-            ApplyKnockback(damageDirection.normalized)
-        );
+        
+        ApplyKnockback(damageDirection.normalized,knockback);
+        
 
         if (status.GetHealth() <= 0)
             Die();
     }
 
-    private IEnumerator ApplyKnockback(Vector2 direction)
+    private void ApplyKnockback(Vector2 direction, float amount)
     {
-        float elapsed = 0f;
-
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(Layers.Walls);
-        filter.useTriggers = false;
-
-        RaycastHit2D[] hits = new RaycastHit2D[1];
-
-        while (elapsed < knockbackDuration)
-        {
-            float multiplier = 1f - elapsed / knockbackDuration;
-            float distance = knockbackForce * multiplier * Time.fixedDeltaTime;
-
-            int hitCount = Rb.Cast(direction, filter, hits, distance);
-
-            if (hitCount == 0)
-            {
-                Rb.MovePosition(Rb.position + direction * distance);
-            }
-
-            elapsed += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-
-        knockbackCoroutine = null;
+        Rb.AddForce(direction * knockbackForce * amount, ForceMode2D.Impulse);
     }
     protected virtual void Die()
     {
         SetState(EnemyState.Died);
 
         StopAllCoroutines();
-        knockbackCoroutine = null;
 
         Rb.linearVelocity = Vector2.zero;
         Rb.angularVelocity = 0f;
@@ -111,22 +86,27 @@ public class BaseEnemy : Hitable, IHookable
             col.enabled = true;
         }
 
-        knockbackCoroutine = null;
-
         status.ResetStatus();
 
         currentState = EnemyState.Idle;
     }
 
-    public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
+    public virtual void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
-        ResetConditions();
+        StartCoroutine(HookRoutine(origin, direction, offset, pullSpeed));
+    }
+
+    protected virtual IEnumerator HookRoutine(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
+    {
+        SetState(EnemyState.Hooked);
         Vector2 destination = origin + direction.normalized * offset;
         float distance = Vector2.Distance(transform.position, destination);
         float pullDuration = distance / pullSpeed;
-        StartCoroutine(PullTowards(origin + direction.normalized * offset, pullDuration));
+        yield return PullTowards(origin + direction.normalized * offset, pullDuration);
+        SetState(EnemyState.Stunned);
+        yield return new WaitForSeconds(2f);
+        SetState(EnemyState.Idle);
     }
-
     private IEnumerator PullTowards(Vector2 destination, float duration = 0.15f)
     {
         
@@ -150,10 +130,22 @@ public class BaseEnemy : Hitable, IHookable
         return Rb.position;
     }
 
+    public virtual void Stun(float duration)
+    {
+        throw new NotImplementedException();
+    }
+    public virtual void Stun()
+    {
+        SetState(EnemyState.Stunned);
+    }
+    public virtual void DeStun()
+    {
+        SetState(EnemyState.Idle);
+    }
+    
     protected virtual void ResetConditions()
     {
         StopAllCoroutines();
-        knockbackCoroutine = null;
         SetState(EnemyState.Idle);
     }
 

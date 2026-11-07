@@ -24,11 +24,13 @@ public class PlayerController : Hitable
     public Vector2 FacingDirection { get; private set; }
     public Action OnDamaged;
 
+    [SerializeField] private  Collider2D solidCollider;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerComponents = GetComponent<PlayerComponents>();
-
+        solidCollider.forceSendLayers-=Layers.Enemy;
 
         mainCamera = Camera.main;
     }

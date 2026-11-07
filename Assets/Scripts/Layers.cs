@@ -15,4 +15,7 @@ public static class Layers
     public static readonly int RestSpots = LayerMask.GetMask("RestSpots");
 
 
+    public static readonly int Enemy = LayerMask.GetMask("Enemy");
+
+
 }

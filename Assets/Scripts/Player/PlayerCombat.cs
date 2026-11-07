@@ -8,6 +8,8 @@ public class PlayerCombat : MonoBehaviour
     {
         Default,
         Attacking,
+
+        Dashing,
         ChoosingTarget,
         Swinging,
         Pulling
@@ -28,6 +30,9 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
     private Coroutine currentUtilityCoroutine;
 
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashCooldown;
+    private bool canDash = true;
     public bool LockMove
     {
         get
@@ -63,6 +68,7 @@ public class PlayerCombat : MonoBehaviour
         playerComponents.inputHandler.SecondaryAttackPressed += TrySecondaryAttack;
         playerComponents.inputHandler.UtilityPressed += TryStartUtility;
         playerComponents.inputHandler.UtilityReleased += TryFinishUtility;
+        playerComponents.inputHandler.Dash += Dash;
         //Sub for the interrupt action
         playerComponents.controller.OnDamaged += InterruptUtility;
     }
@@ -74,6 +80,7 @@ public class PlayerCombat : MonoBehaviour
         playerComponents.inputHandler.SecondaryAttackPressed -= TrySecondaryAttack;
         playerComponents.inputHandler.UtilityPressed -= TryStartUtility;
         playerComponents.inputHandler.UtilityReleased -= TryFinishUtility;
+        playerComponents.inputHandler.Dash -= Dash;
         //Unsub from the interrupt action
     }
 
@@ -126,7 +133,7 @@ public class PlayerCombat : MonoBehaviour
             yield break;
         }
         if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = playerComponents.inputHandler.MoveInput.normalized;
+            currentDirection = playerComponents.inputHandler.LookDirection;
         if (attack.chargeSound!=null){
             RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
         }
@@ -167,11 +174,34 @@ public class PlayerCombat : MonoBehaviour
         currentState = CombatState.Default;
     }
 
+        private void Dash()
+    {
+        
+        if (currentState == CombatState.Default && canDash)
+        {
+
+            StartCoroutine(PerformDash());
+        }
+        
+    }
+
+    private IEnumerator PerformDash()
+    {
+        canDash = false;
+        currentDirection = playerComponents.inputHandler.MoveInput.normalized;
+        currentState = CombatState.Dashing;
+        rb.AddForce(currentDirection * dashForce,ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        currentState = CombatState.Default;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+
+    }
+
     private void TryStartUtility()
     {
         if (currentState != CombatState.Default || !equippedUtilityItem)
         {
-            
             return;
         }
         Debug.Log("TryStartUtility");

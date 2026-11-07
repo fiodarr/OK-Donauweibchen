@@ -315,7 +315,7 @@ MonoBehaviour:
   - {fileID: 2518037694342659847}
   - {fileID: 4414743930393434617}
   detectionRange: 12
-  prepareTime: 1
+  prepareTime: 2
   avoidanceDuration: 0.4
   avoidanceDistance: 2
   avoidanceStrength: 3
