@@ -37,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7693407314654203053}
+  - {fileID: 4280930237211182276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &455332592711480605
@@ -96,7 +97,7 @@ SpriteRenderer:
   m_Size: {x: 1.3575, y: 2.925}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 1
 --- !u!50 &666567065207486226
 Rigidbody2D:
@@ -141,12 +142,27 @@ MonoBehaviour:
   knockbackForce: 6
   hurtbox:
   - {fileID: 4101500662619592503}
-  detectionRange: 4.61
-  loseTargetRange: 5.5
+  detectionRange: 6.46
+  loseTargetRange: 9.05
   attackRange: 1.63
+  flashController: {fileID: 4843215042342714813}
   moveSpeed: 2
   step: {fileID: 11400000, guid: c46ce6df7c2fe4df983699ffafc0719d, type: 2}
+  detectionPivot: {fileID: 4280930237211182276}
   animator: {fileID: 5044599034753306352}
+  attack:
+    damage:
+    - amount: 5
+      type: 0
+    knockback: 5
+    launchForce: 5
+    attackSound: {fileID: 0}
+    chargeSound: {fileID: 0}
+    chargeTime: 0
+    activeTime: 0.15
+    recoveryTime: 0
+    comboTime: 0
+    hitbox: {fileID: 6120490825020966516}
 --- !u!61 &4101500662619592503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,17 +197,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.17056751, y: -1.3585672}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5275, y: 2.4275}
-    newSize: {x: 1.3575, y: 2.925}
+    oldSize: {x: 4.8, y: 4.8}
+    newSize: {x: 4.8, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2081013, y: 0.92982006}
   m_EdgeRadius: 0
 --- !u!114 &4843215042342714813
 MonoBehaviour:
@@ -244,6 +260,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3451382735537725800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4280930237211182276}
+  m_Layer: 13
+  m_Name: pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4280930237211182276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451382735537725800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8789448818484776594}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4640889511158308574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +348,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}
+--- !u!114 &6120490825020966516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1483823472940734634, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}
+  m_PrefabInstance: {fileID: 4640889511158308574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4de5b8e71d74b0180fd13f78258446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
 --- !u!4 &7693407314654203053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3072503179682140787, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}

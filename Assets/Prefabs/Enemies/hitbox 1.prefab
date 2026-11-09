@@ -26,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2737277900778356590}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3537, y: -0.376, z: 0}
-  m_LocalScale: {x: 0.90876347, y: 0.8750324, z: 0.38822463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3072503179682140787}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 3072503179682140787}
   - component: {fileID: 1483823472940734634}
   - component: {fileID: 3717206933019780229}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: hitbox 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,8 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   spriteRenderer: {fileID: 5780554205248668550}
   hitbox: {fileID: 2934047991888001468}
-  hitObjectsToIgnore:
-  - {fileID: 0}
+  hitObjectsToIgnore: []
 --- !u!50 &3717206933019780229
 Rigidbody2D:
   serializedVersion: 5
