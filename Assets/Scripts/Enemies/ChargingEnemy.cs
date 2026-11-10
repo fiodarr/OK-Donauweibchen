@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Linq;
 using FMODUnity;
@@ -5,21 +6,18 @@ using UnityEngine;
 
 public class ChargingEnemy : BaseEnemy
 {
-    
-
     [Header("Detection")]
     [SerializeField] private float detectionRange = 7f;
+
     [Header("Prepare")]
     [SerializeField] private float prepareTime = 0.5f;
 
-    [Header("Wall Avoidance")]
-    [SerializeField] private float avoidanceDuration = 1f;
-    [SerializeField] private float avoidanceDistance = 2f;
-    [SerializeField] private float avoidanceStrength = 3f;
+    [Header("Wall Collision")]
+    [SerializeField] private float wallCollisionDelay = 0.1f;
 
     [SerializeField] private SoundEvent agro;
     [SerializeField] private SoundEvent chase;
-    
+
     [Header("Plunge")]
     [SerializeField] private float plungeSpeed = 12f;
 
@@ -31,17 +29,13 @@ public class ChargingEnemy : BaseEnemy
     [Header("Recovery")]
     [SerializeField] private float recoverTime = 3f;
 
-
     private bool hitSolid;
-
-
-    private bool hitWallWhileMoving;
+    private bool canHitWall;
     private bool windUpEnded;
+
     private Transform target;
 
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
-
     private FlashController flash;
 
     private Coroutine attackCoroutine;
@@ -50,19 +44,15 @@ public class ChargingEnemy : BaseEnemy
     protected override void Awake()
     {
         base.Awake();
+
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         flash = GetComponent<FlashController>();
-        
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
-
-        if (currentState == EnemyState.Died)
-            return;
-
-        if (currentState != EnemyState.Idle)
-            return;
+        if (currentState == EnemyState.Died) return;
+        if (currentState != EnemyState.Idle) return;
 
         Collider2D player = Physics2D.OverlapCircle(
             transform.position,
@@ -70,38 +60,44 @@ public class ChargingEnemy : BaseEnemy
             Layers.Player
         );
 
-        if (player != null)
+        if (player == null) return;
+
+        target = player.transform;
+
+        float distance = Vector2.Distance(Rb.position, target.position);
+
+        if (distance > 6f || hitSolid)
         {
-            target = player.transform;
-            if (Vector2.Distance(transform.position, target.position) > 6f || hitSolid)
-            {
-                animator.SetBool("IsMoving", false);
+            animator.SetBool("IsMoving", false);
 
-                if (attackCoroutine == null)
-                    attackCoroutine = StartCoroutine(Attack());
-            }
-            else
-            {
-                animator.SetBool("IsMoving",true);
-                Vector2 direction = -((Vector2)target.position - Rb.position).normalized;
-                RefreshDirection(direction);
+            if (attackCoroutine == null)
+                attackCoroutine = StartCoroutine(Attack());
 
-                direction = AvoidWalls(direction);
-                Vector2 perpendicular = new Vector2(-direction.y, direction.x);
-                Vector2 movement = direction * moveSpeed * Time.fixedDeltaTime;
-                float curve = Mathf.Sin(Time.time * curveFrequency) * curveAmplitude * Time.deltaTime;
-
-                Rb.MovePosition(Rb.position + movement + perpendicular * curve);
-            }
+            return;
         }
+
+        // Run away from the player.
+        animator.SetBool("IsMoving", true);
+
+        Vector2 direction = (Rb.position - (Vector2)target.position).normalized;
+
+        RefreshDirection(direction);
+
+        Vector2 perpendicular = new Vector2(-direction.y, direction.x);
+
+        Vector2 movement = direction * moveSpeed * Time.fixedDeltaTime;
+        float curve = Mathf.Sin(Time.time * curveFrequency)
+                      * curveAmplitude * Time.fixedDeltaTime;
+
+        Rb.MovePosition(Rb.position + movement + perpendicular * curve);
     }
+    
 
     protected override void OnTakeDamage(
         Vector2 damageDirection,
         DamageData[] damage,
         float knockback)
     {
-
         if (currentState == EnemyState.Preparing)
         {
             windUpEnded = false;
@@ -111,7 +107,8 @@ public class ChargingEnemy : BaseEnemy
                 StopCoroutine(attackCoroutine);
                 attackCoroutine = null;
             }
-            animator.SetBool("IsAttacking",false);
+
+            animator.SetBool("IsAttacking", false);
             ReleaseAttackSlot();
 
             SetState(EnemyState.Idle);
@@ -125,9 +122,10 @@ public class ChargingEnemy : BaseEnemy
         base.OnTakeDamage(damageDirection, damage, knockback);
     }
 
-        private IEnumerator Attack()
+    private IEnumerator Attack()
     {
         animator.SetBool("IsMoving", false);
+
         SetState(EnemyState.Preparing);
 
         windUpEnded = false;
@@ -201,7 +199,7 @@ public class ChargingEnemy : BaseEnemy
         attackCoroutine = null;
     }
 
-        private void ReleaseAttackSlot()
+    private void ReleaseAttackSlot()
     {
         if (!hasAttackSlot)
             return;
@@ -209,10 +207,13 @@ public class ChargingEnemy : BaseEnemy
         EnemyAttackManager.Release(this);
         hasAttackSlot = false;
     }
+
     private IEnumerator Plunge(Vector2 targetPosition)
     {
         SetState(EnemyState.Attack);
+
         hitSolid = false;
+        canHitWall = false;
 
         Vector2 direction = (targetPosition - Rb.position).normalized;
         Vector2 perpendicular = new Vector2(-direction.y, direction.x);
@@ -220,7 +221,9 @@ public class ChargingEnemy : BaseEnemy
         RefreshDirection(direction);
 
         float time = 0f;
-        animator.SetBool("IsAttacking",true);
+
+        animator.SetBool("IsAttacking", true);
+
         attack.hitbox.BeginAttack(
             (Vector2)transform.position - targetPosition,
             attack.damage,
@@ -231,68 +234,46 @@ public class ChargingEnemy : BaseEnemy
         {
             time += Time.fixedDeltaTime;
 
-            if (time <= avoidanceDuration)
-            {
-                direction = AvoidWalls(direction);
-                perpendicular = new Vector2(-direction.y, direction.x);
-                RefreshDirection(direction);
-            }
+            if (!canHitWall && time >= wallCollisionDelay)
+                canHitWall = true;
 
             Vector2 movement = direction * plungeSpeed * Time.fixedDeltaTime;
+
             float curve = Mathf.Sin(time * curveFrequency) *
-                        curveAmplitude * Time.fixedDeltaTime;
+                          curveAmplitude * Time.fixedDeltaTime;
 
             Rb.MovePosition(Rb.position + movement + perpendicular * curve);
 
             yield return new WaitForFixedUpdate();
         }
 
+        canHitWall = false;
+
         attack.hitbox.EndAttack();
-        animator.SetBool("IsAttacking",false);
+        animator.SetBool("IsAttacking", false);
     }
-    private Vector2 AvoidWalls(Vector2 direction)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        RaycastHit2D hit = Physics2D.Raycast(
-            Rb.position,
-            direction,
-            avoidanceDistance,
-            Layers.Walls
+        if (!canHitWall || currentState != EnemyState.Attack)
+            return;
+
+        if (((1 << collision.gameObject.layer) & Layers.Walls) == 0)
+            return;
+
+        hitSolid = true;
+        canHitWall = false;
+
+        SetState(EnemyState.Vulnerable);
+
+        status.AddDamageModifier(
+            GlobalModifiers.Instance.Get("Vulnerable")
         );
 
-        if (hit.collider == null)
-            return direction;
+        flash.FlashMultiple(7, 0.15f, 0.25f, 0.6f);
 
-        Vector2 slideDirection = direction - Vector2.Dot(direction, hit.normal) * hit.normal;
-
-        return slideDirection.normalized;
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-
-
-        if (((1 << other.gameObject.layer) & Layers.Walls) != 0)
-        {
-
-            hitSolid = true;
-
-            if (currentState != EnemyState.Attack)
-                return;
-
-            SetState(EnemyState.Vulnerable);
-            status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
-            flash.FlashMultiple(7,0.15f,0.25f,0.6f);
-            animator.SetTrigger("Hit");
-            animator.SetBool("IsMoving",false);
-         
-        }
-    }
-
-    protected override void Die()
-    {
-        attack.hitbox.EndAttack();
-        StopAllCoroutines();
-        base.Die();
-        animator.SetBool("Died",true);
+        animator.SetTrigger("Hit");
+        animator.SetBool("IsMoving", false);
     }
 
     public void WindUpEnded()
@@ -304,25 +285,51 @@ public class ChargingEnemy : BaseEnemy
     private void RefreshDirection(Vector2 direction)
     {
         animator.SetFloat("VerticalDirection", direction.y);
+
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? -1 : 1);
+
         transform.localScale = scale;
     }
 
-    public override void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
+    public override void Hook(
+        Vector2 origin,
+        Vector2 direction,
+        float offset,
+        float pullSpeed)
     {
         if (currentState == EnemyState.Attack)
-        return;
+            return;
+
         animator.SetTrigger("Hit");
-        animator.SetBool("IsStunned",true);
-        base.Hook(origin,direction,offset,pullSpeed);
+        animator.SetBool("IsStunned", true);
+
+        base.Hook(origin, direction, offset, pullSpeed);
     }
 
-    protected override IEnumerator HookRoutine(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
+    protected override IEnumerator HookRoutine(
+        Vector2 origin,
+        Vector2 direction,
+        float offset,
+        float pullSpeed)
     {
-        yield return base.HookRoutine(origin,direction,offset,pullSpeed);
-        animator.SetBool("IsStunned",false);
+        yield return base.HookRoutine(origin, direction, offset, pullSpeed);
+
+        animator.SetBool("IsStunned", false);
     }
+
+    protected override void Die()
+    {
+        attack.hitbox.EndAttack();
+        canHitWall = false;
+
+        StopAllCoroutines();
+
+        base.Die();
+
+        animator.SetBool("Died", true);
+    }
+
     public override void Respawn()
     {
         StopAllCoroutines();
@@ -334,9 +341,11 @@ public class ChargingEnemy : BaseEnemy
         base.Respawn();
 
         hitSolid = false;
-        hitWallWhileMoving = false;
+        canHitWall = false;
         windUpEnded = false;
         target = null;
+        attackCoroutine = null;
+        hasAttackSlot = false;
 
         animator.Rebind();
         animator.Update(0f);
@@ -345,19 +354,20 @@ public class ChargingEnemy : BaseEnemy
         animator.SetBool("Died", false);
     }
 
-        protected override void ResetConditions()
+    protected override void ResetConditions()
     {
-        animator.SetBool("IsMoving",false);
+        animator.SetBool("IsMoving", false);
         animator.SetTrigger("Hit");
+
         base.ResetConditions();
     }
 
     public override void Stun()
     {
         animator.SetTrigger("Hit");
-        animator.SetBool("IsStunned",true);
+        animator.SetBool("IsStunned", true);
+
         ResetConditions();
         SetState(EnemyState.Stunned);
     }
-
 }

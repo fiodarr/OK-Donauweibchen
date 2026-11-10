@@ -12,6 +12,11 @@ public class AttackData
     public SoundEvent attackSound;
     public SoundEvent chargeSound;
 
+    [Header("Vibration")]
+
+    public float vibrationVelocity;
+    public float vibrationLength;
+
     [Header("Timing")]
     public float chargeTime = 0f;
     public float activeTime = 0.15f;

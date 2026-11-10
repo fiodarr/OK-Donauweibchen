@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -28,11 +29,13 @@ public class BaseEnemy : Hitable, IHookable
 
     [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
+    private SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EntityStatus>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         startPosition = transform.position;
         startRotation = transform.rotation;
@@ -59,7 +62,10 @@ public class BaseEnemy : Hitable, IHookable
         SetState(EnemyState.Died);
 
         StopAllCoroutines();
-
+       
+        HitStopManager.Instance.Stop(0.4f, 0f);
+        CameraShake.Instance.Shake(0.02f,0.04f);
+        GamepadVibration.Instance.Vibrate(2, 0.05f);
         Rb.linearVelocity = Vector2.zero;
         Rb.angularVelocity = 0f;
 
@@ -67,6 +73,8 @@ public class BaseEnemy : Hitable, IHookable
         {
             col.enabled = false;
         }
+
+        StartCoroutine(FadeOut());
     }
 
     public virtual void Respawn()
@@ -89,6 +97,10 @@ public class BaseEnemy : Hitable, IHookable
         status.ResetStatus();
 
         currentState = EnemyState.Idle;
+
+        Color color = spriteRenderer.color;
+        color.a = 1f;
+        spriteRenderer.color = color;
     }
 
     public virtual void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
@@ -157,6 +169,7 @@ public class BaseEnemy : Hitable, IHookable
         {
             currentState = state;   
         }
+        Debug.Log(currentState);
     }
 
     protected virtual void OnPullStart()
@@ -167,5 +180,29 @@ public class BaseEnemy : Hitable, IHookable
     protected virtual void OnPullEnd()
     {
         
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float duration = 2f;
+        float elapsed = 0f;
+
+        Color originalColor = spriteRenderer.color;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            Color color = originalColor;
+            color.a = 1f - Mathf.Clamp01(elapsed / duration);
+
+            spriteRenderer.color = color;
+
+            yield return null;
+        }
+
+        Color finalColor = originalColor;
+        finalColor.a = 0f;
+        spriteRenderer.color = finalColor;
     }
 }

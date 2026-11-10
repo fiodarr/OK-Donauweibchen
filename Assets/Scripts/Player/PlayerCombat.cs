@@ -137,6 +137,7 @@ public class PlayerCombat : MonoBehaviour
         if (attack.chargeSound!=null){
             RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
         }
+        GamepadVibration.Instance.Vibrate(attack.vibrationVelocity, attack.vibrationLength);
         yield return new WaitForSeconds(attack.chargeTime);
         RuntimeManager.PlayOneShot(attack.attackSound.nameIndex);
         
