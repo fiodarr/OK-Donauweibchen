@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BaseEnemy : Hitable, IHookable
@@ -21,6 +22,7 @@ public class BaseEnemy : Hitable, IHookable
     }
 
     private Vector3 startPosition;
+    [SerializeField] private ShadowCaster2D shadowCaster;
     private Quaternion startRotation;
     protected EnemyState currentState = EnemyState.Idle;
     
@@ -101,6 +103,11 @@ public class BaseEnemy : Hitable, IHookable
         Color color = spriteRenderer.color;
         color.a = 1f;
         spriteRenderer.color = color;
+
+        if (shadowCaster != null)
+        {
+            shadowCaster.enabled = true;
+        }
     }
 
     public virtual void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
@@ -204,5 +211,9 @@ public class BaseEnemy : Hitable, IHookable
         Color finalColor = originalColor;
         finalColor.a = 0f;
         spriteRenderer.color = finalColor;
+        if (shadowCaster != null)
+        {
+            shadowCaster.enabled = false;
+        }
     }
 }

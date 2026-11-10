@@ -92,9 +92,10 @@ public class PlayerController : Hitable
         OnDamaged?.Invoke();
         
         playerComponents.status.TakeDamage(damage);
-        
+        GamepadVibration.Instance.Vibrate(2,0.1f);
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+        playerComponents.lantern.Blink();
     }
 
     IEnumerator Footsteps()

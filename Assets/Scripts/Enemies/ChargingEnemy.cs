@@ -253,9 +253,9 @@ public class ChargingEnemy : BaseEnemy
         animator.SetBool("IsAttacking", false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!canHitWall || currentState != EnemyState.Attack)
+        if (!canHitWall || hitSolid || currentState != EnemyState.Attack)
             return;
 
         if (((1 << collision.gameObject.layer) & Layers.Walls) == 0)
@@ -264,14 +264,12 @@ public class ChargingEnemy : BaseEnemy
         hitSolid = true;
         canHitWall = false;
 
-        SetState(EnemyState.Vulnerable);
+        Rb.linearVelocity = Vector2.zero;
 
-        status.AddDamageModifier(
-            GlobalModifiers.Instance.Get("Vulnerable")
-        );
+        SetState(EnemyState.Vulnerable);
+        status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
 
         flash.FlashMultiple(7, 0.15f, 0.25f, 0.6f);
-
         animator.SetTrigger("Hit");
         animator.SetBool("IsMoving", false);
     }
@@ -333,7 +331,8 @@ public class ChargingEnemy : BaseEnemy
     public override void Respawn()
     {
         StopAllCoroutines();
-
+        animator.Rebind();
+        animator.Update(0f);
         attack.hitbox.EndAttack();
 
         EnemyAttackManager.Release(this);

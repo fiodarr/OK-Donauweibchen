@@ -238,6 +238,8 @@ public class Drowned : BaseEnemy
     public override void Respawn()
     {
         animator.SetBool("IsDead", false);
+        animator.Rebind();
+        animator.Update(0f);
         base.Respawn();
     }
 }
