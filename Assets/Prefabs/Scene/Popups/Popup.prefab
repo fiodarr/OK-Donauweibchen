@@ -263,4 +263,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Popup
   text: {fileID: 4856876227116820515}
-  parser: {fileID: 138283495414738078, guid: f10afd3e608d3ef4292b944a46934d6f, type: 3}
+  parser: {fileID: 0}

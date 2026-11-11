@@ -4,7 +4,16 @@ using UnityEngine.InputSystem;
 
 public class PopupParser: MonoBehaviour
 {
-    [SerializeField] private PlayerInputHandler inputHandler;
+    [SerializeField] private PlayerComponents components;
+    private PlayerInputHandler inputHandler;
+
+    private void Awake()
+    {
+        inputHandler = components.inputHandler;
+
+        Debug.Log($"Parser instance: {this.GetInstanceID()}");
+        Debug.Log($"Assigned handler: {inputHandler}");
+    }
     
     public void Parse(Popup popup, TextAsset textAsset)
     {
@@ -59,9 +68,11 @@ public class PopupParser: MonoBehaviour
 
     private InputReferenceData GetActionData(string input)
     {
+        Debug.Log($"Parser instance: {this.GetInstanceID()}");
+        Debug.Log($"Components: {components}");
+        Debug.Log($"Handler: {inputHandler}");
         //TODO: Interchange between names for PS, Xbox, or PC input
         string actionName;
-        
         switch (input)
         {
             case "Attack":

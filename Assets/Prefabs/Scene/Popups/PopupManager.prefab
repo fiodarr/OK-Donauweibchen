@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236498d474854080b01068cb29573761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupParser
-  inputHandler: {fileID: 0}
+  components: {fileID: 0}
 --- !u!114 &7412218256385163226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
     isPause: 0
     timer: 5
   - popupEvent: 1
-    popup: {fileID: 3087342027057277710, guid: 4a36171412e18b549b2d9bd311fd30f6, type: 3}
+    popup: {fileID: 0}
     textAsset: {fileID: 4900000, guid: 26169e96a2574feaac15b3277fd01cdc, type: 3}
     isPause: 0
     timer: 5
