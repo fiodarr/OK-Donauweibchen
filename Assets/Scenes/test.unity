@@ -5961,7 +5961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76cb2f5417642c0b09c092633c7cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionPopupTrigger
-  eventToTrigger: 4
+  eventToTrigger: 0
 --- !u!4 &1041682679
 Transform:
   m_ObjectHideFlags: 0
@@ -6287,18 +6287,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1882624457 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 800968656303662243, guid: 6a59c650ad56249dba6cc3791f1adacf, type: 3}
-  m_PrefabInstance: {fileID: 1364735725160274838}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e4de5b8e71d74b0180fd13f78258446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
---- !u!43 &1951639670
+--- !u!43 &1818033273
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6476,6 +6465,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &1882624457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 800968656303662243, guid: 6a59c650ad56249dba6cc3791f1adacf, type: 3}
+  m_PrefabInstance: {fileID: 1364735725160274838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4de5b8e71d74b0180fd13f78258446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
 --- !u!1 &2013816595
 GameObject:
   m_ObjectHideFlags: 0
@@ -7088,6 +7088,10 @@ PrefabInstance:
       propertyPath: popups.Array.data[4].popup
       value: 
       objectReference: {fileID: 606702952}
+    - target: {fileID: 7412218256385163226, guid: f10afd3e608d3ef4292b944a46934d6f, type: 3}
+      propertyPath: popups.Array.data[0].isPause
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8710690354096897782, guid: f10afd3e608d3ef4292b944a46934d6f, type: 3}
       propertyPath: m_Name
       value: PopupManager
