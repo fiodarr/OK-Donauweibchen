@@ -4,5 +4,6 @@
     FishingRodPickup,
     FirstDamageReceived,
     FirstHooked,
-    EnemyVulnerable
+    EnemyVulnerable,
+    ArmoredEnemy
 }

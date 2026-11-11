@@ -115,6 +115,7 @@ public class Drowned : BaseEnemy
         yield return new WaitUntil(() => isStuck == true);
         animator.SetBool("IsStuck", true);
         SetState(EnemyState.Vulnerable);
+        PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
         status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
         ReleaseAttackSlot();
         flashController.FlashMultiple(5, 0.3f, 0.3f, 0.5f);
@@ -233,6 +234,7 @@ public class Drowned : BaseEnemy
     protected override void OnPullEnd()
     {
         animator.SetBool("IsHooked", false);
+        base.OnPullEnd();
     }
 
     public override void Respawn()

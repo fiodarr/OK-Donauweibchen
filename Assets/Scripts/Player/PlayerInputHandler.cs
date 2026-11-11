@@ -102,12 +102,12 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (inputActions.Player.Heal.WasPressedThisFrame())
         {
-            Heal.Invoke();
+            Heal?.Invoke();
         }
 
         if (inputActions.Player.Evade.WasPressedThisFrame())
         {
-            Dash.Invoke();
+            Dash?.Invoke();
         }
         
         UpdateFishingRodInput();

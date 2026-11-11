@@ -89,3 +89,8 @@ MonoBehaviour:
     textAsset: {fileID: 4900000, guid: 4122457b18be46c9a9c90c320b9e76a2, type: 3}
     isPause: 1
     timer: 0
+  - popupEvent: 5
+    popup: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 06b00ff4a365408a984717cf966cbd91, type: 3}
+    isPause: 0
+    timer: 0

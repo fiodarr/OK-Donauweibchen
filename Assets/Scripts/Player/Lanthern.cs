@@ -219,4 +219,9 @@ public class Lantern : MonoBehaviour
             blinkCoroutine = null;
         }
     }
+    
+    public void PickUp()
+    {
+        lanternLight.enabled = true;
+    }
 }

@@ -124,6 +124,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         OnPullStart();
         yield return PullTowards(origin + direction.normalized * offset, pullDuration);
         SetState(EnemyState.Stunned);
+        PopupManager.Instance.TriggerPopup(PopupEvent.FirstHooked);
         yield return new WaitForSeconds(2f);
         OnPullEnd();
         SetState(EnemyState.Idle);
@@ -186,7 +187,6 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void OnPullEnd()
     {
-        
     }
 
     private IEnumerator FadeOut()

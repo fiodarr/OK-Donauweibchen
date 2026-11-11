@@ -268,6 +268,7 @@ public class ChargingEnemy : BaseEnemy
         Rb.linearVelocity = Vector2.zero;
 
         SetState(EnemyState.Vulnerable);
+        PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
         status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
 
         flash.FlashMultiple(7, 0.15f, 0.25f, 0.6f);

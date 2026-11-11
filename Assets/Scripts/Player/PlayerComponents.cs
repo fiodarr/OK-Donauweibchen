@@ -9,8 +9,12 @@ public class PlayerComponents : MonoBehaviour
     public PlayerStatus status;
     public PlayerCombat combat;
     public PlayerController controller;
-
     public Lantern lantern;
-
     public CameraController cameraController;
+
+    public void PickUpLantern()
+    {
+        lantern.enabled = true;
+        lantern.PickUp();
+    }
 }
