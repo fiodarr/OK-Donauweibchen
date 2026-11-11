@@ -84,13 +84,11 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame() && controlScheme != ControlScheme.KeyboardMouse)
         {
             controlScheme = ControlScheme.KeyboardMouse;
-            Debug.Log("Scheme Changed" + controlScheme);
         }
 
         if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame() && controlScheme != ControlScheme.Controller)
         {
             controlScheme = ControlScheme.Controller;
-            Debug.Log("Scheme Changed" + controlScheme);
         }
 
         if (inputActions.Player.Interact.WasPressedThisFrame())

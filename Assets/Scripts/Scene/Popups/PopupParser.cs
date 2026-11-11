@@ -10,9 +10,6 @@ public class PopupParser: MonoBehaviour
     private void Awake()
     {
         inputHandler = components.inputHandler;
-
-        Debug.Log($"Parser instance: {this.GetInstanceID()}");
-        Debug.Log($"Assigned handler: {inputHandler}");
     }
     
     public void Parse(Popup popup, TextAsset textAsset)

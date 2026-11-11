@@ -14,8 +14,6 @@ public class IntensityMonitor: MonoBehaviour
     
     private HashSet<IIntensityEmitter> emitters = new HashSet<IIntensityEmitter>();
     
-    [SerializeField] protected float intensityModifier = 1f;
-    
     public IntensityLevel Intensity
     {
         get
@@ -37,8 +35,9 @@ public class IntensityMonitor: MonoBehaviour
     
     public Action OnIntensityChange;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name + " entered to monitor");
         if (other.TryGetComponent(out IIntensityEmitter intensityEmitter))
         {
             emitters.Add(intensityEmitter);

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class EnvironmentDirector: MonoBehaviour
@@ -11,6 +12,7 @@ public class EnvironmentDirector: MonoBehaviour
     [Header("Intensity Coefficient")]
     [SerializeField] private List<IntensityMonitor> monitors = new List<IntensityMonitor>();
     [SerializeField] private float intensityTransitionDuration = 3f;
+    [SerializeField] private StudioEventEmitter fmodEvent;
 
     private float currentIntensityValue = 0f;
 
@@ -116,7 +118,8 @@ public class EnvironmentDirector: MonoBehaviour
                 newIntensity,
                 intensityChangeSpeed * Time.deltaTime
             );
-
+            Debug.Log(currentIntensityValue);
+            fmodEvent.SetParameter("Intensity", currentIntensityValue);
             yield return null;
         }
 
