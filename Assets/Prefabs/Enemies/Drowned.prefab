@@ -158,7 +158,7 @@ MonoBehaviour:
     damage:
     - amount: 4
       type: 0
-    knockback: 5
+    knockback: 20
     launchForce: 5
     attackSound: {fileID: 11400000, guid: 2621913332e940c42a52073693f516a4, type: 2}
     chargeSound: {fileID: 11400000, guid: b180e3b10ead39a44a429dabf49673e1, type: 2}
