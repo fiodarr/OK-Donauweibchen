@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 946572679469188585}
   - component: {fileID: 3334766372010155868}
   - component: {fileID: 5628100194023929321}
+  - component: {fileID: 1947623019212992467}
   m_Layer: 13
   m_Name: Drowned
   m_TagString: Untagged
@@ -87,8 +88,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1424831913
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 3ebce79f79835448185aa1e923223b38, type: 3}
@@ -370,6 +371,23 @@ MonoBehaviour:
     - rid: 2028193466286342146
       type: {class: ShadowShape2DProvider_SpriteRenderer, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
+--- !u!114 &1947623019212992467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046421216750451889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d78a98bc9948a42a4264438796b272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSorting
+  spriteRenderer: {fileID: 163661864659815252}
+  feetPoint: {fileID: 0}
+  overLayer: over
+  behindLayer: basic
+  precision: 100
 --- !u!1 &4366700074116489672
 GameObject:
   m_ObjectHideFlags: 0
