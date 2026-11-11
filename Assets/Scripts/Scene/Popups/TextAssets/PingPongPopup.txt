@@ -1,0 +1,1 @@
+<Kick>After pulling an enemy, there’s a short time frame when you can kick it to send it flying. Press [Kick] to continue

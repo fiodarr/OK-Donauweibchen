@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BaseEnemy : Hitable, IHookable
+public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 {
     protected enum EnemyState
     {
@@ -163,5 +163,10 @@ public class BaseEnemy : Hitable, IHookable
         {
             currentState = state;   
         }
+    }
+
+    public IntensityMonitor.IntensityLevel GetIntensity()
+    {
+        return IntensityMonitor.IntensityLevel.Low;
     }
 }

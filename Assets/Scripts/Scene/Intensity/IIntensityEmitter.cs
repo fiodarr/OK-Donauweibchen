@@ -1,4 +1,4 @@
 ﻿public interface IIntensityEmitter
 {
-    public float GetIntensity();
+    public IntensityMonitor.IntensityLevel GetIntensity();
 }

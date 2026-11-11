@@ -35,6 +35,8 @@ public class PlayerController : Hitable
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
+        
         RefreshAimDirection();
     }
 
@@ -61,7 +63,7 @@ public class PlayerController : Hitable
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );
-
+        
         if (movement.magnitude > 0)
         {
             if (stepsRoutine == null)

@@ -86,7 +86,7 @@ public class UtilityItem: MonoBehaviour
             target = targetChooseDefault.GetTarget();
         }
         
-        if (target != null)
+        if (target != null && isSmart)
         {
             ShowChosenTargetSprite();
             chosenTargetSprite.transform.position = target.GetPosition() + new Vector2(0, 1.5f);

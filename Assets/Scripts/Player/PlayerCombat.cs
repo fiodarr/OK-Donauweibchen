@@ -175,6 +175,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
         Debug.Log("TryStartUtility");
+        UpdateUtility();
         currentState = CombatState.ChoosingTarget;
         equippedUtilityItem.ShowChosenTargetSprite();
     }
