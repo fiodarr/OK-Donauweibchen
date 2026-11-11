@@ -1,26 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class IntensityMonitor: MonoBehaviour
 {
+    public enum IntensityLevel
+    {
+        None = 0,
+        Low = 1,
+        High = 2
+    }
+    
     private HashSet<IIntensityEmitter> emitters = new HashSet<IIntensityEmitter>();
     
     [SerializeField] protected float intensityModifier = 1f;
     
-    public float Intensity
+    public IntensityLevel Intensity
     {
         get
         {
-            return emitters.Sum(emitter => emitter.GetIntensity()) * intensityModifier;
+            IntensityLevel level = IntensityLevel.None;
+            
+            foreach (var emitter in emitters)
+            {
+                IntensityLevel newLevel = emitter.GetIntensity();
+                if (newLevel > level)
+                {
+                    level = newLevel;
+                }
+            }
+            
+            return level;
         }
     }
+    
+    public Action OnIntensityChange;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out IIntensityEmitter intensityEmitter))
         {
             emitters.Add(intensityEmitter);
+            OnIntensityChange?.Invoke();
         }
     }
 
@@ -29,6 +51,7 @@ public class IntensityMonitor: MonoBehaviour
         if (other.TryGetComponent(out IIntensityEmitter intensityEmitter))
         {
             emitters.Remove(intensityEmitter);
+            OnIntensityChange?.Invoke();
         }
     }
 }

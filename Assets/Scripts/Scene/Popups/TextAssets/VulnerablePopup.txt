@@ -1,0 +1,1 @@
+<Interact>The enemy missed and is now Vulnerable. Attacks against it will deal double damage Press [Interact] to continue.

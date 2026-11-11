@@ -51,6 +51,7 @@ public class ChargingEnemy : BaseEnemy
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
         if (currentState == EnemyState.Died) return;
         if (currentState != EnemyState.Idle) return;
 

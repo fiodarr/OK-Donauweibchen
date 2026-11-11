@@ -76,6 +76,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
+        
         MoveInput = inputActions.Player.Move.ReadValue<Vector2>();
         MousePosition = inputActions.Player.Look.ReadValue<Vector2>();
         
@@ -110,10 +112,8 @@ public class PlayerInputHandler : MonoBehaviour
             Dash.Invoke();
         }
         
-        
         UpdateFishingRodInput();
     }
-    
 
     private void UpdateFishingRodInput()
     {
@@ -139,5 +139,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         
+    }
+    
+    public InputActions GetInputActions()
+    {
+        return inputActions;
+    }
+
+    public ControlScheme GetControlScheme()
+    {
+        return controlScheme;
+    }
+
+    public void CallUpdate()
+    {
+        Update();
     }
 }
