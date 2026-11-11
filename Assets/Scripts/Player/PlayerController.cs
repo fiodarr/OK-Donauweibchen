@@ -95,6 +95,7 @@ public class PlayerController : Hitable
         
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+        PopupManager.Instance.TriggerPopup(PopupEvent.FirstDamageReceived);
     }
 
     IEnumerator Footsteps()
