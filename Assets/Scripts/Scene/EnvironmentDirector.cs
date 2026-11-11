@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnvironmentDirector: MonoBehaviour
@@ -9,30 +10,117 @@ public class EnvironmentDirector: MonoBehaviour
     //How dangerous enemies are
     [Header("Intensity Coefficient")]
     [SerializeField] private List<IntensityMonitor> monitors = new List<IntensityMonitor>();
-    [SerializeField] private float maxIntensity;
-    [SerializeField] private float intensity;
+    [SerializeField] private float intensityTransitionDuration = 3f;
+
+    private float currentIntensityValue = 0f;
+
+    public float CurrentIntensityValue => currentIntensityValue;
+    private IntensityMonitor.IntensityLevel currentIntensityLevel; 
+
+    private Coroutine intensityChangeCoroutine;
     
-    
-    public float IntensityCoefficient
+
+    public static EnvironmentDirector Instance = null;
+
+    private void Awake()
     {
-        get
+        if (Instance == null)
         {
-            float intensitySum = 0;
-
-            foreach (var monitor in monitors)
-            {
-                intensitySum += monitor.Intensity;
-            }
-            
-            //TODO: make it sum up to some number between [0 and 1]
-
-            if (intensitySum > maxIntensity) intensity = maxIntensity;
-            
-            
-            float normalizedIntensity = intensitySum / maxIntensity;
-            float delta = normalizedIntensity - 0.5f;
-
-            return 0.5f + 2f * delta * delta * delta;
+            Instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        foreach (IntensityMonitor monitor in monitors)
+        {
+            monitor.OnIntensityChange += OnMonitorIntensityChange;
+        }
+    }
+
+    private IntensityMonitor.IntensityLevel RecalculateIntensityLevel()
+    {
+        IntensityMonitor.IntensityLevel level = IntensityMonitor.IntensityLevel.None;
+        
+        foreach (IntensityMonitor monitor in monitors)
+        {
+            IntensityMonitor.IntensityLevel newLevel = monitor.Intensity;
+            
+            if (newLevel >  level)
+            {
+                level = newLevel;
+            }
+        }
+        
+        return level;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (IntensityMonitor monitor in monitors)
+        {
+            monitor.OnIntensityChange -= OnMonitorIntensityChange;
+        }
+    }
+
+    public static EnvironmentDirector GetInstance()
+    {
+        return Instance;
+    }
+    
+
+    private void OnMonitorIntensityChange()
+    {
+        IntensityMonitor.IntensityLevel level = RecalculateIntensityLevel();
+        if (currentIntensityLevel == level) return;
+        currentIntensityLevel = level;
+        
+        if (intensityChangeCoroutine != null)
+        {
+            StopCoroutine(intensityChangeCoroutine);
+        }
+
+        float newTargetIntensityValue;
+
+        switch (currentIntensityLevel)
+        {
+            case IntensityMonitor.IntensityLevel.None:
+                newTargetIntensityValue = 0f;
+                break;
+            case IntensityMonitor.IntensityLevel.Low:
+                newTargetIntensityValue = 0.33f;
+                break;
+            case IntensityMonitor.IntensityLevel.High:
+                newTargetIntensityValue = 1f;
+                break;
+            default:
+                newTargetIntensityValue = 0f;
+                break;
+        }
+        
+        intensityChangeCoroutine = StartCoroutine(ChangeIntensityLevel(newTargetIntensityValue));
+    }
+
+    private IEnumerator ChangeIntensityLevel(float newIntensity)
+    {
+        float intensityChangeSpeed = 1f / intensityTransitionDuration;
+
+        while (!Mathf.Approximately(currentIntensityValue, newIntensity))
+        {
+            currentIntensityValue = Mathf.MoveTowards(
+                currentIntensityValue,
+                newIntensity,
+                intensityChangeSpeed * Time.deltaTime
+            );
+
+            yield return null;
+        }
+
+        currentIntensityValue = newIntensity;
+        intensityChangeCoroutine = null;
     }
 }

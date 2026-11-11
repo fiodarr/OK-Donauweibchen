@@ -663,6 +663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 152861551690220347}
     m_Modifications:
+    - target: {fileID: 5136597478990376351, guid: 46fad7a13c26a4fda857bd511cb8d815, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5911379165923077241, guid: 46fad7a13c26a4fda857bd511cb8d815, type: 3}
       propertyPath: m_Name
       value: UtilityItem

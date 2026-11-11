@@ -2,9 +2,9 @@
 
 public class StaticIntensityEmitter: MonoBehaviour, IIntensityEmitter
 {
-    [SerializeField] private float intensity;
+    [SerializeField] private IntensityMonitor.IntensityLevel intensity;
     
-    public float GetIntensity()
+    public IntensityMonitor.IntensityLevel GetIntensity()
     {
         return intensity;
     }

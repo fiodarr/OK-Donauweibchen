@@ -37,6 +37,8 @@ public class PlayerController : Hitable
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
+        
         RefreshAimDirection();
     }
 
@@ -63,7 +65,7 @@ public class PlayerController : Hitable
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );
-
+        
         if (movement.magnitude > 0)
         {
             if (stepsRoutine == null)
@@ -96,6 +98,8 @@ public class PlayerController : Hitable
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
         playerComponents.lantern.Blink();
+        Debug.Log("Took Damage");
+        PopupManager.Instance.TriggerPopup(PopupEvent.FirstDamageReceived);
     }
 
     IEnumerator Footsteps()
