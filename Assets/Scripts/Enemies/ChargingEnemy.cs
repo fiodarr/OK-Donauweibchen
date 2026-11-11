@@ -137,15 +137,15 @@ public class ChargingEnemy : BaseEnemy
 
         animator.SetTrigger("WindUpStart");
 
-        yield return new WaitUntil(() =>
-        {
-            if (currentState != EnemyState.Preparing)
-                return true;
+        //yield return new WaitUntil(() =>
+        //{
+        //    if (currentState != EnemyState.Preparing)
+         //       return true;
 
-            hasAttackSlot = EnemyAttackManager.TryAcquire(this);
+            //hasAttackSlot = EnemyAttackManager.TryAcquire(this);
 
-            return hasAttackSlot;
-        });
+            //return hasAttackSlot;
+        //});
 
         if (currentState != EnemyState.Preparing)
         {
