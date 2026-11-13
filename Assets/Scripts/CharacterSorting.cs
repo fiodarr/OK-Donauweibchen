@@ -1,9 +1,10 @@
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CharacterSorting : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    public SortingGroup sortingGroup;
     public Transform feetPoint;
 
     public string overLayer = "AboveWalls";
@@ -13,8 +14,8 @@ public class CharacterSorting : MonoBehaviour
 
     private void Awake()
     {
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponent<SpriteRenderer>();
+        if (sortingGroup == null)
+            sortingGroup = GetComponent<SortingGroup>();
 
         if (feetPoint == null)
             feetPoint = transform;
@@ -22,7 +23,10 @@ public class CharacterSorting : MonoBehaviour
 
     private void LateUpdate()
     {
-        spriteRenderer.sortingOrder =
+        if (sortingGroup == null)
+            return;
+
+        sortingGroup.sortingOrder =
             -Mathf.RoundToInt(feetPoint.position.y * precision);
     }
 
@@ -30,8 +34,7 @@ public class CharacterSorting : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            spriteRenderer.sortingLayerName = behindLayer;
-
+            SetSortingLayer(behindLayer);
         }
     }
 
@@ -39,7 +42,13 @@ public class CharacterSorting : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            spriteRenderer.sortingLayerName = overLayer;
+            SetSortingLayer(overLayer);
         }
+    }
+
+    private void SetSortingLayer(string layerName)
+    {
+        if (sortingGroup != null)
+            sortingGroup.sortingLayerName = layerName;
     }
 }

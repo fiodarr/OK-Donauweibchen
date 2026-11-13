@@ -125,12 +125,12 @@ public class PlayerCombat : MonoBehaviour
         }
         if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
             currentDirection = playerComponents.inputHandler.LookDirection;
-        if (attack.chargeSound!=null){
-            RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
+        if (!attack.chargeSound.IsNull){
+            RuntimeManager.PlayOneShot(attack.chargeSound);
         }
         GamepadVibration.Instance.Vibrate(attack.vibrationVelocity, attack.vibrationLength);
         yield return new WaitForSeconds(attack.chargeTime);
-        RuntimeManager.PlayOneShot(attack.attackSound.nameIndex);
+        RuntimeManager.PlayOneShot(attack.attackSound);
         
         // Launch player
         rb.AddForce(

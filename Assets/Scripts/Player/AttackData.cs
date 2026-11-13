@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 [System.Serializable]
@@ -9,8 +10,8 @@ public class AttackData
     public float launchForce = 5f;
     
     [Header("Sound")]
-    public SoundEvent attackSound;
-    public SoundEvent chargeSound;
+    public EventReference attackSound;
+    public EventReference chargeSound;
 
     [Header("Vibration")]
 
