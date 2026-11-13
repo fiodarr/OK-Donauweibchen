@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 2518037694342659847}
   - component: {fileID: 1066366866497324237}
   - component: {fileID: 3623891240000796304}
+  - component: {fileID: 4200223735782652624}
   m_Layer: 0
   m_Name: Bass
   m_TagString: Untagged
@@ -314,6 +315,7 @@ MonoBehaviour:
   knockbackForce: 15
   hurtbox:
   - {fileID: 2518037694342659847}
+  - {fileID: 805387943941086686}
   detectionRange: 12
   prepareTime: 2
   wallCollisionDelay: 0.1
@@ -547,6 +549,19 @@ MonoBehaviour:
   overLayer: over
   behindLayer: behind
   precision: 100
+--- !u!210 &4200223735782652624
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058747861432690609}
+  m_Enabled: 1
+  m_SortingLayerID: 1241637719
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &5324261720621867951
 GameObject:
   m_ObjectHideFlags: 0

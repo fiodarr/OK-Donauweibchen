@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3334766372010155868}
   - component: {fileID: 5628100194023929321}
   - component: {fileID: 1947623019212992467}
+  - component: {fileID: 1660795063112675439}
   m_Layer: 13
   m_Name: Drowned
   m_TagString: Untagged
@@ -401,11 +402,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d78a98bc9948a42a4264438796b272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSorting
-  spriteRenderer: {fileID: 163661864659815252}
+  sortingGroup: {fileID: 1660795063112675439}
   feetPoint: {fileID: 0}
   overLayer: over
   behindLayer: basic
   precision: 100
+--- !u!210 &1660795063112675439
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046421216750451889}
+  m_Enabled: 1
+  m_SortingLayerID: 1241637719
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &4366700074116489672
 GameObject:
   m_ObjectHideFlags: 0
