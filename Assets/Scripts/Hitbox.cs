@@ -5,17 +5,19 @@ public class Hitbox : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private Collider2D hitbox;
+    [SerializeField] protected Collider2D hitbox;
     public HashSet<Hitable> hitObjects = new HashSet<Hitable>();
-    [SerializeField] private List<Hitable> hitObjectsToIgnore = new List<Hitable>();
-    private DamageData[] currentDamage;
-    private float currentKnockback;
+    [SerializeField] protected List<Hitable> hitObjectsToIgnore = new List<Hitable>();
+    protected DamageData[] currentDamage;
+    protected float currentKnockback;
     public Action OnHit;
-    private void Awake()
+    protected virtual void Awake()
     {
-        hitbox.isTrigger = true;
         hitbox.enabled = false;
+        if (spriteRenderer!=null)
+        {
         spriteRenderer.enabled = false;
+        }
     }
 
     public void BeginAttack(Vector2 direction, DamageData[] damage, float knockback)
@@ -23,7 +25,10 @@ public class Hitbox : MonoBehaviour
         hitObjects.Clear();
 
         hitbox.enabled = true;
+        if (spriteRenderer!=null)
+        {
         spriteRenderer.enabled = true;
+        }
         currentDamage = damage;
         currentKnockback = knockback;
     }
@@ -31,10 +36,13 @@ public class Hitbox : MonoBehaviour
     public void EndAttack()
     {
         hitbox.enabled = false;
+                if (spriteRenderer!=null)
+        {
         spriteRenderer.enabled = false;
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    protected virtual void OnTriggerStay2D(Collider2D other)
     {
         if ((Layers.IgnoreHits & (1 << other.gameObject.layer)) != 0)
             return;
@@ -42,7 +50,6 @@ public class Hitbox : MonoBehaviour
 
 
         if (hitable == null ||
-            hitable.transform.root == transform.root ||
             hitObjects.Contains(hitable) ||
             hitObjectsToIgnore.Contains(hitable))
             return;
@@ -55,4 +62,10 @@ public class Hitbox : MonoBehaviour
         hitable.TakeDamage(damageDirection, currentDamage, currentKnockback);
         OnHit?.Invoke();
     }
+
+    public void AddToIgnore(Hitable h)
+    {
+        hitObjectsToIgnore.Add(h);
+    }
+
 }
