@@ -26,6 +26,7 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float blinkFadeDuration = 0.08f;
 
     [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject ui;
     private int currentCharges;
     private float originalIntensity;
     private float originalGlobalIntensity;
@@ -236,5 +237,6 @@ public class Lantern : MonoBehaviour
     {
         lanternLight.enabled = true;
         visuals.gameObject.SetActive(true);
+        ui.gameObject.SetActive(true);
     }
 }
