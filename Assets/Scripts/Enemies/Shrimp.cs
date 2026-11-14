@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Shrimp : BaseEnemy
 {
+    private static readonly int Dead = Animator.StringToHash("IsDead");
+    private static readonly int Attack = Animator.StringToHash("attack");
+    private static readonly int Hit = Animator.StringToHash("Hit");
+
     [Header("Detection")]
     [SerializeField] private float detectionRange = 7f;
     [SerializeField] private float loseTargetRange = 10f;
@@ -101,7 +105,7 @@ public class Shrimp : BaseEnemy
             ((Vector2)target.position - (Vector2)projectileSpawnPoint.position).normalized;
 
         RuntimeManager.PlayOneShot(attackSound, transform.position);
-        animator.SetTrigger("attack");
+        animator.SetTrigger(Attack);
         
         GameObject projectile = Instantiate(
             projectilePrefab,
@@ -121,7 +125,7 @@ public class Shrimp : BaseEnemy
         RuntimeManager.PlayOneShot(getHitSound);
         if (currentState != EnemyState.Attack)
         {
-            animator.SetTrigger("Hit");
+            animator.SetTrigger(Hit);
         }
 
     }
@@ -131,7 +135,7 @@ public class Shrimp : BaseEnemy
         StopAllCoroutines();
         base.Die();
         RuntimeManager.PlayOneShot(dieSound, transform.position);
-       // animator.SetBool("IsDead", true);
+        animator.SetBool(Dead, true);
     }
 
     public override void Respawn()
