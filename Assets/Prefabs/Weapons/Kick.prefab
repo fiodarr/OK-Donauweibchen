@@ -61,7 +61,7 @@ MonoBehaviour:
         Data2: 1114692632
         Data3: -239695695
         Data4: -1737983110
-      Path: event:/Fisherman/Attacks/PreKick
+      Path: event:/Fisherman/PreKick
     chargeSound:
       Guid:
         Data1: -1437764739

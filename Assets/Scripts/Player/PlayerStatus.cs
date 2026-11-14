@@ -1,13 +1,10 @@
 using System;
-using FMODUnity;
 using UnityEngine;
 
 public class PlayerStatus : EntityStatus
 {
     public bool movementLocked;
     private PlayerComponents playerComponents;
-    [SerializeField] private EventReference dieSound;
-    private FMOD.Studio.EventInstance dieSnapshot = FMODUnity.RuntimeManager.CreateInstance("snapshot:/Death");
 
 
     private void Awake()
@@ -45,8 +42,6 @@ public class PlayerStatus : EntityStatus
 
     public void Die()
     {
-        RuntimeManager.PlayOneShot(dieSound);
-        dieSnapshot.start();
         movementLocked = true;
         playerComponents.lantern.FadeOut();
         Invoke(nameof(Respawn), 3f);
@@ -54,7 +49,6 @@ public class PlayerStatus : EntityStatus
 
     private void Respawn()
     {
-        dieSnapshot.release();
         RestSpotManager.Instance.RespawnPlayer();
     }
 }

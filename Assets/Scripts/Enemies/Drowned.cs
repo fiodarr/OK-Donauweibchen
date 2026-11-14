@@ -17,10 +17,7 @@ public class Drowned : BaseEnemy
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 3f;
 
-    [SerializeField] private EventReference stepSound;
-    [SerializeField] private EventReference windUpSound;
-    [SerializeField] private EventReference attackSound;
-    [SerializeField] private EventReference dieSound;
+    [SerializeField] private EventReference step;
     [SerializeField] Transform detectionPivot;
 
     private Transform target;
@@ -117,7 +114,9 @@ public class Drowned : BaseEnemy
         hasHitTarget = false;
         isStuck = false;
         recoveryEnded = false;
-        RuntimeManager.PlayOneShot(windUpSound, transform.position);
+        var windUpInstance = RuntimeManager.CreateInstance(attack.chargeSound);
+        RuntimeManager.AttachInstanceToGameObject(windUpInstance, gameObject);
+        windUpInstance.start();
         Debug.Log("Attack start");
         recoveryEnded = false;
         SetState(EnemyState.Attack);
@@ -126,7 +125,10 @@ public class Drowned : BaseEnemy
         yield return new WaitForSeconds(1f);
 
         animator.SetBool("IsInWindUp", false);
-        RuntimeManager.PlayOneShot(attackSound, transform.position);
+        windUpInstance.release();
+        var attackInstance = RuntimeManager.CreateInstance(attack.attackSound);
+        RuntimeManager.AttachInstanceToGameObject(attackInstance, gameObject);
+        attackInstance.start();
         yield return new WaitUntil(() => isStuck == true);
         ReleaseAttackSlot();
         if (!hasHitTarget)
@@ -143,6 +145,7 @@ public class Drowned : BaseEnemy
         yield return new WaitUntil(() => recoveryEnded == true);
         status.RemoveDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
         SetState(EnemyState.Idle);
+        attackInstance.release();
         yield return new WaitForSeconds(1f);
 
         attackRoutine = null;
@@ -225,7 +228,7 @@ public class Drowned : BaseEnemy
     public void ForbidMove()
     {
         canMove = false;
-        RuntimeManager.PlayOneShot(stepSound, transform.position);
+        RuntimeManager.PlayOneShot(step, transform.position);
     }
 
     public override void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
@@ -241,7 +244,6 @@ public class Drowned : BaseEnemy
         base.Die();
         animator.SetBool("IsDead", true);
         ReleaseAttackSlot();
-        RuntimeManager.PlayOneShot(dieSound, transform.position);
     }
     protected override void OnPullStart()
     {
