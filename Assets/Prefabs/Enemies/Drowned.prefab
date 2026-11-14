@@ -153,13 +153,34 @@ MonoBehaviour:
   attackRange: 1.63
   flashController: {fileID: 2910952536466804198}
   moveSpeed: 2
-  step:
+  stepSound:
     Guid:
       Data1: -105956344
       Data2: 1179966691
       Data3: 2030954664
       Data4: -799257175
     Path: event:/Drowned/DrownedStep
+  windUpSound:
+    Guid:
+      Data1: 873660108
+      Data2: 1294654528
+      Data3: 1384529324
+      Data4: 1481632491
+    Path: event:/Drowned/Drowned1WindUp
+  attackSound:
+    Guid:
+      Data1: -589580817
+      Data2: 1205020561
+      Data3: 165703312
+      Data4: 1118921989
+    Path: event:/Drowned/Drowned1Hit
+  dieSound:
+    Guid:
+      Data1: -364525686
+      Data2: 1179907036
+      Data3: -1011975021
+      Data4: -885289699
+    Path: event:/Drowned/DrownedDie
   detectionPivot: {fileID: 2797358161977635230}
   animator: {fileID: 946572679469188585}
   attack:
