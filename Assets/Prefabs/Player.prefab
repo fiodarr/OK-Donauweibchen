@@ -405,6 +405,20 @@ MonoBehaviour:
       Data3: 795208325
       Data4: -115083985
     Path: event:/Fisherman/Dash
+  castSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  reelSound:
+    Guid:
+      Data1: 620168149
+      Data2: 1296102890
+      Data3: -278873427
+      Data4: -357132703
+    Path: event:/Fisherman/ReelOneShot
   equippedWeapon: {fileID: 2719679042586757064}
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}

@@ -18,8 +18,8 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private PlayerComponents playerComponents;
     [SerializeField] private EventReference dashSound;
+    [SerializeField] private EventReference castSound;
     [SerializeField] private EventReference reelSound;
-    [SerializeField] private EventReference pullSound;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
@@ -227,12 +227,12 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator Swing(bool isSmart)
     {
-        var reeling = RuntimeManager.CreateInstance(reelSound);
-        reeling.start();
+        // var casting = RuntimeManager.CreateInstance(castSound);
+        // casting.start();
         
         currentState = CombatState.Swinging;
         yield return new WaitForSeconds(equippedUtilityItem.swingTime);
-        reeling.release();
+        // casting.release();
         
         equippedUtilityItem.Hook(isSmart);
         equippedUtilityItem.HideChosenTargetSprite();
@@ -242,15 +242,11 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator PullAnimation()
     {
-        var pulling = RuntimeManager.CreateInstance(pullSound);
-        pulling.start();
-        
         currentState = CombatState.Pulling;
+        RuntimeManager.PlayOneShot(reelSound);
         yield return new WaitForSeconds(equippedUtilityItem.pullTime);
         currentState = CombatState.Default;
         currentUtilityCoroutine = null;
-        
-        pulling.release();
     }
 
     private void UpdateUtility()
