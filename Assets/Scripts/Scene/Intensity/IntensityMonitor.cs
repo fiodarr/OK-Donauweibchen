@@ -27,6 +27,7 @@ public class IntensityMonitor: MonoBehaviour
                 {
                     level = newLevel;
                 }
+                
             }
             
             return level;

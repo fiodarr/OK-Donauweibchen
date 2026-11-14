@@ -17,5 +17,7 @@ public static class Layers
 
     public static readonly int Enemy = LayerMask.GetMask("Enemy");
 
+    public static readonly int Pickup = LayerMask.GetMask("Pickup");
+
 
 }

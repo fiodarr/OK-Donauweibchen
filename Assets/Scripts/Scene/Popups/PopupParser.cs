@@ -65,9 +65,6 @@ public class PopupParser: MonoBehaviour
 
     private InputReferenceData GetActionData(string input)
     {
-        Debug.Log($"Parser instance: {this.GetInstanceID()}");
-        Debug.Log($"Components: {components}");
-        Debug.Log($"Handler: {inputHandler}");
         //TODO: Interchange between names for PS, Xbox, or PC input
         string actionName;
         switch (input)

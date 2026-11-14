@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -28,13 +29,18 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     
     protected EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
+    
     [SerializeField] private float knockbackPingPongMultiplier = 2f;
+    [SerializeField] private float knockbackPingPongTime = 1f;
 
     [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
     private SpriteRenderer spriteRenderer;
     
-    
+    private Coroutine stunCoroutine = null;
+    private Coroutine pingpongCoroutine = null;
+
+    private DamageData pingPongAttack;
 
     protected virtual void Awake()
     {
@@ -44,27 +50,37 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         startPosition = transform.position;
         startRotation = transform.rotation;
+
+        pingPongAttack = new DamageData()
+        {
+            amount = status.GetMaxHealth() * 0.4f,
+            tag = AttackDataTag.Default,
+            type = DamageType.Physical
+        };
     }
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
         status.TakeDamage(damage);
+        if (status.GetHealth() <= 0)
+            Die();
         
-        
+        if (currentState == EnemyState.Stunned 
+            && damage.Any(d => d.tag == AttackDataTag.PingPongTrigger))
+        {
+            StartPingPong(knockbackPingPongTime);
+        }
         
         ApplyKnockback(damageDirection.normalized,knockback);
         
-
-        if (status.GetHealth() <= 0)
-            Die();
+        
     }
 
     private void ApplyKnockback(Vector2 direction, float amount)
     {
-        
         Rb.AddForce(direction 
                     * knockbackForce * amount 
-                    * (currentState == EnemyState.Pingponged ? knockbackPingPongMultiplier : 0), 
+                    * (currentState == EnemyState.Pingponged ? knockbackPingPongMultiplier : 1), 
             ForceMode2D.Impulse);
     }
     protected virtual void Die()
@@ -131,12 +147,23 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         float pullDuration = distance / pullSpeed;
         OnPullStart();
         yield return PullTowards(origin + direction.normalized * offset, pullDuration);
-        SetState(EnemyState.Stunned);
+        
         PopupManager.Instance.TriggerPopup(PopupEvent.FirstHooked);
-        yield return new WaitForSeconds(2f);
+        stunCoroutine = StartCoroutine(StunRoutine(2f));
+        yield return stunCoroutine;
+        Debug.Log("STUN ENDED");
         OnPullEnd();
-        SetState(EnemyState.Idle);
     }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        SetState(EnemyState.Stunned);
+        yield return new WaitForSeconds(duration);
+        SetState(EnemyState.Idle);
+        OnPullEnd();
+        stunCoroutine = null;
+    }
+    
     private IEnumerator PullTowards(Vector2 destination, float duration = 0.15f)
     {
         
@@ -195,6 +222,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void OnPullEnd()
     {
+        Debug.Log("OnPullEnd base!!");
     }
 
     private IEnumerator FadeOut()
@@ -225,8 +253,71 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         }
     }
 
+    protected virtual void StartPingPong(float duration)
+    {
+        if (stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+            stunCoroutine = null;
+        }
+        pingpongCoroutine = StartCoroutine(PingPongRoutine(duration));
+    }
+
+    private IEnumerator PingPongRoutine(float duration)
+    {
+        
+        Debug.Log("StartPingPong");
+        currentState = EnemyState.Pingponged;
+        yield return new WaitForSeconds(duration);
+        pingpongCoroutine = null;
+        currentState = EnemyState.Idle;
+        OnPullEnd();
+        Debug.Log("EndPingPong");
+    }
+
     public IntensityMonitor.IntensityLevel GetIntensity()
     {
         return IntensityMonitor.IntensityLevel.Low;
+    }
+
+    protected virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        if (currentState != EnemyState.Pingponged) return;
+
+        Vector2 direction;
+        
+        if (((1 << collision.gameObject.layer) & Layers.Walls) != 0)
+        {
+            direction = collision.contacts[0].normal;
+            this.TakeDamage(direction,new[]{pingPongAttack},15f);
+            StopPingPong(0.5f);
+            return;
+        }
+        
+        if (!collision.gameObject.TryGetComponent(out Hitable hittable)) return;
+        if (hittable.gameObject.layer == Layers.IgnoreHits || hittable.gameObject.TryGetComponent(out PlayerController playerController)) return;
+        
+        direction = (transform.position - collision.transform.position).normalized;;//calculate direction opposing of hitted object
+        this.TakeDamage(direction,new [] {pingPongAttack},10f);
+        hittable.TakeDamage(-direction,new[]{pingPongAttack},10f);
+        StopPingPong(0.1f);
+    }
+
+    private void StopPingPong(float recoveryStunTime = 0f)
+    {
+        if (pingpongCoroutine != null) 
+        {
+            StopCoroutine(pingpongCoroutine);
+        }
+
+        if (recoveryStunTime > 0f)
+        {
+            stunCoroutine = StartCoroutine(StunRoutine(recoveryStunTime));
+        }
+        else
+        {
+            currentState = EnemyState.Idle;
+            OnPullEnd();
+        }
     }
 }

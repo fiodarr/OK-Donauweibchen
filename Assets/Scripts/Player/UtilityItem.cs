@@ -15,6 +15,8 @@ public class UtilityItem: MonoBehaviour
     [SerializeField] private float afterHookDistance;
     [SerializeField] private float pullSpeed;
     
+    [SerializeField] private Transform pivot;
+    
     public float swingTime = 0.2f;
     public float pullTime = 0.3f;
 
@@ -34,17 +36,17 @@ public class UtilityItem: MonoBehaviour
     {
         if (isSmart)
         {
-            HookSmart();
+            HookSmart(pivot);
         }
         else
         {
-            HookDefault();
+            HookDefault(pivot);
         }
     }
 
-    public void HookDefault()
+    public void HookDefault(Transform point)
     {
-        IHookable target = targetChooseDefault.GetTarget();
+        IHookable target = targetChooseDefault.GetTarget(point);
        
         if (target != null)
         {
@@ -53,9 +55,9 @@ public class UtilityItem: MonoBehaviour
         }
     }
 
-    public void HookSmart()
+    public void HookSmart(Transform point)
     {
-        IHookable target = targetChooseSmart.GetTarget();
+        IHookable target = targetChooseSmart.GetTarget(point);
         
         if (target != null)
         {
@@ -64,7 +66,7 @@ public class UtilityItem: MonoBehaviour
         }
         else
         {
-            HookDefault();
+            HookDefault(point);
         }
     }
 
@@ -78,12 +80,12 @@ public class UtilityItem: MonoBehaviour
         IHookable target = null;
         if (isSmart)
         {
-            target = targetChooseSmart.GetTarget();
+            target = targetChooseSmart.GetTarget(pivot);
         }
 
         if (target == null)
         {
-            target = targetChooseDefault.GetTarget();
+            target = targetChooseDefault.GetTarget(pivot);
         }
         
         if (target != null && isSmart)
