@@ -69,8 +69,8 @@ MonoBehaviour:
         Data3: -239695695
         Data4: -1737983110
       Path: event:/Fisherman/Attacks/PreKick
-    vibrationVelocity: 0
-    vibrationLength: 0
+    vibrationVelocity: 0.1
+    vibrationLength: 0.85
     chargeTime: 0.7
     activeTime: 0.2
     recoveryTime: 0.8
