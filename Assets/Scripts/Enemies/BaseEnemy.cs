@@ -47,6 +47,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     public bool IsDead => currentState == EnemyState.Died;
 
+    [SerializeField] private IntensityMonitor.IntensityLevel emittedLevel = IntensityMonitor.IntensityLevel.Low;
     protected virtual void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
@@ -283,7 +284,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     public IntensityMonitor.IntensityLevel GetIntensity()
     {
-        return IntensityMonitor.IntensityLevel.Low;
+        return emittedLevel;
     }
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
