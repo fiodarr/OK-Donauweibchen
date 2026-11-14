@@ -57,7 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf8a064207a461c8167002285079c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnvironmentDirector
-  monitors: []
+  monitors:
+  - {fileID: 0}
   intensityTransitionDuration: 3
   music:
     Guid:
