@@ -13,6 +13,7 @@ public class PlayerController : Hitable
     private Coroutine stepsRoutine;
 
     [SerializeField] private EventReference footsteps;
+    [SerializeField] private EventReference takeDamageSound;
 
     private bool isMoving = false;
 
@@ -175,8 +176,8 @@ public class PlayerController : Hitable
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
         OnDamaged?.Invoke();
-        
         playerComponents.status.TakeDamage(damage);
+        RuntimeManager.PlayOneShot(takeDamageSound);
         GamepadVibration.Instance.Vibrate(2,0.1f);
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);

@@ -326,6 +326,13 @@ MonoBehaviour:
       Data3: 598744962
       Data4: 1270737331
     Path: event:/Fisherman/Steps
+  takeDamageSound:
+    Guid:
+      Data1: 1543290974
+      Data2: 1278751503
+      Data3: -97596001
+      Data4: -1348214923
+    Path: event:/Fisherman/GetHit
   moveSpeed: 4.93
   solidCollider: {fileID: 7770112638388470763}
   visualRoot: {fileID: 7023774203213945737}
@@ -391,6 +398,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   playerComponents: {fileID: 4466067006108556981}
+  dashSound:
+    Guid:
+      Data1: -1277572316
+      Data2: 1239733639
+      Data3: 795208325
+      Data4: -115083985
+    Path: event:/Fisherman/Dash
   equippedWeapon: {fileID: 2719679042586757064}
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
@@ -891,6 +905,13 @@ MonoBehaviour:
   globalFadeDuration: 2
   blinkCount: 1
   blinkInterval: 0.08
+  healSound:
+    Guid:
+      Data1: 2090496290
+      Data2: 1311175340
+      Data3: -454094706
+      Data4: 1723009827
+    Path: event:/Fisherman/Heal
   blinkFadeDuration: 0.08
 --- !u!1 &7924162333950095688
 GameObject:
