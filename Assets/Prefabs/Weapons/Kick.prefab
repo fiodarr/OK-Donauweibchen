@@ -55,8 +55,22 @@ MonoBehaviour:
       type: 0
     knockback: 50
     launchForce: 50
-    attackSound: {fileID: 11400000, guid: a5e48a7202c684ca4b8c1516b533b82a, type: 2}
-    chargeSound: {fileID: 11400000, guid: 9ea574fb27b635d42a60d3b9946cdfec, type: 2}
+    attackSound:
+      Guid:
+        Data1: -798697107
+        Data2: 1114692632
+        Data3: -239695695
+        Data4: -1737983110
+      Path: event:/Fisherman/PreKick
+    chargeSound:
+      Guid:
+        Data1: -1437764739
+        Data2: 1136235105
+        Data3: -1335881544
+        Data4: 1624387878
+      Path: event:/Fisherman/Attacks/Kick
+    vibrationVelocity: 0
+    vibrationLength: 0
     chargeTime: 0.7
     activeTime: 0.2
     recoveryTime: 0.8

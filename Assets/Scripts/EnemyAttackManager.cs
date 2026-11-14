@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class EnemyAttackManager
 {
-    private const int MaxAttackers = 2;
+    private const int MaxAttackers = 3;
 
     private static HashSet<BaseEnemy> attackers = new();
 

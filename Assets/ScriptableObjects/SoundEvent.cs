@@ -8,5 +8,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 public class SoundEvent : ScriptableObject
 {
     public String nameIndex;
-    
+    public EventReference eventReference;
+
+
 }

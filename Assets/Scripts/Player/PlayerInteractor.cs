@@ -40,7 +40,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Interact()
     {
-        currentInteractable?.Interact();
+        currentInteractable?.Interact(this.gameObject);
     }
 
     private void OnDrawGizmosSelected()

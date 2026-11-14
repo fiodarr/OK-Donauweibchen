@@ -15,8 +15,8 @@ public class ChargingEnemy : BaseEnemy
     [Header("Wall Collision")]
     [SerializeField] private float wallCollisionDelay = 0.1f;
 
-    [SerializeField] private SoundEvent agro;
-    [SerializeField] private SoundEvent chase;
+    [SerializeField] private EventReference agro;
+    [SerializeField] private EventReference chase;
 
     [Header("Plunge")]
     [SerializeField] private float plungeSpeed = 12f;
@@ -51,6 +51,7 @@ public class ChargingEnemy : BaseEnemy
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
         if (currentState == EnemyState.Died) return;
         if (currentState != EnemyState.Idle) return;
 
@@ -136,15 +137,15 @@ public class ChargingEnemy : BaseEnemy
 
         animator.SetTrigger("WindUpStart");
 
-        yield return new WaitUntil(() =>
-        {
-            if (currentState != EnemyState.Preparing)
-                return true;
+        //yield return new WaitUntil(() =>
+        //{
+        //    if (currentState != EnemyState.Preparing)
+         //       return true;
 
-            hasAttackSlot = EnemyAttackManager.TryAcquire(this);
+            //hasAttackSlot = EnemyAttackManager.TryAcquire(this);
 
-            return hasAttackSlot;
-        });
+            //return hasAttackSlot;
+        //});
 
         if (currentState != EnemyState.Preparing)
         {
@@ -152,7 +153,7 @@ public class ChargingEnemy : BaseEnemy
             yield break;
         }
 
-        RuntimeManager.PlayOneShot(agro.nameIndex, transform.position);
+        RuntimeManager.PlayOneShot(agro, transform.position);
 
         yield return new WaitUntil(() =>
             windUpEnded || currentState != EnemyState.Preparing
@@ -167,7 +168,7 @@ public class ChargingEnemy : BaseEnemy
 
         windUpEnded = false;
 
-        var chaseInstance = RuntimeManager.CreateInstance(chase.nameIndex);
+        var chaseInstance = RuntimeManager.CreateInstance(chase);
         RuntimeManager.AttachInstanceToGameObject(chaseInstance, gameObject);
         chaseInstance.start();
 
@@ -267,6 +268,7 @@ public class ChargingEnemy : BaseEnemy
         Rb.linearVelocity = Vector2.zero;
 
         SetState(EnemyState.Vulnerable);
+        PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
         status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
 
         flash.FlashMultiple(7, 0.15f, 0.25f, 0.6f);

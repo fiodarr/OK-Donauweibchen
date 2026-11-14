@@ -1,0 +1,1 @@
+﻿<Kick>This enemy has armor! Regular attacks will damage it. Press [Kick] to remove it

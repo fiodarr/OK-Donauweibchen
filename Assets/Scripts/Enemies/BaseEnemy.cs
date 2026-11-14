@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BaseEnemy : Hitable, IHookable
+public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 {
     protected enum EnemyState
     {
@@ -124,6 +124,7 @@ public class BaseEnemy : Hitable, IHookable
         OnPullStart();
         yield return PullTowards(origin + direction.normalized * offset, pullDuration);
         SetState(EnemyState.Stunned);
+        PopupManager.Instance.TriggerPopup(PopupEvent.FirstHooked);
         yield return new WaitForSeconds(2f);
         OnPullEnd();
         SetState(EnemyState.Idle);
@@ -186,7 +187,6 @@ public class BaseEnemy : Hitable, IHookable
 
     protected virtual void OnPullEnd()
     {
-        
     }
 
     private IEnumerator FadeOut()
@@ -215,5 +215,10 @@ public class BaseEnemy : Hitable, IHookable
         {
             shadowCaster.enabled = false;
         }
+    }
+
+    public IntensityMonitor.IntensityLevel GetIntensity()
+    {
+        return IntensityMonitor.IntensityLevel.Low;
     }
 }

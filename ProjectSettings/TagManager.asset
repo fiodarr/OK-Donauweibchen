@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - RestSpots
   - Interactables
   - Enemy
-  - 
+  - PlayerAirborne
   - 
   - 
   - 
@@ -40,6 +41,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 1483694255
+    locked: 0
+  - name: behind
+    uniqueID: 2655727719
+    locked: 0
+  - name: basic
+    uniqueID: 1424831913
+    locked: 0
+  - name: over
+    uniqueID: 1241637719
     locked: 0
   m_RenderingLayers:
   - Default

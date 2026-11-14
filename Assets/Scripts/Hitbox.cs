@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public class Hitbox : MonoBehaviour
@@ -9,7 +10,7 @@ public class Hitbox : MonoBehaviour
     [SerializeField] private List<Hitable> hitObjectsToIgnore = new List<Hitable>();
     private DamageData[] currentDamage;
     private float currentKnockback;
-
+    public Action OnHit;
     private void Awake()
     {
         hitbox.isTrigger = true;
@@ -52,5 +53,6 @@ public class Hitbox : MonoBehaviour
             (Vector2)(hitable.transform.position - transform.parent.position);
 
         hitable.TakeDamage(damageDirection, currentDamage, currentKnockback);
+        OnHit?.Invoke();
     }
 }

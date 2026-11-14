@@ -76,19 +76,19 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
+        
         MoveInput = inputActions.Player.Move.ReadValue<Vector2>();
         MousePosition = inputActions.Player.Look.ReadValue<Vector2>();
         
         if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame() && controlScheme != ControlScheme.KeyboardMouse)
         {
             controlScheme = ControlScheme.KeyboardMouse;
-            Debug.Log("Scheme Changed" + controlScheme);
         }
 
         if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame() && controlScheme != ControlScheme.Controller)
         {
             controlScheme = ControlScheme.Controller;
-            Debug.Log("Scheme Changed" + controlScheme);
         }
 
         if (inputActions.Player.Interact.WasPressedThisFrame())
@@ -102,18 +102,16 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (inputActions.Player.Heal.WasPressedThisFrame())
         {
-            Heal.Invoke();
+            Heal?.Invoke();
         }
 
         if (inputActions.Player.Evade.WasPressedThisFrame())
         {
-            Dash.Invoke();
+            Dash?.Invoke();
         }
-        
         
         UpdateFishingRodInput();
     }
-    
 
     private void UpdateFishingRodInput()
     {
@@ -139,5 +137,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         
+    }
+    
+    public InputActions GetInputActions()
+    {
+        return inputActions;
+    }
+
+    public ControlScheme GetControlScheme()
+    {
+        return controlScheme;
+    }
+
+    public void CallUpdate()
+    {
+        Update();
     }
 }

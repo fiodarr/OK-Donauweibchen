@@ -32,26 +32,17 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private float dashForce;
     [SerializeField] private float dashCooldown;
+    
     private bool canDash = true;
-    public bool LockMove
-    {
-        get
-        {
-            return currentState != CombatState.Default;
-        }
-    }
+    public bool LockMove => currentState != CombatState.Default || externalActionLock;
+    public bool CanAttack => currentState == CombatState.Default && !externalActionLock;
+
+    private bool externalActionLock;
+
 
     private void Update()
     {
         UpdateUtility();
-    }
-
-    private bool CanAttack
-    {
-        get
-        {
-            return currentState == CombatState.Default;
-        }
     }
 
     private int comboIndex = 0;
@@ -134,12 +125,12 @@ public class PlayerCombat : MonoBehaviour
         }
         if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
             currentDirection = playerComponents.inputHandler.LookDirection;
-        if (attack.chargeSound!=null){
-            RuntimeManager.PlayOneShot(attack.chargeSound.nameIndex);
+        if (!attack.chargeSound.IsNull){
+            RuntimeManager.PlayOneShot(attack.chargeSound);
         }
         GamepadVibration.Instance.Vibrate(attack.vibrationVelocity, attack.vibrationLength);
         yield return new WaitForSeconds(attack.chargeTime);
-        RuntimeManager.PlayOneShot(attack.attackSound.nameIndex);
+        RuntimeManager.PlayOneShot(attack.attackSound);
         
         // Launch player
         rb.AddForce(
@@ -201,11 +192,12 @@ public class PlayerCombat : MonoBehaviour
 
     private void TryStartUtility()
     {
-        if (currentState != CombatState.Default || !equippedUtilityItem)
+        if (currentState != CombatState.Default || !equippedUtilityItem || !equippedUtilityItem.isActiveAndEnabled)
         {
             return;
         }
         Debug.Log("TryStartUtility");
+        UpdateUtility();
         currentState = CombatState.ChoosingTarget;
         equippedUtilityItem.ShowChosenTargetSprite();
     }
@@ -280,4 +272,13 @@ public class PlayerCombat : MonoBehaviour
         }
     }
     
+    public void SetExternalActionLock(bool locked)
+    {
+        externalActionLock = locked;
+    }
+
+    public void PickUpFishingRod()
+    {
+        this.equippedUtilityItem.gameObject.SetActive(true);
+    }
 }

@@ -17,7 +17,7 @@ public class Drowned : BaseEnemy
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 3f;
 
-    [SerializeField] private SoundEvent step;
+    [SerializeField] private EventReference step;
     [SerializeField] Transform detectionPivot;
 
     private Transform target;
@@ -30,9 +30,23 @@ public class Drowned : BaseEnemy
     private bool hasAttackSlot = false;
 
     private bool isStuck = false;
-
+    private bool hasHitTarget = false;
     [SerializeField] private AttackData attack;
 
+    private void OnEnable()
+    {
+        attack.hitbox.OnHit += HandleHit;
+    }
+
+    private void OnDisable()
+    {
+        attack.hitbox.OnHit -= HandleHit;
+    }
+
+    private void HandleHit()
+    {
+        hasHitTarget = true;
+    }
     private void Update()
     {
         if (currentState != EnemyState.Idle)
@@ -97,7 +111,10 @@ public class Drowned : BaseEnemy
 
     private IEnumerator PerformAttack()
     {
-        var windUpInstance = RuntimeManager.CreateInstance(attack.chargeSound.nameIndex);
+        hasHitTarget = false;
+        isStuck = false;
+        recoveryEnded = false;
+        var windUpInstance = RuntimeManager.CreateInstance(attack.chargeSound);
         RuntimeManager.AttachInstanceToGameObject(windUpInstance, gameObject);
         windUpInstance.start();
         Debug.Log("Attack start");
@@ -109,17 +126,20 @@ public class Drowned : BaseEnemy
 
         animator.SetBool("IsInWindUp", false);
         windUpInstance.release();
-        var attackInstance = RuntimeManager.CreateInstance(attack.attackSound.nameIndex);
+        var attackInstance = RuntimeManager.CreateInstance(attack.attackSound);
         RuntimeManager.AttachInstanceToGameObject(attackInstance, gameObject);
         attackInstance.start();
         yield return new WaitUntil(() => isStuck == true);
-        animator.SetBool("IsStuck", true);
-        SetState(EnemyState.Vulnerable);
-        status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
         ReleaseAttackSlot();
-        flashController.FlashMultiple(5, 0.3f, 0.3f, 0.5f);
-        yield return new WaitForSeconds(3f);
-
+        if (!hasHitTarget)
+        {
+            animator.SetBool("IsStuck", true);
+            SetState(EnemyState.Vulnerable);
+            PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
+            status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
+            flashController.FlashMultiple(5, 0.3f, 0.3f, 0.5f);
+            yield return new WaitForSeconds(3f);
+        }
         animator.SetBool("IsStuck", false);
 
         yield return new WaitUntil(() => recoveryEnded == true);
@@ -208,7 +228,7 @@ public class Drowned : BaseEnemy
     public void ForbidMove()
     {
         canMove = false;
-        RuntimeManager.PlayOneShot(step.nameIndex, transform.position);
+        RuntimeManager.PlayOneShot(step, transform.position);
     }
 
     public override void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
@@ -233,6 +253,7 @@ public class Drowned : BaseEnemy
     protected override void OnPullEnd()
     {
         animator.SetBool("IsHooked", false);
+        base.OnPullEnd();
     }
 
     public override void Respawn()
