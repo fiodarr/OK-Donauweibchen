@@ -339,54 +339,7 @@ MonoBehaviour:
   solidCollider: {fileID: 7770112638388470763}
   visualRoot: {fileID: 7023774203213945737}
   jumpVisualHeight: 1
-  movementCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  heightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  animator: {fileID: 5056467316801955230}
 --- !u!114 &9039514880073438561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7023774203213945737}
   - component: {fileID: 550493069142258798}
+  - component: {fileID: 5056467316801955230}
   m_Layer: 6
   m_Name: Visuals
   m_TagString: Untagged
@@ -875,6 +829,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &5056467316801955230
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596551279479866087}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84a3b1954531449a7b493fec2c486f4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7657736583750744400
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,6 +967,7 @@ MonoBehaviour:
     Path: event:/Fisherman/Heal
   blinkFadeDuration: 0.08
   visuals: {fileID: 7924162333950095688}
+  ui: {fileID: 0}
 --- !u!1 &7924162333950095688
 GameObject:
   m_ObjectHideFlags: 0
