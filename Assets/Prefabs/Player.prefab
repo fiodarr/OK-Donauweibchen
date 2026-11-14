@@ -1190,6 +1190,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.0222
       objectReference: {fileID: 0}
+    - target: {fileID: 6322263662290879020, guid: 05696ddc32fac48569427504ab37982b, type: 3}
+      propertyPath: attacks.Array.data[0].attackSound.Path
+      value: event:/Fisherman/Attacks/PreKick
+      objectReference: {fileID: 0}
     - target: {fileID: 7364153568067152073, guid: 05696ddc32fac48569427504ab37982b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
