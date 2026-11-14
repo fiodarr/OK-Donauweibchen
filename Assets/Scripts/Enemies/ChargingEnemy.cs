@@ -55,6 +55,7 @@ public class ChargingEnemy : BaseEnemy
         if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
         if (currentState == EnemyState.Died) return;
         if (currentState == EnemyState.Pingponged) return;
+        if (currentState == EnemyState.Stunned) return;
         if (currentState != EnemyState.Idle) return;
 
         Collider2D player = Physics2D.OverlapCircle(
@@ -244,8 +245,8 @@ public class ChargingEnemy : BaseEnemy
 
             float curve = Mathf.Sin(time * curveFrequency) *
                           curveAmplitude * Time.fixedDeltaTime;
-
-            Rb.MovePosition(Rb.position + movement + perpendicular * curve);
+            if (currentState != EnemyState.Stunned && currentState != EnemyState.Pingponged) 
+                Rb.MovePosition(Rb.position + movement + perpendicular * curve);
 
             yield return new WaitForFixedUpdate();
         }
@@ -258,6 +259,8 @@ public class ChargingEnemy : BaseEnemy
 
     protected override void OnCollisionStay2D(Collision2D collision)
     {
+        base.OnCollisionStay2D(collision);
+        
         if (!canHitWall || hitSolid || currentState != EnemyState.Attack)
             return;
 
@@ -268,6 +271,7 @@ public class ChargingEnemy : BaseEnemy
         canHitWall = false;
 
         Rb.linearVelocity = Vector2.zero;
+        Debug.Log("collided with "+ collision.gameObject.name);
 
         SetState(EnemyState.Vulnerable);
         PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
@@ -277,7 +281,6 @@ public class ChargingEnemy : BaseEnemy
         animator.SetTrigger("Hit");
         animator.SetBool("IsMoving", false);
         
-        base.OnCollisionStay2D(collision);
     }
 
     public void WindUpEnded()

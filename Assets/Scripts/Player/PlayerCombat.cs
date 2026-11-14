@@ -12,7 +12,8 @@ public class PlayerCombat : MonoBehaviour
         Dashing,
         ChoosingTarget,
         Swinging,
-        Pulling
+        Pulling,
+        ChoosingKickDirection
     }
     private CombatState currentState = CombatState.Default;
 
@@ -122,8 +123,7 @@ public class PlayerCombat : MonoBehaviour
             currentState = CombatState.Default;
             yield break;
         }
-        if (playerComponents.inputHandler.MoveInput != Vector2.zero) 
-            currentDirection = playerComponents.inputHandler.LookDirection;
+        
         if (!attack.chargeSound.IsNull){
             RuntimeManager.PlayOneShot(attack.chargeSound);
         }
@@ -131,6 +131,7 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(attack.chargeTime);
         RuntimeManager.PlayOneShot(attack.attackSound);
         
+        currentDirection = playerComponents.inputHandler.LookDirection;
         // Launch player
         rb.AddForce(
             currentDirection * attack.launchForce,
@@ -247,9 +248,9 @@ public class PlayerCombat : MonoBehaviour
         equippedUtilityItem.UpdateChosenTargetSpritePosition(isSmart);
         
         if (currentState != CombatState.ChoosingTarget) return;
-        if (playerComponents.inputHandler.LookDirection != Vector2.zero)
+        if (playerComponents.inputHandler.AimDirection != Vector2.zero)
         {
-            equippedUtilityItem.UpdateLookupDirection(playerComponents.inputHandler.LookDirection);
+            equippedUtilityItem.UpdateLookupDirection(playerComponents.inputHandler.AimDirection);
         }
     }
     

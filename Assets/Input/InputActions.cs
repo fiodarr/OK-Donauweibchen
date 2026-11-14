@@ -171,6 +171,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""ControllerStickLook"",
+                    ""type"": ""Value"",
+                    ""id"": ""d0971098-63ce-4836-baec-39eb03433e2e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -286,28 +296,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ee8f0e94-87aa-4a1d-ab3b-c7de1ad49d30"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b2702d1d-bfdd-4048-8722-12f1fcbab0fc"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""457adf86-24d6-4a25-a1b5-c9f02fa63b24"",
                     ""path"": ""<DualShockGamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -331,7 +319,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5bed6023-2d67-4029-be5f-cab689224c46"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<XInputController>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -440,6 +428,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b2702d1d-bfdd-4048-8722-12f1fcbab0fc"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5e543cd0-a938-4fb7-927a-05b9f3e65851"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -468,6 +467,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6dd228f-2b40-4f2f-be9d-83a48c5945a8"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone(min=0.5)"",
+                    ""groups"": """",
+                    ""action"": ""ControllerStickLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -800,6 +810,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Evade = m_Player.FindAction("Evade", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_ControllerStickLook = m_Player.FindAction("ControllerStickLook", throwIfNotFound: true);
         // InputScheme
         m_InputScheme = asset.FindActionMap("InputScheme", throwIfNotFound: true);
         m_InputScheme_KeyboardMouseInput = m_InputScheme.FindAction("KeyboardMouseInput", throwIfNotFound: true);
@@ -893,6 +904,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Evade;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_ControllerStickLook;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -936,6 +948,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Heal".
         /// </summary>
         public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ControllerStickLook".
+        /// </summary>
+        public InputAction @ControllerStickLook => m_Wrapper.m_Player_ControllerStickLook;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -986,6 +1002,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Heal.started += instance.OnHeal;
             @Heal.performed += instance.OnHeal;
             @Heal.canceled += instance.OnHeal;
+            @ControllerStickLook.started += instance.OnControllerStickLook;
+            @ControllerStickLook.performed += instance.OnControllerStickLook;
+            @ControllerStickLook.canceled += instance.OnControllerStickLook;
         }
 
         /// <summary>
@@ -1021,6 +1040,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Heal.started -= instance.OnHeal;
             @Heal.performed -= instance.OnHeal;
             @Heal.canceled -= instance.OnHeal;
+            @ControllerStickLook.started -= instance.OnControllerStickLook;
+            @ControllerStickLook.performed -= instance.OnControllerStickLook;
+            @ControllerStickLook.canceled -= instance.OnControllerStickLook;
         }
 
         /// <summary>
@@ -1224,6 +1246,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHeal(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ControllerStickLook" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnControllerStickLook(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "InputScheme" which allows adding and removing callbacks.

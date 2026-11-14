@@ -8,4 +8,6 @@ public class StaticIntensityEmitter: MonoBehaviour, IIntensityEmitter
     {
         return intensity;
     }
+
+    
 }
