@@ -116,13 +116,14 @@ public class Shrimp : BaseEnemy
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
+        base.OnTakeDamage(damageDirection, damage, knockback);
+        
         RuntimeManager.PlayOneShot(getHitSound);
         if (currentState != EnemyState.Attack)
         {
             animator.SetTrigger("Hit");
         }
 
-        base.OnTakeDamage(damageDirection, damage, knockback);
     }
 
     protected override void Die()
