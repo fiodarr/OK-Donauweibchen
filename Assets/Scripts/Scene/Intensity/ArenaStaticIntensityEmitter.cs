@@ -19,8 +19,4 @@ public class ArenaStaticIntensityEmitter: StaticIntensityEmitter
         return base.GetIntensity();
     }
     
-    public void Update()
-    {
-        Debug.Log(gameObject.name + " : " + GetIntensity());
-    }
 }
