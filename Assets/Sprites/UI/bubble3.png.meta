@@ -122,10 +122,10 @@ TextureImporter:
       name: bubble3_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 114
-        width: 274
-        height: 266
+        x: 90
+        y: 96
+        width: 298
+        height: 298
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
