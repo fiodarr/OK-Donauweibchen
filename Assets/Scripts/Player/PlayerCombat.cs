@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
     private CombatState currentState = CombatState.Default;
 
     [SerializeField] private PlayerComponents playerComponents;
+    [SerializeField] private EventReference dashSound;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
@@ -178,6 +179,7 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator PerformDash()
     {
+        RuntimeManager.PlayOneShot(dashSound);
         canDash = false;
         currentDirection = playerComponents.inputHandler.MoveInput.normalized;
         currentState = CombatState.Dashing;

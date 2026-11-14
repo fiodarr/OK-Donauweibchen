@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -20,6 +21,8 @@ public class Lantern : MonoBehaviour
     [SerializeField] private int blinkCount = 1;
     [SerializeField] private float blinkInterval = 0.08f;
 
+    [SerializeField] private EventReference healSound;
+    
     [SerializeField] private float blinkFadeDuration = 0.08f;
     private int currentCharges;
     private float originalIntensity;
@@ -75,6 +78,7 @@ public class Lantern : MonoBehaviour
             return;
 
         status.Heal(healAmount);
+        RuntimeManager.PlayOneShot(healSound);
         Debug.Log("healed");
         currentCharges--;
         OnChargesChanged?.Invoke(currentCharges, maxCharges);

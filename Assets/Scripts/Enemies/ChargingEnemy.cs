@@ -15,8 +15,10 @@ public class ChargingEnemy : BaseEnemy
     [Header("Wall Collision")]
     [SerializeField] private float wallCollisionDelay = 0.1f;
 
-    [SerializeField] private EventReference agro;
-    [SerializeField] private EventReference chase;
+    [SerializeField] private EventReference agroSound;
+    [SerializeField] private EventReference chaseSound;
+    [SerializeField] private EventReference biteSound;
+    [SerializeField] private EventReference dieSound;
 
     [Header("Plunge")]
     [SerializeField] private float plungeSpeed = 12f;
@@ -153,7 +155,7 @@ public class ChargingEnemy : BaseEnemy
             yield break;
         }
 
-        RuntimeManager.PlayOneShot(agro, transform.position);
+        RuntimeManager.PlayOneShot(agroSound, transform.position);
 
         yield return new WaitUntil(() =>
             windUpEnded || currentState != EnemyState.Preparing
@@ -168,7 +170,7 @@ public class ChargingEnemy : BaseEnemy
 
         windUpEnded = false;
 
-        var chaseInstance = RuntimeManager.CreateInstance(chase);
+        var chaseInstance = RuntimeManager.CreateInstance(chaseSound);
         RuntimeManager.AttachInstanceToGameObject(chaseInstance, gameObject);
         chaseInstance.start();
 
@@ -183,6 +185,7 @@ public class ChargingEnemy : BaseEnemy
 
         if (currentState != EnemyState.Vulnerable)
         {
+            RuntimeManager.PlayOneShot(biteSound, transform.position);
             SetState(EnemyState.Idle);
         }
         else
@@ -320,6 +323,7 @@ public class ChargingEnemy : BaseEnemy
 
     protected override void Die()
     {
+        RuntimeManager.PlayOneShot(dieSound, transform.position);
         attack.hitbox.EndAttack();
         canHitWall = false;
 

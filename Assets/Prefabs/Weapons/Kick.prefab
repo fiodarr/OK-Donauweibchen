@@ -57,25 +57,26 @@ MonoBehaviour:
     launchForce: 50
     attackSound:
       Guid:
-        Data1: -798697107
-        Data2: 1114692632
-        Data3: -239695695
-        Data4: -1737983110
-      Path: event:/Fisherman/PreKick
-    chargeSound:
-      Guid:
         Data1: -1437764739
         Data2: 1136235105
         Data3: -1335881544
         Data4: 1624387878
       Path: event:/Fisherman/Attacks/Kick
-    vibrationVelocity: 0
-    vibrationLength: 0
+    chargeSound:
+      Guid:
+        Data1: -798697107
+        Data2: 1114692632
+        Data3: -239695695
+        Data4: -1737983110
+      Path: event:/Fisherman/Attacks/PreKick
+    vibrationVelocity: 0.1
+    vibrationLength: 0.85
     chargeTime: 0.7
     activeTime: 0.2
     recoveryTime: 0.8
     comboTime: 0
     hitbox: {fileID: 8788264919326412803}
+    tag: 0
 --- !u!1 &2639458953712721554
 GameObject:
   m_ObjectHideFlags: 0
