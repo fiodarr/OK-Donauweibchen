@@ -85,6 +85,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "ControllerStickLook",
+                    "type": "Value",
+                    "id": "d0971098-63ce-4836-baec-39eb03433e2e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -200,28 +210,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ee8f0e94-87aa-4a1d-ab3b-c7de1ad49d30",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b2702d1d-bfdd-4048-8722-12f1fcbab0fc",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "457adf86-24d6-4a25-a1b5-c9f02fa63b24",
                     "path": "<DualShockGamepad>/rightTrigger",
                     "interactions": "",
@@ -244,7 +232,7 @@
                 },
                 {
                     "name": "",
-                    "id": "82604b4d-b34f-4ea3-b4cd-4133d31132d1",
+                    "id": "5bed6023-2d67-4029-be5f-cab689224c46",
                     "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
@@ -277,8 +265,8 @@
                 },
                 {
                     "name": "",
-                    "id": "b33da3d6-f880-4ab0-88a4-b0d0c98de0d1",
-                    "path": "<XInputController>/leftTrigger",
+                    "id": "8c865476-c697-4a4e-99ef-d3b2148740bc",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -354,6 +342,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b2702d1d-bfdd-4048-8722-12f1fcbab0fc",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5e543cd0-a938-4fb7-927a-05b9f3e65851",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -382,6 +381,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6dd228f-2b40-4f2f-be9d-83a48c5945a8",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.5)",
+                    "groups": "",
+                    "action": "ControllerStickLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

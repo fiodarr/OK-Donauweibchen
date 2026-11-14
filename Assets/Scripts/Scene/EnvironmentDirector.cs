@@ -23,7 +23,7 @@ public class EnvironmentDirector: MonoBehaviour
     
 
     public static EnvironmentDirector Instance = null;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -42,6 +42,7 @@ public class EnvironmentDirector: MonoBehaviour
         {
             monitor.OnIntensityChange += OnMonitorIntensityChange;
         }
+        StartCoroutine(CheckForChanges());
     }
 
     private IntensityMonitor.IntensityLevel RecalculateIntensityLevel()
@@ -125,5 +126,14 @@ public class EnvironmentDirector: MonoBehaviour
 
         currentIntensityValue = newIntensity;
         intensityChangeCoroutine = null;
+    }
+    
+    private IEnumerator CheckForChanges()
+    {
+        while (true)
+        {
+            OnMonitorIntensityChange();
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

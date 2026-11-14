@@ -8,7 +8,7 @@ public class ArenaStaticIntensityEmitter: StaticIntensityEmitter
         bool hasSomebodyConnected = false;
         for (int i = 0; i < connectedObjects.Length; i++)
         {
-            if (connectedObjects[i] != null)
+            if (connectedObjects[i].activeInHierarchy)
             {
                 hasSomebodyConnected = true;
                 break;
@@ -17,5 +17,10 @@ public class ArenaStaticIntensityEmitter: StaticIntensityEmitter
         if (!hasSomebodyConnected) return IntensityMonitor.IntensityLevel.None;
         
         return base.GetIntensity();
+    }
+    
+    public void Update()
+    {
+        Debug.Log(gameObject.name + " : " + GetIntensity());
     }
 }

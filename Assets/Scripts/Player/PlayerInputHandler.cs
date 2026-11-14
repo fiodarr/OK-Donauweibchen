@@ -14,6 +14,22 @@ public class PlayerInputHandler : MonoBehaviour
     
     public Vector2 MoveInput { get; private set; }
     public Vector2 MousePosition { get; private set; }
+    public Vector2 RightStickInput { get; private set; }
+    
+    public Vector2 AimDirection 
+    {
+        get
+        {
+            if (controlScheme == ControlScheme.KeyboardMouse)
+            {
+                return LookDirection;
+            }
+            else
+            {
+                return RightStickInput.normalized;
+            }
+        }
+    }
 
     public Vector2 LookDirection
     {
@@ -80,6 +96,7 @@ public class PlayerInputHandler : MonoBehaviour
         
         MoveInput = inputActions.Player.Move.ReadValue<Vector2>();
         MousePosition = inputActions.Player.Look.ReadValue<Vector2>();
+        RightStickInput = inputActions.Player.ControllerStickLook.ReadValue<Vector2>().normalized;
         
         if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame() && controlScheme != ControlScheme.KeyboardMouse)
         {
@@ -124,19 +141,21 @@ public class PlayerInputHandler : MonoBehaviour
             FishingRodTimePressed = 0;
         }
         
-        if (inputActions.Player.UtilityAttack.WasPressedThisFrame())
+        if ((controlScheme == ControlScheme.KeyboardMouse && inputActions.Player.UtilityAttack.WasPressedThisFrame())
+            ||  (controlScheme != ControlScheme.KeyboardMouse && RightStickInput != Vector2.zero))
         {
             UtilityPressed?.Invoke();
             fishingRodPressed = true;
         }
-
-        if (inputActions.Player.UtilityAttack.WasReleasedThisFrame())
+        
+        if ((controlScheme == ControlScheme.KeyboardMouse && inputActions.Player.UtilityAttack.WasReleasedThisFrame()) 
+            || (controlScheme != ControlScheme.KeyboardMouse && RightStickInput == Vector2.zero) 
+            && fishingRodPressed
+            )
         {
             UtilityReleased?.Invoke();
             fishingRodPressed = false;
         }
-
-        
     }
     
     public InputActions GetInputActions()
