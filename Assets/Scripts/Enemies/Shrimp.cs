@@ -17,6 +17,10 @@ public class Shrimp : BaseEnemy
     [Header("References")]
     [SerializeField] private Animator animator;
 
+    [SerializeField] private EventReference attackSound;
+    [SerializeField] private EventReference getHitSound;
+    [SerializeField] private EventReference dieSound;
+
     private Transform target;
     private Vector2 direction;
     private Coroutine attackRoutine;
@@ -96,6 +100,7 @@ public class Shrimp : BaseEnemy
         Vector2 shootDirection =
             ((Vector2)target.position - (Vector2)projectileSpawnPoint.position).normalized;
 
+        RuntimeManager.PlayOneShot(attackSound, transform.position);
         animator.SetTrigger("attack");
         
         GameObject projectile = Instantiate(
@@ -111,6 +116,12 @@ public class Shrimp : BaseEnemy
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
+        RuntimeManager.PlayOneShot(getHitSound);
+        if (currentState != EnemyState.Attack)
+        {
+            animator.SetTrigger("Hit");
+        }
+
         base.OnTakeDamage(damageDirection, damage, knockback);
     }
 
@@ -118,6 +129,7 @@ public class Shrimp : BaseEnemy
     {
         StopAllCoroutines();
         base.Die();
+        RuntimeManager.PlayOneShot(dieSound, transform.position);
        // animator.SetBool("IsDead", true);
     }
 

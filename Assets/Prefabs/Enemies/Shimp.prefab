@@ -166,6 +166,27 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2773374450433572578, guid: 633344a59125442bd9882589429e442f, type: 3}
   projectileSpawnPoint: {fileID: 370890658179643852}
   animator: {fileID: 5026112159161860479}
+  attackSound:
+    Guid:
+      Data1: 151192656
+      Data2: 1204646127
+      Data3: 1856361136
+      Data4: 639247091
+    Path: event:/Shrimp/Attack
+  getHitSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  dieSound:
+    Guid:
+      Data1: 882813082
+      Data2: 1156434713
+      Data3: 1462902686
+      Data4: 746199104
+    Path: event:/Shrimp/Die
 --- !u!210 &655915467097986657
 SortingGroup:
   m_ObjectHideFlags: 0
