@@ -415,6 +415,27 @@ MonoBehaviour:
   currentHealth: 0
   currentArmor: 0
   movementLocked: 0
+  dieSnapshot:
+    Guid:
+      Data1: -1653594983
+      Data2: 1153897558
+      Data3: 1300453005
+      Data4: 987317226
+    Path: snapshot:/Death
+  dieSound:
+    Guid:
+      Data1: 112720003
+      Data2: 1084207370
+      Data3: -914624884
+      Data4: 1641616453
+    Path: event:/Fisherman/Die
+  dieBubbles:
+    Guid:
+      Data1: 1219129208
+      Data2: 1102181543
+      Data3: 1774605496
+      Data4: 1992250518
+    Path: event:/Fisherman/DieBubbles
 --- !u!114 &4155699220070449197
 MonoBehaviour:
   m_ObjectHideFlags: 0
