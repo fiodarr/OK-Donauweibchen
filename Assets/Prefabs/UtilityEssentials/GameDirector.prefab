@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5113961003315223737}
   - component: {fileID: 1333159205045166735}
+  - component: {fileID: 6116660333657684331}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -44,3 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb01ab47b41e4816a0ea055560c7809c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+--- !u!114 &6116660333657684331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252102628238153948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf8a064207a461c8167002285079c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnvironmentDirector
+  monitors: []
+  intensityTransitionDuration: 3
+  fmodEvent: {fileID: 0}

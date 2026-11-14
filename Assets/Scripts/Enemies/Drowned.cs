@@ -54,6 +54,8 @@ public class Drowned : BaseEnemy
     {
         if (currentState != EnemyState.Idle)
             return;
+        
+        if (currentState == EnemyState.Pingponged) return;
 
         if (target == null)
         {
@@ -67,12 +69,14 @@ public class Drowned : BaseEnemy
 
     private void FixedUpdate()
     {
+        if (currentState == EnemyState.Pingponged) return;
         if (currentState != EnemyState.Idle)
         {
             Rb.linearVelocity = Vector2.zero;
             animator.SetBool("IsMoving", false);
             return;
         }
+        
 
         if (target != null &&
             Vector2.Distance(detectionPivot.position, target.position) < attackRange)
@@ -251,6 +255,7 @@ public class Drowned : BaseEnemy
     protected override void OnPullEnd()
     {
         animator.SetBool("IsHooked", false);
+        Debug.Log("OnPullEnd");
         base.OnPullEnd();
     }
 

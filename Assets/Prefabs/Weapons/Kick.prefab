@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6322263662290879020}
   m_Layer: 6
   m_Name: Kick
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,32 +51,34 @@ MonoBehaviour:
   - damage:
     - amount: 100
       type: 1
+      tag: 1
     - amount: 0.1
       type: 0
+      tag: 1
     knockback: 50
     launchForce: 50
     attackSound:
+      Guid:
+        Data1: -798697107
+        Data2: 1114692632
+        Data3: -239695695
+        Data4: -1737983110
+      Path: event:/Fisherman/PreKick
+    chargeSound:
       Guid:
         Data1: -1437764739
         Data2: 1136235105
         Data3: -1335881544
         Data4: 1624387878
       Path: event:/Fisherman/Attacks/Kick
-    chargeSound:
-      Guid:
-        Data1: -798697107
-        Data2: 1114692632
-        Data3: -239695695
-        Data4: -1737983110
-      Path: event:/Fisherman/Attacks/PreKick
-    vibrationVelocity: 0.1
-    vibrationLength: 0.85
-    chargeTime: 0.7
+    vibrationVelocity: 0
+    vibrationLength: 0
+    chargeTime: 0.3
     activeTime: 0.2
     recoveryTime: 0.8
     comboTime: 0
     hitbox: {fileID: 8788264919326412803}
-    tag: 0
+    tag: 1
 --- !u!1 &2639458953712721554
 GameObject:
   m_ObjectHideFlags: 0
