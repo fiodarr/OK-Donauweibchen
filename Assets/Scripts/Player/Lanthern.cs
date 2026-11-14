@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -32,11 +33,14 @@ public class Lantern : MonoBehaviour
     public int CurrentCharges => currentCharges;
     public int MaxCharges => maxCharges;
 
+    public event Action<int, int> OnChargesChanged;
+
     private void Awake()
     {
         playerComponents = GetComponentInParent<PlayerComponents>();
 
         currentCharges = maxCharges;
+        OnChargesChanged?.Invoke(currentCharges, maxCharges);
 
         if (lanternLight != null)
             originalIntensity = lanternLight.intensity;
@@ -73,11 +77,13 @@ public class Lantern : MonoBehaviour
         status.Heal(healAmount);
         Debug.Log("healed");
         currentCharges--;
+        OnChargesChanged?.Invoke(currentCharges, maxCharges);
     }
 
     public void Refill()
     {
         currentCharges = maxCharges;
+        OnChargesChanged?.Invoke(currentCharges, maxCharges);
     }
 
     public void Blink()

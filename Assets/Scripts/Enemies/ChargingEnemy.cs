@@ -15,8 +15,8 @@ public class ChargingEnemy : BaseEnemy
     [Header("Wall Collision")]
     [SerializeField] private float wallCollisionDelay = 0.1f;
 
-    [SerializeField] private SoundEvent agro;
-    [SerializeField] private SoundEvent chase;
+    [SerializeField] private EventReference agro;
+    [SerializeField] private EventReference chase;
 
     [Header("Plunge")]
     [SerializeField] private float plungeSpeed = 12f;
@@ -153,7 +153,7 @@ public class ChargingEnemy : BaseEnemy
             yield break;
         }
 
-        RuntimeManager.PlayOneShot(agro.nameIndex, transform.position);
+        RuntimeManager.PlayOneShot(agro, transform.position);
 
         yield return new WaitUntil(() =>
             windUpEnded || currentState != EnemyState.Preparing
@@ -168,7 +168,7 @@ public class ChargingEnemy : BaseEnemy
 
         windUpEnded = false;
 
-        var chaseInstance = RuntimeManager.CreateInstance(chase.nameIndex);
+        var chaseInstance = RuntimeManager.CreateInstance(chase);
         RuntimeManager.AttachInstanceToGameObject(chaseInstance, gameObject);
         chaseInstance.start();
 

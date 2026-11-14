@@ -12,7 +12,7 @@ public class PlayerController : Hitable
 
     private Coroutine stepsRoutine;
 
-    [SerializeField] private SoundEvent footsteps;
+    [SerializeField] private EventReference footsteps;
 
     private bool isMoving = false;
 
@@ -31,6 +31,8 @@ public class PlayerController : Hitable
     [SerializeField] private float jumpVisualHeight = 1f;
     [SerializeField] private AnimationCurve movementCurve = AnimationCurve.Linear(0, 0, 1, 1);
     [SerializeField] private AnimationCurve heightCurve = AnimationCurve.EaseInOut(0, 0, 1, 0);
+
+
     
     private int originalLayer;
 
@@ -87,9 +89,7 @@ public class PlayerController : Hitable
 
         Vector2 movement = playerComponents.inputHandler.MoveInput.normalized;
 
-        rb.MovePosition(
-            rb.position + movement * moveSpeed * Time.fixedDeltaTime
-        );
+        rb.linearVelocity = movement * moveSpeed;
         
         if (movement.magnitude > 0)
         {
@@ -188,7 +188,7 @@ public class PlayerController : Hitable
     IEnumerator Footsteps()
     {
         while (isMoving){
-            RuntimeManager.PlayOneShot(footsteps.nameIndex);
+            RuntimeManager.PlayOneShot(footsteps);
         yield return new WaitForSeconds(0.4f);
         }
         stepsRoutine = null;
