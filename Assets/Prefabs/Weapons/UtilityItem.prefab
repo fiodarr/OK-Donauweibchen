@@ -156,6 +156,37 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: 0.5}
   m_UseDelaunayMesh: 1
+--- !u!1 &3130461943980366971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8523198544259325414}
+  m_Layer: 0
+  m_Name: PositionPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8523198544259325414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130461943980366971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8050419187771694654}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4041381074089897500
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +376,7 @@ Transform:
   - {fileID: 2766336785660138169}
   - {fileID: 1339351269930984089}
   - {fileID: 5765867916275110824}
+  - {fileID: 8523198544259325414}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6908692627074361546
@@ -391,6 +423,7 @@ MonoBehaviour:
   chosenTargetSprite: {fileID: 7182161398080538857}
   afterHookDistance: 1
   pullSpeed: 10
+  pivot: {fileID: 8523198544259325414}
   swingTime: 0.2
   pullTime: 0.3
 --- !u!1 &7182161398080538857

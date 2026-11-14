@@ -6,12 +6,12 @@ public class TargeChooseUtility: MonoBehaviour
 {
     private HashSet<IHookable> hookables =  new HashSet<IHookable>();
 
-    public IHookable GetTarget()
+    public IHookable GetTarget(Transform pivot)
     {
-        return GetClosestTarget();
+        return GetClosestTarget(pivot);
     }
     
-    public IHookable GetClosestTarget()
+    public IHookable GetClosestTarget(Transform pivot)
     {
         if (hookables.Count == 0)
         {
@@ -21,7 +21,7 @@ public class TargeChooseUtility: MonoBehaviour
         float closestDistance = float.MaxValue;
         foreach (IHookable h in hookables)
         {
-            float distance = Vector2.Distance(h.GetPosition(), this.transform.position);
+            float distance = Vector2.Distance(pivot.position, h.GetPosition());
             if (distance < closestDistance)
             {
                 closestDistance = distance;
@@ -36,7 +36,7 @@ public class TargeChooseUtility: MonoBehaviour
         if (collision.TryGetComponent(out IHookable h))
         {
             hookables.Remove(h);
-            Debug.Log(collision.name + " has exited hook range for " + name);
+            //Debug.Log(collision.name + " has exited hook range for " + name);
         }
     }
 
@@ -45,7 +45,7 @@ public class TargeChooseUtility: MonoBehaviour
         if (collision.TryGetComponent(out IHookable h))
         {
             hookables.Add(h);
-            Debug.Log(collision.name + " has exited hook range for " + name);
+            //Debug.Log(collision.name + " has exited hook range for " + name);
         }
     }
 }

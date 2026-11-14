@@ -39,6 +39,7 @@ public class ChargingEnemy : BaseEnemy
     private FlashController flash;
 
     private Coroutine attackCoroutine;
+    
     private bool hasAttackSlot;
 
     protected override void Awake()
@@ -53,6 +54,7 @@ public class ChargingEnemy : BaseEnemy
     {
         if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
         if (currentState == EnemyState.Died) return;
+        if (currentState == EnemyState.Pingponged) return;
         if (currentState != EnemyState.Idle) return;
 
         Collider2D player = Physics2D.OverlapCircle(
@@ -254,7 +256,7 @@ public class ChargingEnemy : BaseEnemy
         animator.SetBool("IsAttacking", false);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    protected override void OnCollisionStay2D(Collision2D collision)
     {
         if (!canHitWall || hitSolid || currentState != EnemyState.Attack)
             return;
@@ -274,6 +276,8 @@ public class ChargingEnemy : BaseEnemy
         flash.FlashMultiple(7, 0.15f, 0.25f, 0.6f);
         animator.SetTrigger("Hit");
         animator.SetBool("IsMoving", false);
+        
+        base.OnCollisionStay2D(collision);
     }
 
     public void WindUpEnded()

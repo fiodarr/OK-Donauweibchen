@@ -1,4 +1,7 @@
-﻿public enum AttackDataTag
+﻿using System;
+
+[Serializable]
+public enum AttackDataTag
 {
     Default,
     PingPongTrigger
