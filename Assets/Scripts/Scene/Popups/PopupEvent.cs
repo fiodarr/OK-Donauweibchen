@@ -5,5 +5,6 @@
     FirstDamageReceived,
     FirstHooked,
     EnemyVulnerable,
-    ArmoredEnemy
+    ArmoredEnemy,
+    PickUpLantern
 }
