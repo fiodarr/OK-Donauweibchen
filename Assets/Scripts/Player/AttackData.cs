@@ -26,4 +26,7 @@ public class AttackData
 
     [Header("Hitbox")]
     public Hitbox hitbox;
+
+    [Header("Tag")] 
+    public AttackDataTag tag;
 }
