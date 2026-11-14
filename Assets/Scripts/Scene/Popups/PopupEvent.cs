@@ -6,5 +6,6 @@
     FirstHooked,
     EnemyVulnerable,
     ArmoredEnemy,
-    PickUpLantern
+    PickUpLantern,
+    PickUpFishingRod
 }
