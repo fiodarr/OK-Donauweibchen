@@ -1,10 +1,12 @@
-
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private int pearlsCount;
+
+    public event Action<int> OnPearlsChanged;
 
     [SerializeField] private float attractionRadius = 4f;
     [SerializeField] private float scanInterval = 0.1f;
@@ -59,11 +61,13 @@ public class PlayerInventory : MonoBehaviour
     public void SetPearls(int count)
     {
         pearlsCount = Mathf.Max(0, count);
+        OnPearlsChanged?.Invoke(pearlsCount);
     }
 
     public void ChangePearls(int change)
     {
         pearlsCount = Mathf.Max(0, pearlsCount + change);
+        OnPearlsChanged?.Invoke(pearlsCount);
     }
 
     private void OnDrawGizmosSelected()
