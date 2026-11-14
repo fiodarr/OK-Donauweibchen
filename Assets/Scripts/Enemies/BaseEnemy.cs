@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EntityStatus))]
 public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 {
     protected enum EnemyState
