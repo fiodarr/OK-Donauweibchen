@@ -8,8 +8,9 @@ public class ScriptedEnemyActionTrigger: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name + " tried to enter here");
         if (!other.gameObject.TryGetComponent(out PlayerController player)) return;
-        
+        Debug.Log("player entered trigger");
         OnTriggerActivated?.Invoke();
         if (IsOneTime)
         {

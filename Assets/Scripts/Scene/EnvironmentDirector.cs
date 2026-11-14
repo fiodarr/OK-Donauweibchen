@@ -122,7 +122,7 @@ public class EnvironmentDirector: MonoBehaviour
                 newIntensity,
                 intensityChangeSpeed * Time.deltaTime
             );
-            Debug.Log(currentIntensityValue);
+            //Debug.Log(currentIntensityValue);
             
             play.setParameterByName("Intensity", currentIntensityValue);
             yield return null;
