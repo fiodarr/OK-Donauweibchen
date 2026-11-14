@@ -313,26 +313,41 @@ MonoBehaviour:
   iTime: 0
   shadowCaster: {fileID: 3940483064118084869}
   knockbackForce: 15
+  knockbackPingPongMultiplier: 2
   hurtbox:
   - {fileID: 2518037694342659847}
   - {fileID: 805387943941086686}
   detectionRange: 12
   prepareTime: 2
   wallCollisionDelay: 0.1
-  agro:
+  agroSound:
     Guid:
       Data1: 759363128
       Data2: 1312762781
       Data3: -670820173
       Data4: -1602208195
     Path: event:/Fih/FihAgro
-  chase:
+  chaseSound:
     Guid:
       Data1: -922878343
       Data2: 1285357211
       Data3: -1728737907
       Data4: 166786399
     Path: event:/Fih/FihChase
+  biteSound:
+    Guid:
+      Data1: -1028440263
+      Data2: 1202735414
+      Data3: 1240790973
+      Data4: 42638008
+    Path: event:/Fih/FihBite
+  dieSound:
+    Guid:
+      Data1: -1710659068
+      Data2: 1184772050
+      Data3: 10278575
+      Data4: 1828694362
+    Path: event:/Fih/FihDie
   plungeSpeed: 10
   moveSpeed: 4
   curveAmplitude: 3
@@ -364,6 +379,7 @@ MonoBehaviour:
     recoveryTime: 0.25
     comboTime: 0.5
     hitbox: {fileID: 3966858308770856136}
+    tag: 0
   recoverTime: 3
 --- !u!50 &1359473062696987081
 Rigidbody2D:
