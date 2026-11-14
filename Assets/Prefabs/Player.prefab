@@ -990,6 +990,7 @@ MonoBehaviour:
       Data4: 1723009827
     Path: event:/Fisherman/Heal
   blinkFadeDuration: 0.08
+  visuals: {fileID: 7924162333950095688}
 --- !u!1 &7924162333950095688
 GameObject:
   m_ObjectHideFlags: 0
