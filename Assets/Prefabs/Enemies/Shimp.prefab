@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 655915467097986657}
   - component: {fileID: 3633491212568265076}
   - component: {fileID: 6614913580068142515}
+  - component: {fileID: 6944223810505357559}
   m_Layer: 0
   m_Name: Shimp
   m_TagString: Untagged
@@ -148,6 +149,14 @@ MonoBehaviour:
   shadowCaster: {fileID: 0}
   knockbackForce: 5
   knockbackPingPongMultiplier: 2
+  knockbackPingPongTime: 1
+  pingPongSound:
+    Guid:
+      Data1: 1122386283
+      Data2: 1310889590
+      Data3: -1298744402
+      Data4: -800798463
+    Path: event:/Fisherman/PinPong
   hurtbox:
   - {fileID: 3395480195577358217}
   detectionRange: 7
@@ -156,7 +165,7 @@ MonoBehaviour:
   attackCooldown: 2
   projectilePrefab: {fileID: 2773374450433572578, guid: 633344a59125442bd9882589429e442f, type: 3}
   projectileSpawnPoint: {fileID: 370890658179643852}
-  animator: {fileID: 0}
+  animator: {fileID: 6614913580068142515}
 --- !u!210 &655915467097986657
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -219,3 +228,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6944223810505357559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606217024977187283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5acf92cf8a9db416697065428ac9c161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityStatus
+  maxHealth: 0
+  maxArmor: 0
+  armorReduction: 0
+  currentHealth: 0
+  currentArmor: 0

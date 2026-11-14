@@ -127,7 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   spriteRenderer: {fileID: 8032276586807920412}
   hitbox: {fileID: 285591741808513588}
-  hitObjectsToIgnore: []
+  hitObjectsToIgnore:
+  - {fileID: 0}
 --- !u!50 &931635583012250125
 Rigidbody2D:
   serializedVersion: 5
