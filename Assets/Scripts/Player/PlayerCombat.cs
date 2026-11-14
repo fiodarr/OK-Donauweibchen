@@ -36,7 +36,6 @@ public class PlayerCombat : MonoBehaviour
     private bool canDash = true;
     public bool LockMove => currentState != CombatState.Default || externalActionLock;
     public bool CanAttack => currentState == CombatState.Default && !externalActionLock;
-
     private bool externalActionLock;
 
 
@@ -89,7 +88,7 @@ public class PlayerCombat : MonoBehaviour
                 comboIndex = 0;
             }
         }
-
+        
         StartCoroutine(PerformAttack(equippedWeapon));
     }
 

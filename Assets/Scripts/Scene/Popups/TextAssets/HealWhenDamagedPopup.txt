@@ -1,1 +1,1 @@
-[Heal] to heal
+<Heal>[Heal] to heal

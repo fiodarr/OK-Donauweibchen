@@ -15,9 +15,9 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         Preparing,
         Attack,
         Vulnerable,
-
         Hooked,
         Stunned,
+        Pingponged,
         Died
     }
 
@@ -28,10 +28,13 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     
     protected EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
+    [SerializeField] private float knockbackPingPongMultiplier = 2f;
 
     [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
     private SpriteRenderer spriteRenderer;
+    
+    
 
     protected virtual void Awake()
     {
@@ -46,7 +49,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
         status.TakeDamage(damage);
-
+        
+        
         
         ApplyKnockback(damageDirection.normalized,knockback);
         
@@ -57,7 +61,11 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     private void ApplyKnockback(Vector2 direction, float amount)
     {
-        Rb.AddForce(direction * knockbackForce * amount, ForceMode2D.Impulse);
+        
+        Rb.AddForce(direction 
+                    * knockbackForce * amount 
+                    * (currentState == EnemyState.Pingponged ? knockbackPingPongMultiplier : 0), 
+            ForceMode2D.Impulse);
     }
     protected virtual void Die()
     {
