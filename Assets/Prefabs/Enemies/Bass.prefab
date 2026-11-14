@@ -314,6 +314,14 @@ MonoBehaviour:
   shadowCaster: {fileID: 3940483064118084869}
   knockbackForce: 15
   knockbackPingPongMultiplier: 2
+  knockbackPingPongTime: 1
+  pingPongSound:
+    Guid:
+      Data1: 1122386283
+      Data2: 1310889590
+      Data3: -1298744402
+      Data4: -800798463
+    Path: event:/Fisherman/PinPong
   hurtbox:
   - {fileID: 2518037694342659847}
   - {fileID: 805387943941086686}
@@ -356,6 +364,7 @@ MonoBehaviour:
     damage:
     - amount: 3
       type: 0
+      tag: 0
     knockback: 5
     launchForce: 5
     attackSound:

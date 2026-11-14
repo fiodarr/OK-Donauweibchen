@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -33,6 +34,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     [SerializeField] private float knockbackPingPongMultiplier = 2f;
     [SerializeField] private float knockbackPingPongTime = 1f;
 
+    [SerializeField] private EventReference pingPongSound;
+    
     [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
     private SpriteRenderer spriteRenderer;
@@ -68,6 +71,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         if (currentState == EnemyState.Stunned 
             && damage.Any(d => d.tag == AttackDataTag.PingPongTrigger))
         {
+            RuntimeManager.PlayOneShot(pingPongSound);
             StartPingPong(knockbackPingPongTime);
         }
         
