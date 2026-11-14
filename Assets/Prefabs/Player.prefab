@@ -407,11 +407,11 @@ MonoBehaviour:
     Path: event:/Fisherman/Dash
   castSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 420452661
+      Data2: 1196199555
+      Data3: -19061859
+      Data4: -780621033
+    Path: event:/Fisherman/Cast
   reelSound:
     Guid:
       Data1: 620168149

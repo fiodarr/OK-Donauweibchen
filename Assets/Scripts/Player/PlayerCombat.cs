@@ -227,13 +227,9 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator Swing(bool isSmart)
     {
-        // var casting = RuntimeManager.CreateInstance(castSound);
-        // casting.start();
-        
+        RuntimeManager.PlayOneShot(castSound);
         currentState = CombatState.Swinging;
         yield return new WaitForSeconds(equippedUtilityItem.swingTime);
-        // casting.release();
-        
         equippedUtilityItem.Hook(isSmart);
         equippedUtilityItem.HideChosenTargetSprite();
         currentUtilityCoroutine = StartCoroutine(PullAnimation());
