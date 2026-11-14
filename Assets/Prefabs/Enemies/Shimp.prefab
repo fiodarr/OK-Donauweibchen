@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 655915467097986657}
   - component: {fileID: 3633491212568265076}
   - component: {fileID: 6944223810505357559}
+  - component: {fileID: 5026112159161860479}
   m_Layer: 0
   m_Name: Shimp
   m_TagString: Untagged
@@ -63,7 +64,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 5ad69e68997ad4fc6b8e7336402b26d1, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,7 +165,7 @@ MonoBehaviour:
   attackCooldown: 2
   projectilePrefab: {fileID: 2773374450433572578, guid: 633344a59125442bd9882589429e442f, type: 3}
   projectileSpawnPoint: {fileID: 370890658179643852}
-  animator: {fileID: 0}
+  animator: {fileID: 5026112159161860479}
 --- !u!210 &655915467097986657
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -222,3 +223,25 @@ MonoBehaviour:
   armorReduction: 0
   currentHealth: 0
   currentArmor: 0
+--- !u!95 &5026112159161860479
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606217024977187283}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8734327c4994746bfa34fd9ad3533730, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

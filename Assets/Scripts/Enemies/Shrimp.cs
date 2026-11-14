@@ -96,6 +96,8 @@ public class Shrimp : BaseEnemy
         Vector2 shootDirection =
             ((Vector2)target.position - (Vector2)projectileSpawnPoint.position).normalized;
 
+        animator.SetTrigger("attack");
+        
         GameObject projectile = Instantiate(
             projectilePrefab,
             projectileSpawnPoint.position,
