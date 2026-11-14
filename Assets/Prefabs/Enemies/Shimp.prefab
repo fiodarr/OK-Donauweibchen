@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 791341781647808937}
   - component: {fileID: 655915467097986657}
   - component: {fileID: 3633491212568265076}
-  - component: {fileID: 6614913580068142515}
   - component: {fileID: 6944223810505357559}
   m_Layer: 0
   m_Name: Shimp
@@ -95,7 +94,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!58 &3395480195577358217
 CircleCollider2D:
@@ -165,7 +164,7 @@ MonoBehaviour:
   attackCooldown: 2
   projectilePrefab: {fileID: 2773374450433572578, guid: 633344a59125442bd9882589429e442f, type: 3}
   projectileSpawnPoint: {fileID: 370890658179643852}
-  animator: {fileID: 6614913580068142515}
+  animator: {fileID: 0}
 --- !u!210 &655915467097986657
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -206,28 +205,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &6614913580068142515
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606217024977187283}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1f25278c556974111a6d0f1a9360f924, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6944223810505357559
 MonoBehaviour:
   m_ObjectHideFlags: 0

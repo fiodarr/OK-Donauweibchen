@@ -491,6 +491,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2517167523473365265}
     m_Modifications:
+    - target: {fileID: 1483823472940734634, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}
+      propertyPath: hitObjectsToIgnore.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483823472940734634, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}
+      propertyPath: 'hitObjectsToIgnore.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2820047617621095622}
     - target: {fileID: 2737277900778356590, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}
       propertyPath: m_Layer
       value: 8
