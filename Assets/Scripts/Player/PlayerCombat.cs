@@ -143,9 +143,13 @@ public class PlayerCombat : MonoBehaviour
             attack.autolockDistance,
             currentDirection,
             ~0,
-            true
+            false
         );
-        if (autolockDirection != Vector2.zero) currentDirection = autolockDirection;
+        Debug.Log("Target vector for autolock direction: " +  autolockDirection + "; with initial lock on " + currentDirection);
+        if (autolockDirection != Vector2.zero)
+        {
+            currentDirection = autolockDirection;
+        }
         
         // Launch player
         rb.AddForce(
