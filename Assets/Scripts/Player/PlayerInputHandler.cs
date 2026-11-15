@@ -72,6 +72,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public event Action MenuConfirm;
     public event Action MenuClose;
+
+    public event Action DialogueNext;
     
     
     private bool fishingRodPressed = false;
@@ -96,6 +98,17 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState == GameState.Dialogue)
+        {
+
+            if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame()
+                || inputActions.InputScheme.ControllerInput.WasPressedThisFrame()
+                || inputActions.InputScheme.XboxInput.WasPressedThisFrame())
+            {
+                DialogueNext?.Invoke();
+            }
+        }
+
         if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
         
         MoveInput = inputActions.Player.Move.ReadValue<Vector2>();
