@@ -985,8 +985,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lantern
   maxCharges: 3
   healAmount: 40
-  healStartDelay: 0.3
-  healEndDelay: 0.5
+  healStartDelay: 1
+  healEndDelay: 1
   lanternLight: {fileID: 7476985271315839932}
   globalLight: {fileID: 1595696390530823153}
   fadeDuration: 1.5

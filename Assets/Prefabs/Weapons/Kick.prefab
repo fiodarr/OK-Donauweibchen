@@ -57,6 +57,7 @@ MonoBehaviour:
       tag: 1
     knockback: 50
     launchForce: 50
+    autolockDistance: 3
     attackSound:
       Guid:
         Data1: -1437764739
@@ -75,7 +76,7 @@ MonoBehaviour:
     vibrationLength: 0
     chargeTime: 0.3
     activeTime: 0.2
-    recoveryTime: 0.8
+    recoveryTime: 0.4
     comboTime: 0
     hitbox: {fileID: 8788264919326412803}
     tag: 1
