@@ -509,7 +509,7 @@ MonoBehaviour:
   maxHealth: 7
   maxArmor: 0
   armorReduction: 1
-  currentHealth: 11
+  currentHealth: 7
   currentArmor: 0
 --- !u!58 &2518037694342659847
 CircleCollider2D:
