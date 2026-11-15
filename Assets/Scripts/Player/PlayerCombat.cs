@@ -143,7 +143,7 @@ public class PlayerCombat : MonoBehaviour
             attack.autolockDistance,
             currentDirection,
             ~0,
-            true
+            false
         );
         if (autolockDirection != Vector2.zero) currentDirection = autolockDirection;
         
