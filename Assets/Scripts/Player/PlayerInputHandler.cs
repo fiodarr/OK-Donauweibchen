@@ -69,6 +69,9 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action Dash;
 
     public event Action Heal;
+
+    public event Action MenuConfirm;
+    public event Action MenuClose;
     
     
     private bool fishingRodPressed = false;
@@ -115,10 +118,17 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         if (inputActions.Player.Interact.WasPressedThisFrame())
+        {
             InteractPressed?.Invoke();
+            MenuClose?.Invoke();
+        }
+            
 
         if (inputActions.Player.Attack.WasPressedThisFrame())
+        {
             AttackPressed?.Invoke();
+        }
+            
 
         if (inputActions.Player.SecondaryAttack.WasPressedThisFrame())
             SecondaryAttackPressed?.Invoke();
@@ -131,6 +141,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.Player.Evade.WasPressedThisFrame())
         {
             Dash?.Invoke();
+            MenuConfirm?.Invoke();
         }
         
         UpdateFishingRodInput();
