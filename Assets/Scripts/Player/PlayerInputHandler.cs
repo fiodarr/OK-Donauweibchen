@@ -100,11 +100,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (GameManager.Instance.CurrentState == GameState.Dialogue)
         {
-
-            if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame()
+            if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame()
                 || inputActions.InputScheme.ControllerInput.WasPressedThisFrame()
                 || inputActions.InputScheme.XboxInput.WasPressedThisFrame())
             {
+                Debug.Log("new dialogue line");
                 DialogueNext?.Invoke();
             }
         }

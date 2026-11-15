@@ -29,6 +29,7 @@ public class DialogueManager: MonoBehaviour
         currentLine++;
         if (currentLine >= linesMax) EndDialogue();
         else dialogueText.text = dialogueLines[currentLine];
+        Debug.Log(dialogueLines[currentLine]);
     }
 
     private void EndDialogue()

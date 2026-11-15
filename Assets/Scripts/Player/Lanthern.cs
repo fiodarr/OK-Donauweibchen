@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using FMODUnity;
@@ -10,6 +9,8 @@ public class Lantern : MonoBehaviour
     [Header("Lantern Settings")]
     [SerializeField] private int maxCharges = 3;
     [SerializeField] private float healAmount = 40f;
+    [SerializeField] private float healStartDelay = 0.3f;
+    [SerializeField] private float healEndDelay = 0.5f;
 
     [Header("Light")]
     [SerializeField] private Light2D lanternLight;
@@ -22,7 +23,7 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float blinkInterval = 0.08f;
 
     [SerializeField] private EventReference healSound;
-    
+
     [SerializeField] private float blinkFadeDuration = 0.08f;
 
     [SerializeField] private GameObject visuals;
@@ -35,6 +36,7 @@ public class Lantern : MonoBehaviour
     private Coroutine blinkCoroutine;
 
     private PlayerComponents playerComponents;
+    private bool isHealing;
 
     public int CurrentCharges => currentCharges;
     public int MaxCharges => maxCharges;
@@ -69,7 +71,7 @@ public class Lantern : MonoBehaviour
 
     public void Use()
     {
-        if (currentCharges <= 0)
+        if (isHealing || currentCharges <= 0)
         {
             Debug.Log("Lantern is empty!");
             return;
@@ -80,11 +82,30 @@ public class Lantern : MonoBehaviour
         if (status.IsDead || status.GetHealth() >= status.GetMaxHealth())
             return;
 
-        status.Heal(healAmount);
-        RuntimeManager.PlayOneShot(healSound);
-        Debug.Log("healed");
-        currentCharges--;
-        OnChargesChanged?.Invoke(currentCharges, maxCharges);
+        StartCoroutine(HealRoutine());
+    }
+
+    private IEnumerator HealRoutine()
+    {
+        isHealing = true;
+
+        yield return new WaitForSeconds(healStartDelay);
+
+        PlayerStatus status = playerComponents.status;
+
+        if (!status.IsDead && status.GetHealth() < status.GetMaxHealth())
+        {
+            status.Heal(healAmount);
+            RuntimeManager.PlayOneShot(healSound);
+            Debug.Log("healed");
+
+            currentCharges--;
+            OnChargesChanged?.Invoke(currentCharges, maxCharges);
+        }
+
+        yield return new WaitForSeconds(healEndDelay);
+
+        isHealing = false;
     }
 
     public void Refill()
@@ -95,7 +116,6 @@ public class Lantern : MonoBehaviour
 
     public void Blink()
     {
-
         if (blinkCoroutine != null)
             return;
 
@@ -232,7 +252,7 @@ public class Lantern : MonoBehaviour
             blinkCoroutine = null;
         }
     }
-    
+
     public void PickUp()
     {
         lanternLight.enabled = true;
