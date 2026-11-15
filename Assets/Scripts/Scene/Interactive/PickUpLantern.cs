@@ -6,6 +6,7 @@ public class PickUpLantern: MonoBehaviour, IInteractable
     {
         if (!interactor.TryGetComponent(out PlayerComponents player)) return;
         player.PickUpLantern();
+        Destroy(gameObject);
     }
 
     public string GetInteractionPrompt()
