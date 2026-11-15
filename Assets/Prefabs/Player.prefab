@@ -374,6 +374,7 @@ MonoBehaviour:
       Data3: -278873427
       Data4: -357132703
     Path: event:/Fisherman/ReelOneShot
+  animator: {fileID: 5056467316801955230}
   equippedWeapon: {fileID: 2719679042586757064}
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
@@ -1445,6 +1446,10 @@ PrefabInstance:
     - target: {fileID: 1256440091010881911, guid: 54a525dc9d8fd400d92e41133b03e321, type: 3}
       propertyPath: m_Name
       value: KnifeWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322263662290879020, guid: 54a525dc9d8fd400d92e41133b03e321, type: 3}
+      propertyPath: attacks.Array.data[2].chargeTime
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7364153568067152073, guid: 54a525dc9d8fd400d92e41133b03e321, type: 3}
       propertyPath: m_LocalPosition.x
