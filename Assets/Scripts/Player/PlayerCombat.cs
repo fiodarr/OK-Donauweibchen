@@ -44,11 +44,13 @@ public class PlayerCombat : MonoBehaviour
     public bool LockMove => currentState != CombatState.Default || externalActionLock;
     public bool CanAttack => currentState == CombatState.Default && !externalActionLock;
     private bool externalActionLock;
+    [SerializeField] private Animator animator;
 
 
     private void Update()
     {
         UpdateUtility();
+        UpdateComboTimer();
     }
 
     private int comboIndex = 0;
@@ -119,6 +121,9 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator PerformAttack(Weapon weapon)
     {
+
+        animator.SetFloat("attackIndex",comboIndex);
+        animator.SetBool("IsAttacking",true);
         currentState = CombatState.Attacking;
 
         AttackData attack = weapon.GetAttack(comboIndex);
@@ -145,6 +150,10 @@ public class PlayerCombat : MonoBehaviour
             ~0,
             true
         );
+
+        animator.SetFloat("DirX", currentDirection.x);
+        animator.SetFloat("DirY", currentDirection.y);
+
         if (autolockDirection != Vector2.zero) currentDirection = autolockDirection;
         
         // Launch player
@@ -172,11 +181,15 @@ public class PlayerCombat : MonoBehaviour
 
         lastAttackTime = Time.time;
 
+
+
         // Advance combo
         comboIndex++;
 
         if (comboIndex >= weapon.attacks.Length)
             comboIndex = 0;
+
+    
 
         currentState = CombatState.Default;
     }
@@ -237,10 +250,26 @@ public class PlayerCombat : MonoBehaviour
         
         currentUtilityCoroutine = StartCoroutine(Swing(isSmart));
     }
+    private void UpdateComboTimer()
+    {
+        if (comboIndex <= 0)
+            return;
 
+        AttackData previousAttack = equippedWeapon.GetAttack(comboIndex - 1);
+
+        if (previousAttack == null)
+            return;
+
+        if (Time.time - lastAttackTime > previousAttack.comboTime)
+        {
+            animator.SetBool("IsAttacking", false);
+            animator.SetFloat("attackIndex",0);
+        }
+    }
     private IEnumerator Swing(bool isSmart)
     {
         RuntimeManager.PlayOneShot(castSound);
+        animator.SetTrigger("cast");
         currentState = CombatState.Swinging;
         yield return new WaitForSeconds(equippedUtilityItem.swingTime);
         equippedUtilityItem.Hook(isSmart);
@@ -251,11 +280,13 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator PullAnimation()
     {
+        animator.SetTrigger("pull");
         currentState = CombatState.Pulling;
         RuntimeManager.PlayOneShot(reelSound);
         yield return new WaitForSeconds(equippedUtilityItem.pullTime);
         currentState = CombatState.Default;
         currentUtilityCoroutine = null;
+        animator.SetTrigger("endPull");
     }
 
     private void UpdateUtility()
