@@ -47,6 +47,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void Awake()
     {
+        RestSpotManager.Instance.enemies.Add(this);
         Rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EntityStatus>();
         spriteRenderer = GetComponent<SpriteRenderer>();
