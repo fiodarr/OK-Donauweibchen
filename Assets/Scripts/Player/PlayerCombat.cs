@@ -19,9 +19,11 @@ public class PlayerCombat : MonoBehaviour
     private CombatState currentState = CombatState.Default;
 
     [SerializeField] private PlayerComponents playerComponents;
+    
     [SerializeField] private EventReference dashSound;
     [SerializeField] private EventReference castSound;
     [SerializeField] private EventReference reelSound;
+    private int attackType = 0;
     private Vector2 currentDirection = Vector2.right;
 
     [Header("Weapon")]
@@ -85,6 +87,8 @@ public class PlayerCombat : MonoBehaviour
 
     private void TryAttack()
     {
+        animator.SetInteger("attackType",0);
+        attackType = 0;
         if (!CanAttack || !equippedWeapon || !playerComponents.status.isActiveAndEnabled)
             return;
         if (comboIndex > 0)
@@ -103,6 +107,8 @@ public class PlayerCombat : MonoBehaviour
 
     private void TrySecondaryAttack()
     {
+        animator.SetInteger("attackType",1);
+        attackType = 1;
         if (!CanAttack || !equippedSecondaryWeapon)
             return;
         if (comboIndex > 0)
@@ -187,8 +193,10 @@ public class PlayerCombat : MonoBehaviour
         comboIndex++;
 
         if (comboIndex >= weapon.attacks.Length)
+        {
             comboIndex = 0;
-
+            animator.SetBool("IsAttacking", false);
+        }
     
 
         currentState = CombatState.Default;
@@ -252,10 +260,11 @@ public class PlayerCombat : MonoBehaviour
     }
     private void UpdateComboTimer()
     {
-        if (comboIndex <= 0)
-            return;
-
         AttackData previousAttack = equippedWeapon.GetAttack(comboIndex - 1);
+        if (attackType == 1)
+        {
+            previousAttack = equippedSecondaryWeapon.GetAttack(comboIndex-1);
+        }
 
         if (previousAttack == null)
             return;
