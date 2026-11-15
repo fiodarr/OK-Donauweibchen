@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RestSpotManager : MonoBehaviour
@@ -6,7 +7,7 @@ public class RestSpotManager : MonoBehaviour
 
     public PlayerComponents playerComponents;
     public Transform player;
-
+    public List<BaseEnemy> enemies;
     [SerializeField] private RestSpot lastRestSpot;
     private bool isResting;
 
@@ -53,13 +54,12 @@ public class RestSpotManager : MonoBehaviour
 
     private void RespawnEnemies()
     {
-        BaseEnemy[] enemies =
-            FindObjectsByType<BaseEnemy>(FindObjectsSortMode.None);
-
         foreach (BaseEnemy enemy in enemies)
         {
             enemy.Respawn();
+            Debug.Log("res");
         }
+        
     }
 
     public void RespawnPlayer()

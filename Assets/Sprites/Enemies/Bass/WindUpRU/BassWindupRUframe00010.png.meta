@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a2d2fe3f2dfb146a496acc0cde46eaf2
+guid: a6722e8bba471d8478f53f6e0587ccf8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7565985609980330525
-    second: BassAttackRU0012_0
+      213: 7789241225331416501
+    second: BassWindupRUframe00010_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BassAttackRU0012_0
+      name: BassWindupRUframe00010_0
       rect:
         serializedVersion: 2
-        x: 411
-        y: 366
-        width: 851
-        height: 446
+        x: 743
+        y: 804
+        width: 439
+        height: 782
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3edb76d8c28300790800000000000000
-      internalID: -7565985609980330525
+      spriteID: 5bd15b110a1f81c60800000000000000
+      internalID: 7789241225331416501
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BassAttackRU0012_0: -7565985609980330525
+      BassWindupRUframe00010_0: 7789241225331416501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
