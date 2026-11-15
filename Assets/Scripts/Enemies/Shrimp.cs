@@ -32,6 +32,7 @@ public class Shrimp : BaseEnemy
 
     private void Update()
     {
+        
         if (currentState != EnemyState.Idle)
             return;
 
@@ -162,4 +163,6 @@ public class Shrimp : BaseEnemy
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(pivotPosition, attackRange);
     }
+    
+    
 }

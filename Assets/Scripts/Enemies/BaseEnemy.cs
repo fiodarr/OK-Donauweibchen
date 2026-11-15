@@ -289,6 +289,12 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
+        Debug.Log(
+            $"[{name}] Collision with {collision.gameObject.name}. " +
+            $"State: {currentState}, " +
+            $"Layer: {LayerMask.LayerToName(collision.gameObject.layer)}"
+        );
+        
         if (currentState != EnemyState.Pingponged) return;
 
         Vector2 direction;
