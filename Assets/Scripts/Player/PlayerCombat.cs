@@ -46,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
     private bool externalActionLock;
     [SerializeField] private Animator animator;
 
-
+    public bool hasFishingRod = false;
     private void Update()
     {
         UpdateUtility();
@@ -327,6 +327,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void PickUpFishingRod()
     {
+        hasFishingRod = true;
         this.equippedUtilityItem.gameObject.SetActive(true);
     }
 }
