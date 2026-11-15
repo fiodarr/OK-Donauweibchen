@@ -506,6 +506,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""XboxInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""98fcc536-7099-44f9-8d56-ebd51589b4de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -794,6 +804,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ControllerInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84052ea1-b144-403f-bb9c-58b3062fe11a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XboxInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -815,6 +836,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_InputScheme = asset.FindActionMap("InputScheme", throwIfNotFound: true);
         m_InputScheme_KeyboardMouseInput = m_InputScheme.FindAction("KeyboardMouseInput", throwIfNotFound: true);
         m_InputScheme_ControllerInput = m_InputScheme.FindAction("ControllerInput", throwIfNotFound: true);
+        m_InputScheme_XboxInput = m_InputScheme.FindAction("XboxInput", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1082,6 +1104,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IInputSchemeActions> m_InputSchemeActionsCallbackInterfaces = new List<IInputSchemeActions>();
     private readonly InputAction m_InputScheme_KeyboardMouseInput;
     private readonly InputAction m_InputScheme_ControllerInput;
+    private readonly InputAction m_InputScheme_XboxInput;
     /// <summary>
     /// Provides access to input actions defined in input action map "InputScheme".
     /// </summary>
@@ -1101,6 +1124,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InputScheme/ControllerInput".
         /// </summary>
         public InputAction @ControllerInput => m_Wrapper.m_InputScheme_ControllerInput;
+        /// <summary>
+        /// Provides access to the underlying input action "InputScheme/XboxInput".
+        /// </summary>
+        public InputAction @XboxInput => m_Wrapper.m_InputScheme_XboxInput;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1133,6 +1160,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ControllerInput.started += instance.OnControllerInput;
             @ControllerInput.performed += instance.OnControllerInput;
             @ControllerInput.canceled += instance.OnControllerInput;
+            @XboxInput.started += instance.OnXboxInput;
+            @XboxInput.performed += instance.OnXboxInput;
+            @XboxInput.canceled += instance.OnXboxInput;
         }
 
         /// <summary>
@@ -1150,6 +1180,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ControllerInput.started -= instance.OnControllerInput;
             @ControllerInput.performed -= instance.OnControllerInput;
             @ControllerInput.canceled -= instance.OnControllerInput;
+            @XboxInput.started -= instance.OnXboxInput;
+            @XboxInput.performed -= instance.OnXboxInput;
+            @XboxInput.canceled -= instance.OnXboxInput;
         }
 
         /// <summary>
@@ -1275,5 +1308,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnControllerInput(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "XboxInput" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnXboxInput(InputAction.CallbackContext context);
     }
 }

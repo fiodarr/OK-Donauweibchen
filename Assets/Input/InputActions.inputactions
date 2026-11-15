@@ -420,6 +420,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "XboxInput",
+                    "type": "Button",
+                    "id": "98fcc536-7099-44f9-8d56-ebd51589b4de",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -706,6 +716,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ControllerInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84052ea1-b144-403f-bb9c-58b3062fe11a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "XboxInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
