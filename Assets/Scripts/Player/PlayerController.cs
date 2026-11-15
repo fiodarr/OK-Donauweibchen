@@ -30,8 +30,8 @@ public class PlayerController : Hitable
     [Header("Cliff Jump")]
     [SerializeField] private Transform visualRoot;
     [SerializeField] private float jumpVisualHeight = 1f;
-    private AnimationCurve movementCurve = AnimationCurve.Linear(0, 0, 1, 1);
-    private AnimationCurve heightCurve = AnimationCurve.EaseInOut(0, 0, 1, 0);
+    [SerializeField] private AnimationCurve movementCurve = AnimationCurve.Linear(0, 0, 1, 1);
+    [SerializeField] private AnimationCurve heightCurve = AnimationCurve.EaseInOut(0, 0, 1, 0);
 
     [SerializeField] private Animator animator;
     
@@ -116,16 +116,13 @@ public class PlayerController : Hitable
 
     }
     
-    public bool TryStartCliffJump(Vector2 destination, float duration, AnimationCurve movementC, AnimationCurve heightC)
+    public bool TryStartCliffJump(Vector2 destination, float duration)
     {
         if (isPerformingCliffJump ||
             duration <= 0f ||
             playerComponents.combat.LockMove ||
             playerComponents.status.movementLocked)
             return false;
-        
-        movementCurve = movementC;
-        heightCurve = heightC;
         
         isPerformingCliffJump = true;
         gameObject.layer = LayerMask.NameToLayer("PlayerAirborne");

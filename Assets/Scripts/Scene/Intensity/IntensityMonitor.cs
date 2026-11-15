@@ -38,21 +38,18 @@ public class IntensityMonitor: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name + " entered to monitor");
         if (other.TryGetComponent(out IIntensityEmitter intensityEmitter))
         {
-            
-            Debug.Log(other.name + " entered to monitor");
             emitters.Add(intensityEmitter);
             OnIntensityChange?.Invoke();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out IIntensityEmitter intensityEmitter))
         {
-            
-            Debug.Log(other.name + " exited entered the monitor");
             emitters.Remove(intensityEmitter);
             OnIntensityChange?.Invoke();
         }

@@ -11,11 +11,9 @@ public class PlayerComponents : MonoBehaviour
     public PlayerController controller;
     public Lantern lantern;
     public CameraController cameraController;
-    public PlayerUpgrades playerUpgrades;
 
     public void PickUpLantern()
     {
-        lantern.gameObject.SetActive(true);
         lantern.enabled = true;
         lantern.PickUp();
     }

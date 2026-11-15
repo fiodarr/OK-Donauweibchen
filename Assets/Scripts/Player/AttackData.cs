@@ -8,7 +8,6 @@ public class AttackData
     public DamageData[] damage;
     public float knockback = 5f;
     public float launchForce = 5f;
-    public float autolockDistance = 3f;
     
     [Header("Sound")]
     public EventReference attackSound;

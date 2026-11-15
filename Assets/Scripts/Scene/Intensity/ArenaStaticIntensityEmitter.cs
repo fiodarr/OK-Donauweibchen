@@ -2,20 +2,25 @@
 
 public class ArenaStaticIntensityEmitter: StaticIntensityEmitter
 {
-    [SerializeField] private BaseEnemy[] connectedObjects;
+    [SerializeField] private GameObject[] connectedObjects;
     public override IntensityMonitor.IntensityLevel GetIntensity()
     {
-        bool hasSomebodyAlive = false;
+        bool hasSomebodyConnected = false;
         for (int i = 0; i < connectedObjects.Length; i++)
         {
-            if (!connectedObjects[i].IsDead)
+            if (connectedObjects[i].activeInHierarchy)
             {
-                hasSomebodyAlive = true;
+                hasSomebodyConnected = true;
                 break;
             }
         }
-        if (!hasSomebodyAlive) return IntensityMonitor.IntensityLevel.None;
+        if (!hasSomebodyConnected) return IntensityMonitor.IntensityLevel.None;
         
         return base.GetIntensity();
+    }
+    
+    public void Update()
+    {
+        Debug.Log(gameObject.name + " : " + GetIntensity());
     }
 }

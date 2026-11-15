@@ -45,9 +45,6 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     private DamageData pingPongAttack;
 
-    public bool IsDead => currentState == EnemyState.Died;
-
-    [SerializeField] private IntensityMonitor.IntensityLevel emittedLevel = IntensityMonitor.IntensityLevel.Low;
     protected virtual void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
@@ -130,11 +127,11 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         status.ResetStatus();
 
         currentState = EnemyState.Idle;
-        
+
         Color color = spriteRenderer.color;
         color.a = 1f;
         spriteRenderer.color = color;
-        
+
         if (shadowCaster != null)
         {
             shadowCaster.enabled = true;
@@ -284,7 +281,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     public IntensityMonitor.IntensityLevel GetIntensity()
     {
-        return emittedLevel;
+        return IntensityMonitor.IntensityLevel.Low;
     }
 
     protected virtual void OnCollisionStay2D(Collision2D collision)

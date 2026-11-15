@@ -339,6 +339,54 @@ MonoBehaviour:
   solidCollider: {fileID: 7770112638388470763}
   visualRoot: {fileID: 7023774203213945737}
   jumpVisualHeight: 1
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   animator: {fileID: 5056467316801955230}
 --- !u!114 &9039514880073438561
 MonoBehaviour:
@@ -380,7 +428,6 @@ MonoBehaviour:
   utilityTimeThreshold: 0.1
   dashForce: 100
   dashCooldown: 1
-  playerPivot: {fileID: 3535269130643892904}
 --- !u!114 &6713670092330104184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,8 +1014,6 @@ MonoBehaviour:
       Data4: 1723009827
     Path: event:/Fisherman/Heal
   blinkFadeDuration: 0.08
-  visuals: {fileID: 7924162333950095688}
-  ui: {fileID: 0}
 --- !u!1 &7924162333950095688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,11 +1453,6 @@ PrefabInstance:
 --- !u!4 &2954188702395672944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8050419187771694654, guid: 46fad7a13c26a4fda857bd511cb8d815, type: 3}
-  m_PrefabInstance: {fileID: 5136275523552081742}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3535269130643892904 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8523198544259325414, guid: 46fad7a13c26a4fda857bd511cb8d815, type: 3}
   m_PrefabInstance: {fileID: 5136275523552081742}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4175446622263101430 stripped
