@@ -78,6 +78,9 @@ public class PopupParser: MonoBehaviour
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "Square";
                         break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "X";
+                        break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
                         break;
@@ -91,6 +94,9 @@ public class PopupParser: MonoBehaviour
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "Triangle";
+                        break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "Y";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -106,6 +112,9 @@ public class PopupParser: MonoBehaviour
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "Right Stick";
                         break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "X";
+                        break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
                         break;
@@ -119,6 +128,9 @@ public class PopupParser: MonoBehaviour
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "R2";
+                        break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "RT";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -134,6 +146,9 @@ public class PopupParser: MonoBehaviour
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "Circle";
                         break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "B";
+                        break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
                         break;
@@ -147,6 +162,9 @@ public class PopupParser: MonoBehaviour
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "X";
+                        break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "A";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -162,6 +180,9 @@ public class PopupParser: MonoBehaviour
                     case PlayerInputHandler.ControlScheme.Controller:
                         actionName = "Aim with Right Stick";
                         break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
+                        actionName = "Aim with Right Stick";
+                        break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
                         break;
@@ -174,6 +195,9 @@ public class PopupParser: MonoBehaviour
                         actionName = "Mouse";
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
+                        actionName = "Right Stick";
+                        break;
+                    case PlayerInputHandler.ControlScheme.XboxController:
                         actionName = "Right Stick";
                         break;
                     default:
