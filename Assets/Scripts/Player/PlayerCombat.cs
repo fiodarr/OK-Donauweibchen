@@ -43,6 +43,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform playerPivot;
     
     private bool canDash = true;
+    private bool canSecondDash = true;
     public bool LockMove => currentState != CombatState.Default || externalActionLock;
     public bool CanAttack => currentState == CombatState.Default && !externalActionLock;
     private bool externalActionLock;
@@ -53,6 +54,7 @@ public class PlayerCombat : MonoBehaviour
     {
         UpdateUtility();
         UpdateComboTimer();
+        
     }
 
     private int comboIndex = 0;
@@ -202,29 +204,57 @@ public class PlayerCombat : MonoBehaviour
         currentState = CombatState.Default;
     }
 
-        private void Dash()
+    private void Dash()
     {
-        
-        if (currentState == CombatState.Default && canDash)
-        {
+        if (currentState != CombatState.Default)
+            return;
 
-            StartCoroutine(PerformDash());
+        if (canDash)
+        {
+            StartCoroutine(PerformDash(false));
         }
-        
+        else if (playerComponents.playerUpgrades.isUpgraded && canSecondDash)
+        {
+            StartCoroutine(PerformDash(true));
+        }
     }
 
-    private IEnumerator PerformDash()
+    private IEnumerator PerformDash(bool isSecondDash)
     {
         RuntimeManager.PlayOneShot(dashSound);
-        canDash = false;
+
+        if (isSecondDash)
+        {
+            canSecondDash = false;
+            StartCoroutine(SecondDashCooldown());
+        }
+        else
+        {
+            canDash = false;
+            StartCoroutine(DefaultDashCooldown());
+        }
+
         currentDirection = playerComponents.inputHandler.MoveInput.normalized;
+
         currentState = CombatState.Dashing;
-        rb.AddForce(currentDirection * dashForce,ForceMode2D.Impulse);
+
+        rb.AddForce(currentDirection * dashForce, ForceMode2D.Impulse);
+
         yield return new WaitForSeconds(0.3f);
+
         currentState = CombatState.Default;
+    }
+
+    private IEnumerator DefaultDashCooldown()
+    {
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
 
+    private IEnumerator SecondDashCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        canSecondDash = true;
     }
 
     private void TryStartUtility()
