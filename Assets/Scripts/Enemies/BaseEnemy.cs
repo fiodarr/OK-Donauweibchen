@@ -59,7 +59,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         pingPongAttack = new DamageData()
         {
-            amount = status.GetMaxHealth() * 0.4f,
+            amount = status.GetMaxHealth() * 0.4f + 1,
             tag = AttackDataTag.Default,
             type = DamageType.Physical
         };
@@ -67,7 +67,10 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
+        float healthBefore = status.GetHealth();
+
         status.TakeDamage(damage);
+        
         if (status.GetHealth() <= 0)
             Die();
         
@@ -289,12 +292,6 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(
-            $"[{name}] Collision with {collision.gameObject.name}. " +
-            $"State: {currentState}, " +
-            $"Layer: {LayerMask.LayerToName(collision.gameObject.layer)}"
-        );
-        
         if (currentState != EnemyState.Pingponged) return;
 
         Vector2 direction;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Hitable : MonoBehaviour
 {
-    [SerializeField] float iTime = 0.1f;
+    [SerializeField] float iTime = 0;
 
     private float lastHitTime = -Mathf.Infinity;
     

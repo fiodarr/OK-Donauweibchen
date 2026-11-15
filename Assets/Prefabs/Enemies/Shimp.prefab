@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45317ae2f3aaa43c1999020467f027cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  iTime: 0.1
+  iTime: 0
   shadowCaster: {fileID: 0}
   knockbackForce: 5
   knockbackPingPongMultiplier: 2
