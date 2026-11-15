@@ -59,6 +59,7 @@ MonoBehaviour:
       tag: 0
     knockback: 5
     launchForce: 30
+    autolockDistance: 3
     attackSound:
       Guid:
         Data1: 1433852577
@@ -90,6 +91,7 @@ MonoBehaviour:
       tag: 0
     knockback: 5
     launchForce: 30
+    autolockDistance: 3
     attackSound:
       Guid:
         Data1: 64468693
@@ -119,8 +121,12 @@ MonoBehaviour:
     - amount: 6
       type: 1
       tag: 0
+    - amount: 6
+      type: 1
+      tag: 0
     knockback: 5
     launchForce: 60
+    autolockDistance: 3
     attackSound:
       Guid:
         Data1: -1712789327
@@ -137,7 +143,7 @@ MonoBehaviour:
       Path: 
     vibrationVelocity: 1
     vibrationLength: 0.1
-    chargeTime: 0
+    chargeTime: 0.2
     activeTime: 0.3
     recoveryTime: 0.6
     comboTime: 0.5

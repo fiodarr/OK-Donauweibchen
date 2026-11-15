@@ -161,9 +161,10 @@ MonoBehaviour:
   hurtbox:
   - {fileID: 3395480195577358217}
   - {fileID: 7888076823479116308}
-  detectionRange: 7
+  emittedLevel: 1
+  detectionRange: 8.5
   loseTargetRange: 10
-  attackRange: 5
+  attackRange: 8.5
   attackCooldown: 2
   projectilePrefab: {fileID: 2773374450433572578, guid: 633344a59125442bd9882589429e442f, type: 3}
   projectileSpawnPoint: {fileID: 370890658179643852}
@@ -214,8 +215,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDamping: 10
+  m_Mass: 9
+  m_LinearDamping: 7
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
