@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class baseChest : MonoBehaviour, IInteractable
@@ -15,7 +14,8 @@ public class baseChest : MonoBehaviour, IInteractable
     {
         foreach (var item in loot)
         {
-            Instantiate(item,transform.position,Quaternion.identity);
+            Vector2 offset = new Vector3(Random.Range(-0.1f,0.1f),Random.Range(-0.1f,0.1f));
+            Instantiate(item,(Vector2)transform.position + offset,Quaternion.identity);
         }
         animator.SetTrigger("open");
     }
