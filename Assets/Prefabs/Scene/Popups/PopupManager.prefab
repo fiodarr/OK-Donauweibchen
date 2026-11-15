@@ -71,31 +71,56 @@ MonoBehaviour:
     timer: 5
   - popupEvent: 1
     popup: {fileID: 0}
-    textAsset: {fileID: 4900000, guid: 649df96af7ba4e25aece8a59565ec8a3, type: 3}
+    textAsset: {fileID: 4900000, guid: 4c49adbb70d4482ca50b14ae9db930d7, type: 3}
     isPause: 0
     timer: 5
   - popupEvent: 2
     popup: {fileID: 0}
-    textAsset: {fileID: 4900000, guid: b8e90029907f4fb1bf5019d70c327804, type: 3}
+    textAsset: {fileID: 4900000, guid: d404a0e5fe6948a69e409dd3a62878a6, type: 3}
     isPause: 0
     timer: 5
   - popupEvent: 3
     popup: {fileID: 0}
-    textAsset: {fileID: 4900000, guid: 886c85e0d0f742b3b60baa0db19ddd44, type: 3}
-    isPause: 1
-    timer: 0
+    textAsset: {fileID: 4900000, guid: 16c779af8ea8424e9e7dd876f4b785c2, type: 3}
+    isPause: 0
+    timer: 5
   - popupEvent: 4
     popup: {fileID: 0}
-    textAsset: {fileID: 4900000, guid: 4122457b18be46c9a9c90c320b9e76a2, type: 3}
-    isPause: 1
-    timer: 0
+    textAsset: {fileID: 4900000, guid: 26169e96a2574feaac15b3277fd01cdc, type: 3}
+    isPause: 0
+    timer: 5
   - popupEvent: 5
     popup: {fileID: 0}
-    textAsset: {fileID: 4900000, guid: 06b00ff4a365408a984717cf966cbd91, type: 3}
+    textAsset: {fileID: 4900000, guid: b8e90029907f4fb1bf5019d70c327804, type: 3}
+    isPause: 0
+    timer: 5
+  - popupEvent: 6
+    popup: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: ccd2d5a25a2d41ecb8339c16d79cec0c, type: 3}
     isPause: 0
     timer: 0
-  - popupEvent: 6
+  - popupEvent: 7
+    popup: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 649df96af7ba4e25aece8a59565ec8a3, type: 3}
+    isPause: 0
+    timer: 0
+  - popupEvent: 8
     popup: {fileID: 0}
     textAsset: {fileID: 4900000, guid: 7262301b68ec4e058289c824add4a997, type: 3}
     isPause: 0
+    timer: 0
+  - popupEvent: 9
+    popup: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 886c85e0d0f742b3b60baa0db19ddd44, type: 3}
+    isPause: 1
+    timer: 0
+  - popupEvent: 10
+    popup: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 64fbf44f74f04b5fab78dc91efd427e8, type: 3}
+    isPause: 0
+    timer: 5
+  - popupEvent: 11
+    popup: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 4122457b18be46c9a9c90c320b9e76a2, type: 3}
+    isPause: 1
     timer: 0

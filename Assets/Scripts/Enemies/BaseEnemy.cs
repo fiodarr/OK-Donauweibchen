@@ -164,7 +164,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         OnPullStart();
         yield return PullTowards(origin + direction.normalized * offset, pullDuration);
         
-        PopupManager.Instance.TriggerPopup(PopupEvent.FirstHooked);
+        PopupManager.Instance.TriggerPopup(PopupEvent.PingPongPopup);
         stunCoroutine = StartCoroutine(StunRoutine(2f));
         yield return stunCoroutine;
         Debug.Log("STUN ENDED");

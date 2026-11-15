@@ -6,7 +6,8 @@ public class PlayerInputHandler : MonoBehaviour
     public enum ControlScheme
     {
         KeyboardMouse,
-        Controller
+        Controller,
+        XboxController
     }
     private InputActions inputActions;
 
@@ -42,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
                 return (MousePosition - playerScreenPosition).normalized;
             }
 
-            if (controlScheme == ControlScheme.Controller)
+            if (controlScheme == ControlScheme.Controller ||  controlScheme == ControlScheme.XboxController)
             {
                 Vector2 moveInput = MoveInput;
                 moveInput.Normalize();
@@ -68,6 +69,9 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action Dash;
 
     public event Action Heal;
+
+    public event Action MenuConfirm;
+    public event Action MenuClose;
     
     
     private bool fishingRodPressed = false;
@@ -108,11 +112,23 @@ public class PlayerInputHandler : MonoBehaviour
             controlScheme = ControlScheme.Controller;
         }
 
+        if (inputActions.InputScheme.XboxInput.WasPressedThisFrame() && controlScheme != ControlScheme.XboxController)
+        {
+            controlScheme = ControlScheme.XboxController;
+        }
+
         if (inputActions.Player.Interact.WasPressedThisFrame())
+        {
             InteractPressed?.Invoke();
+            MenuClose?.Invoke();
+        }
+            
 
         if (inputActions.Player.Attack.WasPressedThisFrame())
+        {
             AttackPressed?.Invoke();
+        }
+            
 
         if (inputActions.Player.SecondaryAttack.WasPressedThisFrame())
             SecondaryAttackPressed?.Invoke();
@@ -125,6 +141,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.Player.Evade.WasPressedThisFrame())
         {
             Dash?.Invoke();
+            MenuConfirm?.Invoke();
         }
         
         UpdateFishingRodInput();
