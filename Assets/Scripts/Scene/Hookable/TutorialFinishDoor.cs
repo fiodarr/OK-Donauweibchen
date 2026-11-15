@@ -7,6 +7,7 @@ public class TutorialFinishDoor: MonoBehaviour, IHookable
 
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
+        Debug.Log("TryUnlock");
         if (isUnlocked) return;
         doorObject.Disappear();
     }

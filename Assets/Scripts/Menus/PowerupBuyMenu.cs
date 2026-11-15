@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,29 +15,41 @@ public class PowerupBuyMenu: MonoBehaviour
     [SerializeField] private float price;
     
     private bool active = false;
+    private bool canClose = false;
+
+    private IEnumerator CanCloseRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        canClose = true;
+    }
 
     private void Start()
     {
         powerupButton.onClick.AddListener(TryBuyPowerup);
-        Show();
     }
 
-    private void Show()
+    public void Show()
     {
+        inputHandler.MenuConfirm += TryBuyPowerup;
+        inputHandler.MenuClose += Hide;
+        
+        Debug.Log("HEREHERE");
         visuals.SetActive(true);
         active = true;
         feedbackText.text = "Press X (ps) / A (xbox)/ Ctrl (Keyboard) to buy";
         feedbackText.color = Color.white;
-        inputHandler.MenuConfirm += TryBuyPowerup;
-        inputHandler.MenuClose += Hide;
+        StartCoroutine(CanCloseRoutine());
     }
 
     private void Hide()
     {
+        if (!canClose) return;
+        Debug.Log("I hide");
         visuals.SetActive(false);
         active = false;
         inputHandler.MenuConfirm -= TryBuyPowerup;
         inputHandler.MenuClose -= Hide;
+        canClose = false;
     }
     
 
