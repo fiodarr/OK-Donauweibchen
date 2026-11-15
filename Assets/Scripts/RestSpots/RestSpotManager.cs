@@ -74,5 +74,7 @@ public class RestSpotManager : MonoBehaviour
         playerComponents.status.Rest();
         playerComponents.status.FinishRest();
         playerComponents.lantern.RestoreLight();
+        RestAtRestSpot(lastRestSpot);
+        FinishResting();
     }
 }
