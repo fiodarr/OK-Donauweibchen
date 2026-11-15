@@ -380,6 +380,7 @@ MonoBehaviour:
   utilityTimeThreshold: 0.1
   dashForce: 100
   dashCooldown: 1
+  playerPivot: {fileID: 3535269130643892904}
 --- !u!114 &6713670092330104184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,6 +1408,11 @@ PrefabInstance:
 --- !u!4 &2954188702395672944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8050419187771694654, guid: 46fad7a13c26a4fda857bd511cb8d815, type: 3}
+  m_PrefabInstance: {fileID: 5136275523552081742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3535269130643892904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8523198544259325414, guid: 46fad7a13c26a4fda857bd511cb8d815, type: 3}
   m_PrefabInstance: {fileID: 5136275523552081742}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4175446622263101430 stripped
