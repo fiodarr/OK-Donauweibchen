@@ -75,4 +75,5 @@ public class PlayerInventory : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, attractionRadius);
     }
+    
 }

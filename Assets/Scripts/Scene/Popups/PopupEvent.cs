@@ -1,11 +1,17 @@
 ﻿public enum PopupEvent
 {
-    FirstEnemyEncounter,
+    ArmoredEnemy,
+    AttackDodgePopup,
+    ChestOpenPopup,
+    ChestThought,
     FishingRodPickup,
     FirstDamageReceived,
-    FirstHooked,
-    EnemyVulnerable,
-    ArmoredEnemy,
+    JumpOffPopup,
+    PickUpFishingRod,
     PickUpLantern,
-    PickUpFishingRod
+    PingPongPopup,
+    PlanksPullPopup,
+    EnemyVulnerable,
+    GateOpenPopup,
+    RestSpotPopup
 }
