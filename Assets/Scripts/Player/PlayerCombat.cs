@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using FMODUnity;
+using UnityEngine.Shaders;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private float dashForce;
     [SerializeField] private float dashCooldown;
+
+    [SerializeField] private Transform playerPivot;
     
     private bool canDash = true;
     public bool LockMove => currentState != CombatState.Default || externalActionLock;
@@ -135,6 +138,15 @@ public class PlayerCombat : MonoBehaviour
         RuntimeManager.PlayOneShot(attack.attackSound);
         
         currentDirection = playerComponents.inputHandler.LookDirection;
+        Vector2 autolockDirection = TargetFinder.GetDirectionToClosestByAngle<BaseEnemy>(
+            playerPivot.position,
+            attack.autolockDistance,
+            currentDirection,
+            ~0,
+            true
+        );
+        if (autolockDirection != Vector2.zero) currentDirection = autolockDirection;
+        
         // Launch player
         rb.AddForce(
             currentDirection * attack.launchForce,
