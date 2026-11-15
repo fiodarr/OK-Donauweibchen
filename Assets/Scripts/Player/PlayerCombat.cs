@@ -310,6 +310,7 @@ public class PlayerCombat : MonoBehaviour
         {
             StopCoroutine(currentUtilityCoroutine);
             currentUtilityCoroutine = null;
+            animator.SetTrigger("endPull");
         }
 
         if (currentState == CombatState.Pulling
