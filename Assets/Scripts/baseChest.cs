@@ -14,7 +14,7 @@ public class baseChest : MonoBehaviour, IHookable
     {
         foreach (var item in loot)
         {
-            Vector2 offset1 = new Vector3(Random.Range(-0.1f,0.1f),Random.Range(-0.1f,0.1f));
+            Vector2 offset1 = new Vector3(Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f));
             Instantiate(item,(Vector2)transform.position + offset1,Quaternion.identity);
         }
         animator.SetTrigger("open");
