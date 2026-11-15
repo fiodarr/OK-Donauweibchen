@@ -14,7 +14,7 @@ public class RestSpot : MonoBehaviour, IInteractable
         Debug.Log("Rest spot activated: " + restSpotID);
     }
 
-    public void Interact(GameObject interactor)
+    public virtual void Interact(GameObject interactor)
     {
         RestSpotManager.Instance.RestAtRestSpot(this);
     }

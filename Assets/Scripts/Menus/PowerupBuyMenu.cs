@@ -18,17 +18,16 @@ public class PowerupBuyMenu: MonoBehaviour
     private void Start()
     {
         powerupButton.onClick.AddListener(TryBuyPowerup);
-        Show();
     }
 
-    private void Show()
+    public void Show()
     {
+        inputHandler.MenuConfirm += TryBuyPowerup;
+        inputHandler.MenuClose += Hide;
         visuals.SetActive(true);
         active = true;
         feedbackText.text = "Press X (ps) / A (xbox)/ Ctrl (Keyboard) to buy";
         feedbackText.color = Color.white;
-        inputHandler.MenuConfirm += TryBuyPowerup;
-        inputHandler.MenuClose += Hide;
     }
 
     private void Hide()

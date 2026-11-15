@@ -194,6 +194,8 @@ GameObject:
   - component: {fileID: 4166383263650859693}
   - component: {fileID: 6068226751599116961}
   - component: {fileID: 8610833106481110988}
+  - component: {fileID: 8276626374466744832}
+  - component: {fileID: 6689474791398008442}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -374,7 +376,6 @@ MonoBehaviour:
       Data3: -278873427
       Data4: -357132703
     Path: event:/Fisherman/ReelOneShot
-  animator: {fileID: 5056467316801955230}
   equippedWeapon: {fileID: 2719679042586757064}
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
@@ -382,6 +383,8 @@ MonoBehaviour:
   dashForce: 100
   dashCooldown: 1
   playerPivot: {fileID: 3535269130643892904}
+  animator: {fileID: 5056467316801955230}
+  hasFishingRod: 0
 --- !u!114 &6713670092330104184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +457,7 @@ MonoBehaviour:
   controller: {fileID: 236362429090502072}
   lantern: {fileID: 8887739502799854354}
   cameraController: {fileID: 0}
+  playerUpgrades: {fileID: 0}
 --- !u!114 &8548561562341379343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +568,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8078804, y: 1.1865444}
   m_EdgeRadius: 0
+--- !u!114 &8276626374466744832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574352863648687227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
+--- !u!114 &6689474791398008442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574352863648687227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481e458bcff64fc09591ad1c90931b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgrades
+  isUpgraded: 0
 --- !u!1 &4759233416104599515
 GameObject:
   m_ObjectHideFlags: 0
