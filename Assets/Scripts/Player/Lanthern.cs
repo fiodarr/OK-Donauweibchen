@@ -88,6 +88,7 @@ public class Lantern : MonoBehaviour
     private IEnumerator HealRoutine()
     {
         isHealing = true;
+        RuntimeManager.PlayOneShot(healSound);
 
         yield return new WaitForSeconds(healStartDelay);
 
@@ -96,7 +97,6 @@ public class Lantern : MonoBehaviour
         if (!status.IsDead && status.GetHealth() < status.GetMaxHealth())
         {
             status.Heal(healAmount);
-            RuntimeManager.PlayOneShot(healSound);
             Debug.Log("healed");
 
             currentCharges--;
