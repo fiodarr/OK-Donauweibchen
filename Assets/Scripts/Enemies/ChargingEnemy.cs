@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Linq;
 using FMODUnity;
@@ -31,7 +32,7 @@ public class ChargingEnemy : BaseEnemy
     [Header("Recovery")]
     [SerializeField] private float recoverTime = 3f;
 
-    private bool hitSolid;
+    protected bool hitSolid;
     private bool canHitWall;
     private bool windUpEnded;
 
@@ -215,7 +216,7 @@ public class ChargingEnemy : BaseEnemy
         hasAttackSlot = false;
     }
 
-    private IEnumerator Plunge(Vector2 targetPosition)
+    protected IEnumerator Plunge(Vector2 targetPosition)
     {
         SetState(EnemyState.Attack);
 
@@ -253,7 +254,9 @@ public class ChargingEnemy : BaseEnemy
 
             yield return new WaitForFixedUpdate();
         }
-
+        
+        Debug.Log("I hit smth!");
+        
         canHitWall = false;
 
         attack.hitbox.EndAttack();
@@ -274,7 +277,6 @@ public class ChargingEnemy : BaseEnemy
         canHitWall = false;
 
         Rb.linearVelocity = Vector2.zero;
-        Debug.Log("collided with "+ collision.gameObject.name);
 
         SetState(EnemyState.Vulnerable);
         PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
@@ -381,5 +383,33 @@ public class ChargingEnemy : BaseEnemy
 
         ResetConditions();
         SetState(EnemyState.Stunned);
+    }
+
+    public void Unstun()
+    {
+        animator.SetBool("IsStunned", false);
+        
+        ResetConditions();
+        SetState(EnemyState.Idle);
+    }
+    
+    protected IEnumerator RecoverFromCharge()
+    {
+        if (currentState == EnemyState.Vulnerable)
+        {
+            yield return new WaitForSeconds(recoverTime);
+
+            if (IsDead)
+                yield break;
+
+            animator.SetBool("IsStunned", false);
+
+            status.RemoveDamageModifier(
+                GlobalModifiers.Instance.Get("Vulnerable")
+            );
+        }
+
+        if (!IsDead)
+            SetState(EnemyState.Idle);
     }
 }

@@ -60,4 +60,10 @@ MonoBehaviour:
   monitors:
   - {fileID: 0}
   intensityTransitionDuration: 3
-  fmodEvent: {fileID: 0}
+  music:
+    Guid:
+      Data1: -2067132586
+      Data2: 1146478002
+      Data3: -2135718491
+      Data4: 124155047
+    Path: event:/Music/Creepy

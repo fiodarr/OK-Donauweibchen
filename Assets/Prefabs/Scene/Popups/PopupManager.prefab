@@ -69,7 +69,7 @@ MonoBehaviour:
     textAsset: {fileID: 4900000, guid: 4c49adbb70d4482ca50b14ae9db930d7, type: 3}
     isPause: 0
     timer: 5
-  - popupEvent: 7
+  - popupEvent: 1
     popup: {fileID: 0}
     textAsset: {fileID: 4900000, guid: 649df96af7ba4e25aece8a59565ec8a3, type: 3}
     isPause: 0
@@ -97,10 +97,5 @@ MonoBehaviour:
   - popupEvent: 6
     popup: {fileID: 0}
     textAsset: {fileID: 4900000, guid: 7262301b68ec4e058289c824add4a997, type: 3}
-    isPause: 0
-    timer: 0
-  - popupEvent: 1
-    popup: {fileID: 0}
-    textAsset: {fileID: 4900000, guid: 26169e96a2574feaac15b3277fd01cdc, type: 3}
     isPause: 0
     timer: 0
