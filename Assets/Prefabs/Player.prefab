@@ -457,7 +457,7 @@ MonoBehaviour:
   controller: {fileID: 236362429090502072}
   lantern: {fileID: 8887739502799854354}
   cameraController: {fileID: 0}
-  playerUpgrades: {fileID: 0}
+  playerUpgrades: {fileID: 6689474791398008442}
 --- !u!114 &8548561562341379343
 MonoBehaviour:
   m_ObjectHideFlags: 0

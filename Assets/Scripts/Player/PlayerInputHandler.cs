@@ -56,6 +56,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public float FishingRodTimePressed { get; private set; }
 
+    public event Action NextPanel;
     public event Action InteractPressed;
 
     public event Action AttackPressed;
@@ -100,12 +101,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (GameManager.Instance.CurrentState == GameState.Dialogue)
         {
-            if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame()
-                || inputActions.InputScheme.ControllerInput.WasPressedThisFrame()
-                || inputActions.InputScheme.XboxInput.WasPressedThisFrame())
+            if (inputActions.Player.Interact.WasPressedThisFrame())
             {
                 Debug.Log("new dialogue line");
                 DialogueNext?.Invoke();
+                NextPanel?.Invoke();
             }
         }
 
