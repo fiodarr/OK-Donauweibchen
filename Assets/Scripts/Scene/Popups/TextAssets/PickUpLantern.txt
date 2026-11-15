@@ -1,1 +1,1 @@
-﻿<Interact>Press [Interact] to pick up the Lantern
+﻿<Interact>Press [Interact] to pick up the Lantern.
