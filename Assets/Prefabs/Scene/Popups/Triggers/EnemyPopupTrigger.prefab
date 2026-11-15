@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76cb2f5417642c0b09c092633c7cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionPopupTrigger
-  eventToTrigger: 0
+  eventToTrigger: 1
 --- !u!61 &5720034784781574490
 BoxCollider2D:
   m_ObjectHideFlags: 0

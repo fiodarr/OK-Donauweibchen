@@ -158,10 +158,10 @@ public class PopupParser: MonoBehaviour
                 switch (inputHandler.GetControlScheme())
                 {
                     case PlayerInputHandler.ControlScheme.KeyboardMouse:
-                        actionName = "Alt";
+                        actionName = "Ctrl";
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
-                        actionName = "X";
+                        actionName = "Cross";
                         break;
                     case PlayerInputHandler.ControlScheme.XboxController:
                         actionName = "A";
