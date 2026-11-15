@@ -5,6 +5,7 @@ public class GameManager: MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private TextAsset startingDialogue;
+    [SerializeField] private FleingMermaid mermaid;
     
     public GameState CurrentState { get; private set; }
 
@@ -23,6 +24,7 @@ public class GameManager: MonoBehaviour
     private void Start()
     {
         dialogueManager.StartDialogue(startingDialogue);
+        dialogueManager.OnCurrentDialogueComplete += FleeMermaid;
         
     }
 
@@ -37,5 +39,11 @@ public class GameManager: MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+
+    private void FleeMermaid()
+    {
+        dialogueManager.OnCurrentDialogueComplete -= FleeMermaid;
+        mermaid.Flee();
     }
 }
