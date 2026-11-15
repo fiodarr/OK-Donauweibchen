@@ -47,6 +47,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void Awake()
     {
+
         Rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EntityStatus>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -60,6 +61,11 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
             tag = AttackDataTag.Default,
             type = DamageType.Physical
         };
+    }
+
+    void Start()
+    {
+        RestSpotManager.Instance.enemies.Add(this);
     }
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
