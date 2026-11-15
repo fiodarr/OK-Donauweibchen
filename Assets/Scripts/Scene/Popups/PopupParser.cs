@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+﻿﻿using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -104,7 +104,7 @@ public class PopupParser: MonoBehaviour
                         actionName = "RMB";
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
-                        actionName = "L2";
+                        actionName = "Right Stick";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -153,6 +153,34 @@ public class PopupParser: MonoBehaviour
                         break;
                 }
                 return new InputReferenceData(inputHandler.GetInputActions().Player.Evade, actionName);
+            case "UtilityStart":
+                switch (inputHandler.GetControlScheme())
+                {
+                    case PlayerInputHandler.ControlScheme.KeyboardMouse:
+                        actionName = "Hold RMB";
+                        break;
+                    case PlayerInputHandler.ControlScheme.Controller:
+                        actionName = "Aim with Right Stick";
+                        break;
+                    default:
+                        actionName = "<Unrecognized Control Scheme>";
+                        break;
+                }
+                return new InputReferenceData(inputHandler.GetInputActions().Player.UtilityAttack, actionName);
+            case "UtilityRotation":
+                switch (inputHandler.GetControlScheme())
+                {
+                    case PlayerInputHandler.ControlScheme.KeyboardMouse:
+                        actionName = "Mouse";
+                        break;
+                    case PlayerInputHandler.ControlScheme.Controller:
+                        actionName = "Right Stick";
+                        break;
+                    default:
+                        actionName = "<Unrecognized Control Scheme>";
+                        break;
+                }
+                return new InputReferenceData(inputHandler.GetInputActions().Player.UtilityAttack, actionName);
             default:
                 return null;
         }

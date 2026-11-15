@@ -60,7 +60,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         pingPongAttack = new DamageData()
         {
-            amount = status.GetMaxHealth() * 0.4f,
+            amount = status.GetMaxHealth() * 0.4f + 1,
             tag = AttackDataTag.Default,
             type = DamageType.Physical
         };
@@ -73,7 +73,10 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
     {
+        float healthBefore = status.GetHealth();
+
         status.TakeDamage(damage);
+        
         if (status.GetHealth() <= 0)
             Die();
         
