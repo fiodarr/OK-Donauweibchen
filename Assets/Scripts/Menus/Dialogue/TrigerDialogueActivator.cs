@@ -19,6 +19,7 @@ public class TrigerDialogueActivator: MonoBehaviour
     private void EndGame()
     {
         GameManager.Instance.SetState(GameState.Paused);
+        toBeContinuedObject.SetActive(true);
     }
     
 }
