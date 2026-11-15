@@ -7,6 +7,5 @@ public class RestSpotWithUpgrade: RestSpot
     {
         base.Interact(interactor);
         powerupBuyMenu.Show();
-        Debug.Log("HEREHERE");
     }
 }
