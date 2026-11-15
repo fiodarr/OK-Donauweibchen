@@ -6,7 +6,8 @@ public class PlayerInputHandler : MonoBehaviour
     public enum ControlScheme
     {
         KeyboardMouse,
-        Controller
+        Controller,
+        XboxController
     }
     private InputActions inputActions;
 
@@ -42,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
                 return (MousePosition - playerScreenPosition).normalized;
             }
 
-            if (controlScheme == ControlScheme.Controller)
+            if (controlScheme == ControlScheme.Controller ||  controlScheme == ControlScheme.XboxController)
             {
                 Vector2 moveInput = MoveInput;
                 moveInput.Normalize();
@@ -106,6 +107,11 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame() && controlScheme != ControlScheme.Controller)
         {
             controlScheme = ControlScheme.Controller;
+        }
+
+        if (inputActions.InputScheme.XboxInput.WasPressedThisFrame() && controlScheme != ControlScheme.XboxController)
+        {
+            controlScheme = ControlScheme.XboxController;
         }
 
         if (inputActions.Player.Interact.WasPressedThisFrame())
