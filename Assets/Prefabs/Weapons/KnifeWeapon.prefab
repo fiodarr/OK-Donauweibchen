@@ -83,7 +83,7 @@ MonoBehaviour:
     hitbox: {fileID: 8788264919326412803}
     tag: 0
   - damage:
-    - amount: 1
+    - amount: 2
       type: 0
       tag: 0
     - amount: 2
@@ -117,9 +117,6 @@ MonoBehaviour:
   - damage:
     - amount: 3
       type: 0
-      tag: 0
-    - amount: 6
-      type: 1
       tag: 0
     - amount: 6
       type: 1

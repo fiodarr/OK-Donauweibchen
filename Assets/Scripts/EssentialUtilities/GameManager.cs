@@ -3,6 +3,8 @@
 public class GameManager: MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private TextAsset startingDialogue;
     
     public GameState CurrentState { get; private set; }
 
@@ -16,6 +18,12 @@ public class GameManager: MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        dialogueManager.StartDialogue(startingDialogue);
+        
     }
 
     public void SetState(GameState state)
