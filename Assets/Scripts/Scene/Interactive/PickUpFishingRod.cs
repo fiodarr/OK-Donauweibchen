@@ -8,7 +8,6 @@ public class PickUpFishingRod: MonoBehaviour, IInteractable
         
         player.PickUpFishingRod();
         PopupManager.Instance.TriggerPopup(PopupEvent.FishingRodPickup);
-        Destroy(gameObject);
     }
 
     public string GetInteractionPrompt()

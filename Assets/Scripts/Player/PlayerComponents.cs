@@ -14,7 +14,6 @@ public class PlayerComponents : MonoBehaviour
 
     public void PickUpLantern()
     {
-        lantern.gameObject.SetActive(true);
         lantern.enabled = true;
         lantern.PickUp();
     }
