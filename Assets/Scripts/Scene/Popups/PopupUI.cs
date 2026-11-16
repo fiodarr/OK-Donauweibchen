@@ -3,25 +3,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Popup: MonoBehaviour
+public class PopupUI: MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private PopupParser parser;
     private bool isPaused = false;
-    
-    private InputAction closeAction;
+
     private string popupText;
     
-    private void Update()
-    {
-        if (closeAction == null) return;
-        if (closeAction.WasPressedThisFrame() && gameObject.activeInHierarchy)
-        {
-            ClosePopup();
-            PopupManager.Instance.playerInputHandler.CallUpdate();
-        }
-    }
-    
+
     public void OpenPopup(TextAsset textAsset, bool pauseGame)
     {
         parser.Parse(this, textAsset);
@@ -45,7 +35,7 @@ public class Popup: MonoBehaviour
         ClosePopup();
     }
     
-    private void ClosePopup()
+    public void ClosePopup()
     {
         gameObject.SetActive(false);
         if (isPaused)
@@ -59,11 +49,5 @@ public class Popup: MonoBehaviour
     {
         popupText = newText;
         text.text = popupText;
-    }
-
-    public void SetPopupCloseButton(InputAction newCloseAction)
-    {
-        closeAction = newCloseAction;
-        
     }
 }

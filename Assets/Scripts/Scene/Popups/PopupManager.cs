@@ -1,25 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PopupManager: MonoBehaviour
 {
     public PlayerInputHandler playerInputHandler;
     
     public static PopupManager Instance { get; private set; }
-
-    [Serializable]
-    public class PopupData
-    {
-        public PopupEvent popupEvent;
-        public Popup popup;
-        public TextAsset textAsset;
-        public bool isPause;
-        public float timer;
-    }
-    
-    [SerializeField] private List<PopupData> popups;
-    private HashSet<PopupEvent> shownPopups = new();
+    [SerializeField] private PopupUI popupUI;
+    private HashSet<String> shownPopups = new();
+    private InputAction closeAction;
 
     private void Awake()
     {
@@ -33,22 +24,26 @@ public class PopupManager: MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public void TriggerPopup(PopupEvent popupEvent)
+    private void Update()
     {
-        if (shownPopups.Contains(popupEvent)) return;
+        if (closeAction == null) return;
+        if (closeAction.WasPressedThisFrame() && gameObject.activeInHierarchy)
+        {
+            popupUI.ClosePopup();
+            PopupManager.Instance.playerInputHandler.CallUpdate();
+        }
+    }
 
-        PopupData data = popups.Find(
-            p => p.popupEvent == popupEvent
-        );
+    public void TriggerPopup(PopupData data)
+    {
+        if (shownPopups.Contains(data.id)) return;
 
-        if (data == null) return;
-
-        shownPopups.Add(popupEvent);
+        shownPopups.Add(data.id);
+        closeAction = data.closeInput;
 
         if (data.timer > 0f)
-            data.popup.OpenTimedPopup(data.textAsset, data.isPause, data.timer);
+            popupUI.OpenTimedPopup(data.textAsset, data.isPaused, data.timer);
         else
-            data.popup.OpenPopup(data.textAsset, data.isPause);
+            popupUI.OpenPopup(data.textAsset, data.isPaused);
     }
 }

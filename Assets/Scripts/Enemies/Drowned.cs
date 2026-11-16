@@ -137,7 +137,6 @@ public class Drowned : BaseEnemy
         {
             animator.SetBool("IsStuck", true);
             SetState(EnemyState.Vulnerable);
-            PopupManager.Instance.TriggerPopup(PopupEvent.EnemyVulnerable);
             status.AddDamageModifier(GlobalModifiers.Instance.Get("Vulnerable"));
             flashController.FlashMultiple(5, 0.3f, 0.3f, 0.5f);
             yield return new WaitForSeconds(3f);

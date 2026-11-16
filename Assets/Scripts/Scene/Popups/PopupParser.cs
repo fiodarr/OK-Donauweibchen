@@ -12,38 +12,13 @@ public class PopupParser: MonoBehaviour
         inputHandler = components.inputHandler;
     }
     
-    public void Parse(Popup popup, TextAsset textAsset)
+    public void Parse(PopupUI popup, TextAsset textAsset)
     {
         //Go through whole txt file
         //<ActionName> at the beginning (if there is such) is the closeAction to close the popup
         //regular text is being collected
         //then each [ActionName] is replaced by the action name for corresponding ActionData.ButtonName
         string content = textAsset.text;
-
-        Match closeMatch = Regex.Match(content, @"^\s*<([^<>]+)>");
-
-        if (closeMatch.Success)
-        {
-            string closeActionName = closeMatch.Groups[1].Value;
-
-            InputReferenceData closeData = GetActionData(closeActionName);
-
-            if (closeData != null)
-            {
-                popup.SetPopupCloseButton(closeData.actionReference);
-            }
-            else
-            {
-                Debug.LogWarning($"Unknown popup close action: {closeActionName}");
-                popup.SetPopupCloseButton(null);
-            }
-
-            content = content.Substring(closeMatch.Length);
-        }
-        else
-        {
-            popup.SetPopupCloseButton(null);
-        }
 
         content = Regex.Replace(content, @"\[([^\[\]]+)\]", match =>
         {
