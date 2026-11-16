@@ -64,7 +64,6 @@ public class PowerupBuyMenu: MonoBehaviour
         }
         Debug.Log("Power up!");
         playerInventory.ChangePearls((int) -price);
-        playerUpgrades.isUpgraded = true;
         powerupButton.interactable = false;
         feedbackText.text = "Success!";
         feedbackText.color = Color.green;

@@ -1,4 +1,5 @@
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class ItemChargesUI : MonoBehaviour
     [SerializeField] private Color consumedColor = Color.gray;
 
     private Image[] chargeDots;
+
+    [SerializeField] private TextMeshProUGUI text;
     private int currentMaxCharges = -1;
 
     private void OnEnable()
@@ -36,16 +39,17 @@ public class ItemChargesUI : MonoBehaviour
         maxCharges = Mathf.Max(0, maxCharges);
         currentCharges = Mathf.Clamp(currentCharges, 0, maxCharges);
 
-        if (currentMaxCharges != maxCharges)
-        {
-            RebuildDots(maxCharges);
-        }
+        //if (currentMaxCharges != maxCharges)
+        //{
+        //    RebuildDots(maxCharges);
+        //}
 
-        for (int i = 0; i < chargeDots.Length; i++)
-        {
-            chargeDots[i].color =
-                i < currentCharges ? availableColor : consumedColor;
-        }
+        //for (int i = 0; i < chargeDots.Length; i++)
+        //{
+        //    chargeDots[i].color =
+        //        i < currentCharges ? availableColor : consumedColor;
+        //}
+        text.text = currentCharges.ToString();
     }
 
     private void RebuildDots(int maxCharges)

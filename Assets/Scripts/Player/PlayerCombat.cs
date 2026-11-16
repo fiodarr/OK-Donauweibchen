@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 using FMODUnity;
@@ -42,8 +43,9 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private Transform playerPivot;
     
-    private bool canDash = true;
-    private bool canSecondDash = true;
+    private int availableDashes = 1;
+    private int maxDashes = 1;
+
     public bool LockMove => currentState != CombatState.Default || externalActionLock;
     public bool CanAttack => currentState == CombatState.Default && !externalActionLock;
     private bool externalActionLock;
@@ -206,33 +208,19 @@ public class PlayerCombat : MonoBehaviour
 
     private void Dash()
     {
-        if (currentState != CombatState.Default)
+        if (currentState != CombatState.Default || availableDashes <= 0)
             return;
 
-        if (canDash)
-        {
-            StartCoroutine(PerformDash(false));
-        }
-        else if (playerComponents.playerUpgrades.isUpgraded && canSecondDash)
-        {
-            StartCoroutine(PerformDash(true));
-        }
+        StartCoroutine(PerformDash());
     }
 
-    private IEnumerator PerformDash(bool isSecondDash)
+    private IEnumerator PerformDash()
     {
         RuntimeManager.PlayOneShot(dashSound);
 
-        if (isSecondDash)
-        {
-            canSecondDash = false;
-            StartCoroutine(SecondDashCooldown());
-        }
-        else
-        {
-            canDash = false;
-            StartCoroutine(DefaultDashCooldown());
-        }
+        availableDashes--;
+
+        StartCoroutine(DashCooldown());
 
         currentDirection = playerComponents.inputHandler.MoveInput.normalized;
 
@@ -245,16 +233,12 @@ public class PlayerCombat : MonoBehaviour
         currentState = CombatState.Default;
     }
 
-    private IEnumerator DefaultDashCooldown()
+    private IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
-    }
 
-    private IEnumerator SecondDashCooldown()
-    {
-        yield return new WaitForSeconds(dashCooldown);
-        canSecondDash = true;
+        //availableDashes = Mathf.Min(availableDashes + 1, maxDashes);
+        availableDashes = maxDashes;
     }
 
     private void TryStartUtility()
