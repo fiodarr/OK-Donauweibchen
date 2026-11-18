@@ -3,11 +3,11 @@
 public class PopupTrigger: MonoBehaviour
 {
     
-    [SerializeField] protected PopupEvent eventToTrigger;
+    [SerializeField] protected PopupData popupData;
     
 
     protected void ShowPopup()
     {
-        PopupManager.Instance.TriggerPopup(eventToTrigger);
+        PopupManager.Instance.TriggerPopup(popupData);
     }
 }
