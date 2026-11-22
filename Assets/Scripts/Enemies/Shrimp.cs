@@ -33,7 +33,7 @@ public class Shrimp : BaseEnemy
     private void Update()
     {
         
-        if (currentState != EnemyState.Idle)
+        if (GetState() != EnemyState.Idle)
             return;
 
         if (target == null)
@@ -48,7 +48,7 @@ public class Shrimp : BaseEnemy
 
     private void FixedUpdate()
     {
-        if (currentState != EnemyState.Idle)
+        if (GetState() != EnemyState.Idle)
             return;
 
         if (target == null)
@@ -124,7 +124,7 @@ public class Shrimp : BaseEnemy
         base.OnTakeDamage(damageDirection, damage, knockback);
         
         RuntimeManager.PlayOneShot(getHitSound);
-        if (currentState != EnemyState.Attack)
+        if (GetState() != EnemyState.Attack)
         {
             animator.SetTrigger(Hit);
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RestSpot : MonoBehaviour, IInteractable
+public class RestSpot : InteractiveBase
 {
     public string restSpotID;
     public bool isActivated;
@@ -14,12 +14,12 @@ public class RestSpot : MonoBehaviour, IInteractable
         Debug.Log("Rest spot activated: " + restSpotID);
     }
 
-    public virtual void Interact(GameObject interactor)
+    public override void Interact(GameObject interactor)
     {
         RestSpotManager.Instance.RestAtRestSpot(this);
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         return "Rest";
     }

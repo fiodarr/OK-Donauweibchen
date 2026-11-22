@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
-public class PickUpLantern: MonoBehaviour, IInteractable
+public class PickUpLantern: InteractiveBase
 {
-    public void Interact(GameObject interactor)
+    public override void Interact(GameObject interactor)
     {
         if (!interactor.TryGetComponent(out PlayerComponents player)) return;
         player.PickUpLantern();
         Destroy(gameObject);
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         return "Pick Up";
-}
+    }
 }

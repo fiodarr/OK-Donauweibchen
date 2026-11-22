@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class PickUpFishingRod: MonoBehaviour, IInteractable
+public class PickUpFishingRod: InteractiveBase
 {
-    public void Interact(GameObject interactor)
+    public override void Interact(GameObject interactor)
     {
         if (!interactor.TryGetComponent(out PlayerCombat player)) return;
         
@@ -10,7 +10,7 @@ public class PickUpFishingRod: MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         return "Pick Up";
     }

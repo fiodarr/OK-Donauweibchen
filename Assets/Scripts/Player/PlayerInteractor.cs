@@ -4,8 +4,9 @@ public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] private PlayerComponents playerComponents;
     [SerializeField] private float interactionRadius = 1.5f;
+    [SerializeField] private float detectionRadius = 3.5f;
 
-    private IInteractable currentInteractable;
+    private InteractiveBase detectedInteractable;
 
     private void OnEnable()
     {
@@ -26,21 +27,45 @@ public class PlayerInteractor : MonoBehaviour
     {
         Collider2D hit = Physics2D.OverlapCircle(
             transform.position,
-            interactionRadius,
+            detectionRadius,
             Layers.Interactables | Layers.RestSpots
         );
-
-        currentInteractable = null;
-
+        
         if (hit != null)
         {
-            currentInteractable = hit.GetComponent<IInteractable>();
+            InteractiveBase interactiveBase = hit.GetComponent<InteractiveBase>();
+
+            if (interactiveBase == null)
+            {
+                if (detectedInteractable != null)
+                {
+                    detectedInteractable.HidePrompt();
+                    detectedInteractable = null;
+                }
+                return;
+            }
+            
+            if (interactiveBase != detectedInteractable)
+            {
+                if (detectedInteractable != null)
+                {
+                    detectedInteractable.HidePrompt();
+                }
+                detectedInteractable = interactiveBase;
+                detectedInteractable.ShowPrompt();
+            }
+            float distance = Vector2.Distance(transform.position, hit.transform.position);
+            detectedInteractable.ChangePromptTransparency(distance, detectionRadius, interactionRadius);
         }
     }
 
     private void Interact()
     {
-        currentInteractable?.Interact(this.gameObject);
+        if (detectedInteractable == null) return;
+        
+        if (Vector2.Distance(detectedInteractable.transform.position, transform.position) < interactionRadius) 
+            detectedInteractable?.Interact(this.gameObject);
+        
     }
 
     private void OnDrawGizmosSelected()

@@ -56,10 +56,10 @@ public class ChargingEnemy : BaseEnemy
     private void FixedUpdate()
     {
         if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
-        if (currentState == EnemyState.Died) return;
-        if (currentState == EnemyState.Pingponged) return;
-        if (currentState == EnemyState.Stunned) return;
-        if (currentState != EnemyState.Idle) return;
+        if (GetState() == EnemyState.Died) return;
+        if (GetState() == EnemyState.Pingponged) return;
+        if (GetState() == EnemyState.Stunned) return;
+        if (GetState() != EnemyState.Idle) return;
 
         Collider2D player = Physics2D.OverlapCircle(
             transform.position,
@@ -105,7 +105,7 @@ public class ChargingEnemy : BaseEnemy
         DamageData[] damage,
         float knockback)
     {
-        if (currentState == EnemyState.Preparing)
+        if (GetState() == EnemyState.Preparing)
         {
             windUpEnded = false;
 
@@ -121,7 +121,7 @@ public class ChargingEnemy : BaseEnemy
             SetState(EnemyState.Idle);
         }
 
-        if (currentState != EnemyState.Attack)
+        if (GetState() != EnemyState.Attack)
         {
             animator.SetTrigger("Hit");
         }
@@ -153,7 +153,7 @@ public class ChargingEnemy : BaseEnemy
             //return hasAttackSlot;
         //});
 
-        if (currentState != EnemyState.Preparing)
+        if (GetState() != EnemyState.Preparing)
         {
             attackCoroutine = null;
             yield break;
@@ -162,10 +162,10 @@ public class ChargingEnemy : BaseEnemy
         RuntimeManager.PlayOneShot(agroSound, transform.position);
 
         yield return new WaitUntil(() =>
-            windUpEnded || currentState != EnemyState.Preparing
+            windUpEnded || GetState() != EnemyState.Preparing
         );
 
-        if (currentState != EnemyState.Preparing)
+        if (GetState() != EnemyState.Preparing)
         {
             ReleaseAttackSlot();
             attackCoroutine = null;
@@ -187,7 +187,7 @@ public class ChargingEnemy : BaseEnemy
         ReleaseAttackSlot();
         chaseInstance.release();
 
-        if (currentState != EnemyState.Vulnerable)
+        if (GetState() != EnemyState.Vulnerable)
         {
             RuntimeManager.PlayOneShot(biteSound, transform.position);
             SetState(EnemyState.Idle);
@@ -249,7 +249,7 @@ public class ChargingEnemy : BaseEnemy
 
             float curve = Mathf.Sin(time * curveFrequency) *
                           curveAmplitude * Time.fixedDeltaTime;
-            if (currentState != EnemyState.Stunned && currentState != EnemyState.Pingponged) 
+            if (GetState() != EnemyState.Stunned && GetState() != EnemyState.Pingponged) 
                 Rb.MovePosition(Rb.position + movement + perpendicular * curve);
 
             yield return new WaitForFixedUpdate();
@@ -267,7 +267,7 @@ public class ChargingEnemy : BaseEnemy
     {
         base.OnCollisionStay2D(collision);
         
-        if (!canHitWall || hitSolid || currentState != EnemyState.Attack)
+        if (!canHitWall || hitSolid || GetState() != EnemyState.Attack)
             return;
 
         if (((1 << collision.gameObject.layer) & Layers.Walls) == 0)
@@ -289,7 +289,7 @@ public class ChargingEnemy : BaseEnemy
 
     public void WindUpEnded()
     {
-        if (currentState == EnemyState.Preparing)
+        if (GetState() == EnemyState.Preparing)
             windUpEnded = true;
     }
 
@@ -309,7 +309,7 @@ public class ChargingEnemy : BaseEnemy
         float offset,
         float pullSpeed)
     {
-        if (currentState == EnemyState.Attack)
+        if (GetState() == EnemyState.Attack)
             return;
 
         animator.SetTrigger("Hit");
@@ -394,7 +394,7 @@ public class ChargingEnemy : BaseEnemy
     
     protected IEnumerator RecoverFromCharge()
     {
-        if (currentState == EnemyState.Vulnerable)
+        if (GetState() == EnemyState.Vulnerable)
         {
             yield return new WaitForSeconds(recoverTime);
 

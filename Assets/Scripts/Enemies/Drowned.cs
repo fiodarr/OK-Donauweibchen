@@ -52,10 +52,10 @@ public class Drowned : BaseEnemy
     }
     private void Update()
     {
-        if (currentState != EnemyState.Idle)
+        if (GetState() != EnemyState.Idle)
             return;
         
-        if (currentState == EnemyState.Pingponged) return;
+        if (GetState() == EnemyState.Pingponged) return;
 
         if (target == null)
         {
@@ -69,8 +69,8 @@ public class Drowned : BaseEnemy
 
     private void FixedUpdate()
     {
-        if (currentState == EnemyState.Pingponged) return;
-        if (currentState != EnemyState.Idle)
+        if (GetState() == EnemyState.Pingponged) return;
+        if (GetState() != EnemyState.Idle)
         {
             Rb.linearVelocity = Vector2.zero;
             animator.SetBool("IsMoving", false);
@@ -233,7 +233,7 @@ public class Drowned : BaseEnemy
 
     public override void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
-        if (currentState != EnemyState.Attack)
+        if (GetState() != EnemyState.Attack)
             StartCoroutine(HookRoutine(origin, direction, offset, pullSpeed));
     }
 
@@ -254,7 +254,6 @@ public class Drowned : BaseEnemy
     protected override void OnPullEnd()
     {
         animator.SetBool("IsHooked", false);
-        Debug.Log("OnPullEnd");
         base.OnPullEnd();
     }
 

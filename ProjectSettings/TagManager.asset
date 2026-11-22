@@ -54,5 +54,11 @@ TagManager:
   - name: over
     uniqueID: 1241637719
     locked: 0
+  - name: worldui
+    uniqueID: 793565911
+    locked: 0
+  - name: ui
+    uniqueID: 1237872441
+    locked: 0
   m_RenderingLayers:
   - Default
