@@ -12,6 +12,7 @@ Shader "Custom/NewUnlitUniversalRFishingRodAimOverlay"
 
         _RangePixels ("Range in Pixels", Float) = 500
         _RangeSoftnessPixels ("Range Edge Softness", Float) = 20
+        _OverlaySizePixels ("Overlay Size In Pixels", Vector) = (1920, 1080, 0, 0)
 
         // Required for compatibility with Unity UI masking.
         [HideInInspector] _StencilComp ("Stencil Comparison", Float) = 8
@@ -20,6 +21,8 @@ Shader "Custom/NewUnlitUniversalRFishingRodAimOverlay"
         [HideInInspector] _StencilWriteMask ("Stencil Write Mask", Float) = 255
         [HideInInspector] _StencilReadMask ("Stencil Read Mask", Float) = 255
         [HideInInspector] _ColorMask ("Color Mask", Float) = 15
+        
+        [NoScaleOffset] _VisibilityMask ("Visibility Mask", 2D) = "white" {}
     }
 
     SubShader
@@ -71,12 +74,16 @@ Shader "Custom/NewUnlitUniversalRFishingRodAimOverlay"
                 float4 color : COLOR;
                 float2 uv : TEXCOORD0;
             };
+            
+            TEXTURE2D(_VisibilityMask);
+            SAMPLER(sampler_VisibilityMask);
 
             CBUFFER_START(UnityPerMaterial)
 
                 float4 _OverlayColor;
                 float4 _OriginUV;
                 float4 _AimDirection;
+                float4 _OverlaySizePixels;
 
                 float _ConeAngle;
                 float _EdgeSoftness;
@@ -100,10 +107,8 @@ Shader "Custom/NewUnlitUniversalRFishingRodAimOverlay"
             half4 frag(Varyings input) : SV_Target
             {
                 // Convert UV coordinates into screen pixels.
-                float2 pixelPosition = input.uv * _ScreenParams.xy;
-
-                // Player position in screen pixels.
-                float2 origin = _OriginUV.xy * _ScreenParams.xy;
+                float2 pixelPosition = input.uv * _OverlaySizePixels.xy;
+                float2 origin = _OriginUV.xy * _OverlaySizePixels.xy;
 
                 // Vector from player to the current pixel.
                 float2 toPixel = pixelPosition - origin;
@@ -150,7 +155,13 @@ Shader "Custom/NewUnlitUniversalRFishingRodAimOverlay"
                 );
 
                 // Only reveal pixels that are inside both the cone and range.
-                float reveal = coneMask * rangeMask;
+                float visibility = SAMPLE_TEXTURE2D(
+                    _VisibilityMask,
+                    sampler_VisibilityMask,
+                    input.uv
+                ).r;
+
+                float reveal = coneMask * rangeMask * visibility;
 
                 // Outside the cone: dark.
                 // Inside the cone: transparent.

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
 public class UtilityItem: MonoBehaviour
 {
-    [SerializeField] private TargeChooseUtility targetChooseDefault;
-    [SerializeField] private TargeChooseUtility targetChooseSmart;
+    [SerializeField] private TargetChooseUtility targetChooseDefault;
+    [SerializeField] private TargetChooseUtility targetChooseSmart;
     
     [SerializeField] private GameObject chosenTargetSprite;
     
@@ -104,5 +105,7 @@ public class UtilityItem: MonoBehaviour
     {
         chosenTargetSprite.SetActive(false);
     }
+
+    
     
 }
