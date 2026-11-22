@@ -118,16 +118,22 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame() && controlScheme != ControlScheme.KeyboardMouse)
         {
             controlScheme = ControlScheme.KeyboardMouse;
+            GameManager.Instance.currentControlScheme = ControlScheme.KeyboardMouse;
+            Debug.Log("Now using Keyboard Mouse");
         }
 
         if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame() && controlScheme != ControlScheme.Controller)
         {
             controlScheme = ControlScheme.Controller;
+            GameManager.Instance.currentControlScheme = ControlScheme.Controller;
+            Debug.Log("Now using PlayStation Controller");
         }
 
         if (inputActions.InputScheme.XboxInput.WasPressedThisFrame() && controlScheme != ControlScheme.XboxController)
         {
             controlScheme = ControlScheme.XboxController;
+            GameManager.Instance.currentControlScheme = ControlScheme.XboxController;
+            Debug.Log("Now using Xbox Controller");
         }
 
         if (inputActions.Player.Interact.WasPressedThisFrame())

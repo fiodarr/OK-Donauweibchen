@@ -11,7 +11,7 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(EntityStatus))]
 public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 {
-    protected enum EnemyState
+    public enum EnemyState
     {
         Idle,
         Preparing,
@@ -23,11 +23,13 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         Died
     }
 
+    [SerializeField] private InputPromptVisual kickPrompt;
+    
     private Vector3 startPosition;
     [SerializeField] private ShadowCaster2D shadowCaster;
     private Quaternion startRotation;
-    protected EnemyState currentState = EnemyState.Idle;
-    
+    private EnemyState currentState = EnemyState.Idle;
+
     protected EntityStatus status;
     [SerializeField] private float knockbackForce = 5f;
     
@@ -44,6 +46,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     private Coroutine pingpongCoroutine = null;
 
     private DamageData pingPongAttack;
+    
+    private bool canShowKickPrompt = true;
 
     public bool IsDead => currentState == EnemyState.Died;
 
@@ -138,7 +142,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         status.ResetStatus();
 
-        currentState = EnemyState.Idle;
+        SetState(EnemyState.Idle);
         
         Color color = spriteRenderer.color;
         color.a = 1f;
@@ -223,11 +227,30 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected void SetState(EnemyState state)
     {
-        if (currentState != EnemyState.Died)
+        if (currentState == EnemyState.Died)
         {
-            currentState = state;   
+            return;
         }
+
+        UpdateKickPrompt(state);
+       
+        currentState = state; 
+        
         Debug.Log(currentState);
+    }
+
+    private void UpdateKickPrompt(EnemyState state)
+    {
+        if (currentState == EnemyState.Stunned && state != EnemyState.Stunned)
+        {
+            Debug.Log("HIDE KICK PROMPT");
+            kickPrompt.Hide();
+        }
+        if (state == EnemyState.Stunned && canShowKickPrompt)
+        {
+            Debug.Log("SHOW KICK PROMPT");
+            kickPrompt.Show();
+        }
     }
 
     protected virtual void OnPullStart()
@@ -237,7 +260,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     protected virtual void OnPullEnd()
     {
-        Debug.Log("OnPullEnd base!!");
+        canShowKickPrompt = true;
     }
 
     private IEnumerator FadeOut()
@@ -282,10 +305,10 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     {
         
         Debug.Log("StartPingPong");
-        currentState = EnemyState.Pingponged;
+        SetState(EnemyState.Pingponged);
         yield return new WaitForSeconds(duration);
         pingpongCoroutine = null;
-        currentState = EnemyState.Idle;
+        SetState(EnemyState.Idle);
         OnPullEnd();
         Debug.Log("EndPingPong");
     }
@@ -327,6 +350,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         if (recoveryStunTime > 0f)
         {
+            StartCoroutine(PingPongEndRoutine(recoveryStunTime));
             stunCoroutine = StartCoroutine(StunRoutine(recoveryStunTime));
         }
         else
@@ -334,5 +358,17 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
             currentState = EnemyState.Idle;
             OnPullEnd();
         }
+    }
+
+    private IEnumerator PingPongEndRoutine(float recoveryStunTime)
+    {
+        canShowKickPrompt = false;
+        yield return new WaitForSeconds(recoveryStunTime);
+        canShowKickPrompt = true;
+    }
+
+    public EnemyState GetState()
+    {
+        return currentState;
     }
 }
