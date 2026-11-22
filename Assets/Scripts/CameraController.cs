@@ -13,12 +13,21 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-
-        Vector2 moveOffset = playerComponents.inputHandler.MoveInput * directionOffset;
+        Vector2 moveOffset;
+        if (playerComponents.combat.IsAimingUtility)
+        {
+            moveOffset = Vector2.zero;
+        }
+        else
+        {
+            moveOffset = playerComponents.inputHandler.MoveInput * directionOffset;
+        }
+                
         if (playerComponents.status.movementLocked)
         {
             moveOffset = Vector2.zero;
         }
+
         Vector2 targetPosition = (new Vector2(
             target.position.x,
             target.position.y

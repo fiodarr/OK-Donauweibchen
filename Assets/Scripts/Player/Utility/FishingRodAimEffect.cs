@@ -5,8 +5,10 @@ public class FishingRodAimEffect : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerInputHandler inputHandler;
+    [SerializeField] private PlayerCombat playerCombat;
     [SerializeField] private Transform player;
     [SerializeField] private Camera gameplayCamera;
+    
 
     [SerializeField] private RawImage overlay;
     [SerializeField] private Material overlayMaterial;
@@ -19,6 +21,10 @@ public class FishingRodAimEffect : MonoBehaviour
 
     [SerializeField] private float edgeSoftness = 3f;
     [SerializeField] private float rangeEdgeSoftness = 0.35f;
+    
+    [Header("Fade Settings")]
+    [SerializeField] private float fadeInDuration = 0.4f;
+    [SerializeField] private float fadeOutDuration = 0.12f;
 
     private CanvasGroup canvasGroup;
     private Material runtimeMaterial;
@@ -81,22 +87,9 @@ public class FishingRodAimEffect : MonoBehaviour
             new Color(0f, 0f, 0f, darkness)
         );
     }
-
-    private void OnEnable()
-    {
-        if (inputHandler == null) return;
-
-        inputHandler.UtilityPressed += StartEffect;
-        inputHandler.UtilityReleased += StopEffect;
-    }
-
+    
     private void OnDisable()
     {
-        if (inputHandler == null) return;
-
-        inputHandler.UtilityPressed -= StartEffect;
-        inputHandler.UtilityReleased -= StopEffect;
-
         if (canvasGroup != null)
             canvasGroup.alpha = 0f;
     }
@@ -109,10 +102,29 @@ public class FishingRodAimEffect : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (canvasGroup == null || canvasGroup.alpha <= 0f)
+        if (canvasGroup == null || playerCombat == null)
             return;
 
-        UpdateShader();
+        bool shouldShow = playerCombat.IsAimingUtility;
+
+        float targetAlpha = shouldShow ? 1f : 0f;
+        float fadeDuration = shouldShow ? fadeInDuration : fadeOutDuration;
+
+        if (fadeDuration <= 0f)
+        {
+            canvasGroup.alpha = targetAlpha;
+        }
+        else
+        {
+            canvasGroup.alpha = Mathf.MoveTowards(
+                canvasGroup.alpha,
+                targetAlpha,
+                Time.deltaTime / fadeDuration
+            );
+        }
+
+        if (canvasGroup.alpha > 0f)
+            UpdateShader();
     }
 
     private void StartEffect()
