@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ebce79f79835448185aa1e923223b38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08577ec729ebe4437b268e7b0a4f0e65, type: 3}
   m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   hurtbox:
   - {fileID: 189320825254731443}
   - {fileID: 3334766372010155868}
+  emittedLevel: 1
   detectionRange: 6.46
   loseTargetRange: 9.05
   attackRange: 1.63
@@ -199,6 +200,7 @@ MonoBehaviour:
       tag: 0
     knockback: 20
     launchForce: 5
+    autolockDistance: 3
     attackSound:
       Guid:
         Data1: -589580817

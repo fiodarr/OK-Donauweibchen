@@ -325,6 +325,7 @@ MonoBehaviour:
   hurtbox:
   - {fileID: 2518037694342659847}
   - {fileID: 805387943941086686}
+  - {fileID: 4414743930393434617}
   emittedLevel: 1
   detectionRange: 12
   prepareTime: 2
