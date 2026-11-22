@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChargingEnemy
   iTime: 0
-  kickPrompt: {fileID: 0}
+  kickPrompt: {fileID: 3343435201677841210}
   shadowCaster: {fileID: 3940483064118084869}
   knockbackForce: 6
   knockbackPingPongMultiplier: 2
@@ -771,3 +771,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1017914354168978843, guid: 8f2ba7b4ae91a8b4eb40d1ba5fb60c95, type: 3}
   m_PrefabInstance: {fileID: 2853860367809705302}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3343435201677841210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 719650668332689004, guid: 8f2ba7b4ae91a8b4eb40d1ba5fb60c95, type: 3}
+  m_PrefabInstance: {fileID: 2853860367809705302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d27a60616a45f693348c07d1e5f40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputPromptVisual

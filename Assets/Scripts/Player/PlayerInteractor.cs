@@ -35,9 +35,9 @@ public class PlayerInteractor : MonoBehaviour
         {
             InteractiveBase interactiveBase = hit.GetComponent<InteractiveBase>();
 
-            if (interactiveBase == null)
+            if (!interactiveBase)
             {
-                if (detectedInteractable != null)
+                if (detectedInteractable)
                 {
                     detectedInteractable.HidePrompt();
                     detectedInteractable = null;
@@ -47,7 +47,7 @@ public class PlayerInteractor : MonoBehaviour
             
             if (interactiveBase != detectedInteractable)
             {
-                if (detectedInteractable != null)
+                if (detectedInteractable)
                 {
                     detectedInteractable.HidePrompt();
                 }
