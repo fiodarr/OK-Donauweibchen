@@ -64,6 +64,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action SecondaryAttackPressed;
     public event Action UtilityPressed;
     public event Action UtilityReleased;
+    
 
     public event Action UtilityAttack;
 
