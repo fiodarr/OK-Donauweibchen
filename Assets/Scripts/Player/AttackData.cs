@@ -1,5 +1,7 @@
 using FMODUnity;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class AttackData
@@ -27,6 +29,9 @@ public class AttackData
 
     [Header("Hitbox")]
     public Hitbox hitbox;
+    public Transform slashPivot;
+
+    public UnityEvent slash;
 
     [Header("Tag")] 
     public AttackDataTag tag;

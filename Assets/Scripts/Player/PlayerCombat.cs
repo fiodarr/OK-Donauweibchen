@@ -179,10 +179,11 @@ public class PlayerCombat : MonoBehaviour
         ) * Mathf.Rad2Deg;
 
         attack.hitbox.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        float verticalAngleLimit = 10f;
 
         // Execute attack
         attack.hitbox.BeginAttack(currentDirection, attack.damage, attack.knockback);
-
+        attack.slash.Invoke();
         yield return new WaitForSeconds(attack.activeTime);
 
         attack.hitbox.EndAttack();
