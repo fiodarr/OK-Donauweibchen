@@ -20,12 +20,12 @@ public class PlayerStatus : EntityStatus
 
     private void OnEnable()
     {
-        OnDeath += Die;
+        OnDeath.AddListener(Die);
     }
 
     private void OnDisable()
     {
-        OnDeath -= Die;
+        OnDeath.RemoveListener(Die);
     }
     protected override void FlashOnTakeDamage()
     {

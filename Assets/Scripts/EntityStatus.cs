@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntityStatus : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class EntityStatus : MonoBehaviour
     [SerializeField] float armorReduction;
     [SerializeField] float currentHealth;
     [SerializeField] float currentArmor;
-    public System.Action OnDeath;
     protected bool isDead;
     public bool IsDead => isDead;
 
     public event Action<float,float> OnHealthChanged;
+
+    public UnityEvent OnDeath;
 
     void Start()
     {

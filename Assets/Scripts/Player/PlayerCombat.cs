@@ -54,6 +54,10 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Animator animator;
 
     public bool hasFishingRod = false;
+
+    public bool IsAimingUtility => currentState == CombatState.ChoosingTarget;
+        
+    
     private void Update()
     {
         UpdateUtility();
@@ -262,6 +266,7 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("TryStartUtility");
         UpdateUtility();
         currentState = CombatState.ChoosingTarget;
+        GameManager.Instance.SetAimingSlowMotion(true);
         equippedUtilityItem.ShowChosenTargetSprite();
     }
     
@@ -271,7 +276,9 @@ public class PlayerCombat : MonoBehaviour
         {
             return;
         }
-
+        
+        
+        GameManager.Instance.SetAimingSlowMotion(false);
         bool isSmart;
         if (playerComponents.inputHandler.FishingRodTimePressed >= utilityTimeThreshold)
         {
@@ -281,6 +288,7 @@ public class PlayerCombat : MonoBehaviour
         { 
             isSmart = false;
         }
+        
         
         currentUtilityCoroutine = StartCoroutine(Swing(isSmart));
     }
@@ -339,6 +347,7 @@ public class PlayerCombat : MonoBehaviour
     
     private void InterruptUtility()
     {
+        GameManager.Instance.SetAimingSlowMotion(false);
         equippedUtilityItem.HideChosenTargetSprite();
         
         if (currentUtilityCoroutine != null)

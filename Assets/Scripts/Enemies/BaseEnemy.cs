@@ -142,7 +142,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         status.ResetStatus();
 
-        SetState(EnemyState.Idle);
+        //dont touch if you dont know what youre doing ദ്ദി( • ᴗ - ) ✧
+        currentState = EnemyState.Idle;
         
         Color color = spriteRenderer.color;
         color.a = 1f;
