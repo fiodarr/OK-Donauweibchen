@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Slash : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private int frontOrder = 99;
     [SerializeField] private int backOrder = -99;
 
@@ -14,12 +14,10 @@ public class Slash : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    public void DoSlash()
+    public virtual void DoSlash(Vector2 direction)
     {
-        float angle = Mathf.Repeat(transform.eulerAngles.z, 360f);
-
         spriteRenderer.sortingOrder =
-            (angle > 180f && angle < 360f) ? frontOrder : backOrder;
+            direction.y > 0 ? backOrder : frontOrder;
 
         if (slashCoroutine != null)
             StopCoroutine(slashCoroutine);
@@ -27,7 +25,7 @@ public class Slash : MonoBehaviour
         slashCoroutine = StartCoroutine(ShowSlash());
     }
 
-    private IEnumerator ShowSlash()
+    protected virtual IEnumerator ShowSlash()
     {
         spriteRenderer.enabled = true;
         yield return new WaitForSeconds(0.2f);

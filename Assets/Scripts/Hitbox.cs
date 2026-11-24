@@ -11,6 +11,8 @@ public class Hitbox : MonoBehaviour
     protected DamageData[] currentDamage;
     protected float currentKnockback;
     public Action OnHit;
+
+    public Transform pivot;
     protected virtual void Awake()
     {
         hitbox.enabled = false;

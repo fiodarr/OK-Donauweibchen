@@ -24,6 +24,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private EventReference dashSound;
     [SerializeField] private EventReference castSound;
     [SerializeField] private EventReference reelSound;
+
+    public ParticleSystem heavyAttackParticles;
     private int attackType = 0;
     private Vector2 currentDirection = Vector2.right;
 
@@ -144,7 +146,7 @@ public class PlayerCombat : MonoBehaviour
             currentState = CombatState.Default;
             yield break;
         }
-        
+
         if (!attack.chargeSound.IsNull){
             RuntimeManager.PlayOneShot(attack.chargeSound);
         }
@@ -181,9 +183,18 @@ public class PlayerCombat : MonoBehaviour
         attack.hitbox.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         float verticalAngleLimit = 10f;
 
+
         // Execute attack
         attack.hitbox.BeginAttack(currentDirection, attack.damage, attack.knockback);
-        attack.slash.Invoke();
+        attack.slash.Invoke(currentDirection);
+        if (attack.heavy)
+        {
+            Instantiate(
+                heavyAttackParticles,
+                attack.hitbox.pivot.position,
+                Quaternion.identity
+            );
+        }
         yield return new WaitForSeconds(attack.activeTime);
 
         attack.hitbox.EndAttack();

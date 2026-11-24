@@ -49,7 +49,7 @@ public class ItemChargesUI : MonoBehaviour
         //    chargeDots[i].color =
         //        i < currentCharges ? availableColor : consumedColor;
         //}
-        text.text = currentCharges.ToString();
+        //text.text = currentCharges.ToString();
     }
 
     private void RebuildDots(int maxCharges)

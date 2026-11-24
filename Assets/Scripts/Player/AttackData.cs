@@ -31,7 +31,9 @@ public class AttackData
     public Hitbox hitbox;
     public Transform slashPivot;
 
-    public UnityEvent slash;
+    public UnityEvent<Vector2> slash;
+
+    public bool heavy;
 
     [Header("Tag")] 
     public AttackDataTag tag;
