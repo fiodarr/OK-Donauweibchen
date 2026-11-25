@@ -83,7 +83,7 @@ MonoBehaviour:
   attackCooldown: 0.5
   attacks:
   - damage:
-    - amount: 1
+    - amount: 2
       type: 0
       tag: 0
     - amount: 2
