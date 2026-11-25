@@ -17,6 +17,7 @@ public class CharacterSorting : MonoBehaviour
     private StairZone currentStair;
     private Vector3 originalScale;
     private float currentScale = 1f;
+    private float xSign = 1f;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class CharacterSorting : MonoBehaviour
             visualRoot = transform;
 
         originalScale = visualRoot.localScale;
+        xSign = Mathf.Sign(originalScale.x);
     }
 
     private void LateUpdate()
@@ -41,6 +43,12 @@ public class CharacterSorting : MonoBehaviour
         }
 
         UpdateScale();
+    }
+
+    public void SetFacingDirection(float direction)
+    {
+        if (Mathf.Abs(direction) > 0.01f)
+            xSign = Mathf.Sign(direction);
     }
 
     private void UpdateScale()
@@ -72,7 +80,11 @@ public class CharacterSorting : MonoBehaviour
             );
         }
 
-        visualRoot.localScale = originalScale * currentScale;
+        visualRoot.localScale = new Vector3(
+            Mathf.Abs(originalScale.x) * currentScale * xSign,
+            originalScale.y * currentScale,
+            originalScale.z * currentScale
+        );
     }
 
     private void OnTriggerEnter2D(Collider2D other)

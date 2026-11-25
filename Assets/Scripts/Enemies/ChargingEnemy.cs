@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Linq;
@@ -42,9 +41,10 @@ public class ChargingEnemy : BaseEnemy
 
     private Animator animator;
     private FlashController flash;
+    private CharacterSorting characterSorting;
 
     private Coroutine attackCoroutine;
-    
+
     private bool hasAttackSlot;
 
     protected override void Awake()
@@ -53,6 +53,7 @@ public class ChargingEnemy : BaseEnemy
         bubbles.Stop();
         animator = GetComponent<Animator>();
         flash = GetComponent<FlashController>();
+        characterSorting = GetComponent<CharacterSorting>();
     }
 
     private void FixedUpdate()
@@ -85,7 +86,6 @@ public class ChargingEnemy : BaseEnemy
             return;
         }
 
-        // Run away from the player.
         animator.SetBool("IsMoving", true);
 
         Vector2 direction = (Rb.position - (Vector2)target.position).normalized;
@@ -100,7 +100,6 @@ public class ChargingEnemy : BaseEnemy
 
         Rb.MovePosition(Rb.position + movement + perpendicular * curve);
     }
-    
 
     protected override void OnTakeDamage(
         Vector2 damageDirection,
@@ -144,16 +143,6 @@ public class ChargingEnemy : BaseEnemy
         RefreshDirection(direction);
 
         animator.SetTrigger("WindUpStart");
-
-        //yield return new WaitUntil(() =>
-        //{
-        //    if (currentState != EnemyState.Preparing)
-         //       return true;
-
-            //hasAttackSlot = EnemyAttackManager.TryAcquire(this);
-
-            //return hasAttackSlot;
-        //});
 
         if (GetState() != EnemyState.Preparing)
         {
@@ -252,14 +241,15 @@ public class ChargingEnemy : BaseEnemy
 
             float curve = Mathf.Sin(time * curveFrequency) *
                           curveAmplitude * Time.fixedDeltaTime;
-            if (GetState() != EnemyState.Stunned && GetState() != EnemyState.Pingponged) 
+
+            if (GetState() != EnemyState.Stunned && GetState() != EnemyState.Pingponged)
                 Rb.MovePosition(Rb.position + movement + perpendicular * curve);
 
             yield return new WaitForFixedUpdate();
         }
-        
+
         Debug.Log("I hit smth!");
-        
+
         canHitWall = false;
 
         attack.hitbox.EndAttack();
@@ -269,7 +259,7 @@ public class ChargingEnemy : BaseEnemy
     protected override void OnCollisionStay2D(Collision2D collision)
     {
         base.OnCollisionStay2D(collision);
-        
+
         if (!canHitWall || hitSolid || GetState() != EnemyState.Attack)
             return;
 
@@ -287,7 +277,6 @@ public class ChargingEnemy : BaseEnemy
         flash.FlashMultiple(7, 0.15f, 0.25f, 0.6f);
         animator.SetTrigger("Hit");
         animator.SetBool("IsMoving", false);
-        
     }
 
     public void WindUpEnded()
@@ -299,13 +288,13 @@ public class ChargingEnemy : BaseEnemy
     private void RefreshDirection(Vector2 direction)
     {
         animator.SetFloat("VerticalDirection", direction.y);
-        
-        Vector3 scale = transform.localScale;
-        scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? -1 : 1);
 
-        transform.localScale = scale;
+        if (characterSorting != null)
+            characterSorting.SetFacingDirection(direction.x);
+
         RotateBubbles(direction);
     }
+
     private void RotateBubbles(Vector2 direction)
     {
         if (direction.sqrMagnitude < 0.001f) return;
@@ -316,6 +305,7 @@ public class ChargingEnemy : BaseEnemy
 
         bubbles.transform.rotation = targetRotation;
     }
+
     public override void Hook(
         Vector2 origin,
         Vector2 direction,
@@ -400,11 +390,11 @@ public class ChargingEnemy : BaseEnemy
     public void Unstun()
     {
         animator.SetBool("IsStunned", false);
-        
+
         ResetConditions();
         SetState(EnemyState.Idle);
     }
-    
+
     protected IEnumerator RecoverFromCharge()
     {
         if (GetState() == EnemyState.Vulnerable)
