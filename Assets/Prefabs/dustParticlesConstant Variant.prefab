@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2759535378514257353, guid: a9517d8bf98c39544b4bb620d0f023f4, type: 3}
+      propertyPath: overLayer
+      value: behind
+      objectReference: {fileID: 0}
     - target: {fileID: 5694588611109994107, guid: a9517d8bf98c39544b4bb620d0f023f4, type: 3}
       propertyPath: m_Name
       value: dustParticlesConstant Variant
@@ -80,7 +84,8 @@ PrefabInstance:
       propertyPath: InitialModule.startSizeZ.minMaxState
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7188954637994957507, guid: a9517d8bf98c39544b4bb620d0f023f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

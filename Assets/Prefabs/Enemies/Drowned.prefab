@@ -146,6 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Drowned
   iTime: 0.1
   kickPrompt: {fileID: 7204463991543641316}
+  hitParticlesPrefab: {fileID: 2752019341960061443, guid: 8a2e6dbf34de33d438e49a0181702866, type: 3}
+  deathParticlesPrefab: {fileID: 2752019341960061443, guid: 090ac82104138d542845b0673bf03a32, type: 3}
   shadowCaster: {fileID: 5628100194023929321}
   knockbackForce: 6
   knockbackPingPongMultiplier: 2
@@ -229,6 +231,7 @@ MonoBehaviour:
     slash:
       m_PersistentCalls:
         m_Calls: []
+    heavy: 0
     tag: 0
 --- !u!61 &189320825254731443
 BoxCollider2D:
@@ -492,14 +495,10 @@ MonoBehaviour:
   - loot:
     - {fileID: 8264589188269171633, guid: 2ce12eb533fd5441d9259fdb5437e87e, type: 3}
     reused: 0
-    spawnPoint: {fileID: 0}
-    randomOffset: 0.5
     quantity: 2
   - loot:
     - {fileID: 8264589188269171633, guid: 2ce12eb533fd5441d9259fdb5437e87e, type: 3}
     reused: 1
-    spawnPoint: {fileID: 0}
-    randomOffset: 0.5
     quantity: 1
   spawnPoint: {fileID: 0}
   randomOffset: 0.5

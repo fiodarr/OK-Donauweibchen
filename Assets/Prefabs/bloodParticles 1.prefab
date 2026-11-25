@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5772744855421124251}
   - component: {fileID: 5698650430318069996}
   - component: {fileID: 1247795062018054248}
+  - component: {fileID: 5162940769929057581}
   m_Layer: 0
   m_Name: bloodParticles 1
   m_TagString: Untagged
@@ -4947,3 +4948,15 @@ SortingGroup:
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
+--- !u!114 &5162940769929057581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752019341960061443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170665f4f7045f748af084eaea362149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyAfterParticles

@@ -26,7 +26,7 @@ public class InputPromptVisual: MonoBehaviour
     public void SetAlpha(float distance, float detectionRange, float interactionRange)
     {
         float alpha = 1 - (distance - interactionRange) / (detectionRange - interactionRange);
-        Debug.Log("Transparency changed in input prompt");
+        //Debug.Log("Transparency changed in input prompt");
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
     

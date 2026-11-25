@@ -24,7 +24,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     }
 
     [SerializeField] private InputPromptVisual kickPrompt;
-    
+    [SerializeField] private GameObject hitParticlesPrefab;
+    [SerializeField] private GameObject deathParticlesPrefab;
     private Vector3 startPosition;
     [SerializeField] private ShadowCaster2D shadowCaster;
     private Quaternion startRotation;
@@ -37,6 +38,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     [SerializeField] private float knockbackPingPongTime = 1f;
 
     [SerializeField] private EventReference pingPongSound;
+
     
     [SerializeField] private Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
@@ -69,7 +71,12 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
             type = DamageType.Physical
         };
     }
+    private void SpawnParticles(GameObject prefab)
+    {
+        if (prefab == null) return;
 
+        Instantiate(prefab, transform.position, Quaternion.identity);
+    }
     void Start()
     {
         RestSpotManager.Instance.enemies.Add(this);
@@ -80,7 +87,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         float healthBefore = status.GetHealth();
 
         status.TakeDamage(damage);
-        
+        SpawnParticles(hitParticlesPrefab);
         if (status.GetHealth() <= 0)
             Die();
         
@@ -121,6 +128,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         }
 
         StartCoroutine(FadeOut());
+        SpawnParticles(deathParticlesPrefab);
     }
 
     public virtual void Respawn()

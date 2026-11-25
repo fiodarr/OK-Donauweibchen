@@ -14,7 +14,7 @@ public class PlayerController : Hitable
 
     [SerializeField] private EventReference footsteps;
     [SerializeField] private EventReference takeDamageSound;
-
+    [SerializeField] private ParticleSystem walkingParticles;
     private bool isMoving = false;
 
 
@@ -91,28 +91,41 @@ public class PlayerController : Hitable
         Vector2 movement = playerComponents.inputHandler.MoveInput.normalized;
 
         rb.linearVelocity = movement * moveSpeed;
-        
-        if (movement.magnitude > 0)
+
+        if (movement.sqrMagnitude > 0.001f)
         {
             if (stepsRoutine == null)
             {
                 stepsRoutine = StartCoroutine(Footsteps());
                 isMoving = true;
             }
+
+
             animator.SetFloat("DirX", movement.x);
             animator.SetFloat("DirY", movement.y);
         }
-
         else
         {
             isMoving = false;
+
             if (stepsRoutine != null)
             {
                 StopCoroutine(stepsRoutine);
                 stepsRoutine = null;
             }
+
         }
-        animator.SetBool("IsMoving",isMoving);
+        if (isMoving)
+        {
+            if (!walkingParticles.isEmitting)
+                walkingParticles.Play();
+        }
+        else
+        {
+            walkingParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        }
+
+        animator.SetBool("IsMoving", isMoving);
 
     }
     

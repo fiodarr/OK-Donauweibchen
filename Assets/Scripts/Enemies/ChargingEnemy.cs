@@ -16,6 +16,8 @@ public class ChargingEnemy : BaseEnemy
     [Header("Wall Collision")]
     [SerializeField] private float wallCollisionDelay = 0.1f;
 
+    [SerializeField] private ParticleSystem bubbles;
+
     [SerializeField] private EventReference agroSound;
     [SerializeField] private EventReference chaseSound;
     [SerializeField] private EventReference biteSound;
@@ -48,7 +50,7 @@ public class ChargingEnemy : BaseEnemy
     protected override void Awake()
     {
         base.Awake();
-
+        bubbles.Stop();
         animator = GetComponent<Animator>();
         flash = GetComponent<FlashController>();
     }
@@ -179,13 +181,14 @@ public class ChargingEnemy : BaseEnemy
         chaseInstance.start();
 
         animator.SetTrigger("AttackStart");
-
+        bubbles.Play();
         yield return StartCoroutine(Plunge(target.position));
 
         chaseInstance.setParameterByName("HitSmth", 1);
 
         ReleaseAttackSlot();
         chaseInstance.release();
+        bubbles.Stop();
 
         if (GetState() != EnemyState.Vulnerable)
         {
@@ -296,13 +299,23 @@ public class ChargingEnemy : BaseEnemy
     private void RefreshDirection(Vector2 direction)
     {
         animator.SetFloat("VerticalDirection", direction.y);
-
+        
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? -1 : 1);
 
         transform.localScale = scale;
+        RotateBubbles(direction);
     }
+    private void RotateBubbles(Vector2 direction)
+    {
+        if (direction.sqrMagnitude < 0.001f) return;
 
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
+
+        bubbles.transform.rotation = targetRotation;
+    }
     public override void Hook(
         Vector2 origin,
         Vector2 direction,

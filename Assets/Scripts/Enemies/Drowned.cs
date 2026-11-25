@@ -259,9 +259,31 @@ public class Drowned : BaseEnemy
 
     public override void Respawn()
     {
-        animator.SetBool("IsDead", false);
+        StopAllCoroutines();
+
+        attack.hitbox.EndAttack();
+        ReleaseAttackSlot();
+
+        base.Respawn();
+
+        target = null;
+        attackRoutine = null;
+
+        canMove = true;
+        recoveryEnded = false;
+        hasAttackSlot = false;
+
+        isStuck = false;
+        hasHitTarget = false;
+        direction = Vector2.zero;
+
         animator.Rebind();
         animator.Update(0f);
-        base.Respawn();
+
+        animator.SetBool("IsDead", false);
+        animator.SetBool("IsMoving", false);
+        animator.SetBool("IsInWindUp", false);
+        animator.SetBool("IsStuck", false);
+        animator.SetBool("IsHooked", false);
     }
 }

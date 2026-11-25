@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   value: 1
-  attractionSpeed: 8
+  attractionSpeed: 4
   collectionDistance: 0.1
   attractionSpeedCurve:
     serializedVersion: 2

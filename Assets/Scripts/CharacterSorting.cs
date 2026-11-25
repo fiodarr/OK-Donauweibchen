@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -12,6 +11,13 @@ public class CharacterSorting : MonoBehaviour
 
     public int precision = 100;
 
+    [Header("Stairs")]
+    [SerializeField] private Transform visualRoot;
+
+    private StairZone currentStair;
+    private Vector3 originalScale;
+    private float currentScale = 1f;
+
     private void Awake()
     {
         if (sortingGroup == null)
@@ -19,31 +25,80 @@ public class CharacterSorting : MonoBehaviour
 
         if (feetPoint == null)
             feetPoint = transform;
+
+        if (visualRoot == null)
+            visualRoot = transform;
+
+        originalScale = visualRoot.localScale;
     }
 
     private void LateUpdate()
     {
-        if (sortingGroup == null)
-            return;
+        if (sortingGroup != null)
+        {
+            sortingGroup.sortingOrder =
+                -Mathf.RoundToInt(feetPoint.position.y * precision);
+        }
 
-        sortingGroup.sortingOrder =
-            -Mathf.RoundToInt(feetPoint.position.y * precision);
+        UpdateScale();
+    }
+
+    private void UpdateScale()
+    {
+        if (currentStair != null &&
+            currentStair.topPoint != null &&
+            currentStair.bottomPoint != null)
+        {
+            Vector2 top = currentStair.topPoint.position;
+            Vector2 bottom = currentStair.bottomPoint.position;
+            Vector2 direction = bottom - top;
+
+            float t = 0f;
+
+            if (direction.sqrMagnitude > 0.0001f)
+            {
+                t = Mathf.Clamp01(
+                    Vector2.Dot(
+                        (Vector2)feetPoint.position - top,
+                        direction.normalized
+                    ) / direction.magnitude
+                );
+            }
+
+            currentScale = Mathf.Lerp(
+                currentStair.topScale,
+                currentStair.bottomScale,
+                t
+            );
+        }
+
+        visualRoot.localScale = originalScale * currentScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.TryGetComponent(out StairZone stair))
         {
-            SetSortingLayer(behindLayer);
+            currentStair = stair;
+            return;
         }
+
+        if (other.CompareTag("Wall"))
+            SetSortingLayer(behindLayer);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.TryGetComponent(out StairZone stair))
         {
-            SetSortingLayer(overLayer);
+            if (currentStair == stair)
+                currentStair = null;
+
+            return;
         }
+
+        if (other.CompareTag("Wall"))
+            SetSortingLayer(overLayer);
     }
 
     private void SetSortingLayer(string layerName)

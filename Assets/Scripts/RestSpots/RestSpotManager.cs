@@ -32,12 +32,12 @@ public class RestSpotManager : MonoBehaviour
         if (isResting)
         {
             FinishResting();
+            RespawnEnemies();
         }
         else
         {
 
             isResting = true;
-            RespawnEnemies();
             playerComponents.lantern.Refill();
             ActivateRestSpot(restSpot);
             playerComponents.status.Rest();
