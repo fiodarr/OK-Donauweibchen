@@ -44,6 +44,7 @@ Transform:
   - {fileID: 4172667597938114429}
   - {fileID: 2797358161977635230}
   - {fileID: 7216886574231441171}
+  - {fileID: 1184500074355930417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &163661864659815252
@@ -152,6 +153,7 @@ MonoBehaviour:
   knockbackForce: 6
   knockbackPingPongMultiplier: 2
   knockbackPingPongTime: 1
+  kickTrajectory: {fileID: 3730570295813040188}
   pingPongSound:
     Guid:
       Data1: 1122386283
@@ -466,6 +468,7 @@ MonoBehaviour:
   overLayer: over
   behindLayer: basic
   precision: 100
+  visualRoot: {fileID: 0}
 --- !u!210 &1660795063112675439
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -630,6 +633,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3072503179682140787, guid: 5463531f91fad499387d49dc17fc7f92, type: 3}
   m_PrefabInstance: {fileID: 1390471328419835150}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6747200670857599678
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2517167523473365265}
+    m_Modifications:
+    - target: {fileID: 34641587415447790, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_Name
+      value: KickTrajectoryVisual
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+--- !u!4 &1184500074355930417 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5607808135664643983, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+  m_PrefabInstance: {fileID: 6747200670857599678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3730570295813040188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7955462129370395266, guid: a921c0cb81a45644ca2bb6a7887c1aca, type: 3}
+  m_PrefabInstance: {fileID: 6747200670857599678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad7f413b46d46aaacba944d999577e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KickTrajectoryVisual
 --- !u!1001 &7640308028634993288
 PrefabInstance:
   m_ObjectHideFlags: 0
