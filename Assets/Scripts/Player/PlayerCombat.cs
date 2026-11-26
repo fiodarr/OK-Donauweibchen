@@ -10,11 +10,11 @@ public class PlayerCombat : MonoBehaviour
     {
         Default,
         Attacking,
-
         Dashing,
         ChoosingTarget,
         Swinging,
         Pulling,
+        Resting,
         ChoosingKickDirection
     }
     private CombatState currentState = CombatState.Default;
@@ -37,12 +37,19 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private UtilityItem equippedUtilityItem;
     [SerializeField] private float utilityTimeThreshold = 0.1f;
 
+    [Header("Kick visuals")] 
+    [SerializeField] private float nearestEnemyDetectionRadius = 5f;
+    [SerializeField] private LayerMask enemyLayer;
+    private BaseEnemy currentNearestEnemy;
+    
     private Rigidbody2D rb;
     private Coroutine currentUtilityCoroutine;
-
+    
+    [Header("Dash")]
     [SerializeField] private float dashForce;
     [SerializeField] private float dashCooldown;
-
+    
+    [Header("Other")]
     [SerializeField] private Transform playerPivot;
     
     private int availableDashes = 1;
@@ -56,21 +63,25 @@ public class PlayerCombat : MonoBehaviour
     public bool hasFishingRod = false;
 
     public bool IsAimingUtility => currentState == CombatState.ChoosingTarget;
-        
-    
-    private void Update()
-    {
-        UpdateUtility();
-        UpdateComboTimer();
-        
-    }
+
 
     private int comboIndex = 0;
     private float lastAttackTime;
 
+    private void Update()
+    {
+        UpdateUtility();
+        UpdateComboTimer();
+        UpdateNearestEnemy();
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (enemyLayer == 0)
+        {
+            enemyLayer |= LayerMask.GetMask("Enemy");
+        }
     }
 
     private void OnEnable()
@@ -80,8 +91,9 @@ public class PlayerCombat : MonoBehaviour
         playerComponents.inputHandler.UtilityPressed += TryStartUtility;
         playerComponents.inputHandler.UtilityReleased += TryFinishUtility;
         playerComponents.inputHandler.Dash += Dash;
-        //Sub for the interrupt action
         playerComponents.controller.OnDamaged += InterruptUtility;
+        playerComponents.status.StartedRest += Rest;
+        playerComponents.status.FinishedRest += FinishRest;
     }
 
     private void OnDisable()
@@ -92,7 +104,29 @@ public class PlayerCombat : MonoBehaviour
         playerComponents.inputHandler.UtilityPressed -= TryStartUtility;
         playerComponents.inputHandler.UtilityReleased -= TryFinishUtility;
         playerComponents.inputHandler.Dash -= Dash;
-        //Unsub from the interrupt action
+        playerComponents.controller.OnDamaged -= InterruptUtility;
+        playerComponents.status.StartedRest -= Rest;
+        playerComponents.status.FinishedRest -= FinishRest;
+    }
+
+    private void UpdateNearestEnemy()
+    {
+        if (currentState == CombatState.Attacking)
+            return;
+        
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(
+            playerPivot.position,
+            nearestEnemyDetectionRadius,
+            enemyLayer
+        );
+
+        foreach (Collider2D enemyCollider in enemies)
+        {
+            if (!enemyCollider.TryGetComponent(out BaseEnemy enemy))
+                continue;
+
+            enemy.TryDrawKickTrajectory(playerPivot.position);
+        }
     }
 
     private void TryAttack()
@@ -374,5 +408,17 @@ public class PlayerCombat : MonoBehaviour
     {
         hasFishingRod = true;
         this.equippedUtilityItem.gameObject.SetActive(true);
+    }
+
+    private void Rest()
+    {
+        currentState = CombatState.Resting;
+        //TODO: sart resting animation
+    }
+
+    private void FinishRest()
+    {
+        currentState = CombatState.Default;
+        //TODO: end resting animation
     }
 }

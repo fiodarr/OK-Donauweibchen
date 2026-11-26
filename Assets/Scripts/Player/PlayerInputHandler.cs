@@ -56,6 +56,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public float FishingRodTimePressed { get; private set; }
 
+    public event Action controlSchemeChanged;
+    
     public event Action NextPanel;
     public event Action InteractPressed;
 
@@ -115,25 +117,27 @@ public class PlayerInputHandler : MonoBehaviour
         MoveInput = inputActions.Player.Move.ReadValue<Vector2>();
         MousePosition = inputActions.Player.Look.ReadValue<Vector2>();
         RightStickInput = inputActions.Player.ControllerStickLook.ReadValue<Vector2>().normalized;
+
+        bool controlSchemeChanged = false;
         
         if (inputActions.InputScheme.KeyboardMouseInput.WasPressedThisFrame() && controlScheme != ControlScheme.KeyboardMouse)
         {
             controlScheme = ControlScheme.KeyboardMouse;
-            GameManager.Instance.currentControlScheme = ControlScheme.KeyboardMouse;
+            GameManager.Instance.SetControlScheme(controlScheme);
             Debug.Log("Now using Keyboard Mouse");
         }
 
         if (inputActions.InputScheme.ControllerInput.WasPressedThisFrame() && controlScheme != ControlScheme.Controller)
         {
             controlScheme = ControlScheme.Controller;
-            GameManager.Instance.currentControlScheme = ControlScheme.Controller;
+            GameManager.Instance.SetControlScheme(controlScheme);
             Debug.Log("Now using PlayStation Controller");
         }
 
         if (inputActions.InputScheme.XboxInput.WasPressedThisFrame() && controlScheme != ControlScheme.XboxController)
         {
             controlScheme = ControlScheme.XboxController;
-            GameManager.Instance.currentControlScheme = ControlScheme.XboxController;
+            GameManager.Instance.SetControlScheme(controlScheme);
             Debug.Log("Now using Xbox Controller");
         }
 

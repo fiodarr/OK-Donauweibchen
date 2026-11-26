@@ -36,6 +36,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     
     [SerializeField] private float knockbackPingPongMultiplier = 2f;
     [SerializeField] private float knockbackPingPongTime = 1f;
+    [SerializeField] private KickTrajectoryVisual kickTrajectory;
+    private Vector2 lastKickDirection;
 
     [SerializeField] private EventReference pingPongSound;
 
@@ -91,14 +93,17 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         if (status.GetHealth() <= 0)
             Die();
         
+        bool isPingPong = false;
         if (currentState == EnemyState.Stunned 
             && damage.Any(d => d.tag == AttackDataTag.PingPongTrigger))
         {
             RuntimeManager.PlayOneShot(pingPongSound);
             StartPingPong(knockbackPingPongTime);
+            isPingPong =  true;
         }
         
-        ApplyKnockback(damageDirection.normalized,knockback);
+        ApplyKnockback(isPingPong ? damageDirection.normalized : lastKickDirection,
+            knockback);
         
         
     }
@@ -252,15 +257,37 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     {
         if (currentState == EnemyState.Stunned && state != EnemyState.Stunned)
         {
-            Debug.Log("HIDE KICK PROMPT");
             kickPrompt.Hide();
         }
         if (state == EnemyState.Stunned && canShowKickPrompt)
         {
-            Debug.Log("SHOW KICK PROMPT");
             kickPrompt.Show();
         }
     }
+    
+    public virtual void TryDrawKickTrajectory(Vector2 origin)
+    {
+        if (currentState != EnemyState.Stunned || !canShowKickPrompt)
+        {
+            kickTrajectory.Hide();
+            return;
+        }
+        
+        Vector2 enemyPosition = Rb.position;
+
+        Vector2 kickDirection = (enemyPosition - origin).normalized;
+        Vector2 trajectoryOrigin = enemyPosition - kickDirection * 0.5f;
+    
+        lastKickDirection = kickDirection;
+        
+        kickTrajectory.Draw(
+            trajectoryOrigin,
+            kickDirection,
+            5f //TODO: the max length of this trajectory - to be calculated later
+        );
+        
+    }
+    
 
     protected virtual void OnPullStart()
     {
@@ -307,6 +334,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
             StopCoroutine(stunCoroutine);
             stunCoroutine = null;
         }
+        kickTrajectory.Hide();
         pingpongCoroutine = StartCoroutine(PingPongRoutine(duration));
     }
 
@@ -368,6 +396,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
             OnPullEnd();
         }
     }
+
+    
 
     private IEnumerator PingPongEndRoutine(float recoveryStunTime)
     {
