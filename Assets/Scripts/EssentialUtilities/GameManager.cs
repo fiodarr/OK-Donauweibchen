@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager: MonoBehaviour
@@ -18,8 +19,9 @@ public class GameManager: MonoBehaviour
 
     private Coroutine aimingTimeScaleCoroutine;
     
+    public event Action controlSchemeChanged;
     public GameState CurrentState { get; private set; }
-    public PlayerInputHandler.ControlScheme currentControlScheme;
+    private PlayerInputHandler.ControlScheme currentControlScheme;
 
     public float timeModifier = 1f;
 
@@ -40,6 +42,15 @@ public class GameManager: MonoBehaviour
         dialogueManager.StartDialogue(startingDialogue);
         dialogueManager.OnCurrentDialogueComplete += FleeMermaid;
         
+    }
+    public PlayerInputHandler.ControlScheme CurrentControlScheme
+    {
+        get => currentControlScheme;
+    }
+    public void SetControlScheme(PlayerInputHandler.ControlScheme controlScheme)
+    {
+        currentControlScheme = controlScheme;
+        controlSchemeChanged?.Invoke();
     }
 
     public void SetState(GameState state)

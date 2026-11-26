@@ -13,6 +13,9 @@ public class PlayerStatus : EntityStatus
     private EventInstance deathSnap;
 
 
+    public event Action StartedRest;
+    public event Action FinishedRest;
+
     private void Awake()
     {
         playerComponents = GetComponent<PlayerComponents>();
@@ -39,11 +42,13 @@ public class PlayerStatus : EntityStatus
     {
         ResetStatus();
         movementLocked = true;
+        StartedRest?.Invoke();
     }
 
     public void FinishRest()
     {
         movementLocked = false;
+        FinishedRest?.Invoke();
     }
 
     public void Die()

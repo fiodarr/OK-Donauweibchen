@@ -7,7 +7,6 @@ public abstract class InteractiveBase: MonoBehaviour, IInteractable
 
     public void ChangePromptTransparency(float distance, float detectionRange, float interactionRange)
     {
-        Debug.Log("Transparency changed in interactive base to");
         interactPrompt.SetAlpha(distance, detectionRange, interactionRange);
     }
 

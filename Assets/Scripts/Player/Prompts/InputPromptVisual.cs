@@ -13,6 +13,11 @@ public class InputPromptVisual: MonoBehaviour
         visuals.SetActive(true);
     }
 
+    private void Awake()
+    {
+        GameManager.Instance.controlSchemeChanged += UpdateSprite;
+    }
+    
     public void Hide()
     {
         visuals.SetActive(false);
@@ -26,13 +31,12 @@ public class InputPromptVisual: MonoBehaviour
     public void SetAlpha(float distance, float detectionRange, float interactionRange)
     {
         float alpha = 1 - (distance - interactionRange) / (detectionRange - interactionRange);
-        Debug.Log("Transparency changed in input prompt");
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
     
     private void ChangeSprite()
     {
-        switch (GameManager.Instance.currentControlScheme)
+        switch (GameManager.Instance.CurrentControlScheme)
         {
             case PlayerInputHandler.ControlScheme.KeyboardMouse:
                 image.sprite = sprites.keyboardSchemeSprite;
@@ -47,8 +51,10 @@ public class InputPromptVisual: MonoBehaviour
                 Debug.Log("Now using xbox sprite");
                 break;
             default:
-                Debug.LogError($"Unknown control scheme {GameManager.Instance.currentControlScheme}");
+                Debug.LogError($"Unknown control scheme {GameManager.Instance.CurrentControlScheme}");
                 break;
         }
     }
+    
+    
 }
