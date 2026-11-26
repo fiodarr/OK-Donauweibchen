@@ -13,7 +13,7 @@ public class InputPromptVisual: MonoBehaviour
         visuals.SetActive(true);
     }
 
-    private void Awake()
+    private void Start()
     {
         GameManager.Instance.controlSchemeChanged += UpdateSprite;
     }
