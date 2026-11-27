@@ -24,6 +24,7 @@ public class DialogueManager: MonoBehaviour
         currentLine = 0;
         dialogueText.text = dialogueLines[currentLine].line;
         dialogueNameText.text = dialogueLines[currentLine].name;
+        HudParent.Instance.HideHud();
     }
 
     private void NextLine()
@@ -43,5 +44,6 @@ public class DialogueManager: MonoBehaviour
         GameManager.Instance.SetState(GameState.Gameplay);
         inputHandler.DialogueNext -= NextLine;
         OnCurrentDialogueComplete?.Invoke();
+        HudParent.Instance.ShowHud();
     }
 }
