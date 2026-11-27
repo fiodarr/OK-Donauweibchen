@@ -1,4 +1,3 @@
-
 using System.Collections;
 using FMODUnity;
 using UnityEngine;
@@ -22,6 +21,12 @@ public class Crab : BaseEnemy
 
     [Header("Jump")]
     [SerializeField] private float jumpSpeed = 5f;
+    [SerializeField] private float farJumpDistance = 5f;
+    [SerializeField] private float farJumpSpeedMultiplier = 1.75f;
+
+    [Header("Attack Switching")]
+    [SerializeField] private float attackSwitchInterval = 2f;
+    [SerializeField, Range(0f, 1f)] private float jumpSwitchChance = 0.35f;
 
     [Header("Armor Phases")]
     [SerializeField] private EntityStatus entityStatus;
@@ -36,6 +41,10 @@ public class Crab : BaseEnemy
     [SerializeField] private EventReference smashSound;
     [SerializeField] private EventReference dieSound;
     [SerializeField] private EventReference walkSound;
+    [SerializeField] private Transform arenaCenter;
+
+    private bool hasMovedToArenaCenter;
+    private bool isShockwaveSequence;
 
     private Transform target;
     private Vector2 direction;
@@ -49,7 +58,9 @@ public class Crab : BaseEnemy
 
     private CharacterSorting characterSorting;
     private Coroutine attackCoroutine;
-    
+
+    private float nextAttackSwitchTime;
+
     public bool HasArmor => entityStatus.GetArmor() > 0;
 
     private enum AttackType
@@ -114,6 +125,13 @@ public class Crab : BaseEnemy
 
     private void FixedUpdate()
     {
+        if (isShockwaveSequence)
+        {
+            Rb.linearVelocity = Vector2.zero;
+            animator.SetBool("IsMoving", false);
+            return;
+        }
+
         if (isJumpMoving)
             return;
 
@@ -131,9 +149,22 @@ public class Crab : BaseEnemy
             return;
         }
 
-        // Select attack before chasing.
         if (!hasSelectedAttack)
             SelectNextAttack();
+
+        // Immediately jump to the arena center when armor activates.
+        if (HasArmor && !hasMovedToArenaCenter)
+        {
+            if (canAttack && attackCoroutine == null)
+            {
+                Rb.linearVelocity = Vector2.zero;
+                animator.SetBool("IsMoving", false);
+
+                attackCoroutine = StartCoroutine(JumpAttack());
+            }
+
+            return;
+        }
 
         direction = ((Vector2)target.position - Rb.position).normalized;
 
@@ -141,9 +172,33 @@ public class Crab : BaseEnemy
 
         float distance = Vector2.Distance(Rb.position, target.position);
 
-        float currentAttackRange = selectedAttack == AttackType.Jump
-            ? attackRange * 2f
-            : attackRange;
+        // While chasing with a normal attack, periodically try switching to Jump.
+        if (!HasArmor &&
+            selectedAttack == AttackType.Normal &&
+            distance > attackRange &&
+            Time.time >= nextAttackSwitchTime)
+        {
+            if (Random.value < jumpSwitchChance)
+            {
+                selectedAttack = AttackType.Jump;
+            }
+            else
+            {
+                nextAttackSwitchTime = Time.time + attackSwitchInterval;
+            }
+        }
+
+        float currentAttackRange = attackRange;
+
+        if (selectedAttack == AttackType.Jump)
+        {
+            currentAttackRange = attackRange * 2f;
+        }
+
+        if (selectedAttack == AttackType.Shockwave)
+        {
+            currentAttackRange = attackRange * 5f;
+        }
 
         if (distance <= currentAttackRange)
         {
@@ -179,13 +234,20 @@ public class Crab : BaseEnemy
     {
         if (entityStatus.GetArmor() > 0)
         {
-            selectedAttack = AttackType.Shockwave;
+            if (!hasMovedToArenaCenter)
+                selectedAttack = AttackType.Jump;
+            else
+                selectedAttack = AttackType.Shockwave;
         }
         else
         {
-            selectedAttack = Random.Range(0, 2f) < 1.5f
+            hasMovedToArenaCenter = false;
+
+            selectedAttack = Random.Range(0, 2) == 0
                 ? AttackType.Normal
                 : AttackType.Jump;
+
+            nextAttackSwitchTime = Time.time + attackSwitchInterval;
         }
 
         hasSelectedAttack = true;
@@ -251,7 +313,6 @@ public class Crab : BaseEnemy
         animator.SetTrigger("Attack");
         RuntimeManager.PlayOneShot(attackWindUpSound, transform.position);
 
-
         yield return new WaitUntil(() =>
             windUpEnded || GetState() != EnemyState.Preparing
         );
@@ -293,11 +354,12 @@ public class Crab : BaseEnemy
         Rb.linearVelocity = Vector2.zero;
         animator.SetBool("IsMoving", false);
 
-        if (target != null)
-        {
-            direction = ((Vector2)target.position - Rb.position).normalized;
-            RefreshDirection(direction);
-        }
+        Vector2 jumpTarget = entityStatus.GetArmor() > 0 && !hasMovedToArenaCenter
+            ? (Vector2)arenaCenter.position
+            : (Vector2)target.position;
+
+        direction = (jumpTarget - Rb.position).normalized;
+        RefreshDirection(direction);
 
         animator.SetTrigger("Jump");
         RuntimeManager.PlayOneShot(jumpWindUpSound, transform.position);
@@ -321,7 +383,7 @@ public class Crab : BaseEnemy
         windUpEnded = false;
 
         isJumpMoving = true;
-        Coroutine movement = StartCoroutine(MoveTowardsTarget(target.position));
+        Coroutine movement = StartCoroutine(MoveTowardsTarget(jumpTarget));
 
         yield return new WaitUntil(() => jumpEnded);
         RuntimeManager.PlayOneShot(jumpSound, transform.position);
@@ -333,6 +395,9 @@ public class Crab : BaseEnemy
         {
             hb.enabled = true;
         }
+
+        if (entityStatus.GetArmor() > 0)
+            hasMovedToArenaCenter = true;
 
         SetState(EnemyState.Attack);
 
@@ -353,6 +418,7 @@ public class Crab : BaseEnemy
     private IEnumerator SmashAttack()
     {
         canAttack = false;
+        isShockwaveSequence = true;
         windUpEnded = false;
 
         SetState(EnemyState.Preparing);
@@ -366,34 +432,43 @@ public class Crab : BaseEnemy
             RefreshDirection(direction);
         }
 
-        animator.SetTrigger("Smash");
-
-        yield return new WaitUntil(() =>
-            windUpEnded || GetState() != EnemyState.Preparing
-        );
-
-        if (GetState() != EnemyState.Preparing)
+        for (int i = 0; i < 3; i++)
         {
-            attackCoroutine = null;
-            hasSelectedAttack = false;
-            yield break;
+            if (entityStatus.GetArmor() <= 0)
+                break;
+
+            windUpEnded = false;
+
+            SetState(EnemyState.Preparing);
+            animator.SetTrigger("Smash");
+
+            yield return new WaitUntil(() =>
+                windUpEnded || GetState() != EnemyState.Preparing
+            );
+
+            if (GetState() != EnemyState.Preparing)
+                break;
+
+            windUpEnded = false;
+
+            SetState(EnemyState.Attack);
+
+            yield return new WaitUntil(() =>
+                GetState() != EnemyState.Attack
+            );
         }
 
-        windUpEnded = false;
+        Rb.linearVelocity = Vector2.zero;
 
-        SetState(EnemyState.Attack);
+        if (entityStatus.GetArmor() > 0)
+            yield return new WaitForSeconds(shockwaveAttack.recoveryTime);
 
-        yield return new WaitUntil(() =>
-            GetState() != EnemyState.Attack
-        );
-
-        yield return new WaitForSeconds(shockwaveAttack.recoveryTime);
-
+        isShockwaveSequence = false;
         canAttack = true;
         attackCoroutine = null;
         hasSelectedAttack = false;
 
-        if (GetState() == EnemyState.Idle)
+        if (GetState() != EnemyState.Idle)
             yield break;
     }
 
@@ -401,11 +476,24 @@ public class Crab : BaseEnemy
     {
         while (!jumpEnded)
         {
-            direction = (tg - Rb.position).normalized;
+            Vector2 toTarget = tg - Rb.position;
+            float distance = toTarget.magnitude;
 
-            //RefreshDirection(direction);
+            if (distance <= 0.15f)
+            {
+                Rb.linearVelocity = Vector2.zero;
+                yield return new WaitForFixedUpdate();
+                continue;
+            }
 
-            Rb.linearVelocity = direction * jumpSpeed;
+            direction = toTarget.normalized;
+
+            float currentJumpSpeed = jumpSpeed;
+
+            if (distance > farJumpDistance)
+                currentJumpSpeed *= farJumpSpeedMultiplier;
+
+            Rb.linearVelocity = direction * currentJumpSpeed;
 
             yield return new WaitForFixedUpdate();
         }
@@ -521,7 +609,7 @@ public class Crab : BaseEnemy
     {
         return false;
     }
-    
+
     protected override void Die()
     {
         RuntimeManager.PlayOneShot(dieSound, transform.position);
