@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -109,28 +109,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tlodoeksportu (4)_0
-      rect:
-        serializedVersion: 2
-        x: 12827
-        y: 7193
-        width: 33
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b6dbb96187a98180800000000000000
-      internalID: -9112568196740950350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tlodoeksportu (4)_1
       rect:
         serializedVersion: 2
@@ -139,7 +117,7 @@ TextureImporter:
         width: 699
         height: 1165
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -148,50 +126,6 @@ TextureImporter:
       bones: []
       spriteID: bf02abb0869191260800000000000000
       internalID: 7068709024798744827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (4)_2
-      rect:
-        serializedVersion: 2
-        x: 13721
-        y: 6425
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73e36da0674711110800000000000000
-      internalID: 1229892223585631799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (4)_3
-      rect:
-        serializedVersion: 2
-        x: 13849
-        y: 5990
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 773ab2c0b0a49f930800000000000000
-      internalID: 4177451540672127863
       vertices: []
       indices: 
       edges: []
