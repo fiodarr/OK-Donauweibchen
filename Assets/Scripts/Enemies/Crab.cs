@@ -24,9 +24,11 @@ public class Crab : BaseEnemy
 
     [Header("Armor Phases")]
     [SerializeField] private EntityStatus entityStatus;
+    [SerializeField] private CrabHookPoint hookPoint;
 
     private Transform target;
     private Vector2 direction;
+    private Vector2 facingDirection;
 
     private bool canAttack = true;
     private bool windUpEnded, jumpEnded;
@@ -121,10 +123,21 @@ public class Crab : BaseEnemy
 
     private void RefreshDirection(Vector2 direction)
     {
+        facingDirection = direction.normalized;
+        
         animator.SetFloat("DirY", direction.y);
 
         if (characterSorting != null)
             characterSorting.SetFacingDirection(direction.x);
+    }
+
+    public bool IsPointBehind(Vector2 point)
+    {
+        Vector2 directionToPoint = (point - (Vector2)transform.position).normalized;
+
+        float dot = Vector2.Dot(facingDirection, directionToPoint);
+
+        return dot < -0.5f;
     }
 
     private void DetectPlayer()
@@ -296,6 +309,7 @@ public class Crab : BaseEnemy
 
     public void RemoveArmour()
     {
+        Debug.Log("RemoveArmour");
         entityStatus.SetArmor(0);
     }
 
