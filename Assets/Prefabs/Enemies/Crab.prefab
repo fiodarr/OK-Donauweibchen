@@ -365,6 +365,62 @@ MonoBehaviour:
   jumpSpeed: 10
   entityStatus: {fileID: 3434446383043383723}
   hookPoint: {fileID: 6813757312262073523}
+  attackWindUpSound:
+    Guid:
+      Data1: 804404253
+      Data2: 1183417975
+      Data3: 1801044364
+      Data4: 1312035435
+    Path: event:/Crab/AttackWindUp
+  attackSound:
+    Guid:
+      Data1: -987363406
+      Data2: 1078560251
+      Data3: -322417751
+      Data4: -519203105
+    Path: event:/Crab/Attack
+  jumpWindUpSound:
+    Guid:
+      Data1: -798240957
+      Data2: 1219724177
+      Data3: 852097446
+      Data4: 676448153
+    Path: event:/Crab/JumpWindUp
+  jumpSound:
+    Guid:
+      Data1: -1326121041
+      Data2: 1206902421
+      Data3: -757719407
+      Data4: -97604352
+    Path: event:/Crab/Jump
+  smashWindUpSound:
+    Guid:
+      Data1: 243943950
+      Data2: 1212684860
+      Data3: -1652649079
+      Data4: -880816734
+    Path: event:/Crab/SmashWindUp
+  smashSound:
+    Guid:
+      Data1: -1903380259
+      Data2: 1166090759
+      Data3: 542983831
+      Data4: 886325131
+    Path: event:/Crab/Smash
+  dieSound:
+    Guid:
+      Data1: 484158150
+      Data2: 1208968521
+      Data3: -1023610483
+      Data4: -1998321325
+    Path: event:/Crab/Die
+  walkSound:
+    Guid:
+      Data1: -803891828
+      Data2: 1286574382
+      Data3: 690410919
+      Data4: 1997300069
+    Path: event:/Crab/Step
 --- !u!58 &5604348756490333627
 CircleCollider2D:
   m_ObjectHideFlags: 0
