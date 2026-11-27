@@ -7,7 +7,7 @@ public class CrabHookPoint: MonoBehaviour, IHookable
     
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
-        if (crab.IsPointBehind(origin))
+        if (crab.IsPointBehind(origin) && crab.HasArmor)
         {
             crab.RemoveArmour();
         }
@@ -20,7 +20,6 @@ public class CrabHookPoint: MonoBehaviour, IHookable
 
     public bool AllowedToHook()
     {
-        return canHook;
-        //return true;
+        return (crab.IsPointBehind(crab.GetTarget().transform.position) && crab.HasArmor);
     }
 }

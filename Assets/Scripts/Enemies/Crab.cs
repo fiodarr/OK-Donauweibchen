@@ -49,6 +49,8 @@ public class Crab : BaseEnemy
 
     private CharacterSorting characterSorting;
     private Coroutine attackCoroutine;
+    
+    public bool HasArmor => entityStatus.GetArmor() > 0;
 
     private enum AttackType
     {
