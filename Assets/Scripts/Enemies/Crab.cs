@@ -15,9 +15,9 @@ public class Crab : BaseEnemy
 
     [Header("Attack")]
     [SerializeField] private Animator animator;
-    [SerializeField] private AttackData attack, jumpAttack;
+    [SerializeField] private AttackData attack, jumpAttack, shockwaveAttack;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private GameObject attackParticles;
+    [SerializeField] private GameObject attackParticles, shockwaveParticles;
 
     [Header("Jump")]
     [SerializeField] private float jumpSpeed = 5f;
@@ -40,11 +40,21 @@ public class Crab : BaseEnemy
     private CharacterSorting characterSorting;
     private Coroutine attackCoroutine;
 
+    private enum AttackType
+    {
+        Normal,
+        Jump,
+        Shockwave
+    }
+
+    private AttackType selectedAttack;
+    private bool hasSelectedAttack;
+
     public Transform GetTarget()
     {
         return target;
     }
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -70,6 +80,7 @@ public class Crab : BaseEnemy
         if (Vector2.Distance(detectionPivot.position, target.position) > loseTargetRange)
         {
             target = null;
+            hasSelectedAttack = false;
         }
     }
 
@@ -108,19 +119,42 @@ public class Crab : BaseEnemy
             return;
         }
 
+        // Select attack before chasing.
+        if (!hasSelectedAttack)
+            SelectNextAttack();
+
         direction = ((Vector2)target.position - Rb.position).normalized;
 
         RefreshDirection(direction);
 
         float distance = Vector2.Distance(Rb.position, target.position);
 
-        if (distance <= attackRange * 5)
+        float currentAttackRange = selectedAttack == AttackType.Jump
+            ? attackRange * 2f
+            : attackRange;
+
+        if (distance <= currentAttackRange)
         {
             Rb.linearVelocity = Vector2.zero;
             animator.SetBool("IsMoving", false);
 
             if (canAttack && attackCoroutine == null)
-                attackCoroutine = StartCoroutine(JumpAttack());
+            {
+                switch (selectedAttack)
+                {
+                    case AttackType.Normal:
+                        attackCoroutine = StartCoroutine(Attack());
+                        break;
+
+                    case AttackType.Jump:
+                        attackCoroutine = StartCoroutine(JumpAttack());
+                        break;
+
+                    case AttackType.Shockwave:
+                        attackCoroutine = StartCoroutine(SmashAttack());
+                        break;
+                }
+            }
 
             return;
         }
@@ -129,10 +163,26 @@ public class Crab : BaseEnemy
         animator.SetBool("IsMoving", true);
     }
 
+    private void SelectNextAttack()
+    {
+        if (entityStatus.GetArmor() > 0)
+        {
+            selectedAttack = AttackType.Shockwave;
+        }
+        else
+        {
+            selectedAttack = Random.Range(0, 2f) < 1.5f
+                ? AttackType.Normal
+                : AttackType.Jump;
+        }
+
+        hasSelectedAttack = true;
+    }
+
     private void RefreshDirection(Vector2 direction)
     {
         facingDirection = direction.normalized;
-        
+
         animator.SetFloat("DirY", direction.y);
 
         if (characterSorting != null)
@@ -151,7 +201,7 @@ public class Crab : BaseEnemy
         Vector2 directionToPoint = (point - (Vector2)transform.position).normalized;
 
         float dot = Vector2.Dot(facingDirection, directionToPoint);
-        
+
         return dot < -0.5f;
     }
 
@@ -164,7 +214,10 @@ public class Crab : BaseEnemy
         );
 
         if (player != null)
+        {
             target = player.transform;
+            hasSelectedAttack = false;
+        }
     }
 
     private IEnumerator Attack()
@@ -192,6 +245,7 @@ public class Crab : BaseEnemy
         if (GetState() != EnemyState.Preparing)
         {
             attackCoroutine = null;
+            hasSelectedAttack = false;
             yield break;
         }
 
@@ -207,6 +261,7 @@ public class Crab : BaseEnemy
 
         canAttack = true;
         attackCoroutine = null;
+        hasSelectedAttack = false;
 
         if (GetState() == EnemyState.Idle)
             yield break;
@@ -238,6 +293,7 @@ public class Crab : BaseEnemy
         if (GetState() != EnemyState.Preparing)
         {
             attackCoroutine = null;
+            hasSelectedAttack = false;
             yield break;
         }
 
@@ -271,6 +327,54 @@ public class Crab : BaseEnemy
 
         canAttack = true;
         attackCoroutine = null;
+        hasSelectedAttack = false;
+
+        if (GetState() == EnemyState.Idle)
+            yield break;
+    }
+
+    private IEnumerator SmashAttack()
+    {
+        canAttack = false;
+        windUpEnded = false;
+
+        SetState(EnemyState.Preparing);
+
+        Rb.linearVelocity = Vector2.zero;
+        animator.SetBool("IsMoving", false);
+
+        if (target != null)
+        {
+            direction = ((Vector2)target.position - Rb.position).normalized;
+            RefreshDirection(direction);
+        }
+
+        animator.SetTrigger("Smash");
+
+        yield return new WaitUntil(() =>
+            windUpEnded || GetState() != EnemyState.Preparing
+        );
+
+        if (GetState() != EnemyState.Preparing)
+        {
+            attackCoroutine = null;
+            hasSelectedAttack = false;
+            yield break;
+        }
+
+        windUpEnded = false;
+
+        SetState(EnemyState.Attack);
+
+        yield return new WaitUntil(() =>
+            GetState() != EnemyState.Attack
+        );
+
+        yield return new WaitForSeconds(attackCooldown);
+
+        canAttack = true;
+        attackCoroutine = null;
+        hasSelectedAttack = false;
 
         if (GetState() == EnemyState.Idle)
             yield break;
@@ -302,6 +406,24 @@ public class Crab : BaseEnemy
     {
         if (GetState() == EnemyState.Preparing)
             jumpEnded = true;
+    }
+
+    public void StartShockwave()
+    {
+        shockwaveAttack.hitbox.BeginAttack(
+            direction,
+            shockwaveAttack.damage,
+            shockwaveAttack.knockback
+        );
+
+        if (shockwaveParticles != null)
+        {
+            Instantiate(
+                shockwaveParticles,
+                shockwaveAttack.hitbox.transform.position,
+                Quaternion.identity
+            );
+        }
     }
 
     public void ActivateHitbox()

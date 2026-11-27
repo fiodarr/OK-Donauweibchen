@@ -28,6 +28,10 @@ public class CrabAnimationEvents : MonoBehaviour
     {
         crab.DeactivateHitbox();
     }
+    public void StartShockwave()
+    {
+        crab.StartShockwave();
+    }
 
     public void AttackEnd()
     {

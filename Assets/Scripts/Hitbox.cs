@@ -22,7 +22,7 @@ public class Hitbox : MonoBehaviour
         }
     }
 
-    public void BeginAttack(Vector2 direction, DamageData[] damage, float knockback)
+    public virtual void BeginAttack(Vector2 direction, DamageData[] damage, float knockback)
     {
         hitObjects.Clear();
 

@@ -86,7 +86,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.4, y: 23.603092}
+  m_Size: {x: 1.3674479, y: 1.9666666}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -469,7 +469,7 @@ MonoBehaviour:
       Data3: -278873427
       Data4: -357132703
     Path: event:/Fisherman/ReelOneShot
-  heavyAttackParticles: {fileID: 0}
+  heavyAttackParticles: {fileID: 7187581815203577982, guid: a9517d8bf98c39544b4bb620d0f023f4, type: 3}
   equippedWeapon: {fileID: 2719679042586757064}
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}

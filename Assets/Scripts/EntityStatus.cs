@@ -23,7 +23,7 @@ public class EntityStatus : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        currentArmor = maxArmor;
+        //currentArmor = maxArmor;
         flashController = GetComponent<FlashController>();
         OnHealthChanged?.Invoke(currentHealth,maxHealth);
     }
