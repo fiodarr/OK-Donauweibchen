@@ -343,6 +343,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Crab
   - Drowned
   - Fih
   - Music
