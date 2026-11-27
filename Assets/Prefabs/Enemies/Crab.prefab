@@ -350,7 +350,7 @@ MonoBehaviour:
     vibrationLength: 0
     chargeTime: 0
     activeTime: 0.15
-    recoveryTime: 3
+    recoveryTime: 4
     comboTime: 0.5
     hitbox: {fileID: 57941589630451052}
     slashPivot: {fileID: 0}
