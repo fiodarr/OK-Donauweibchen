@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: a31a242633eea414fae8c5580bc21a29
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4075098214521918610
+    second: rockslineart type A_0
+  - first:
+      213: 2679387697933750863
+    second: rockslineart type A_1
+  - first:
+      213: 8020548078678899953
+    second: rockslineart type A_2
+  - first:
+      213: -2155771794952323198
+    second: rockslineart type A_3
+  - first:
+      213: -7626504599404252087
+    second: rockslineart type A_4
+  - first:
+      213: -1079068475572185337
+    second: rockslineart type A_5
+  - first:
+      213: 2764324069803866160
+    second: rockslineart type A_6
+  - first:
+      213: -7051993745804097436
+    second: rockslineart type A_7
+  - first:
+      213: -3808281324551751423
+    second: rockslineart type A_8
+  - first:
+      213: 8397211644661441211
+    second: rockslineart type A_9
+  - first:
+      213: -3194769700342828784
+    second: rockslineart type A_10
+  - first:
+      213: 2406787167435170256
+    second: rockslineart type A_11
+  - first:
+      213: 4155621956201692130
+    second: rockslineart type A_12
+  - first:
+      213: -1958916115180828923
+    second: rockslineart type A_13
+  - first:
+      213: 32863268247348248
+    second: rockslineart type A_14
+  - first:
+      213: -4848273877195372684
+    second: rockslineart type A_15
+  - first:
+      213: 6126685966626442208
+    second: rockslineart type A_16
+  - first:
+      213: -3162758182173381325
+    second: rockslineart type A_17
+  - first:
+      213: 6195652328762653770
+    second: rockslineart type A_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rockslineart type A_0
+      rect:
+        serializedVersion: 2
+        x: 8979
+        y: 6139
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 294586d3c38ad8830800000000000000
+      internalID: 4075098214521918610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_1
+      rect:
+        serializedVersion: 2
+        x: 8642
+        y: 5893
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4294ee4ae81f2520800000000000000
+      internalID: 2679387697933750863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_2
+      rect:
+        serializedVersion: 2
+        x: 6513
+        y: 4134
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fcf89d9bf5be4f60800000000000000
+      internalID: 8020548078678899953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_3
+      rect:
+        serializedVersion: 2
+        x: 6558
+        y: 3694
+        width: 5304
+        height: 1782
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28f7f0969f82512e0800000000000000
+      internalID: -2155771794952323198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_4
+      rect:
+        serializedVersion: 2
+        x: 3149
+        y: 3367
+        width: 1584
+        height: 714
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94470aa4976392690800000000000000
+      internalID: -7626504599404252087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_5
+      rect:
+        serializedVersion: 2
+        x: 6311
+        y: 3945
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 707923940f06601f0800000000000000
+      internalID: -1079068475572185337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_6
+      rect:
+        serializedVersion: 2
+        x: 6580
+        y: 3799
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 038b8b0781adc5620800000000000000
+      internalID: 2764324069803866160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_7
+      rect:
+        serializedVersion: 2
+        x: 4718
+        y: 3565
+        width: 79
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 468021f1d09422e90800000000000000
+      internalID: -7051993745804097436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_8
+      rect:
+        serializedVersion: 2
+        x: 6207
+        y: 3638
+        width: 166
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 109b65dff44462bc0800000000000000
+      internalID: -3808281324551751423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_9
+      rect:
+        serializedVersion: 2
+        x: 7346
+        y: 3658
+        width: 113
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2a1df1083e88470800000000000000
+      internalID: 8397211644661441211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_10
+      rect:
+        serializedVersion: 2
+        x: 4801
+        y: 3468
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01172e752e5e9a3d0800000000000000
+      internalID: -3194769700342828784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_11
+      rect:
+        serializedVersion: 2
+        x: 5211
+        y: 3431
+        width: 288
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d121f45d20a66120800000000000000
+      internalID: 2406787167435170256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_12
+      rect:
+        serializedVersion: 2
+        x: 11721
+        y: 2915
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb3738d62cbba930800000000000000
+      internalID: 4155621956201692130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_13
+      rect:
+        serializedVersion: 2
+        x: 4402
+        y: 2622
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 507cbd90c2880d4e0800000000000000
+      internalID: -1958916115180828923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_14
+      rect:
+        serializedVersion: 2
+        x: 6053
+        y: 2332
+        width: 7
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 814aa06e7f0c47000800000000000000
+      internalID: 32863268247348248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_15
+      rect:
+        serializedVersion: 2
+        x: 3297
+        y: 2116
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477c6ff889877bcb0800000000000000
+      internalID: -4848273877195372684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_16
+      rect:
+        serializedVersion: 2
+        x: 3320
+        y: 2127
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ebc3231d6c560550800000000000000
+      internalID: 6126685966626442208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_17
+      rect:
+        serializedVersion: 2
+        x: 3420
+        y: 2048
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d6819b030ab14d0800000000000000
+      internalID: -3162758182173381325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_18
+      rect:
+        serializedVersion: 2
+        x: 4384
+        y: 1820
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c38bf87f06bf550800000000000000
+      internalID: 6195652328762653770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rockslineart type A_0: 4075098214521918610
+      rockslineart type A_1: 2679387697933750863
+      rockslineart type A_10: -3194769700342828784
+      rockslineart type A_11: 2406787167435170256
+      rockslineart type A_12: 4155621956201692130
+      rockslineart type A_13: -1958916115180828923
+      rockslineart type A_14: 32863268247348248
+      rockslineart type A_15: -4848273877195372684
+      rockslineart type A_16: 6126685966626442208
+      rockslineart type A_17: -3162758182173381325
+      rockslineart type A_18: 6195652328762653770
+      rockslineart type A_2: 8020548078678899953
+      rockslineart type A_3: -2155771794952323198
+      rockslineart type A_4: -7626504599404252087
+      rockslineart type A_5: -1079068475572185337
+      rockslineart type A_6: 2764324069803866160
+      rockslineart type A_7: -7051993745804097436
+      rockslineart type A_8: -3808281324551751423
+      rockslineart type A_9: 8397211644661441211
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

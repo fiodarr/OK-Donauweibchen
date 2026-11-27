@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 8fe720ed3cd3d7544986a2b07de4f2f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7866557084061210898
+    second: spawn arena_0
+  - first:
+      213: -8660093440462382395
+    second: spawn arena_1
+  - first:
+      213: -5958749049333898503
+    second: spawn arena_2
+  - first:
+      213: -3057031286413239922
+    second: spawn arena_3
+  - first:
+      213: -2613997341831160568
+    second: spawn arena_4
+  - first:
+      213: 5229382681358159747
+    second: spawn arena_5
+  - first:
+      213: 6462843041792832487
+    second: spawn arena_6
+  - first:
+      213: -6373437283820456086
+    second: spawn arena_7
+  - first:
+      213: 3157117727090800537
+    second: spawn arena_8
+  - first:
+      213: -3660299547732332077
+    second: spawn arena_9
+  - first:
+      213: -4290525279487301793
+    second: spawn arena_10
+  - first:
+      213: 6151850007545350387
+    second: spawn arena_11
+  - first:
+      213: 7110975129461741008
+    second: spawn arena_12
+  - first:
+      213: 761832525267384340
+    second: spawn arena_13
+  - first:
+      213: 6582152304755057255
+    second: spawn arena_14
+  - first:
+      213: 7853351238047128485
+    second: spawn arena_15
+  - first:
+      213: -7780509898905367001
+    second: spawn arena_16
+  - first:
+      213: 406510219109152433
+    second: spawn arena_17
+  - first:
+      213: 2651509833864081397
+    second: spawn arena_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spawn arena_0
+      rect:
+        serializedVersion: 2
+        x: 12425
+        y: 7377
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2191dc83dff9b2d60800000000000000
+      internalID: 7866557084061210898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_1
+      rect:
+        serializedVersion: 2
+        x: 12469
+        y: 7319
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca9c8726ea21d780800000000000000
+      internalID: -8660093440462382395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_2
+      rect:
+        serializedVersion: 2
+        x: 13164
+        y: 7226
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f2a1c87f454e4da0800000000000000
+      internalID: -5958749049333898503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_3
+      rect:
+        serializedVersion: 2
+        x: 12678
+        y: 7214
+        width: 33
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e89551aed3e3395d0800000000000000
+      internalID: -3057031286413239922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_4
+      rect:
+        serializedVersion: 2
+        x: 12827
+        y: 7193
+        width: 33
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d9654644739bbd0800000000000000
+      internalID: -2613997341831160568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_5
+      rect:
+        serializedVersion: 2
+        x: 10426
+        y: 4846
+        width: 3199
+        height: 2344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38fceec97df729840800000000000000
+      internalID: 5229382681358159747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_6
+      rect:
+        serializedVersion: 2
+        x: 13754
+        y: 6526
+        width: 9
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3ba214181a0b950800000000000000
+      internalID: 6462843041792832487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_7
+      rect:
+        serializedVersion: 2
+        x: 13889
+        y: 6545
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a67b6abee800d87a0800000000000000
+      internalID: -6373437283820456086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_8
+      rect:
+        serializedVersion: 2
+        x: 9656
+        y: 6248
+        width: 10
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 997f55d78d550db20800000000000000
+      internalID: 3157117727090800537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_9
+      rect:
+        serializedVersion: 2
+        x: 9810
+        y: 6123
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d134e554f0043dc0800000000000000
+      internalID: -3660299547732332077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_10
+      rect:
+        serializedVersion: 2
+        x: 10994
+        y: 5814
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5763509dfdf474c0800000000000000
+      internalID: -4290525279487301793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_11
+      rect:
+        serializedVersion: 2
+        x: 13906
+        y: 5047
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8893becf2cf5550800000000000000
+      internalID: 6151850007545350387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_12
+      rect:
+        serializedVersion: 2
+        x: 12140
+        y: 4845
+        width: 83
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d5543664324fa260800000000000000
+      internalID: 7110975129461741008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_13
+      rect:
+        serializedVersion: 2
+        x: 12374
+        y: 4810
+        width: 21
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 418b6e635a2929a00800000000000000
+      internalID: 761832525267384340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_14
+      rect:
+        serializedVersion: 2
+        x: 13612
+        y: 3981
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 762a17eb5a0885b50800000000000000
+      internalID: 6582152304755057255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_15
+      rect:
+        serializedVersion: 2
+        x: 13487
+        y: 3810
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ab5c289755bcfc60800000000000000
+      internalID: 7853351238047128485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_16
+      rect:
+        serializedVersion: 2
+        x: 13897
+        y: 3454
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72ec5584873160490800000000000000
+      internalID: -7780509898905367001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_17
+      rect:
+        serializedVersion: 2
+        x: 13406
+        y: 3069
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b63197f3e634a500800000000000000
+      internalID: 406510219109152433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn arena_18
+      rect:
+        serializedVersion: 2
+        x: 13685
+        y: 2971
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ff6ce5452e0cc420800000000000000
+      internalID: 2651509833864081397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spawn arena_0: 7866557084061210898
+      spawn arena_1: -8660093440462382395
+      spawn arena_10: -4290525279487301793
+      spawn arena_11: 6151850007545350387
+      spawn arena_12: 7110975129461741008
+      spawn arena_13: 761832525267384340
+      spawn arena_14: 6582152304755057255
+      spawn arena_15: 7853351238047128485
+      spawn arena_16: -7780509898905367001
+      spawn arena_17: 406510219109152433
+      spawn arena_18: 2651509833864081397
+      spawn arena_2: -5958749049333898503
+      spawn arena_3: -3057031286413239922
+      spawn arena_4: -2613997341831160568
+      spawn arena_5: 5229382681358159747
+      spawn arena_6: 6462843041792832487
+      spawn arena_7: -6373437283820456086
+      spawn arena_8: 3157117727090800537
+      spawn arena_9: -3660299547732332077
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
