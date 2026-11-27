@@ -10496,6 +10496,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6116660333657684331, guid: 320216f0c3aa218428f42dce8c94b6f5, type: 3}
+      propertyPath: music.Path
+      value: event:/Music/Creepy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116660333657684331, guid: 320216f0c3aa218428f42dce8c94b6f5, type: 3}
+      propertyPath: music.Guid.Data1
+      value: -2067132586
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116660333657684331, guid: 320216f0c3aa218428f42dce8c94b6f5, type: 3}
+      propertyPath: music.Guid.Data2
+      value: 1146478002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116660333657684331, guid: 320216f0c3aa218428f42dce8c94b6f5, type: 3}
+      propertyPath: music.Guid.Data3
+      value: -2135718491
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116660333657684331, guid: 320216f0c3aa218428f42dce8c94b6f5, type: 3}
+      propertyPath: music.Guid.Data4
+      value: 124155047
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116660333657684331, guid: 320216f0c3aa218428f42dce8c94b6f5, type: 3}
       propertyPath: 'monitors.Array.data[0]'
       value: 
       objectReference: {fileID: 1364735725160274840}
@@ -10765,12 +10785,7 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
-  Params:
-  - Name: Intensity
-    Value: 1
-    ID:
-      data1: 0
-      data2: 0
+  Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
