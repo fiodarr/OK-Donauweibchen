@@ -100,7 +100,7 @@ MonoBehaviour:
   maxArmor: 999999
   armorReduction: 100
   currentHealth: 22
-  currentArmor: 999999
+  currentArmor: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:

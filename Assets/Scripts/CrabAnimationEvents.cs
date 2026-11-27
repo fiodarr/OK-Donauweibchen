@@ -1,4 +1,5 @@
 
+using FMODUnity;
 using UnityEngine;
 
 public class CrabAnimationEvents : MonoBehaviour
@@ -31,6 +32,11 @@ public class CrabAnimationEvents : MonoBehaviour
     public void StartShockwave()
     {
         crab.StartShockwave();
+    }
+
+    public void StepSound()
+    {
+        crab.StepSound();
     }
 
     public void AttackEnd()
