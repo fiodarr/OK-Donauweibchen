@@ -1,0 +1,250 @@
+fileFormatVersion: 2
+guid: 35894d7f1184b0b49b3df02881e8f616
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4075098214521918610
+    second: rockslineart type A_0
+  - first:
+      213: 2679387697933750863
+    second: rockslineart type A_1
+  - first:
+      213: 8020548078678899953
+    second: rockslineart type A_2
+  - first:
+      213: -2155771794952323198
+    second: rockslineart type A_3
+  - first:
+      213: -7626504599404252087
+    second: rockslineart type A_4
+  - first:
+      213: -1079068475572185337
+    second: rockslineart type A_5
+  - first:
+      213: 2764324069803866160
+    second: rockslineart type A_6
+  - first:
+      213: -7051993745804097436
+    second: rockslineart type A_7
+  - first:
+      213: -3808281324551751423
+    second: rockslineart type A_8
+  - first:
+      213: 8397211644661441211
+    second: rockslineart type A_9
+  - first:
+      213: -3194769700342828784
+    second: rockslineart type A_10
+  - first:
+      213: 2406787167435170256
+    second: rockslineart type A_11
+  - first:
+      213: 4155621956201692130
+    second: rockslineart type A_12
+  - first:
+      213: -1958916115180828923
+    second: rockslineart type A_13
+  - first:
+      213: 32863268247348248
+    second: rockslineart type A_14
+  - first:
+      213: -4848273877195372684
+    second: rockslineart type A_15
+  - first:
+      213: 6126685966626442208
+    second: rockslineart type A_16
+  - first:
+      213: -3162758182173381325
+    second: rockslineart type A_17
+  - first:
+      213: 6195652328762653770
+    second: rockslineart type A_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rockslineart type A_3
+      rect:
+        serializedVersion: 2
+        x: 6558
+        y: 3644
+        width: 5304
+        height: 1832
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28f7f0969f82512e0800000000000000
+      internalID: -2155771794952323198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockslineart type A_4
+      rect:
+        serializedVersion: 2
+        x: 3149
+        y: 3367
+        width: 1652
+        height: 714
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94470aa4976392690800000000000000
+      internalID: -7626504599404252087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9289a8709fd7b8f4687535461b09e2f8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rockslineart type A_0: 4075098214521918610
+      rockslineart type A_1: 2679387697933750863
+      rockslineart type A_10: -3194769700342828784
+      rockslineart type A_11: 2406787167435170256
+      rockslineart type A_12: 4155621956201692130
+      rockslineart type A_13: -1958916115180828923
+      rockslineart type A_14: 32863268247348248
+      rockslineart type A_15: -4848273877195372684
+      rockslineart type A_16: 6126685966626442208
+      rockslineart type A_17: -3162758182173381325
+      rockslineart type A_18: 6195652328762653770
+      rockslineart type A_2: 8020548078678899953
+      rockslineart type A_3: -2155771794952323198
+      rockslineart type A_4: -7626504599404252087
+      rockslineart type A_5: -1079068475572185337
+      rockslineart type A_6: 2764324069803866160
+      rockslineart type A_7: -7051993745804097436
+      rockslineart type A_8: -3808281324551751423
+      rockslineart type A_9: 8397211644661441211
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
