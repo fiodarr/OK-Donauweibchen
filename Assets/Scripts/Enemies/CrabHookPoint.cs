@@ -16,4 +16,10 @@ public class CrabHookPoint: MonoBehaviour, IHookable
     {
         return pivot.transform.position;
     }
+
+    public bool AllowedToHook()
+    {
+        return crab.IsPointBehind(crab.GetTarget().position);
+        //return true;
+    }
 }

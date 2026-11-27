@@ -29,7 +29,9 @@ public class TargetChooseUtility : MonoBehaviour
         {
             if (h == null)
                 continue;
-
+            if (!h.AllowedToHook())
+                continue;
+            
             Vector2 targetPosition = h.GetPosition();
 
             float distance = Vector2.Distance(
@@ -76,6 +78,7 @@ public class TargetChooseUtility : MonoBehaviour
         {
             hookables.Add(h);
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

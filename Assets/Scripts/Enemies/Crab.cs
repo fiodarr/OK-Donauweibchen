@@ -25,6 +25,7 @@ public class Crab : BaseEnemy
     [Header("Armor Phases")]
     [SerializeField] private EntityStatus entityStatus;
     [SerializeField] private CrabHookPoint hookPoint;
+    private float hookPointInitialX, hookPointInitialY;
 
     private Transform target;
     private Vector2 direction;
@@ -39,10 +40,17 @@ public class Crab : BaseEnemy
     private CharacterSorting characterSorting;
     private Coroutine attackCoroutine;
 
+    public Transform GetTarget()
+    {
+        return target;
+    }
+    
     protected override void Awake()
     {
         base.Awake();
 
+        hookPointInitialX = hookPoint.transform.localPosition.x;
+        hookPointInitialY = hookPoint.transform.localPosition.y;
         characterSorting = GetComponent<CharacterSorting>();
     }
 
@@ -129,6 +137,13 @@ public class Crab : BaseEnemy
 
         if (characterSorting != null)
             characterSorting.SetFacingDirection(direction.x);
+
+        Vector3 position = hookPoint.transform.localPosition;
+
+        position.x = direction.x > 0 ? -0.57f : -0.6f;
+        position.y = direction.y > 0 ? 0f : 0f;
+
+        hookPoint.transform.localPosition = position;
     }
 
     public bool IsPointBehind(Vector2 point)
@@ -136,7 +151,7 @@ public class Crab : BaseEnemy
         Vector2 directionToPoint = (point - (Vector2)transform.position).normalized;
 
         float dot = Vector2.Dot(facingDirection, directionToPoint);
-
+        
         return dot < -0.5f;
     }
 
@@ -361,5 +376,10 @@ public class Crab : BaseEnemy
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(pivot, attackRange);
+    }
+
+    public override bool AllowedToHook()
+    {
+        return false;
     }
 }

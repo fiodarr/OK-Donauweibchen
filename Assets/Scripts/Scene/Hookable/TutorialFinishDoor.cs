@@ -20,4 +20,9 @@ public class TutorialFinishDoor: MonoBehaviour, IHookable
     {
         return transform.position;
     }
+
+    public bool AllowedToHook()
+    {
+        return !isUnlocked;
+    }
 }

@@ -220,6 +220,11 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
         return Rb.position;
     }
 
+    public virtual bool AllowedToHook()
+    {
+        return true;
+    }
+
     public virtual void Stun(float duration)
     {
         throw new NotImplementedException();

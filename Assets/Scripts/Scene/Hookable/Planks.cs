@@ -11,4 +11,9 @@ public class Planks: MonoBehaviour, IHookable
     {
         return transform.position;
     }
+
+    public bool AllowedToHook()
+    {
+        return true;
+    }
 }

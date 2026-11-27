@@ -12,6 +12,11 @@ public class baseChest : MonoBehaviour, IHookable
         return transform.position;
     }
 
+    public bool AllowedToHook()
+    {
+        return !isOpen;
+    }
+
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
         if (!isOpen)
