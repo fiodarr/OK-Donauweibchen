@@ -1,5 +1,6 @@
 
 using System.Collections;
+using FMODUnity;
 using UnityEngine;
 
 public class Crab : BaseEnemy
@@ -26,6 +27,15 @@ public class Crab : BaseEnemy
     [SerializeField] private EntityStatus entityStatus;
     [SerializeField] private CrabHookPoint hookPoint;
     private float hookPointInitialX, hookPointInitialY;
+
+    [SerializeField] private EventReference attackWindUpSound;
+    [SerializeField] private EventReference attackSound;
+    [SerializeField] private EventReference jumpWindUpSound;
+    [SerializeField] private EventReference jumpSound;
+    [SerializeField] private EventReference smashWindUpSound;
+    [SerializeField] private EventReference smashSound;
+    [SerializeField] private EventReference dieSound;
+    [SerializeField] private EventReference walkSound;
 
     private Transform target;
     private Vector2 direction;
@@ -184,6 +194,8 @@ public class Crab : BaseEnemy
         }
 
         animator.SetTrigger("Attack");
+        RuntimeManager.PlayOneShot(attackWindUpSound, transform.position);
+
 
         yield return new WaitUntil(() =>
             windUpEnded || GetState() != EnemyState.Preparing
@@ -198,6 +210,7 @@ public class Crab : BaseEnemy
         windUpEnded = false;
 
         SetState(EnemyState.Attack);
+        RuntimeManager.PlayOneShot(attackSound, transform.position);
 
         yield return new WaitUntil(() =>
             GetState() != EnemyState.Attack
@@ -230,6 +243,7 @@ public class Crab : BaseEnemy
         }
 
         animator.SetTrigger("Jump");
+        RuntimeManager.PlayOneShot(jumpWindUpSound, transform.position);
 
         yield return new WaitUntil(() =>
             windUpEnded || GetState() != EnemyState.Preparing
@@ -252,6 +266,7 @@ public class Crab : BaseEnemy
         Coroutine movement = StartCoroutine(MoveTowardsTarget(target.position));
 
         yield return new WaitUntil(() => jumpEnded);
+        RuntimeManager.PlayOneShot(jumpSound, transform.position);
 
         isJumpMoving = false;
         StopCoroutine(movement);
@@ -381,5 +396,14 @@ public class Crab : BaseEnemy
     public override bool AllowedToHook()
     {
         return false;
+    }
+    
+    protected override void Die()
+    {
+        RuntimeManager.PlayOneShot(dieSound, transform.position);
+        attack.hitbox.EndAttack();
+        StopAllCoroutines();
+        base.Die();
+        animator.SetBool("IsDead", true);
     }
 }
