@@ -476,6 +476,9 @@ public class Crab : BaseEnemy
     {
         while (!jumpEnded)
         {
+            if (HasArmor && !hasMovedToArenaCenter)
+                tg = arenaCenter.position;
+
             Vector2 toTarget = tg - Rb.position;
             float distance = toTarget.magnitude;
 

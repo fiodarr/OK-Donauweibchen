@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ public class ShockwaveHitbox : Hitbox
     [SerializeField] private float maxRadius = 5f;
 
     private Coroutine expansionCoroutine;
+    private bool isClone;
 
     protected override void Awake()
     {
@@ -22,10 +22,23 @@ public class ShockwaveHitbox : Hitbox
 
     public override void BeginAttack(Vector2 direction, DamageData[] damage, float knockback)
     {
-        base.BeginAttack(direction, damage, knockback);
-
         if (expansionCoroutine != null)
-            StopCoroutine(expansionCoroutine);
+        {
+            GameObject cloneObject = Instantiate(
+                gameObject,
+                transform.position,
+                transform.rotation,
+                transform.parent
+            );
+
+            ShockwaveHitbox clone = cloneObject.GetComponent<ShockwaveHitbox>();
+            clone.isClone = true;
+            clone.BeginAttack(direction, damage, knockback);
+
+            return;
+        }
+
+        base.BeginAttack(direction, damage, knockback);
 
         expansionCoroutine = StartCoroutine(Expand());
     }
@@ -51,6 +64,9 @@ public class ShockwaveHitbox : Hitbox
 
         EndAttack();
         expansionCoroutine = null;
+
+        if (isClone)
+            Destroy(gameObject);
     }
 
     protected override void OnTriggerStay2D(Collider2D other)

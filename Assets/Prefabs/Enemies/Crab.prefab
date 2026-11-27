@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1a9ad94b093774c82ed64e51540008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 6694848479030601431}
   hitbox: {fileID: 862702641537336589}
   hitObjectsToIgnore:
   - {fileID: 539311767811271824}
@@ -544,8 +544,8 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 128
-  expansionDuration: 3.5
-  maxRadius: 15
+  expansionDuration: 3
+  maxRadius: 12
 --- !u!1 &5612603370303064263
 GameObject:
   m_ObjectHideFlags: 0
