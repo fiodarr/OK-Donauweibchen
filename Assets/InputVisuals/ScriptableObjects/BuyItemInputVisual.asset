@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ec3cd86a2a30d43823e4c8b07f3591, type: 3}
+  m_Name: BuyItemInputVisual
+  m_EditorClassIdentifier: Assembly-CSharp::InputVisual
+  keyboardSchemeSprite: {fileID: -2413806693520163455, guid: 4b6ba67629e42dc40b34eb2e163678ab, type: 3}
+  playstationSchemeSprite: {fileID: 7482667652216324306, guid: a0c464d2c2a4cc648939a18983ce64e4, type: 3}
+  xboxSchemeSprite: {fileID: 7482667652216324306, guid: 1ba57e6e1c136dc438b231868bb2bcfa, type: 3}
