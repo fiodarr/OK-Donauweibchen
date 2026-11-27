@@ -127,10 +127,10 @@ TextureImporter:
         serializedVersion: 2
         x: 9124
         y: 5518
-        width: 1826
-        height: 1331
+        width: 4496
+        height: 1979
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,77 +143,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: rocksback1_1
-      rect:
-        serializedVersion: 2
-        x: 10970
-        y: 5998
-        width: 671
-        height: 1110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb88f92bb6c1463e0800000000000000
-      internalID: -2061491480544966468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback1_2
-      rect:
-        serializedVersion: 2
-        x: 11566
-        y: 6394
-        width: 660
-        height: 1106
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10570ee175c033d70800000000000000
-      internalID: 9021568046872950017
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback1_3
-      rect:
-        serializedVersion: 2
-        x: 12271
-        y: 6225
-        width: 1346
-        height: 1107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73819e7c2923f3a30800000000000000
-      internalID: 4197128983733147703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0fc2046d37c01914abd944802737fb7e
     internalID: 0
     vertices: []
     indices: 

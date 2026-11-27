@@ -121,10 +121,10 @@ TextureImporter:
         serializedVersion: 2
         x: 8121
         y: 5731
-        width: 117
-        height: 402
+        width: 3859
+        height: 1769
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,33 +137,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ruins window light+ some background shit_1
-      rect:
-        serializedVersion: 2
-        x: 8511
-        y: 5777
-        width: 4277
-        height: 1723
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71597db43ca714bf0800000000000000
-      internalID: -341857117493816041
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8d2400d443502d04db96bdc856500c53
     internalID: 0
     vertices: []
     indices: 

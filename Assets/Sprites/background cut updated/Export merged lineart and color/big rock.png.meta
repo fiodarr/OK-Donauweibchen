@@ -84,7 +84,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -115,12 +115,12 @@ TextureImporter:
       name: big rock_0
       rect:
         serializedVersion: 2
-        x: 7129
-        y: 4422
-        width: 975
-        height: 2284
+        x: 6973
+        y: 4353
+        width: 1131
+        height: 2353
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -133,99 +133,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: big rock_1
-      rect:
-        serializedVersion: 2
-        x: 9940
-        y: 5234
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd5142be2afd6ded0800000000000000
-      internalID: -2389476661450762789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: big rock_2
-      rect:
-        serializedVersion: 2
-        x: 7010
-        y: 4370
-        width: 233
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad329a56d1b06c5a0800000000000000
-      internalID: -6501496791175191590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: big rock_3
-      rect:
-        serializedVersion: 2
-        x: 7721
-        y: 4364
-        width: 79
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7d6d3ba18b53dc20800000000000000
-      internalID: 3230025970236616058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: big rock_4
-      rect:
-        serializedVersion: 2
-        x: 6703
-        y: 4011
-        width: 169
-        height: 323
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42fba946ec362af70800000000000000
-      internalID: 9197023127146250020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 92863a2cd1d677c42a94ddcd8827d538
     internalID: 0
     vertices: []
     indices: 

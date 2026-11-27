@@ -167,35 +167,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rockslineart type A_3
-      rect:
-        serializedVersion: 2
-        x: 6558
-        y: 3644
-        width: 5304
-        height: 1832
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28f7f0969f82512e0800000000000000
-      internalID: -2155771794952323198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: rockslineart type A_4
       rect:
         serializedVersion: 2
         x: 3149
         y: 3367
-        width: 1652
-        height: 714
+        width: 8799
+        height: 2195
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

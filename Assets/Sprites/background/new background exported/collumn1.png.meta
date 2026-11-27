@@ -131,12 +131,12 @@ TextureImporter:
       name: collumn1_0
       rect:
         serializedVersion: 2
-        x: 8985
-        y: 6688
-        width: 466
-        height: 427
+        x: 8814
+        y: 6254
+        width: 1334
+        height: 867
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,121 +149,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: collumn1_1
-      rect:
-        serializedVersion: 2
-        x: 9988
-        y: 6973
-        width: 145
-        height: 146
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc6dddd368d0623c0800000000000000
-      internalID: -4384802316983871796
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: collumn1_2
-      rect:
-        serializedVersion: 2
-        x: 9111
-        y: 6596
-        width: 128
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33488ad285bdc8fd0800000000000000
-      internalID: -2338252934742506445
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: collumn1_3
-      rect:
-        serializedVersion: 2
-        x: 9245
-        y: 6681
-        width: 68
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: acab5c64b6efe2f10800000000000000
-      internalID: 2247013000806775498
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: collumn1_4
-      rect:
-        serializedVersion: 2
-        x: 8829
-        y: 6578
-        width: 72
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 87d49a0fa34ba1600800000000000000
-      internalID: 439862078860774776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: collumn1_5
-      rect:
-        serializedVersion: 2
-        x: 8853
-        y: 6261
-        width: 293
-        height: 389
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3ed9be5bb27bdc30800000000000000
-      internalID: 4385224811248999996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f8159c49ec1a5f547b665a93fcd119f6
     internalID: 0
     vertices: []
     indices: 

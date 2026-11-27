@@ -131,35 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rockscolor type A_1
-      rect:
-        serializedVersion: 2
-        x: 10107
-        y: 4105
-        width: 1741
-        height: 1277
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 824e8e99ee7389a80800000000000000
-      internalID: -8459950402091555800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: rockscolor type A_6
       rect:
         serializedVersion: 2
         x: 4866
         y: 2033
-        width: 3410
-        height: 1131
+        width: 7049
+        height: 3439
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

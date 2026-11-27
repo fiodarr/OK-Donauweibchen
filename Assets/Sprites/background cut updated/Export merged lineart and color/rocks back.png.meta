@@ -81,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -114,10 +114,10 @@ TextureImporter:
         serializedVersion: 2
         x: 9124
         y: 5518
-        width: 1826
-        height: 1331
+        width: 4547
+        height: 1982
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -130,77 +130,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: rocks back_1
-      rect:
-        serializedVersion: 2
-        x: 10970
-        y: 5998
-        width: 671
-        height: 1110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d5bb976a2e406d20800000000000000
-      internalID: 3269699273504830931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocks back_2
-      rect:
-        serializedVersion: 2
-        x: 11566
-        y: 6394
-        width: 660
-        height: 1106
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 747017a9106a029f0800000000000000
-      internalID: -495213433194477753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocks back_3
-      rect:
-        serializedVersion: 2
-        x: 12271
-        y: 6225
-        width: 1346
-        height: 1107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e7073387611d3630800000000000000
-      internalID: 3908299187908184041
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a2ec9cfac02f61e4a952d8ffd3d80737
     internalID: 0
     vertices: []
     indices: 

@@ -134,125 +134,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: more window lights_0
-      rect:
-        serializedVersion: 2
-        x: 10418
-        y: 7308
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 749f0a0e0f17c2540800000000000000
-      internalID: 4984484166967032135
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: more window lights_1
-      rect:
-        serializedVersion: 2
-        x: 10524
-        y: 7008
-        width: 189
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74d6a07e25be4bbb0800000000000000
-      internalID: -4921049751513043641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: more window lights_2
-      rect:
-        serializedVersion: 2
-        x: 9381
-        y: 6048
-        width: 218
-        height: 476
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20a66021be70118a0800000000000000
-      internalID: -6336274494532457982
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: more window lights_3
-      rect:
-        serializedVersion: 2
-        x: 10247
-        y: 6000
-        width: 298
-        height: 455
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 978ba406a5283b620800000000000000
-      internalID: 2788715918946646137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: more window lights_4
-      rect:
-        serializedVersion: 2
-        x: 11330
-        y: 5817
-        width: 121
-        height: 509
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8fa28fcc7d6c16b20800000000000000
-      internalID: 3125998246530919160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: more window lights_5
       rect:
         serializedVersion: 2
-        x: 11618
-        y: 5948
-        width: 1253
-        height: 820
+        x: 9340
+        y: 5891
+        width: 4073
+        height: 877
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -265,55 +155,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: more window lights_6
-      rect:
-        serializedVersion: 2
-        x: 12928
-        y: 5918
-        width: 425
-        height: 652
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 761d7c818db411ec0800000000000000
-      internalID: -3598011235791548057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: more window lights_7
-      rect:
-        serializedVersion: 2
-        x: 10271
-        y: 5978
-        width: 19
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64c61580691ab0b20800000000000000
-      internalID: 3101750434131438662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: eed6b33b04517f14fb50bf4d42e27d1c
     internalID: 0
     vertices: []
     indices: 

@@ -134,50 +134,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ruins2_0
-      rect:
-        serializedVersion: 2
-        x: 9211
-        y: 6582
-        width: 181
-        height: 93
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8b6c1865d1fce910800000000000000
-      internalID: 1868133844328934284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ruins2_1
-      rect:
-        serializedVersion: 2
-        x: 9391
-        y: 6577
-        width: 43
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1d25fa9e9eac60e0800000000000000
-      internalID: -2275251715501118179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ruins2_2
       rect:
         serializedVersion: 2
@@ -186,7 +142,7 @@ TextureImporter:
         width: 712
         height: 871
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,121 +155,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ruins2_3
-      rect:
-        serializedVersion: 2
-        x: 9037
-        y: 6194
-        width: 47
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3403508fe4d785d80800000000000000
-      internalID: -8261715738289164221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ruins2_4
-      rect:
-        serializedVersion: 2
-        x: 9313
-        y: 5763
-        width: 428
-        height: 817
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c4d7239cef91ec200800000000000000
-      internalID: 202127615366167884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ruins2_5
-      rect:
-        serializedVersion: 2
-        x: 8982
-        y: 6147
-        width: 24
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 404061388b2a7b520800000000000000
-      internalID: 2717819813498323972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ruins2_6
-      rect:
-        serializedVersion: 2
-        x: 8937
-        y: 5767
-        width: 352
-        height: 376
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1503ee7f9efd6440800000000000000
-      internalID: 4930877128022623516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ruins2_7
-      rect:
-        serializedVersion: 2
-        x: 9288
-        y: 5763
-        width: 26
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65cf90e9de6969e60800000000000000
-      internalID: 7968722537981541462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0e70c5f10468cde4481c50b992520e44
     internalID: 0
     vertices: []
     indices: 

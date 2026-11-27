@@ -112,72 +112,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: groundcolor_0
-      rect:
-        serializedVersion: 2
-        x: 8835
-        y: 6587
-        width: 70
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e6c72ab202a6e500800000000000000
-      internalID: 425205347429893858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: groundcolor_1
-      rect:
-        serializedVersion: 2
-        x: 8938
-        y: 6420
-        width: 28
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa326a36e0ccacc20800000000000000
-      internalID: 3227616445137822634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: groundcolor_2
-      rect:
-        serializedVersion: 2
-        x: 1301
-        y: 5281
-        width: 139
-        height: 235
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd09f4ba94bc68d80800000000000000
-      internalID: -8248682150215315233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: groundcolor_3
       rect:
         serializedVersion: 2
@@ -186,7 +120,7 @@ TextureImporter:
         width: 12142
         height: 4584
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +133,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: groundcolor_4
-      rect:
-        serializedVersion: 2
-        x: 1114
-        y: 4115
-        width: 290
-        height: 548
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 667170c8ed5eb0fd0800000000000000
-      internalID: -2374551634513029274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4ece6faad8808d94fa445fac36557eb1
     internalID: 0
     vertices: []
     indices: 

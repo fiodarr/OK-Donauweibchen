@@ -122,12 +122,12 @@ TextureImporter:
       name: collumn and wood_0
       rect:
         serializedVersion: 2
-        x: 2605
-        y: 6044
-        width: 355
-        height: 497
+        x: 2019
+        y: 5499
+        width: 941
+        height: 1042
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -140,55 +140,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: collumn and wood_1
-      rect:
-        serializedVersion: 2
-        x: 2037
-        y: 5513
-        width: 312
-        height: 395
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 77211a316fe6c2480800000000000000
-      internalID: -8922634758557461897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: collumn and wood_2
-      rect:
-        serializedVersion: 2
-        x: 3026
-        y: 5344
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a5569b8043edde780800000000000000
-      internalID: -8652014994042821286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ddedfde7417bdb1438c7f7449f902ae6
     internalID: 0
     vertices: []
     indices: 

@@ -140,37 +140,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rocksback2_0
-      rect:
-        serializedVersion: 2
-        x: 6092
-        y: 6749
-        width: 100
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e80a18fe695503f0800000000000000
-      internalID: -935243014465779488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: rocksback2_1
       rect:
         serializedVersion: 2
-        x: 6297
-        y: 5413
-        width: 2698
-        height: 1708
+        x: 416
+        y: 3811
+        width: 8587
+        height: 3310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,187 +161,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: rocksback2_2
-      rect:
-        serializedVersion: 2
-        x: 2391
-        y: 6392
-        width: 49
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95cb767849a51c900800000000000000
-      internalID: 702942610819890265
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_3
-      rect:
-        serializedVersion: 2
-        x: 1689
-        y: 5858
-        width: 42
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 000e24684f9c6d0f0800000000000000
-      internalID: -1092463807529033728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_4
-      rect:
-        serializedVersion: 2
-        x: 2372
-        y: 4304
-        width: 3351
-        height: 1856
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d93bf6766ee9faa00800000000000000
-      internalID: 770008773718684573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_5
-      rect:
-        serializedVersion: 2
-        x: 5701
-        y: 5025
-        width: 671
-        height: 1110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3a817584264638340800000000000000
-      internalID: 4864842395773507747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_6
-      rect:
-        serializedVersion: 2
-        x: 428
-        y: 4219
-        width: 1538
-        height: 1564
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7989d434a42553410800000000000000
-      internalID: 1456160533434439831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_7
-      rect:
-        serializedVersion: 2
-        x: 1945
-        y: 5445
-        width: 91
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c85e54fc4bdea8420800000000000000
-      internalID: 2633178292978836876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_8
-      rect:
-        serializedVersion: 2
-        x: 8730
-        y: 5162
-        width: 53
-        height: 375
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7b71fa5b29a019bc0800000000000000
-      internalID: -3778226987157481545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocksback2_9
-      rect:
-        serializedVersion: 2
-        x: 4381
-        y: 3879
-        width: 153
-        height: 348
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 03b2bcfca2ead7810800000000000000
-      internalID: 1764758127897160496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d9a848bedca12084d861f15bcad7c9af
     internalID: 0
     vertices: []
     indices: 
