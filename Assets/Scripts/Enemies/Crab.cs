@@ -272,7 +272,7 @@ public class Crab : BaseEnemy
             GetState() != EnemyState.Attack
         );
 
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(attack.recoveryTime);
 
         canAttack = true;
         attackCoroutine = null;
@@ -340,7 +340,7 @@ public class Crab : BaseEnemy
             GetState() != EnemyState.Attack
         );
 
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(jumpAttack.recoveryTime);
 
         canAttack = true;
         attackCoroutine = null;
@@ -387,7 +387,7 @@ public class Crab : BaseEnemy
             GetState() != EnemyState.Attack
         );
 
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(shockwaveAttack.recoveryTime);
 
         canAttack = true;
         attackCoroutine = null;
