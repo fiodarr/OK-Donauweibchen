@@ -363,6 +363,10 @@ MonoBehaviour:
   attackParticles: {fileID: 3297002460049448459, guid: c54e79958b0778241814f22ffa7948f6, type: 3}
   shockwaveParticles: {fileID: 5034135632270341369, guid: a57bd108e2ec0054f8f5a2c1cd99fee8, type: 3}
   jumpSpeed: 10
+  farJumpDistance: 5
+  farJumpSpeedMultiplier: 2.5
+  attackSwitchInterval: 2
+  jumpSwitchChance: 0.35
   entityStatus: {fileID: 3434446383043383723}
   hookPoint: {fileID: 6813757312262073523}
   attackWindUpSound:
@@ -421,6 +425,7 @@ MonoBehaviour:
       Data3: 690410919
       Data4: 1997300069
     Path: event:/Crab/Step
+  arenaCenter: {fileID: 0}
 --- !u!58 &5604348756490333627
 CircleCollider2D:
   m_ObjectHideFlags: 0
