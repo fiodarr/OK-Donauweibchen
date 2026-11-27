@@ -30,8 +30,6 @@ public class PowerupBuyMenu: MonoBehaviour
 
     public void Show()
     {
-        inputHandler.MenuConfirm += TryBuyPowerup;
-        inputHandler.MenuClose += Hide;
         
         Debug.Log("HEREHERE");
         visuals.SetActive(true);
@@ -47,8 +45,6 @@ public class PowerupBuyMenu: MonoBehaviour
         Debug.Log("I hide");
         visuals.SetActive(false);
         active = false;
-        inputHandler.MenuConfirm -= TryBuyPowerup;
-        inputHandler.MenuClose -= Hide;
         canClose = false;
     }
     

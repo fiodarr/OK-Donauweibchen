@@ -55,9 +55,20 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     public float FishingRodTimePressed { get; private set; }
+    
+    //Upgrade Menu
+    private bool isBuyPressed = false;
+    public float BuyTimePressed { get; private set; }
+    public event Action BuyPressed;
+    public event Action BuyReleased;
+    public event Action SavepointExitPressed;
+    public event Action OpenUpgradeMenuPressed;
+    public event Action CloseUpgradeMenuPressed;
 
+    //Control Schemes
     public event Action controlSchemeChanged;
     
+    //
     public event Action NextPanel;
     public event Action InteractPressed;
 
@@ -74,9 +85,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public event Action Heal;
 
-    public event Action MenuConfirm;
-    public event Action MenuClose;
-
     public event Action DialogueNext;
     
     
@@ -92,12 +100,14 @@ public class PlayerInputHandler : MonoBehaviour
     {
         inputActions.Player.Enable();
         inputActions.InputScheme.Enable();
+        inputActions.Menus.Enable();
     }
 
     private void OnDisable()
     {
         inputActions.Player.Disable();
         inputActions.InputScheme.Disable();
+        inputActions.Menus.Disable();
     }
 
     private void Update()
@@ -111,6 +121,8 @@ public class PlayerInputHandler : MonoBehaviour
                 NextPanel?.Invoke();
             }
         }
+
+        UpdateRestSpotInputs();
 
         if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
         
@@ -144,7 +156,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.Player.Interact.WasPressedThisFrame())
         {
             InteractPressed?.Invoke();
-            MenuClose?.Invoke();
         }
             
 
@@ -165,10 +176,45 @@ public class PlayerInputHandler : MonoBehaviour
         if (inputActions.Player.Evade.WasPressedThisFrame())
         {
             Dash?.Invoke();
-            MenuConfirm?.Invoke();
         }
         
         UpdateFishingRodInput();
+    }
+
+    private void UpdateRestSpotInputs()
+    {
+        if (GameManager.Instance.CurrentState == GameState.RestSpot)
+        {
+            if (isBuyPressed)
+            {
+                BuyTimePressed += Time.deltaTime;
+            }
+            else
+            {
+                BuyTimePressed = 0;
+            }
+
+            if (inputActions.Menus.Confirm.WasPressedThisFrame())
+            {
+                isBuyPressed = true;
+                BuyPressed?.Invoke();
+            } else if (inputActions.Menus.Confirm.WasReleasedThisFrame())
+            {
+                isBuyPressed = false;
+                BuyReleased?.Invoke();
+            }
+
+            if (inputActions.Menus.Confirm.WasPressedThisFrame())
+            {
+                OpenUpgradeMenuPressed?.Invoke();
+            }
+
+            if (inputActions.Menus.Back.WasPressedThisFrame())
+            {
+                CloseUpgradeMenuPressed?.Invoke();
+                SavepointExitPressed?.Invoke();
+            }
+        }
     }
 
     private void UpdateFishingRodInput()

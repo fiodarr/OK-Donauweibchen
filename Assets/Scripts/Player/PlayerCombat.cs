@@ -421,4 +421,9 @@ public class PlayerCombat : MonoBehaviour
         currentState = CombatState.Default;
         //TODO: end resting animation
     }
+
+    public void UpgradeDash()
+    {
+        maxDashes = 2;
+    }
 }

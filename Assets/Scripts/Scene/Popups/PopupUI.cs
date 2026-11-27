@@ -18,7 +18,7 @@ public class PopupUI: MonoBehaviour
         gameObject.SetActive(true);
         if (pauseGame)
         {
-            GameManager.Instance.SetState(GameState.Popup);
+            GameManager.Instance.SetState(GameState.RestSpot);
             isPaused = true;
         }
     }

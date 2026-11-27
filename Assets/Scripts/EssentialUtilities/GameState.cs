@@ -2,7 +2,8 @@
 {
     Gameplay,
     Dialogue,
-    Popup,
+    RestSpot,
     Paused,
+    Menu,
     Cutscene
 }

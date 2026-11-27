@@ -67,6 +67,19 @@ public class GameManager: MonoBehaviour
 
     public void UpdateTimeScale()
     {
+        switch (CurrentState)
+        {
+            case GameState.RestSpot:
+                Time.timeScale = 1;
+                break;
+            case GameState.Gameplay:
+                Time.timeScale = 1 * timeModifier * currentAimingModifier;
+                break;
+            default:
+                Time.timeScale = 0;
+                break;
+        }
+        
         if (CurrentState != GameState.Gameplay)
         {
             Time.timeScale = 0 * timeModifier;
