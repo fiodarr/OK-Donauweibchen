@@ -42,7 +42,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     [SerializeField] private EventReference pingPongSound;
 
     
-    [SerializeField] private Collider2D[] hurtbox;
+    [SerializeField] protected Collider2D[] hurtbox;
     protected Rigidbody2D Rb;
     private SpriteRenderer spriteRenderer;
     
@@ -61,7 +61,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         Rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EntityStatus>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         startPosition = transform.position;
         startRotation = transform.rotation;
@@ -255,6 +255,8 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
     private void UpdateKickPrompt(EnemyState state)
     {
+        if (kickPrompt == null || kickTrajectory == null)
+            return;
         if (currentState == EnemyState.Stunned && state != EnemyState.Stunned)
         {
             kickPrompt.Hide();
@@ -267,6 +269,9 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
     
     public virtual void TryDrawKickTrajectory(Vector2 origin)
     {
+
+        if (kickPrompt == null || kickTrajectory == null)
+            return;
         if (currentState != EnemyState.Stunned || !canShowKickPrompt)
         {
             kickTrajectory.Hide();

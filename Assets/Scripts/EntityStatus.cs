@@ -125,4 +125,14 @@ public class EntityStatus : MonoBehaviour
 
         isDead = false;
     }
+
+    public float GetArmor()
+    {
+        return currentArmor;
+    }
+
+    public void SetArmor(float amount)
+    {
+        currentArmor = Mathf.Max(0, amount);
+    }
 }

@@ -383,7 +383,11 @@ MonoBehaviour:
   equippedSecondaryWeapon: {fileID: 7510342770238936671}
   equippedUtilityItem: {fileID: 4175446622263101430}
   utilityTimeThreshold: 0.1
-  dashForce: 100
+  nearestEnemyDetectionRadius: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  dashForce: 200
   dashCooldown: 1
   playerPivot: {fileID: 3535269130643892904}
   animator: {fileID: 5056467316801955230}

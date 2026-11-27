@@ -13,7 +13,7 @@ public class FlashController : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         propertyBlock = new MaterialPropertyBlock();
     }
 
