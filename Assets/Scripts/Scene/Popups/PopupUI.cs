@@ -11,11 +11,13 @@ public class PopupUI: MonoBehaviour
 
     private string popupText;
     
+    Coroutine timedPopupCoroutine = null;
+    
 
     public void OpenPopup(TextAsset textAsset, bool pauseGame)
     {
-        parser.Parse(this, textAsset);
         gameObject.SetActive(true);
+        parser.Parse(this, textAsset);
         if (pauseGame)
         {
             GameManager.Instance.SetState(GameState.RestSpot);
@@ -26,7 +28,11 @@ public class PopupUI: MonoBehaviour
     public void OpenTimedPopup(TextAsset textAsset, bool pauseGame, float timer)
     {
         OpenPopup(textAsset, pauseGame);
-        StartCoroutine(CloseTimedPopup(timer));
+        if (timedPopupCoroutine != null)
+        {
+            StopCoroutine(timedPopupCoroutine);
+        }
+        timedPopupCoroutine = StartCoroutine(CloseTimedPopup(timer));
     }
 
     private IEnumerator CloseTimedPopup(float timer)

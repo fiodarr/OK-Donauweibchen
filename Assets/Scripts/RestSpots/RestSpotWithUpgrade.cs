@@ -1,6 +1,5 @@
 ﻿using FMODUnity;
 using UnityEngine;
-using EventReference = Mono.Cecil.EventReference;
 
 public class RestSpotWithUpgrade: RestSpot
 {
