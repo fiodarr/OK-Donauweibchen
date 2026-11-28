@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Wall
+  - Stairs
+  - feet
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - Pickup
   - SortingWalls
   - HookableWalls
-  - 
+  - feet
   - 
   - 
   - 
@@ -45,6 +47,9 @@ TagManager:
   - name: background
     uniqueID: 1483694255
     locked: 0
+  - name: behindbehind
+    uniqueID: 1878355309
+    locked: 0
   - name: behind
     uniqueID: 2655727719
     locked: 0
@@ -53,6 +58,9 @@ TagManager:
     locked: 0
   - name: over
     uniqueID: 1241637719
+    locked: 0
+  - name: overover
+    uniqueID: 3021756101
     locked: 0
   - name: worldui
     uniqueID: 793565911

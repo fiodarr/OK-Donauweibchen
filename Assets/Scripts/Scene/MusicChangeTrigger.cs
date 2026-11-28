@@ -6,6 +6,7 @@ public class MusicChangeTrigger: MonoBehaviour
 {
     [SerializeField] private EventReference music;
     [SerializeField] private bool isOneTime = true;
+   
 
     private bool isUsed = false;
     

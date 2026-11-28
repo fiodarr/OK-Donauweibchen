@@ -165,6 +165,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -173,9 +186,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3148
-        y: 1818
-        width: 8747
-        height: 3751
+        y: 3292
+        width: 1646
+        height: 863
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,6 +199,50 @@ TextureImporter:
       bones: []
       spriteID: 3e1e5bd1c82478970800000000000000
       internalID: 8757041170006532579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock walls_0
+      rect:
+        serializedVersion: 2
+        x: 4874
+        y: 1727
+        width: 3754
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770bb4107502a1941914066ab0233589
+      internalID: -8330813809663731155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock walls_1
+      rect:
+        serializedVersion: 2
+        x: 6226
+        y: 3505
+        width: 6181
+        height: 2117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bdc41c44b2321d4abb092163c8debbe
+      internalID: -5757052135391496954
       vertices: []
       indices: 
       edges: []
