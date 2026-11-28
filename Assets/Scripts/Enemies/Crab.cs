@@ -327,7 +327,7 @@ public class Crab : BaseEnemy
         windUpEnded = false;
 
         SetState(EnemyState.Attack);
-        RuntimeManager.PlayOneShot(attackSound, transform.position);
+        
 
         yield return new WaitUntil(() =>
             GetState() != EnemyState.Attack
@@ -386,7 +386,7 @@ public class Crab : BaseEnemy
         Coroutine movement = StartCoroutine(MoveTowardsTarget(jumpTarget));
 
         yield return new WaitUntil(() => jumpEnded);
-        RuntimeManager.PlayOneShot(jumpSound, transform.position);
+        
 
         isJumpMoving = false;
         StopCoroutine(movement);
@@ -438,6 +438,7 @@ public class Crab : BaseEnemy
                 break;
 
             windUpEnded = false;
+            RuntimeManager.PlayOneShot(smashWindUpSound,transform.position);
 
             SetState(EnemyState.Preparing);
             animator.SetTrigger("Smash");
@@ -451,6 +452,7 @@ public class Crab : BaseEnemy
 
             windUpEnded = false;
 
+            
             SetState(EnemyState.Attack);
 
             yield return new WaitUntil(() =>
@@ -471,6 +473,8 @@ public class Crab : BaseEnemy
         if (GetState() != EnemyState.Idle)
             yield break;
     }
+
+    
 
     private IEnumerator MoveTowardsTarget(Vector2 tg)
     {
@@ -532,6 +536,9 @@ public class Crab : BaseEnemy
                 Quaternion.identity
             );
         }
+        RuntimeManager.PlayOneShot(smashSound, transform.position);
+        CameraShake.Instance.Shake(0.2f, 0.2f);
+        GamepadVibration.Instance.Vibrate(0.2f, 0.2f);
     }
 
     public void ActivateHitbox()
@@ -550,12 +557,20 @@ public class Crab : BaseEnemy
                 Quaternion.identity
             );
         }
+        RuntimeManager.PlayOneShot(attackSound, transform.position);
+        CameraShake.Instance.Shake(0.05f, 0.05f);
+        GamepadVibration.Instance.Vibrate(0.05f, 0.05f);
     }
 
     public void RemoveArmour()
     {
         Debug.Log("RemoveArmour");
         entityStatus.SetArmor(0);
+    }
+
+    public void StepSound()
+    {
+        RuntimeManager.PlayOneShot(walkSound,transform.position);
     }
 
     public void ActivateJumpHitbox()
@@ -574,6 +589,9 @@ public class Crab : BaseEnemy
                 Quaternion.identity
             );
         }
+        RuntimeManager.PlayOneShot(jumpSound, transform.position);
+        CameraShake.Instance.Shake(0.1f, 0.1f);
+        GamepadVibration.Instance.Vibrate(0.1f, 0.1f);
     }
 
     public void DeactivateHitbox()
@@ -612,7 +630,39 @@ public class Crab : BaseEnemy
     {
         return false;
     }
+    protected override void OnTakeDamage(Vector2 damageDirection, DamageData[] damage, float knockback)
+    {
+        float healthBefore = status.GetHealth();
 
+        base.OnTakeDamage(damageDirection, damage, knockback);
+
+        float healthAfter = status.GetHealth();
+
+        if ((healthBefore > status.GetMaxHealth() * 0.66f &&
+             healthAfter <= status.GetMaxHealth() * 0.66f) ||
+            (healthBefore > status.GetMaxHealth() * 0.33f &&
+             healthAfter <= status.GetMaxHealth() * 0.33f))
+        {
+            animator.SetTrigger("Hit");
+            CameraShake.Instance.Shake(0.3f, 0.1f);
+            GamepadVibration.Instance.Vibrate(0.3f, 0.3f);
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+
+            attack.hitbox.EndAttack();
+            jumpAttack.hitbox.EndAttack();
+            shockwaveAttack.hitbox.EndAttack();
+
+            canAttack = true;
+            isJumpMoving = false;
+            isShockwaveSequence = false;
+
+            SetState(EnemyState.Idle);
+        }
+    }
     protected override void Die()
     {
         RuntimeManager.PlayOneShot(dieSound, transform.position);
