@@ -70,7 +70,23 @@ public class ChargingEnemy : BaseEnemy
             Layers.Player
         );
 
-        if (player == null) return;
+        if (player == null)
+        {
+            animator.SetBool("IsMoving", false);
+            return;
+        }
+
+        RaycastHit2D wallHit = Physics2D.Linecast(
+            transform.position,
+            player.transform.position,
+            Layers.Walls
+        );
+
+        if (wallHit.collider != null)
+        {
+            animator.SetBool("IsMoving", false);
+            return;
+        }
 
         target = player.transform;
 
