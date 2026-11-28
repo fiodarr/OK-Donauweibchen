@@ -52,7 +52,7 @@ public class EntityStatus : MonoBehaviour
         FlashOnTakeDamage();
         foreach (DamageData originalDamage in damages)
         {
-            DamageData damage = originalDamage;
+            DamageData damage = new DamageData(originalDamage);
 
             foreach (Modifier m in damageModifiers)
             {

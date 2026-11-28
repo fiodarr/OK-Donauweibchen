@@ -12,5 +12,12 @@ public class DamageData
     public float amount = 5f;
     public DamageType type = DamageType.Physical;
     public AttackDataTag tag = AttackDataTag.Default;
-    
-}
+
+    public DamageData(DamageData damageData)
+    {
+        amount = damageData.amount;
+        type = damageData.type;
+        tag = damageData.tag;
+    }
+    public DamageData() { }
+    }
