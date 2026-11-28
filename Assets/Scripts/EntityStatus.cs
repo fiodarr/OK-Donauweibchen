@@ -46,7 +46,7 @@ public class EntityStatus : MonoBehaviour
         }
     }
 
-    public void TakeDamage(DamageData[] damages)
+    public virtual void TakeDamage(DamageData[] damages)
     {
         if (isDead) return;
         FlashOnTakeDamage();
