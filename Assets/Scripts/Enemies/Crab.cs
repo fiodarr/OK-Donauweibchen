@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -685,6 +686,8 @@ public class Crab : BaseEnemy
         attack.hitbox.EndAttack();
         StopAllCoroutines();
         base.Die();
+        EventInstance music = EnvironmentDirector.Instance.GetCurrentMusic();
+        music.setParameterByName("FinishCrab", 1);
         animator.SetBool("IsDead", true);
     }
     
