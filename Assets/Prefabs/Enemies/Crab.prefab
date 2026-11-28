@@ -328,7 +328,10 @@ MonoBehaviour:
     heavy: 0
     tag: 0
   shockwaveAttack:
-    damage: []
+    damage:
+    - amount: 3
+      type: 0
+      tag: 0
     knockback: 5
     launchForce: 5
     autolockDistance: 3

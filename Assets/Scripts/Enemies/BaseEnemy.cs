@@ -79,7 +79,7 @@ public class BaseEnemy : Hitable, IHookable, IIntensityEmitter
 
         Instantiate(prefab, transform.position, Quaternion.identity);
     }
-    void Start()
+    protected virtual void Start()
     {
         RestSpotManager.Instance.enemies.Add(this);
     }

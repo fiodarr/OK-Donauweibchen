@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using FMODUnity;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Crab : BaseEnemy
 {
@@ -32,6 +34,8 @@ public class Crab : BaseEnemy
     [SerializeField] private EntityStatus entityStatus;
     [SerializeField] private CrabHookPoint hookPoint;
     private float hookPointInitialX, hookPointInitialY;
+    
+    public EntityStatus EntityStatus => entityStatus;
 
     [SerializeField] private EventReference attackWindUpSound;
     [SerializeField] private EventReference attackSound;
@@ -43,6 +47,8 @@ public class Crab : BaseEnemy
     [SerializeField] private EventReference walkSound;
     [SerializeField] private Transform arenaCenter;
 
+    private float oneChunkHp;
+    
     private bool hasMovedToArenaCenter;
     private bool isShockwaveSequence;
 
@@ -55,6 +61,7 @@ public class Crab : BaseEnemy
     private bool isJumpMoving;
 
     private int armorPhase;
+    public int ArmorPhase => armorPhase;
 
     private CharacterSorting characterSorting;
     private Coroutine attackCoroutine;
@@ -62,6 +69,8 @@ public class Crab : BaseEnemy
     private float nextAttackSwitchTime;
 
     public bool HasArmor => entityStatus.GetArmor() > 0;
+    
+    public event Action OnArmorPhaseChange;
 
     private enum AttackType
     {
@@ -85,12 +94,17 @@ public class Crab : BaseEnemy
         hookPointInitialX = hookPoint.transform.localPosition.x;
         hookPointInitialY = hookPoint.transform.localPosition.y;
         characterSorting = GetComponent<CharacterSorting>();
+
+        
+    }
+
+    protected override void Start()
+    {
+        base.Start();
     }
 
     private void Update()
     {
-        CheckArmorPhase();
-
         if (GetState() != EnemyState.Idle)
             return;
 
@@ -566,6 +580,7 @@ public class Crab : BaseEnemy
     {
         Debug.Log("RemoveArmour");
         entityStatus.SetArmor(0);
+        OnArmorPhaseChange?.Invoke();
     }
 
     public void StepSound()
@@ -635,9 +650,11 @@ public class Crab : BaseEnemy
         float healthBefore = status.GetHealth();
 
         base.OnTakeDamage(damageDirection, damage, knockback);
-
+        
         float healthAfter = status.GetHealth();
-
+        
+        CheckArmorPhase();
+        
         if ((healthBefore > status.GetMaxHealth() * 0.66f &&
              healthAfter <= status.GetMaxHealth() * 0.66f) ||
             (healthBefore > status.GetMaxHealth() * 0.33f &&

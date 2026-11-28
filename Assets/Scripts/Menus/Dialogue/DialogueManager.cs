@@ -40,10 +40,11 @@ public class DialogueManager: MonoBehaviour
 
     private void EndDialogue()
     {
+        HudParent.Instance.ShowHud();
         dialogueWindow.SetActive(false);
         GameManager.Instance.SetState(GameState.Gameplay);
         inputHandler.DialogueNext -= NextLine;
         OnCurrentDialogueComplete?.Invoke();
-        HudParent.Instance.ShowHud();
+        
     }
 }

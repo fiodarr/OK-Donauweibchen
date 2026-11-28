@@ -20,6 +20,15 @@ public class CrabHookPoint: MonoBehaviour, IHookable
 
     public bool AllowedToHook()
     {
+        if (!crab.IsPointBehind(crab.GetTarget().transform.position))
+        {
+            Debug.Log("Not behind crab");
+        }
+
+        if (!crab.HasArmor)
+        {
+            Debug.Log("Doesn't have armor");
+        }
         return (crab.IsPointBehind(crab.GetTarget().transform.position) && crab.HasArmor);
     }
 }

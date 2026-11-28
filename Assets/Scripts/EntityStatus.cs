@@ -72,6 +72,7 @@ public class EntityStatus : MonoBehaviour
                     {
                         damage.amount -= damage.amount*armorReduction;
                     }
+                    damage.amount = Mathf.Max(0, damage.amount);
                     currentHealth = Mathf.Max(0, currentHealth - damage.amount);
                     Debug.Log(damage.amount + "damage");
                     OnHealthChanged?.Invoke(currentHealth,maxHealth);
