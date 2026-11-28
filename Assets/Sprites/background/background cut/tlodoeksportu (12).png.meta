@@ -61,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -131,12 +131,12 @@ TextureImporter:
       name: tlodoeksportu (12)_0
       rect:
         serializedVersion: 2
-        x: 11088
+        x: 11188
         y: 5112
-        width: 2721
+        width: 2746
         height: 2388
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -145,116 +145,6 @@ TextureImporter:
       bones: []
       spriteID: cfbb89544d6587c70800000000000000
       internalID: 8969014127609035772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (12)_1
-      rect:
-        serializedVersion: 2
-        x: 13657
-        y: 6667
-        width: 231
-        height: 833
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91a43f8909ff939a0800000000000000
-      internalID: -6252685611120768487
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (12)_2
-      rect:
-        serializedVersion: 2
-        x: 13891
-        y: 6661
-        width: 39
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7cfa17629aecee440800000000000000
-      internalID: 4967134664926015431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (12)_3
-      rect:
-        serializedVersion: 2
-        x: 13929
-        y: 6640
-        width: 71
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45094285dd8df7a90800000000000000
-      internalID: -7313888824648232876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (12)_4
-      rect:
-        serializedVersion: 2
-        x: 13601
-        y: 5793
-        width: 227
-        height: 470
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f01bbb5594058600800000000000000
-      internalID: 469786775665709299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tlodoeksportu (12)_5
-      rect:
-        serializedVersion: 2
-        x: 13580
-        y: 5217
-        width: 294
-        height: 307
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1e79915c813c60a20800000000000000
-      internalID: 3028322310606657505
       vertices: []
       indices: 
       edges: []

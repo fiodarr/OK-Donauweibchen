@@ -13,7 +13,7 @@ public class EnvironmentDirector: MonoBehaviour
     [Header("Intensity Coefficient")]
     [SerializeField] private List<IntensityMonitor> monitors = new List<IntensityMonitor>();
     [SerializeField] private float intensityTransitionDuration = 3f;
-    [SerializeField] private EventReference music;
+    [SerializeField] private EventReference defaultMusic;
 
     private float currentIntensityValue = 0f;
 
@@ -21,7 +21,7 @@ public class EnvironmentDirector: MonoBehaviour
     private IntensityMonitor.IntensityLevel currentIntensityLevel; 
 
     private Coroutine intensityChangeCoroutine;
-    private EventInstance play;
+    private EventInstance music;
 
     public static EnvironmentDirector Instance = null;
     
@@ -39,8 +39,9 @@ public class EnvironmentDirector: MonoBehaviour
 
     private void Start()
     {
-        play = RuntimeManager.CreateInstance(music);
-        play.start();
+        music = RuntimeManager.CreateInstance(defaultMusic);
+        music.start();
+        
         foreach (IntensityMonitor monitor in monitors)
         {
             monitor.OnIntensityChange += OnMonitorIntensityChange;
@@ -111,6 +112,16 @@ public class EnvironmentDirector: MonoBehaviour
         intensityChangeCoroutine = StartCoroutine(ChangeIntensityLevel(newTargetIntensityValue));
     }
 
+    public EventInstance GetCurrentMusic()
+    {
+        return music;
+    }
+
+    public void SetMusic(EventInstance newMusic)
+    {
+        this.music = newMusic;
+    }
+
     private IEnumerator ChangeIntensityLevel(float newIntensity)
     {
         float intensityChangeSpeed = 1f / intensityTransitionDuration;
@@ -124,7 +135,7 @@ public class EnvironmentDirector: MonoBehaviour
             );
             //Debug.Log(currentIntensityValue);
             
-            play.setParameterByName("Intensity", currentIntensityValue);
+            music.setParameterByName("Intensity", currentIntensityValue);
             yield return null;
         }
 

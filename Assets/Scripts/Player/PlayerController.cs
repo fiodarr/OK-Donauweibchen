@@ -100,7 +100,6 @@ public class PlayerController : Hitable
                 isMoving = true;
             }
 
-
             animator.SetFloat("DirX", movement.x);
             animator.SetFloat("DirY", movement.y);
         }

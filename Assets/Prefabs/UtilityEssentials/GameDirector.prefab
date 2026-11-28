@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5113961003315223737}
   - component: {fileID: 1333159205045166735}
   - component: {fileID: 6116660333657684331}
+  - component: {fileID: 1650649501267934464}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -45,6 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb01ab47b41e4816a0ea055560c7809c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  dialogueManager: {fileID: 0}
+  startingDialogue: {fileID: 0}
+  mermaid: {fileID: 0}
+  aimingTimeScale: 0.6
+  aimSlowInDuration: 0.25
+  aimSlowOutDuration: 0.12
+  timeModifier: 1
 --- !u!114 &6116660333657684331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,3 +75,15 @@ MonoBehaviour:
       Data3: -2135718491
       Data4: 124155047
     Path: event:/Music/Creepy
+--- !u!114 &1650649501267934464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252102628238153948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4078889663bec184ea0071966316b8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadVibration
