@@ -9,14 +9,12 @@ public class PlayerController : Hitable
     private PlayerComponents playerComponents;
     private Camera mainCamera;
 
-
     private Coroutine stepsRoutine;
 
     [SerializeField] private EventReference footsteps;
     [SerializeField] private EventReference takeDamageSound;
     [SerializeField] private ParticleSystem walkingParticles;
     private bool isMoving = false;
-
 
     [SerializeField] private float moveSpeed = 5f;
 
@@ -25,7 +23,7 @@ public class PlayerController : Hitable
     public Vector2 FacingDirection { get; private set; }
     public Action OnDamaged;
 
-    [SerializeField] private  Collider2D solidCollider;
+    [SerializeField] private Collider2D solidCollider;
 
     [Header("Cliff Jump")]
     [SerializeField] private Transform visualRoot;
@@ -34,7 +32,7 @@ public class PlayerController : Hitable
     private AnimationCurve heightCurve = AnimationCurve.EaseInOut(0, 0, 1, 0);
 
     [SerializeField] private Animator animator;
-    
+
     private int originalLayer;
 
     private bool isPerformingCliffJump;
@@ -43,28 +41,28 @@ public class PlayerController : Hitable
     private float jumpDuration;
     private float jumpElapsed;
     private Vector3 visualStartPosition;
-    
+
+    private bool isOnStairs;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerComponents = GetComponent<PlayerComponents>();
-        solidCollider.forceSendLayers-=Layers.Enemy;
+        solidCollider.forceSendLayers -= Layers.Enemy;
         originalLayer = gameObject.layer;
-        
-        
+
         mainCamera = Camera.main;
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.Gameplay) return;
-        
+
         RefreshAimDirection();
     }
 
     public void RefreshAimDirection()
     {
-        
         Vector2 direction = playerComponents.inputHandler.MoveInput;
 
         if (direction.sqrMagnitude > 0.001f)
@@ -72,7 +70,7 @@ public class PlayerController : Hitable
             FacingDirection = direction.normalized;
         }
     }
-    
+
     private void FixedUpdate()
     {
         if (isPerformingCliffJump)
@@ -80,17 +78,15 @@ public class PlayerController : Hitable
             UpdateCliffJump();
             return;
         }
-        
+
         if (playerComponents.combat.LockMove || playerComponents.status.movementLocked)
         {
             return;
         }
-        
-        
 
         Vector2 movement = playerComponents.inputHandler.MoveInput.normalized;
 
-        rb.linearVelocity = movement * moveSpeed;
+        rb.linearVelocity = movement * moveSpeed * (isOnStairs ? 0.7f : 1f);
 
         if (movement.sqrMagnitude > 0.001f)
         {
@@ -112,8 +108,8 @@ public class PlayerController : Hitable
                 StopCoroutine(stepsRoutine);
                 stepsRoutine = null;
             }
-
         }
+
         if (isMoving)
         {
             if (!walkingParticles.isEmitting)
@@ -125,9 +121,20 @@ public class PlayerController : Hitable
         }
 
         animator.SetBool("IsMoving", isMoving);
-
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Stairs"))
+            isOnStairs = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Stairs"))
+            isOnStairs = false;
+    }
+
     public bool TryStartCliffJump(Vector2 destination, float duration, AnimationCurve movementC, AnimationCurve heightC)
     {
         if (isPerformingCliffJump ||
@@ -135,13 +142,13 @@ public class PlayerController : Hitable
             playerComponents.combat.LockMove ||
             playerComponents.status.movementLocked)
             return false;
-        
+
         movementCurve = movementC;
         heightCurve = heightC;
-        
+
         isPerformingCliffJump = true;
         gameObject.layer = LayerMask.NameToLayer("PlayerAirborne");
-        
+
         jumpStart = rb.position;
         jumpDestination = destination;
         jumpDuration = duration;
@@ -163,7 +170,7 @@ public class PlayerController : Hitable
 
         return true;
     }
-    
+
     private void UpdateCliffJump()
     {
         jumpElapsed += Time.fixedDeltaTime;
@@ -194,7 +201,7 @@ public class PlayerController : Hitable
         OnDamaged?.Invoke();
         playerComponents.status.TakeDamage(damage);
         RuntimeManager.PlayOneShot(takeDamageSound);
-        GamepadVibration.Instance.Vibrate(2,0.1f);
+        GamepadVibration.Instance.Vibrate(2, 0.1f);
         Vector2 knockbackDirection = damageDirection.normalized;
         rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
         playerComponents.lantern.Blink();
@@ -203,10 +210,12 @@ public class PlayerController : Hitable
 
     IEnumerator Footsteps()
     {
-        while (isMoving){
+        while (isMoving)
+        {
             RuntimeManager.PlayOneShot(footsteps);
-        yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.4f);
         }
+
         stepsRoutine = null;
     }
 }
