@@ -5,6 +5,7 @@ using UnityEngine;
 public class FallingShip: TriggerableObject
 {
     [SerializeField] private Animator anim;
+    [SerializeField] private RestSpot newRestSpot;
     
     private bool used = false;
 
@@ -16,6 +17,7 @@ public class FallingShip: TriggerableObject
             Debug.Log("FallingShip");
             used = true;
             anim.SetTrigger("StartedFall");
+            RestSpotManager.Instance.SetRestSpot(newRestSpot);
         }
     }
 }

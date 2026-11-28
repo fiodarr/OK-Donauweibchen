@@ -31,11 +31,10 @@ public class Crab : BaseEnemy
     [SerializeField, Range(0f, 1f)] private float jumpSwitchChance = 0.35f;
 
     [Header("Armor Phases")]
-    [SerializeField] private EntityStatus entityStatus;
     [SerializeField] private CrabHookPoint hookPoint;
     private float hookPointInitialX, hookPointInitialY;
     
-    public EntityStatus EntityStatus => entityStatus;
+    public EntityStatus EntityStatus => status;
 
     [SerializeField] private EventReference attackWindUpSound;
     [SerializeField] private EventReference attackSound;
@@ -68,7 +67,7 @@ public class Crab : BaseEnemy
 
     private float nextAttackSwitchTime;
 
-    public bool HasArmor => entityStatus.GetArmor() > 0;
+    public bool HasArmor => status.GetArmor() > 0;
     
     public event Action OnArmorPhaseChange;
 
@@ -123,16 +122,16 @@ public class Crab : BaseEnemy
 
     private void CheckArmorPhase()
     {
-        float hpPercent = entityStatus.GetHealth() / entityStatus.GetMaxHealth();
+        float hpPercent = status.GetHealth() / status.GetMaxHealth();
 
         if (armorPhase == 0 && hpPercent <= 0.66f)
         {
-            entityStatus.SetArmor(999999);
+            status.SetArmor(999999);
             armorPhase = 1;
         }
         else if (armorPhase == 1 && hpPercent <= 0.33f)
         {
-            entityStatus.SetArmor(999999);
+            status.SetArmor(999999);
             armorPhase = 2;
         }
     }
@@ -246,7 +245,7 @@ public class Crab : BaseEnemy
 
     private void SelectNextAttack()
     {
-        if (entityStatus.GetArmor() > 0)
+        if (status.GetArmor() > 0)
         {
             if (!hasMovedToArenaCenter)
                 selectedAttack = AttackType.Jump;
@@ -368,7 +367,7 @@ public class Crab : BaseEnemy
         Rb.linearVelocity = Vector2.zero;
         animator.SetBool("IsMoving", false);
 
-        Vector2 jumpTarget = entityStatus.GetArmor() > 0 && !hasMovedToArenaCenter
+        Vector2 jumpTarget = status.GetArmor() > 0 && !hasMovedToArenaCenter
             ? (Vector2)arenaCenter.position
             : (Vector2)target.position;
 
@@ -410,7 +409,7 @@ public class Crab : BaseEnemy
             hb.enabled = true;
         }
 
-        if (entityStatus.GetArmor() > 0)
+        if (status.GetArmor() > 0)
             hasMovedToArenaCenter = true;
 
         SetState(EnemyState.Attack);
@@ -448,7 +447,7 @@ public class Crab : BaseEnemy
 
         for (int i = 0; i < 3; i++)
         {
-            if (entityStatus.GetArmor() <= 0)
+            if (status.GetArmor() <= 0)
                 break;
 
             windUpEnded = false;
@@ -476,7 +475,7 @@ public class Crab : BaseEnemy
 
         Rb.linearVelocity = Vector2.zero;
 
-        if (entityStatus.GetArmor() > 0)
+        if (status.GetArmor() > 0)
             yield return new WaitForSeconds(shockwaveAttack.recoveryTime);
 
         isShockwaveSequence = false;
@@ -579,7 +578,7 @@ public class Crab : BaseEnemy
     public void RemoveArmour()
     {
         Debug.Log("RemoveArmour");
-        entityStatus.SetArmor(0);
+        status.SetArmor(0);
         OnArmorPhaseChange?.Invoke();
     }
 
@@ -687,5 +686,55 @@ public class Crab : BaseEnemy
         StopAllCoroutines();
         base.Die();
         animator.SetBool("IsDead", true);
+    }
+    
+    public override void Respawn()
+    {
+        // Stop any attack or movement coroutine left from before death.
+        StopAllCoroutines();
+
+        // Make sure none of the Crab's hitboxes remain active.
+        attack.hitbox.EndAttack();
+        jumpAttack.hitbox.EndAttack();
+        shockwaveAttack.hitbox.EndAttack();
+
+        // Reset shared enemy state: position, health, colliders, alpha, etc.
+        base.Respawn();
+
+        // Reset Crab-specific state.
+        target = null;
+        direction = Vector2.zero;
+        facingDirection = Vector2.zero;
+
+        armorPhase = 0;
+        hasMovedToArenaCenter = false;
+
+        canAttack = true;
+        windUpEnded = false;
+        jumpEnded = false;
+        isJumpMoving = false;
+        isShockwaveSequence = false;
+
+        hasSelectedAttack = false;
+        selectedAttack = AttackType.Normal;
+        attackCoroutine = null;
+
+        // Restore the hook point's original position.
+        Vector3 hookPosition = hookPoint.transform.localPosition;
+        hookPosition.x = hookPointInitialX;
+        hookPosition.y = hookPointInitialY;
+        hookPoint.transform.localPosition = hookPosition;
+
+        // Reset the Animator, including its death animation/state.
+        animator.Rebind();
+        animator.Update(0f);
+
+        animator.SetBool("IsDead", false);
+        animator.SetBool("IsMoving", false);
+
+        // Notify anything listening to armor phase changes, e.g. the health bar.
+        status.SetArmor(0);
+        
+        OnArmorPhaseChange?.Invoke();
     }
 }

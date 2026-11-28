@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2779347288566353709}
   - component: {fileID: 8715645095813811922}
   - component: {fileID: 3725577308008071598}
-  m_Layer: 7
+  m_Layer: 17
   m_Name: OpenDoorObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1424831913
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 20
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}

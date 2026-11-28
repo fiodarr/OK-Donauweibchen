@@ -15,18 +15,19 @@ public class BubbleHealthUI : MonoBehaviour
     [SerializeField] private float halfBubbleScale = 0.65f;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth = 8;
-    [SerializeField] private int currentHealth = 8;
+    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int currentHealth = 10;
     [SerializeField] private EntityStatus status;
 
-    private void OnEnable()
-    {
-        status.OnHealthChanged += UpdateHealth;
-    }
-
-    private void OnDisable()
+    private void OnDestroy()
     {
         status.OnHealthChanged -= UpdateHealth;
+    }
+    
+    private void Awake()
+    {
+        
+        status.OnHealthChanged += UpdateHealth;
     }
 
     private void Start()
@@ -38,6 +39,8 @@ public class BubbleHealthUI : MonoBehaviour
     {
         maxHealth = Mathf.Max(0, Mathf.RoundToInt(maximumHealth));
         currentHealth = Mathf.Clamp(Mathf.RoundToInt(health), 0, maxHealth);
+        
+        Debug.Log("New Health: " + currentHealth + "/" + maxHealth);
 
         int requiredBubbles = Mathf.CeilToInt(maxHealth / 2f);
 

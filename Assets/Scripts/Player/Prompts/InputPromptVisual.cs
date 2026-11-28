@@ -40,15 +40,12 @@ public class InputPromptVisual: MonoBehaviour
         {
             case PlayerInputHandler.ControlScheme.KeyboardMouse:
                 image.sprite = sprites.keyboardSchemeSprite;
-                Debug.Log("Now using keyboard sprite");
                 break;
             case PlayerInputHandler.ControlScheme.Controller:
                 image.sprite = sprites.playstationSchemeSprite;
-                Debug.Log("Now using playstation sprite");
                 break;
             case PlayerInputHandler.ControlScheme.XboxController:
                 image.sprite =  sprites.xboxSchemeSprite;
-                Debug.Log("Now using xbox sprite");
                 break;
             default:
                 Debug.LogError($"Unknown control scheme {GameManager.Instance.CurrentControlScheme}");

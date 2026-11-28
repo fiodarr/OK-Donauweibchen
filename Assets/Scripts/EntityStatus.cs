@@ -7,8 +7,8 @@ public class EntityStatus : MonoBehaviour
 {
     [SerializeField] float maxHealth;
     [SerializeField] float maxArmor;
-    private List<Modifier> damageModifiers = new List<Modifier>();
-    private List<Modifier> healModifiers = new List<Modifier>();
+    private HashSet<Modifier> damageModifiers = new HashSet<Modifier>();
+    private HashSet<Modifier> healModifiers = new HashSet<Modifier>();
     protected FlashController flashController;
     [SerializeField] float armorReduction;
     [SerializeField] float currentHealth;

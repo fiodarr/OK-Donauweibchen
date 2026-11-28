@@ -48,6 +48,8 @@ public class CrabHealthBar: MonoBehaviour
         {
             if (i <= armorPhase)
                 RemoveArmorOfChunk(i);
+            else
+                AddArmorOfChunk(i);
         }
     }
     
@@ -73,6 +75,11 @@ public class CrabHealthBar: MonoBehaviour
     public void RemoveArmorOfChunk(int chunk)
     {
         healthChunks[chunk].RemoveArmor();
+    }
+
+    private void AddArmorOfChunk(int chunk)
+    {
+        healthChunks[chunk].AddArmor();
     }
     
     private void OnDestroy()

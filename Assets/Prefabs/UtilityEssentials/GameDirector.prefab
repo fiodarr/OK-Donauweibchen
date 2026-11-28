@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1333159205045166735}
   - component: {fileID: 6116660333657684331}
   - component: {fileID: 1650649501267934464}
+  - component: {fileID: 5659055515339654452}
+  - component: {fileID: 1122116683274046918}
+  - component: {fileID: 1842339724155803796}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -68,13 +71,13 @@ MonoBehaviour:
   monitors:
   - {fileID: 0}
   intensityTransitionDuration: 3
-  music:
+  defaultMusic:
     Guid:
-      Data1: -2067132586
-      Data2: 1146478002
-      Data3: -2135718491
-      Data4: 124155047
-    Path: event:/Music/Creepy
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1650649501267934464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,3 +90,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4078889663bec184ea0071966316b8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamepadVibration
+--- !u!114 &5659055515339654452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252102628238153948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5a85dd890ed422cbc9d665b1e5c5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlobalModifiers
+  modifierEntries:
+  - name: Vulnerable
+    modifier: {fileID: 11400000, guid: 96273606b39fe42fe8701f6b9b6cd5d1, type: 2}
+--- !u!114 &1122116683274046918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252102628238153948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6170799d3ffd4c04c8c58e956c8ae2c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitStopManager
+--- !u!114 &1842339724155803796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252102628238153948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151f2d8edbeb4f94eb20babc6eb83356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RestSpotManager
+  playerComponents: {fileID: 0}
+  player: {fileID: 0}
+  enemies: []
+  lastRestSpot: {fileID: 0}

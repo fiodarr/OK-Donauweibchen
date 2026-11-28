@@ -47,6 +47,15 @@ public class HealthChunk: MonoBehaviour
         SetCurrentValue(currentValue);
     }
 
+    public void AddArmor()
+    {
+        if (isArmored) 
+            return;
+        isArmored = true;
+        healthBarFill.color = armoredColor;
+        SetCurrentValue(currentValue);
+    }
+
     public float GetMaxValue()
     {
         return maxValue;

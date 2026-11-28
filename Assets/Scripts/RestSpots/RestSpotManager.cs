@@ -74,4 +74,9 @@ public class RestSpotManager : MonoBehaviour
         playerComponents.lantern.RestoreLight();
         RespawnEnemies();
     }
+
+    public void SetRestSpot(RestSpot restSpot)
+    {
+        lastRestSpot = restSpot;
+    }
 }
