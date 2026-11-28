@@ -2,6 +2,7 @@
 
 public class Planks: MonoBehaviour, IHookable
 {
+    [SerializeField] Transform pivot;
     public void Hook(Vector2 origin, Vector2 direction, float offset, float pullSpeed)
     {
         Destroy(this.gameObject);
@@ -9,7 +10,7 @@ public class Planks: MonoBehaviour, IHookable
 
     public Vector2 GetPosition()
     {
-        return transform.position;
+        return pivot.position;
     }
 
     public bool AllowedToHook()

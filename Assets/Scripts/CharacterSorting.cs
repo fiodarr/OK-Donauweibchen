@@ -89,6 +89,8 @@ public class CharacterSorting : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!other.isTrigger)
+            return;
         if (other.TryGetComponent(out StairZone stair))
         {
             currentStair = stair;
@@ -101,6 +103,8 @@ public class CharacterSorting : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!other.isTrigger)
+            return;
         if (other.TryGetComponent(out StairZone stair))
         {
             if (currentStair == stair)

@@ -32,6 +32,37 @@ Transform:
   - {fileID: 6529209617254729858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4237218607976075947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1455825027916023522}
+  m_Layer: 9
+  m_Name: pi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1455825027916023522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237218607976075947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6529209617254729858}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8631993268175932049
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +96,8 @@ Transform:
   m_LocalPosition: {x: 0.27, y: -0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1455825027916023522}
   m_Father: {fileID: 7346307906359720068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1399974172559983081
@@ -135,9 +167,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8631993268175932049}
   m_Enabled: 1
-  m_SortingLayerID: 1424831913
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1273211195
+  m_SortingLayer: 6
+  m_SortingOrder: 8
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!114 &812975766539856431
@@ -152,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fecf57fecb404ab790e2ce2d922352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Planks
+  pivot: {fileID: 1455825027916023522}
 --- !u!61 &9000588967572041974
 BoxCollider2D:
   m_ObjectHideFlags: 0
