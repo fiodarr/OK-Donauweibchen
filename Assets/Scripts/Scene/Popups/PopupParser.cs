@@ -68,10 +68,10 @@ public class PopupParser: MonoBehaviour
                         actionName = "E";
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
-                        actionName = "Triangle";
+                        actionName = "Cross";
                         break;
                     case PlayerInputHandler.ControlScheme.XboxController:
-                        actionName = "Y";
+                        actionName = "A";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -88,7 +88,7 @@ public class PopupParser: MonoBehaviour
                         actionName = "Right Stick";
                         break;
                     case PlayerInputHandler.ControlScheme.XboxController:
-                        actionName = "X";
+                        actionName = "Right Stick";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -102,10 +102,10 @@ public class PopupParser: MonoBehaviour
                         actionName = "Space";
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
-                        actionName = "R2";
+                        actionName = "L2";
                         break;
                     case PlayerInputHandler.ControlScheme.XboxController:
-                        actionName = "RT";
+                        actionName = "LT";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";
@@ -133,13 +133,13 @@ public class PopupParser: MonoBehaviour
                 switch (inputHandler.GetControlScheme())
                 {
                     case PlayerInputHandler.ControlScheme.KeyboardMouse:
-                        actionName = "Ctrl";
+                        actionName = "Shift";
                         break;
                     case PlayerInputHandler.ControlScheme.Controller:
-                        actionName = "Cross";
+                        actionName = "R2";
                         break;
                     case PlayerInputHandler.ControlScheme.XboxController:
-                        actionName = "A";
+                        actionName = "RT";
                         break;
                     default:
                         actionName = "<Unrecognized Control Scheme>";

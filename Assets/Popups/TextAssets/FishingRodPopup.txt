@@ -1,1 +1,1 @@
-[UtilityStart] to start casting the fishing rod. Use [UtilityRotation] to aim and release [Utility] to pull the enemy.
+ Use [UtilityRotation] to aim and release [Utility] to pull the enemy.
